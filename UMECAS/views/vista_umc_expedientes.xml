@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <!--  session form view /////////////////////////////////////////////////////-->
+    <record model="ir.ui.view" id="umc_expediente_form_view">
+        <field name="name">expedientes.form.view</field>
+        <field name="model">umc_expedientes</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <!--field name="state" widget="statusbar" /-->
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box"></div>
+                    <group>
+                        <field name="x_name" />
+                        <field name="partner_id" />
+                        <field name="x_cdi_nic" />
+                        <field name="x_numero_oficio" />
+                        <field name="x_fecha_inicio" />
+                        <field name="x_delito" />
+                        <field name="x_delito_descripcion" />
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <!--  tree view /////////////////////////////////////////////////////-->
+    <record model="ir.ui.view" id="umc_expediente_tree_view">
+        <field name="name">expedientes.tree.view</field>
+        <field name="model">umc_expedientes</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="x_name" />
+                <field name="partner_id" />
+                <field name="x_cdi_nic" />
+                <field name="x_numero_oficio" />
+                <field name="x_fecha_inicio" />
+                <field name="x_delito" />
+                <field name="x_delito_descripcion" />
+            </tree>
+        </field>
+    </record>
+    <!--Agrgar filtros de busqueda -->
+    <record model="ir.ui.view" id="expedientes_search_view">
+        <field name="name">expedientes.search.view</field>
+        <field name="model">umc_expedientes</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="x_name" />
+                <field name="x_cdi_nic"/>
+                <field name="partner_id"/>
+                <!--filter name="my_courses" string="My Courses" domain="[('responsible_id', '=', uid)]"/-->
+                <!--group string="Group By"><filter name="by_responsible" string="Responsible" context="{'group_by': 'responsible_id'}"/></group-->
+            </search>
+        </field>
+    </record>
+    <!-- window action ///////////////////////////////////////////////////////////////////////////////-->
+    <record model="ir.actions.act_window" id="umc_expedientes_list_action">
+        <field name="name">Expedientes</field>
+        <field name="res_model">umc_expedientes</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,kanban,form</field>
+        <field name="context" eval="{'search_default_customer': 1}"/>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">Agregar primer registro                </p>
+        </field>
+    </record>
+    <menuitem id="expedientes_menu" name="Expedientes" parent="main_umc_menu" action="umc_expedientes_list_action"/>
+</odoo>

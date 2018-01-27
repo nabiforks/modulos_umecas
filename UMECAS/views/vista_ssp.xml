@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <!--  session form view /////////////////////////////////////////////////////-->
+    <record model="ir.ui.view" id="umc_eval_form_56view">
+        <field name="name">evaluacion_de_riesgos66.form.view</field>
+        <field name="model">umc_imputado</field>
+        <field name="arch" type="xml">
+            <form>
+                <field name="edad" />
+            </form>
+        </field>
+    </record>
+    <!-- window action ///////////////////////////////////////////////////////////////////////////////-->
+    <record model="ir.actions.act_window" id="umc_evaluacion_2list_action">
+        <field name="name">Evaluacifeón</field>
+        <field name="res_model">umc_imputado</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,kanban,form</field>
+        <field name="context" eval="{'search_default_customer': 1}"/>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">Agregar primer registro                </p>
+        </field>
+    </record> 
+    <menuitem id="main_umc_menu" name="UMECAS"/>
+    <menuitem id="umc_menu" name="Registros" parent="main_umc_menu"/>
+    <menuitem id="evaluaciones_menu" name="Evaluaciófghs" parent="umc_menu" action="umc_evaluacion_2list_action"/>
+</odoo>

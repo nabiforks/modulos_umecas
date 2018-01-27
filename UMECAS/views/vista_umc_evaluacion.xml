@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <!--  session form view /////////////////////////////////////////////////////-->
+    <record model="ir.ui.view" id="umc_eval_form_view">
+        <field name="name">evaluacion_de_riesgos.form.view</field>
+        <field name="model">umc_evaluacion</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <field name="state" widget="statusbar" />
+                </header>
+                <sheet>
+                    <group>
+                        <field name="x_tipo_entrevista" widget="radio" options="{'horizontal': true}"/>
+                        <field name="partner_id" />
+                    </group>
+                    <group class="row">
+                        <notebook>
+                            <page string="Entrevista">
+                                <!--group-->
+                                <group>
+                                    <field name="x_lugar_entrevista" />
+                                    <field name="x_fecha_entrevista" />
+                                </group>
+                                <group>
+                                    <notebook>
+                                        <page string="I.-Datos personales"></page>
+                                        <page string="II.-Domicilio"></page>
+                                        <page string="III.-Lazos con la comunidad"></page>
+                                    </notebook>
+                                </group>
+                                <!--/group-->
+                            </page>
+                        </notebook>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <!--  tree view /////////////////////////////////////////////////////-->
+    <record model="ir.ui.view" id="umc_evaluacion_tree_view">
+        <field name="name">evaluacion.tree.view</field>
+        <field name="model">umc_evaluacion</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="partner_id" />
+                <field name="x_tipo_entrevista" />
+                <field name="x_lugar_entrevista" />
+                <field name="x_fecha_entrevista" />
+                <field name="state" />
+            </tree>
+        </field>
+    </record>
+    <!--Agregar filtros de busqueda -->
+    <record model="ir.ui.view" id="evaluaciones_umc_search_view">
+        <field name="name">evaluaciones_umc.search.view</field>
+        <field name="model">umc_evaluacion</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="partner_id" />
+                <field name="x_tipo_entrevista" />
+                <field name="x_lugar_entrevista" />
+                <field name="x_fecha_entrevista" />
+                <field name="state" />
+            </search>
+        </field>
+    </record>
+    <!-- window action ///////////////////////////////////////////////////////////////////////////////-->
+    <record model="ir.actions.act_window" id="umc_evaluacion_list_action">
+        <field name="name">Evaluación</field>
+        <field name="res_model">umc_evaluacion</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,kanban,form</field>
+        <field name="context" eval="{'search_default_customer': 1}"/>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">Agregar primer registro                </p>
+        </field>
+    </record>
+    <menuitem id="evaluaciones_menu" name="Evaluación" parent="main_umc_menu" action="umc_evaluacion_list_action"/>
+</odoo>
