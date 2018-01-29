@@ -7,7 +7,7 @@
 			<field name="inherit_id" ref="base.view_partner_form"></field>
 			<field name="arch" type="xml">
 				<xpath expr="//button[@name='toggle_active']" position="after">
-					<button class="oe_stat_button o_res_partner_tip_opp" name="125"  icon="fa-folder-open" type="action" context="{'search_default_partner_id': active_id}">
+					<button class="oe_stat_button o_res_partner_tip_opp" name="98"  icon="fa-folder-open" type="action" context="{'search_default_partner_id': active_id}">
 						<field string="Expedientes" name="x_expedientes_count" widget="statinfo"/>
 					</button>
 				</xpath>
@@ -19,7 +19,7 @@
 			<field name="inherit_id" ref="UMECAS.umc_expediente_form_view"></field>
 			<field name="arch" type="xml">
 				<xpath expr="//div[@name='button_box']" position="inside">
-					<button class="oe_stat_button" name="122"  icon="fa-newspaper-o" type="action" context="{'search_default_partner_id': partner_id}">
+					<button class="oe_stat_button" name="97"  icon="fa-newspaper-o" type="action" context="{'partner_id': partner_id,'search_default_x_expediente_id': active_id}">
 						<field string="Evaluaciones" name="x_umc_evaluaciones" widget="statinfo"/>
 					</button>
 				</xpath>

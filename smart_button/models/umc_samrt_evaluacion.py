@@ -15,4 +15,4 @@ class smart_button_umc_expedientes(models.Model):
     def compute_entrevistas_count(self):
         for partner in self:
             partner.x_umc_evaluaciones = self.env['umc_evaluacion'].search_count(
-                [('partner_id', '=', partner.id)])
+                [('x_expediente_id', '=', partner.id)])

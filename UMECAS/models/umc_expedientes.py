@@ -3,27 +3,18 @@ from datetime import timedelta
 from odoo import api, fields, models
 
 
-class Encuestas(models.Model):
+class Expedientes(models.Model):
     _name = 'umc_expedientes'
     #_rec_name = 'application_number'
     #_order = "application_number desc"
 
-    """x_name = fields.Char('Expediente', required=True, readonly=True,
-                         default=lambda self: self.env['ir.sequence'].next_by_code('umc_expedientes'))
-    application_number = fields.Char(
-       'Application Number', size=16, required=True, copy=False,
-       states={'done': [('readonly', True)]},
-       default=lambda self:
-       self.env['ir.sequence'].next_by_code('op.admission'))"""
-
-    x_name = fields.Char(
-        string=u'Expediente',
-    )
+    x_name = fields.Char('Expediente', required=True, readonly=True,
+                         default=lambda self: 'Nuevo')
 
     partner_id = fields.Many2one(
         'res.partner',
-        string=u'Imputado',
-
+        string=u'Imputado',        
+        readonly=True,        
         ondelete='set null',
     )
 
@@ -48,3 +39,11 @@ class Encuestas(models.Model):
     x_delito_descripcion = fields.Text(
         string=u'Descripción Delito',
     )
+    
+    @api.model
+    def create(self, vals):
+        if vals.get('x_name', 'New') == 'New':
+            vals['x_name'] = self.env['ir.sequence'].next_by_code('umc_expedientes') or'New'
+        print vals
+        result = super(Expedientes, self).create(vals)
+        return result

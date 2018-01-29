@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data noupdate="1">
+        <record id="seq_names_expedientes" model="ir.sequence">
+            <field name="name">Names_automatics_expedientes</field>
+            <field name="code">umc_expedientes</field>
+            <field name="prefix">EXP</field>
+            <field name="padding">5</field>
+            <field eval="1" name="number_increment"/>
+        </record>
+        <record id="seq_names_evaluaciones" model="ir.sequence">
+            <field name="name">Names_automatics_evaluaciones</field>
+            <field name="code">umc_evaluacion</field>
+            <field name="prefix">EV</field>
+            <field name="padding">5</field>
+            <field eval="1" name="number_increment"/>
+        </record>
+    </data>
+</odoo>

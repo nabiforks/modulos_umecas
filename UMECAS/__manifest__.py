@@ -27,6 +27,7 @@
         'views/vista_umc_imputado.xml',
         'views/vista_umc_evaluacion.xml',
         'views/vista_umc_expedientes.xml',
+        'data/sequence_names.xml'
     ],
     # only loaded in demonstration mode
     'demo': [
