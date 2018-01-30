@@ -19,15 +19,17 @@
     'version': '0.1',
 
     # any module necessary for this one to work correctly
-    'depends': ['base'],
+    'depends': ['base','hr'],
 
     # always loaded
     'data': [
         #'views/vista_ssp.xml',
+        'security/umc_grupos.xml',
+        'security/ir.model.access.csv',
         'views/vista_umc_imputado.xml',
         'views/vista_umc_evaluacion.xml',
         'views/vista_umc_expedientes.xml',
-        'data/sequence_names.xml'
+        'data/sequence_names.xml',
     ],
     # only loaded in demonstration mode
     'demo': [

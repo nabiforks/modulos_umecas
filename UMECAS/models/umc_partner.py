@@ -14,9 +14,15 @@ class Partner(models.Model):
     fecha_actual = fields.Date(default=fields.Date.today)
     edad = fields.Integer(string="Edad", compute="_calcular_edad")
 
-    vivienda_id = fields.Selection(
-        [('1', 'Propia'), ('2', 'Rentada'), ('3', 'Prestada'), ('4', 'Hípotecada'), ('5', 'Otro')], 'Tipo')
-    otro_vivienda = fields.Char(string='Otro')
+    
+    x_imputado = fields.Boolean(
+        string=u'Imputado',        
+        default=True,
+    )
+    
+    x_imputado_tipo = fields.Selection(
+        [('1', 'Retenido'), ('2', 'Adolescente'), ('3', 'Interno')],string=u'Tipo')
+    
 
     google_map_partner_test = fields.Char(string="Map",
                                           default='{"position":{"lat":19.04360786502212,"lng":-98.19820135831833},"zoom":15}',

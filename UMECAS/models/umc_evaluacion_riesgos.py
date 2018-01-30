@@ -14,24 +14,32 @@ class Encuestas(models.Model):
         readonly=True,
         ondelete='set null',
     )
+    x_evaluador_id = fields.Many2one(
+        'hr.employee',
+        string=u'Evaluador',
+        # readonly=True,
+        ondelete='set null',
+    )
 
     partner_id = fields.Many2one(
         'res.partner',
-        string=u'Imputado',        
-        readonly=True,        
-        default= lambda  self: self.env.context.get('partner_id'),
+        string=u'Imputado',
+        readonly=True,
+        default=lambda self: self.env.context.get('partner_id'),
         ondelete='set null',
     )
     x_tipo_entrevista = fields.Selection(
         string=u'Tipo de Entrevista',
-        selection=[('ad', 'Adolescente'), ('ret', 'Retenido'), ('int', 'Interno')],
+        selection=[('ad', 'Adolescente'),
+                   ('ret', 'Retenido'), ('int', 'Interno')],
         required=True,
-        )
+    )
     state = fields.Selection([
+        ('solicitud', 'Solicitud'),
         ('entrevista', 'Entrevista'),
         ('analisis', 'Analisis de Riesgo'),
         ('hecho', 'Hecho'),
-    ], default='entrevista', readonly=True)
+    ], default='solicitud', readonly=True)
     # Campos de las entrevistas
 
     x_lugar_entrevista = fields.Char(
@@ -51,3 +59,19 @@ class Encuestas(models.Model):
         print vals
         result = super(Encuestas, self).create(vals)
         return result
+
+    @api.multi
+    def asignar_borrador(self):
+        self.state = 'solicitud'
+
+    @api.multi
+    def asignar_evaluador(self):
+        if self.x_evaluador_id:
+            self.state = 'entrevista'
+    @api.multi
+    def terminar_entrevista(self):
+        self.state = 'analisis'
+        
+    @api.multi
+    def terminar_analisis(self):
+        self.state = 'hecho'

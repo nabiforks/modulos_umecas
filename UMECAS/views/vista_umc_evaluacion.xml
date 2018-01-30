@@ -7,6 +7,11 @@
         <field name="arch" type="xml">
             <form>
                 <header>
+                    <button name="asignar_borrador" type="object" string="Solicitud" states="entrevista"/>
+                    <button name="asignar_evaluador" type="object" string="Asignar evaluador" class="oe_highlight" states="solicitud"/>
+                    <button name="terminar_entrevista" type="object" string="Entrevista realizada" class="oe_highlight" states="entrevista"/>
+                    <button name="terminar_analisis" type="object" string="Analisis realizado" class="oe_highlight" states="analisis"/>
+                    <button name="imprimir_reporte" type="object" string="Imprimir reporte" class="oe_highlight" states="hecho"/>
                     <field name="state" widget="statusbar" />
                 </header>
                 <sheet>
@@ -16,21 +21,36 @@
                         </h1>
                     </div>
                     <group>
-                        <group>                            
+                        <group>
                             <field name="x_tipo_entrevista" widget="radio" options="{'horizontal': true}"/>
                         </group>
                         <group>
                             <field name="partner_id" />
                             <field name="x_expediente_id" />
+                            <field name="x_evaluador_id" attrs="{'readonly': [('state','not in',('solicitud'))]}" options="{'no_create': True, 'no_open': True}" />
                         </group>
                     </group>
                     <group class="row">
                         <notebook>
-                            <page string="Entrevista">
+                            <page string="Entrevista" attrs="{'invisible': [('state','in',('solicitud'))]}">
                                 <!--group-->
                                 <group>
-                                    <field n
-                                    ame="x_lugar_entrevista" />
+                                    <field name="x_lugar_entrevista" />
+                                    <field name="x_fecha_entrevista" />
+                                </group>
+                                <group>
+                                    <notebook>
+                                        <page string="I.-Datos personales"></page>
+                                        <page string="II.-Domicilio"></page>
+                                        <page string="III.-Lazos con la comunidad"></page>
+                                    </notebook>
+                                </group>
+                                <!--/group-->
+                            </page>
+                            <page string="Analisis de riesgos" attrs="{'invisible': [('state','in',('solicitud','entrevista'))]}">
+                                <!--group-->
+                                <group>
+                                    <field name="x_lugar_entrevista" />
                                     <field name="x_fecha_entrevista" />
                                 </group>
                                 <group>
@@ -54,9 +74,11 @@
         <field name="model">umc_evaluacion</field>
         <field name="arch" type="xml">
             <tree>
-                <field name="x_expediente_id" />
+                <field name="x_name" />
                 <field name="partner_id" />
                 <field name="x_tipo_entrevista" />
+                <field name="x_evaluador_id" />
+                <field name="x_expediente_id" />
                 <field name="x_lugar_entrevista" />
                 <field name="x_fecha_entrevista" />
                 <field name="state" />

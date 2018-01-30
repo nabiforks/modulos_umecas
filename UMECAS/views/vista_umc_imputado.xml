@@ -7,13 +7,30 @@
         <field name="inherit_id" ref="base.view_partner_form"/>
         <field name="arch" type="xml">
             <!--Ocultar campos///////////////////////////////////////////////////-->
-            <!--field name="function" position="attributes"><attribute name="invisible">1</attribute></field><field name="website" position="attributes"><attribute name="invisible">1</attribute></field><field name="fax" position="attributes"><attribute name="invisible">1</attribute></field><field name="type" position="attributes"><attribute name="invisible">1</attribute></field-->
-            <!--xpath expr="//page[@name='sales_purchases']" position="attributes"><attribute name="invisible">1</attribute></xpath-->
-            <!--page name='sales_purchases' position="attributes"><attribute name="invisible">1</attribute></page-->
+            <field name="function" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </field>
+            <field name="website" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </field>
+            <field name="fax" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </field>
+            <field name="title" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </field>
+            <!--field name="type" position="attributes"><attribute name="invisible">1</attribute></field-->
+            <xpath expr="//page[@name='sales_purchases']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
             <!--page name='Contacts_addres' position="attributes"><attribute name="string">IV.- Relaciones familiares</attribute></page-->
             <!--Insertar vista de nuevos campos ////////////////////////////////////////////////////////////-->
             <xpath expr="//field[@name='mobile']" position="after">
                 <field name="fecha_nacimiento" string="Fecha de nacimiento" />
+            </xpath>
+            <xpath expr="//field[@name='type']" position="after">
+                <field name="x_imputado" />
+                <field name="x_imputado_tipo" attrs="{'invisible': [('x_imputado','=',False)]}"/>
             </xpath>
             <xpath expr="//field[@name='fax']" position="after">
                 <field name="edad" string="Edad" />
@@ -39,20 +56,50 @@
             </xpath>
         </field>
     </record>
+    <!--search view ///////////////////////////// -->
+    <record model="ir.ui.view" id="partner_umc_search_view">
+        <field name="name">partner_umc.search.view</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_res_partner_filter"/>
+        <field name="arch" type="xml">
+            <xpath expr="//search" position="replace">
+                <search>
+                    <filter string="Imputados" name="imputados_filter" domain="[('x_imputado','=',True)]"/>
+                    <separator/>
+                    <filter string="Retenidos" name="retenidos_filter" domain="[('x_imputado_tipo','=',1)]"/>
+                    <filter string="Adolescentes" name="adolescentes_filter" domain="[('x_imputado_tipo','=',2)]"/>
+                    <filter string="Internos" name="internos_filter" domain="[('x_imputado_tipo','=',3)]"/>
+                    <field name="name" filter_domain="['|','|',('display_name','ilike',self),('ref','=',self),('email','ilike',self)]"/>
+                    <separator/>
+                    <filter string="Vendors" name="supplier" invisible="1" domain="[('supplier','=',1), ('parent_id', '=', False)]"/>
+                    <filter string="Archived" name="inactive" domain="[('active','=',False)]"/>
+                    <separator/>
+                    <field name="x_imputado" />
+                    <field name="category_id" string="Tag" filter_domain="[('category_id','ilike', self)]"/>
+                    <field name="user_id"/>
+                    <field name="parent_id" domain="[('is_company','=',1)]" operator="child_of"/>
+                    <group expand="0" name="group_by" string="Group By">
+                        
+                        <filter name="group_imputados" string="Tipo" context="{'group_by': 'x_imputado_tipo'}"/>
+                        
+                    </group>
+                </search>
+            </xpath>
+        </field>
+    </record>
     <!-- window action ///////////////////////////////////////////////////////////////////////////////-->
     <record model="ir.actions.act_window" id="umc_list_action">
         <field name="name">Imputados</field>
         <field name="res_model">res.partner</field>
         <field name="view_type">form</field>
         <field name="view_mode">kanban,tree,form</field>
-        <field name="context" eval="{'search_default_customer': 1}"/>
+        <field name="context" eval="{'search_default_x_imputado': True}"/>
         <field name="help" type="html">
             <p class="oe_view_nocontent_create">Agregar primer registro                </p>
         </field>
     </record>
     <!-- top level menu: no parent //////////////////////////////////////////////////////////////////////////////////////-->
     <menuitem id="main_umc_menu" name="UMECAS"/>
-    <menuitem id="regresar_imputados" name="Tablero" parent="main_umc_menu" action="umc_list_action"/>    
+    <menuitem id="regresar_imputados" name="Tablero" parent="main_umc_menu" action="umc_list_action"/>
     <menuitem id="registros_menu" name="Imputados" parent="main_umc_menu" action="umc_list_action"/>
-    
 </odoo>
