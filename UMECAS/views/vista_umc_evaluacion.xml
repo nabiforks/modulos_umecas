@@ -29,7 +29,8 @@
                             <page string="Entrevista">
                                 <!--group-->
                                 <group>
-                                    <field name="x_lugar_entrevista" />
+                                    <field n
+                                    ame="x_lugar_entrevista" />
                                     <field name="x_fecha_entrevista" />
                                 </group>
                                 <group>
