@@ -7,6 +7,9 @@ class Expedientes(models.Model):
     _name = 'umc_expedientes'
     #_rec_name = 'application_number'
     #_order = "application_number desc"
+    _inherit = 'mail.thread'
+
+    
 
     x_name = fields.Char('Expediente', required=True, readonly=True,
                          default=lambda self: 'Nuevo')
