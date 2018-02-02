@@ -40,9 +40,39 @@
                                 </group>
                                 <group>
                                     <notebook>
-                                        <page string="I.-Datos personales"></page>
-                                        <page string="II.-Domicilio"></page>
+                                        <page string="I.-Datos personales">
+                                            <group>
+                                                <group>
+                                                    <field name="x_apellido_pat" />
+                                                    <field name="x_apellido_mat" />
+                                                    <field name="x_nombre_entrevistado" />
+                                                    <field name="x_otronombre" />
+                                                    <field name="x_apodo" />
+                                                </group>
+                                                <group>
+                                                    <field name="x_lugar_nacimiento" placeholder='Localidad/Municipio/Estado'/>
+                                                    <field name="x_fecha_nacimiento" />
+                                                    <field name="x_edad"/>
+                                                    <field name="x_sexo" widget="radio" />
+                                                </group>
+                                            </group>
+                                        </page>
+                                        <page string="II.-Domicilio">
+                                            <p><h4>Domicilio Actual</h4></p>
+                                            <field name="x_domicilio_actual" />
+                                            <br/>
+                                            <p><h4>Domicilio Anterior</h4></p>
+                                            <field name="x_domicilio_anterior" string="anterior" />
+                                        </page>
                                         <page string="III.-Lazos con la comunidad"></page>
+                                        <page string="IV.-Relaciones familiares"></page>
+                                        <page string="V.-Amistades (Referencias personales)"></page>
+                                        <page string="VI.-Empleos"></page>
+                                        <page string="VII.-Estudios"></page>
+                                        <page string="VIII.-Antecedentes penales"></page>
+                                        <page string="IX.-Enfermedades"></page>
+                                        <page string="X.-Consumo de sustancias"></page>
+                                        <page string="XI.-Información del proceso actual"></page>
                                     </notebook>
                                 </group>
                                 <!--/group-->

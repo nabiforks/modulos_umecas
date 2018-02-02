@@ -69,10 +69,61 @@ class Encuestas(models.Model):
     def asignar_evaluador(self):
         if self.x_evaluador_id:
             self.state = 'entrevista'
+
     @api.multi
     def terminar_entrevista(self):
         self.state = 'analisis'
-        
+
     @api.multi
     def terminar_analisis(self):
         self.state = 'hecho'
+
+    #///////////////////////////////////////Campos de las entrevistas////////////////
+    #///////////////////////////////////////Campos de las entrevistas////////////////
+    #///////////////////////////////////////Campos de las entrevistas////////////////
+
+    #/////////////////////Datos personales//////////////
+    x_apellido_pat = fields.Char(
+        string=u'Apellido Paterno',
+    )
+
+    x_apellido_mat = fields.Char(
+        string=u'Apellido Materno',
+    )
+    x_nombre_entrevistado = fields.Char(
+        string=u'Nombre(s)',
+    )
+    x_otronombre = fields.Char(
+        string=u'Otro nombre',
+    )
+    x_apodo = fields.Char(
+        string=u'Apodo',
+    )
+    x_lugar_nacimiento = fields.Char(
+        string=u'Lugar de Nacimiento',
+    )
+    x_fecha_nacimiento = fields.Date(
+        string=u'Fecha de nacimiento',
+    )
+    x_edad = fields.Integer(
+        string=u'Edad',
+    )
+    x_sexo = fields.Selection(
+        string=u'Sexo',
+        selection=[('m', 'Masculino'), ('f', 'Femenino')]
+    )
+
+    #///////////////////////// II.-Domicilio/////////////////
+    
+    x_domicilio_actual = fields.One2many(
+        string=u'Domicilio actual',
+        comodel_name='umc_domicilio',
+        inverse_name='x_evaluacion_id',
+    )
+    x_domicilio_anterior = fields.One2many(
+        string=u'Domicilio anterior',
+        comodel_name='umc_domicilio',
+        inverse_name='x_evaluacion_id',
+    )
+    
+    

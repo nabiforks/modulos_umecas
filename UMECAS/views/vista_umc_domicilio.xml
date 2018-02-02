@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record model="ir.ui.view" id="umc_direccion_form_view">
+        <field name="name">direcciones.form.view</field>
+        <field name="model">umc_domicilio</field>
+        <field name="arch" type="xml">
+            <form>
+                <header></header>
+                <sheet>
+                    <group>
+                        <field name="x_direccion" />
+                        <field name="x_vivienda" widget="radio" options="{'horizontal': true}" />
+                    </group>
+                    <group>
+                        <field name="x_croquis" widget="map" />
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record model="ir.ui.view" id="umc_direccion_tree_view">
+        <field name="name">direcciones.tree.view</field>
+        <field name="model">umc_domicilio</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="x_direccion" />
+                <field name="x_vivienda" />
+                <field name="x_croquis" />
+            </tree>
+        </field>
+    </record>
+    <record model="ir.actions.act_window" id="umc_direccion_list_action">
+        <field name="name">Direccion</field>
+        <field name="res_model">umc_domicilio</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">form,tree</field>        
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">Agregar primer registro                </p>
+        </field>
+    </record>
+</odoo>

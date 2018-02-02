@@ -30,6 +30,7 @@
         'views/vista_umc_evaluacion.xml',
         'views/vista_umc_expedientes.xml',
         'data/sequence_names.xml',
+        'views/vista_umc_domicilio.xml',
     ],
     # only loaded in demonstration mode
     'demo': [
