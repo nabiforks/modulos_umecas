@@ -1,7 +1,9 @@
 id,name,model_id/id,group_id/id,perm_read,perm_write,perm_create,perm_unlink
-umecas_evaluacion_jefe,UMC Evaluaciones,UMECAS.model_umc_evaluacion,UMECAS.umc_jefe_depto,1,1,1,1
-umecas_expediente_all,umecas expedientes,UMECAS.model_umc_expedientes,,1,0,0,0
 umecas_expediente_jefe,UMC Expedientes,UMECAS.model_umc_expedientes,UMECAS.umc_jefe_depto,1,1,1,1
+umecas_expediente_all,umecas expedientes,UMECAS.model_umc_expedientes,,1,0,0,0
+umecas_evaluacion_jefe,UMC Evaluaciones,UMECAS.model_umc_evaluacion,UMECAS.umc_jefe_depto,1,1,1,1
 umecas_evaluacion_all,umecas evaluaciones,UMECAS.model_umc_evaluacion,,1,0,0,0
 umecas_domicilio_jefe,UMC Domicilio,UMECAS.model_umc_domicilio,UMECAS.umc_jefe_depto,1,1,1,1
-umecas_domicilio_all,UMC Domicilio all,UMECAS.model_umc_evaluacion,,1,0,0,0
+umecas_domicilio_all,UMC Domicilio all,UMECAS.model_umc_domicilio,,1,0,0,0
+umecas_delitos_jefe,UMC Delitos,UMECAS.model_umc_delitos,UMECAS.umc_jefe_depto,1,1,1,1
+umecas_delitos_all,UMC Delitos all,UMECAS.model_umc_delitos,,1,0,0,0

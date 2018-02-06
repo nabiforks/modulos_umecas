@@ -58,11 +58,22 @@
                                             </group>
                                         </page>
                                         <page string="II.-Domicilio">
-                                            <p><h4>Domicilio Actual</h4></p>
+                                            <p>
+                                                <h4>Domicilio Actual</h4>
+                                            </p>
                                             <field name="x_domicilio_actual" />
                                             <br/>
-                                            <p><h4>Domicilio Anterior</h4></p>
+                                            <p>
+                                                <h4>Domicilio Anterior</h4>
+                                            </p>
                                             <field name="x_domicilio_anterior" string="anterior" />
+                                        </page>
+                                        <page string="II.- Domicilio">
+                                            <!--field name="x_domicilio_" mode="kanban" context="{'default_parent_id': partner_id, 'default_street': street, 'default_street2': street2, 'default_city': city, 'default_state_id': state_id, 'default_zip': zip, 'default_country_id': country_id, 'default_supplier': supplier, 'default_customer': customer, 'default_lang': lang,}"-->
+                                            
+                                            <field name="x_partner_id_id" />
+                                            
+                                            <field name="x_domicilio_id"  context="{'default_parent_id': x_partner_id_id,'default_x_imputado':False,'default_country_id':1}"></field>
                                         </page>
                                         <page string="III.-Lazos con la comunidad"></page>
                                         <page string="IV.-Relaciones familiares"></page>
@@ -140,10 +151,10 @@
         <field name="res_model">umc_evaluacion</field>
         <field name="view_type">form</field>
         <field name="view_mode">tree,kanban,form</field>
-        <field name="context" eval="{'search_default_customer': 1}"/>
+        <!--field name="context" eval="{'search_default_customer': 1}"/-->
         <field name="help" type="html">
             <p class="oe_view_nocontent_create">Agregar primer registro                </p>
         </field>
     </record>
-    <menuitem id="evaluaciones_menu" name="Evaluación" parent="main_umc_menu" action="umc_evaluacion_list_action"/>
+    <menuitem id="evaluaciones_menu" name="Evaluaciones" parent="main_umc_menu" action="umc_evaluacion_list_action"/>
 </odoo>

@@ -32,11 +32,9 @@ class Expedientes(models.Model):
         string=u'Fecha Inicio',
         default=fields.Datetime.now,
     )
-
-    x_delito = fields.Selection(
-        string=u'Delito',
-        selection=[('del1', 'ROBO (FARDERO)'), ('del2',
-                                                'DETENTACION DE VEHICULO ROBADO'), ('del3', 'VIOLENCIA FAMILIAR')]
+    x_delito = fields.Many2many(
+        'umc_delitos',
+        string=u'Delitos'
     )
 
     x_delito_descripcion = fields.Text(

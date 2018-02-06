@@ -106,6 +106,6 @@
     </record>
     <!-- top level menu: no parent //////////////////////////////////////////////////////////////////////////////////////-->
     <menuitem id="main_umc_menu" name="UMECAS"/>
-    <menuitem id="regresar_imputados" name="Tablero" parent="main_umc_menu" action="umc_list_action"/>
+    <!--menuitem id="regresar_imputados" name="Tablero" parent="main_umc_menu" action="umc_list_action"/-->
     <menuitem id="registros_menu" name="Imputados" parent="main_umc_menu" action="umc_list_action"/>
 </odoo>

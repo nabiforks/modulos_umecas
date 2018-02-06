@@ -64,6 +64,8 @@ class Encuestas(models.Model):
     @api.multi
     def asignar_borrador(self):
         self.state = 'solicitud'
+        print "xxxxxxxxxxxxpartner",self.partner_id.id
+        print "xxxxxxxxxxxxpartner--",self.x_domicilio_id.parent_id.id
 
     @api.multi
     def asignar_evaluador(self):
@@ -125,5 +127,20 @@ class Encuestas(models.Model):
         comodel_name='umc_domicilio',
         inverse_name='x_evaluacion_id',
     )
+    
+    x_partner_id_id = fields.Integer(
+        string=u'id',
+        related='partner_id.id',        
+    )
+    
+    
+    
+    x_domicilio_id = fields.One2many(
+        string=u'Domicilio',
+        comodel_name='res.partner',
+        inverse_name='parent_id',
+    )
+    
+    
     
     
