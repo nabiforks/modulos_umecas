@@ -87,13 +87,16 @@ class Encuestas(models.Model):
     #/////////////////////Datos personales//////////////
     x_apellido_pat = fields.Char(
         string=u'Apellido Paterno',
+        related='partner_id.lastname',
     )
 
     x_apellido_mat = fields.Char(
         string=u'Apellido Materno',
+        related='partner_id.x_apellido_mat',
     )
     x_nombre_entrevistado = fields.Char(
         string=u'Nombre(s)',
+        related='partner_id.firstname',
     )
     x_otronombre = fields.Char(
         string=u'Otro nombre',
@@ -128,11 +131,11 @@ class Encuestas(models.Model):
         inverse_name='x_evaluacion_id',
     )
     
-    x_partner_id_id = fields.Integer(
-        string=u'id',
-        related='partner_id.id',        
-    )
     
+    x_partner_id_id = fields.One2many(
+        string=u'test',
+        related='partner_id.child_ids'
+    )
     
     
     x_domicilio_id = fields.One2many(

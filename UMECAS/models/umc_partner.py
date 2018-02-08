@@ -13,17 +13,43 @@ class Partner(models.Model):
     fecha_nacimiento = fields.Date(string=u'Fecha_Nac')
     fecha_actual = fields.Date(default=fields.Date.today)
     edad = fields.Integer(string="Edad", compute="_calcular_edad")
-
-    
     x_imputado = fields.Boolean(
-        string=u'Imputado',        
+        string=u'Imputado',
         default=True,
     )
-    
     x_imputado_tipo = fields.Selection(
-        [('1', 'Retenido'), ('2', 'Adolescente'), ('3', 'Interno')],string=u'Tipo')
+        [('1', 'Retenido'), ('2', 'Adolescente'), ('3', 'Interno')], string=u'Tipo')
     
-
+    x_apodo = fields.Char(
+        string=u'Apodo / Sobrenombre',
+    )    
+    x_nacionalidad = fields.Char(
+        string=u'Nacionalidad',
+    )
+    x_originario = fields.Char(
+        string=u'Originario',
+    )
+    x_estado_civil = fields.Selection(
+        string=u'Estado Civil',
+        selection=[('1', 'Soltero'), ('2', 'Casado'),('3', 'Unión Libre'),('4', 'Divorciado'),('5','Viudo')]
+    )
+    x_ocupacion = fields.Char(
+        string=u'Ocupación',
+    )
+    x_identificacion = fields.Char(
+        string=u'Identificación',
+    )
+    x_ingreso_economico = fields.Float(
+        string=u'Ingreso económico (MXN) diarios',
+    )
+    
+    
+    
+    
+    
+    
+    
+    
     google_map_partner_test = fields.Char(string="Map",
                                           default='{"position":{"lat":19.04360786502212,"lng":-98.19820135831833},"zoom":15}',
                                           )
@@ -51,5 +77,5 @@ class Partner(models.Model):
         geolocator = Nominatim()
         geol = str(o['position']['lat']) + " , " + str(o['position']['lng'])
         location = geolocator.reverse(geol)
-        #print location.address
+        # print location.address
         print geol

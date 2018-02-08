@@ -71,9 +71,9 @@
                                         <page string="II.- Domicilio">
                                             <!--field name="x_domicilio_" mode="kanban" context="{'default_parent_id': partner_id, 'default_street': street, 'default_street2': street2, 'default_city': city, 'default_state_id': state_id, 'default_zip': zip, 'default_country_id': country_id, 'default_supplier': supplier, 'default_customer': customer, 'default_lang': lang,}"-->
                                             
-                                            <field name="x_partner_id_id" />
+                                            <field name="x_partner_id_id" context="{'default_parent_id': partner_id,'default_x_imputado':False,'default_country_id':1}"/>
                                             
-                                            <field name="x_domicilio_id"  context="{'default_parent_id': x_partner_id_id,'default_x_imputado':False,'default_country_id':1}"></field>
+                                            <field name="x_domicilio_id"  context="{'default_parent_id': partner_id,'default_x_imputado':False,'default_country_id':1}"></field>
                                         </page>
                                         <page string="III.-Lazos con la comunidad"></page>
                                         <page string="IV.-Relaciones familiares"></page>
