@@ -29,7 +29,7 @@ class Expedientes(models.Model):
     )
 
     x_fecha_inicio = fields.Datetime(
-        string=u'Fecha Inicio',
+        string=u'Fecha/Hora Inicio',
         default=fields.Datetime.now,
     )
     x_delito = fields.Many2many(
