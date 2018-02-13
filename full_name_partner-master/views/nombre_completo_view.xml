@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+	<data>
+
+		<record id="nombre_completo_view" model="ir.ui.view">
+			<field name="name">res.partner_nombre_completo_view</field>
+			<field name="model">res.partner</field>
+			<field name="inherit_id" ref="base.view_partner_form"></field>
+			<field name="arch" type="xml">
+				<xpath expr="//field[@name='name']" position="replace">
+					<field name="name" class="oe_edit_only" string="Nombre(s)" placeholder="Nombre(s)" required="True"></field>
+				</xpath>
+				<xpath expr="//field[@name='name']" position="after">
+					<field name="ap_paterno" class="oe_edit_only" placeholder="Apellido paterno"></field>
+					<field name="ap_materno" class="oe_edit_only" placeholder="Apellido materno"></field>
+				</xpath>
+				<xpath expr="//field[@name='ap_materno']" position="after">
+					<field name="display_name" class="oe_read_only"></field>
+				</xpath>
+			</field>
+		</record>
+
+	</data>
+</odoo>
