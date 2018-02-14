@@ -112,7 +112,7 @@ class ResPartner(models.Model):
             return u" ".join((p for p in (lastname, firstname) if p))
 
     @api.multi
-    @api.depends("firstname", "lastname")
+    @api.depends("firstname", "lastname","x_apellido_mat")
     def _compute_name(self):
         """Write the 'name' field according to splitted data."""
         for record in self:
