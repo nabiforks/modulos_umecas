@@ -8,8 +8,21 @@
                 <header></header>
                 <sheet>
                     <group>
-                        <field name="x_direccion" />
-                        <field name="x_vivienda" widget="radio" options="{'horizontal': true}" />
+                        <group>
+                            <label for="street" string="Dirección"/>
+                            <div class="o_address_format">
+                                <!--div class="oe_edit_only"><button name="open_parent" type="object" string="(edit)" class="oe_link" attrs="{'invisible': ['|', ('parent_id', '=', False), ('type', '!=', 'contact')]}"/></div-->
+                                <field name="x_calle" placeholder="Calle..." class="o_address_street" />
+                                <field name="x_colonia" placeholder="Colonia..." class="o_address_street" />
+                                <field name="x_municipio" placeholder="Municipio.." class="o_address_city" />
+                                <field name="x_estado_id" class="o_address_state" placeholder="Estado" options="{&quot;no_open&quot;: True}" domain="[('country_id', '=', 157)]" />
+                                <!--field name="zip" placeholder="ZIP" class="o_address_zip" attrs="{'readonly': [('type', '=', 'contact'),('parent_id', '!=', False)]}"/-->
+                                <!--field name="x_pais_id" placeholder="Country" class="o_address_country" options="{&quot;no_open&quot;: True, &quot;no_create&quot;: True}" /-->
+                            </div>
+                        </group>
+                        <group>
+                            <field name="x_vivienda" />
+                        </group>
                     </group>
                     <group>
                         <field name="x_croquis" widget="map" />
@@ -23,7 +36,7 @@
         <field name="model">umc_domicilio</field>
         <field name="arch" type="xml">
             <tree>
-                <field name="x_direccion" />
+                <field name="x_calle" />
                 <field name="x_vivienda" />
                 <field name="x_croquis" />
             </tree>
@@ -33,7 +46,7 @@
         <field name="name">Direccion</field>
         <field name="res_model">umc_domicilio</field>
         <field name="view_type">form</field>
-        <field name="view_mode">form,tree</field>        
+        <field name="view_mode">form,tree</field>
         <field name="help" type="html">
             <p class="oe_view_nocontent_create">Agregar primer registro                </p>
         </field>

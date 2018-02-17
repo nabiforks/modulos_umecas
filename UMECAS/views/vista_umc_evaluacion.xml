@@ -33,58 +33,7 @@
                     <group class="row">
                         <notebook>
                             <page string="Entrevista" attrs="{'invisible': [('state','in',('solicitud'))]}">
-                                <!--group-->
-                                <group>
-                                    <field name="x_lugar_entrevista" />
-                                    <field name="x_fecha_entrevista" />
-                                </group>
-                                <group>
-                                    <notebook>
-                                        <page string="I.-Datos personales">
-                                            <group>
-                                                <group>
-                                                    <field name="x_apellido_pat" />
-                                                    <field name="x_apellido_mat" />
-                                                    <field name="x_nombre_entrevistado" />
-                                                    <field name="x_otronombre" />
-                                                    <field name="x_apodo" />
-                                                </group>
-                                                <group>
-                                                    <field name="x_lugar_nacimiento" placeholder='Localidad/Municipio/Estado'/>
-                                                    <field name="x_fecha_nacimiento" />
-                                                    <field name="x_edad"/>
-                                                    <field name="x_sexo" widget="radio" />
-                                                </group>
-                                            </group>
-                                        </page>
-                                        <page string="II.-Domicilio">
-                                            <p>
-                                                <h4>Domicilio Actual</h4>
-                                            </p>
-                                            <field name="x_domicilio_actual" />
-                                            <br/>
-                                            <p>
-                                                <h4>Domicilio Anterior</h4>
-                                            </p>
-                                            <field name="x_domicilio_anterior" string="anterior" />
-                                        </page>
-                                        <page string="II.- Domicilio">
-                                            <!--field name="x_domicilio_" mode="kanban" context="{'default_parent_id': partner_id, 'default_street': street, 'default_street2': street2, 'default_city': city, 'default_state_id': state_id, 'default_zip': zip, 'default_country_id': country_id, 'default_supplier': supplier, 'default_customer': customer, 'default_lang': lang,}"-->
-                                            <field name="x_partner_id_id" context="{'default_parent_id': partner_id,'default_x_imputado':False,'default_country_id':1}"/>
-                                            <field name="x_domicilio_id" context="{'default_parent_id': partner_id,'default_x_imputado':False,'default_country_id':1}"></field>
-                                        </page>
-                                        <page string="III.-Lazos con la comunidad"></page>
-                                        <page string="IV.-Relaciones familiares"></page>
-                                        <page string="V.-Amistades (Referencias personales)"></page>
-                                        <page string="VI.-Empleos"></page>
-                                        <page string="VII.-Estudios"></page>
-                                        <page string="VIII.-Antecedentes penales"></page>
-                                        <page string="IX.-Enfermedades"></page>
-                                        <page string="X.-Consumo de sustancias"></page>
-                                        <page string="XI.-Información del proceso actual"></page>
-                                    </notebook>
-                                </group>
-                                <!--/group-->
+                                <field name="x_entrevistas_ids" context="{'default_x_evaluacion_id': active_id,'default_x_evaluador_id': x_evaluador_id }" />
                             </page>
                             <page string="Analisis de riesgos" attrs="{'invisible': [('state','in',('solicitud','entrevista'))]}">
                                 <!--group-->
@@ -127,8 +76,6 @@
                 <field name="x_tipo_entrevista" />
                 <field name="x_evaluador_id" />
                 <field name="x_expediente_id" />
-                <field name="x_lugar_entrevista" />
-                <field name="x_fecha_entrevista" />
                 <field name="state" />
             </tree>
         </field>
@@ -142,8 +89,6 @@
                 <field name="x_expediente_id" />
                 <field name="partner_id" />
                 <field name="x_tipo_entrevista" />
-                <field name="x_lugar_entrevista" />
-                <field name="x_fecha_entrevista" />
                 <field name="state" />
             </search>
         </field>

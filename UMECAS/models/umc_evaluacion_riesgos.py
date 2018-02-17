@@ -41,16 +41,9 @@ class Encuestas(models.Model):
         ('analisis', 'Analisis de Riesgo'),
         ('hecho', 'Hecho'),
     ], default='solicitud', readonly=True)
-    # Campos de las entrevistas
+    
 
-    x_lugar_entrevista = fields.Char(
-        string=u'Lugar',
-    )
-
-    x_fecha_entrevista = fields.Datetime(
-        string=u'Fecha y hora',
-        default=fields.Datetime.now,
-    )
+    
 
     @api.model
     def create(self, vals):
@@ -83,65 +76,13 @@ class Encuestas(models.Model):
     #///////////////////////////////////////Campos de las entrevistas////////////////
     #///////////////////////////////////////Campos de las entrevistas////////////////
     #///////////////////////////////////////Campos de las entrevistas////////////////
-
-    #/////////////////////Datos personales//////////////
-    x_apellido_pat = fields.Char(
-        string=u'Apellido Paterno',
-        # related='partner_id.lastname',
-    )
-
-    x_apellido_mat = fields.Char(
-        string=u'Apellido Materno',
-        # related='partner_id.x_apellido_mat',
-    )
-    x_nombre_entrevistado = fields.Char(
-        string=u'Nombre(s)',
-        # related='partner_id.firstname',
-    )
-    x_otronombre = fields.Char(
-        string=u'Otro nombre',
-    )
-    x_apodo = fields.Char(
-        string=u'Apodo',
-    )
-    x_lugar_nacimiento = fields.Char(
-        string=u'Lugar de Nacimiento',
-    )
-    x_fecha_nacimiento = fields.Date(
-        string=u'Fecha de nacimiento',
-    )
-    x_edad = fields.Integer(
-        string=u'Edad',
-    )
-    x_sexo = fields.Selection(
-        string=u'Sexo',
-        selection=[('m', 'Masculino'), ('f', 'Femenino')]
-    )
-
-    #///////////////////////// II.-Domicilio/////////////////
-
-    x_domicilio_actual = fields.One2many(
-        string=u'Domicilio actual',
-        comodel_name='umc_domicilio',
+    
+    x_entrevistas_ids = fields.One2many(
+        string=u'Entrevistas',
+        comodel_name='umc_entrevistas',
         inverse_name='x_evaluacion_id',
     )
-    x_domicilio_anterior = fields.One2many(
-        string=u'Domicilio anterior',
-        comodel_name='umc_domicilio',
-        inverse_name='x_evaluacion_id',
-    )
-
-    x_partner_id_id = fields.One2many(
-        string=u'test',
-        related='partner_id.child_ids'
-    )
-
-    x_domicilio_id = fields.One2many(
-        string=u'Domicilio',
-        comodel_name='res.partner',
-        inverse_name='parent_id',
-    )
-
+    
     #///////////////////////////////////////////Evaluación de riesgos///////////////////////////////////////////////
     #///////////////////////////////////////////Evaluación de riesgos///////////////////////////////////////////
     #///////////////////////////////////////////Evaluación de riesgos///////////////////////////////////////////////

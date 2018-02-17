@@ -7,7 +7,7 @@
 			<field name="inherit_id" ref="base.view_partner_form"></field>
 			<field name="arch" type="xml">
 				<xpath expr="//button[@name='toggle_active']" position="after">
-					<button class="oe_stat_button o_res_partner_tip_opp" name="UMECAS.umc_expedientes_list_action"  icon="fa-folder-open" type="action" context="{'search_default_partner_id': active_id}">
+					<button class="oe_stat_button o_res_partner_tip_opp" name="UMECAS.umc_expedientes_list_action" icon="fa-folder-open" type="action" context="{'search_default_partner_id': active_id}">
 						<field string="Expedientes" name="x_expedientes_count" widget="statinfo"/>
 					</button>
 				</xpath>
@@ -19,9 +19,25 @@
 			<field name="inherit_id" ref="UMECAS.umc_expediente_form_view"></field>
 			<field name="arch" type="xml">
 				<xpath expr="//div[@name='button_box']" position="inside">
-					<button class="oe_stat_button" name="UMECAS.umc_evaluacion_list_action"  icon="fa-newspaper-o" type="action" context="{'partner_id': partner_id,'search_default_x_expediente_id': active_id}">
+					<button class="oe_stat_button" name="UMECAS.umc_evaluacion_list_action" icon="fa-newspaper-o" type="action" context="{'partner_id': partner_id,'search_default_x_expediente_id': active_id}">
 						<field string="Evaluaciones" name="x_umc_evaluaciones" widget="statinfo"/>
 					</button>
+				</xpath>
+			</field>
+		</record>
+		<!--kanban view //////////////////////////////////////////////////////////////////////////////////////////// -->
+		<record model="ir.ui.view" id="partner_umc_kanban_view">
+			<field name="name">partner_umc.kanban.view</field>
+			<field name="model">res.partner</field>
+			<field name="inherit_id" ref="base.res_partner_kanban_view"/>
+			<field name="arch" type="xml">
+				<field name="mobile" position="after">
+					<field name="x_expedientes_count"/></field>
+				<xpath expr="//div[hasclass('oe_kanban_partner_links')]" position="inside">
+					<span t-if="record.x_expedientes_count.value&gt;0" class="badge">
+						<i class="fa fa-fw fa-folder-open"/>
+						<t t-esc="record.x_expedientes_count.value"/>
+					</span>
 				</xpath>
 			</field>
 		</record>

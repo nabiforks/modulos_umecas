@@ -15,5 +15,12 @@
             <field name="padding">5</field>
             <field eval="1" name="number_increment"/>
         </record>
+        <record id="seq_names_entrevistas" model="ir.sequence">
+            <field name="name">Names_automatics_evaluaciones</field>
+            <field name="code">umc_entrevistas</field>
+            <field name="prefix">ENT</field>
+            <field name="padding">5</field>
+            <field eval="1" name="number_increment"/>
+        </record>
     </data>
 </odoo>

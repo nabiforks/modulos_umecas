@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
-    <!-- Tree view for "${2/(.)/\1/g}" -->
+    <!-- Tree view " -->
     <record id="view_umc_delitos_tree" model="ir.ui.view">
         <field name="name">view.umc_delitos.tree</field>
         <field name="model">umc_delitos</field>
@@ -12,7 +12,7 @@
             </tree>
         </field>
     </record>
-    <!-- Form view for "${2/(.)/\1/g}" -->
+    <!-- Form view -->
     <record id="view_umc_delitos_form" model="ir.ui.view">
         <field name="name">view.umc_delitos.form</field>
         <field name="model">umc_delitos</field>
@@ -51,17 +51,62 @@
         <field name="res_model">umc_delitos</field>
         <field name="view_mode">tree,form</field>
         <field name="view_type">form</field>
-        <!--field name="target">current</field>
-        <field name="domain">${4/(.)/\1/g}</field>
-        <field name="context">${5/(.)/\1/g}</field>
-        <field name="search_view_id" ref="view_${2/\./\_/g}_search" /-->
         <field name="help" type="html">
             <p class="oe_view_nocontent_create">                Click para agregar registros           </p>
             <p>         Delitos                  </p>
         </field>
     </record>
+    <!-- >Vista para catalogo de tipo de vivienda///////////////////////////////////////////////////<-->
+    <record id="view_umc_tipo_vivienda_tree" model="ir.ui.view">
+        <field name="name">view.tipo_vivienda.tree</field>
+        <field name="model">umc_tipo_vivienda</field>
+        <field name="type">tree</field>
+        <field name="mode">primary</field>
+        <field name="arch" type="xml">
+            <tree >
+                <field name="x_name" />
+                <field name="x_valor" />
+            </tree>
+        </field>
+    </record>
+    <!-- Form view -->
+    <record id="view_umc_tipo_vivienda_form" model="ir.ui.view">
+        <field name="name">view.umc_tipo_vivienda.form</field>
+        <field name="model">umc_tipo_vivienda</field>
+        <field name="type">form</field>
+        <field name="mode">primary</field>
+        <field name="arch" type="xml">
+            <form string="Tipo Vivienda" create="1" delete="1" edit="1">
+                <header></header>
+                <sheet>
+                    <div class="oe_title">
+                        <label for="x_name" class="oe_edit_only" />
+                        <h1>
+                            <field name="x_name" class="oe_inline" placeholder="Tipo vivienda" />
+                            <field name="x_valor" class="oe_inline" placeholder="1,2,3....." />
+                        </h1>
+                    </div>
+                    <group></group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <!-- Main window action para tipo_vivienda" -->
+    <record id="action_umc_tipo_vivienda_window" model="ir.actions.act_window">
+        <field name="type">ir.actions.act_window</field>
+        <field name="name">Tipo Vivienda</field>
+        <field name="res_model">umc_tipo_vivienda</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_type">form</field>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">                Click para agregar registros           </p>
+            <p>         Tipo Vivienda                  </p>
+        </field>
+    </record>
     <!-- Main menu for "${2/(.)/\1/g}" -->
     <menuitem id="umc_configuracion" name="Configuración" parent="main_umc_menu" />
-    <menuitem id="umc_catalogos" name="Catalogos" parent="umc_configuracion" />
-    <menuitem id="umc_delitos" name="Delitos" parent="umc_catalogos" action="action_umc_delitos_window"/>
+    <menuitem id="umc_entrevistas_label" name="Entrevistas" parent="umc_configuracion" />
+    <menuitem id="umc_tipo_vivienda" name="Tipo Vivienda" parent="umc_entrevistas_label" action="action_umc_tipo_vivienda_window"/>    
+    <menuitem id="umc_catalogos_label" name="Evaluaciones" parent="umc_configuracion" />
+    <menuitem id="umc_delitos" name="Delitos" parent="umc_catalogos_label" action="action_umc_delitos_window"/>
 </odoo>

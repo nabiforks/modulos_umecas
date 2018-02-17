@@ -15,14 +15,13 @@ class Partner(models.Model):
     edad = fields.Integer(string="Edad", compute="_calcular_edad")
     x_imputado = fields.Boolean(
         string=u'Imputado',
-        default=True,
     )
     x_imputado_tipo = fields.Selection(
         [('1', 'Retenido'), ('2', 'Adolescente'), ('3', 'Interno')], string=u'Tipo')
-    
+
     x_apodo = fields.Char(
         string=u'Apodo / Sobrenombre',
-    )    
+    )
     x_nacionalidad = fields.Char(
         string=u'Nacionalidad',
     )
@@ -31,7 +30,8 @@ class Partner(models.Model):
     )
     x_estado_civil = fields.Selection(
         string=u'Estado Civil',
-        selection=[('1', 'Soltero'), ('2', 'Casado'),('3', 'Unión Libre'),('4', 'Divorciado'),('5','Viudo')]
+        selection=[('1', 'Soltero'), ('2', 'Casado'),
+                   ('3', 'Unión Libre'), ('4', 'Divorciado'), ('5', 'Viudo')]
     )
     x_ocupacion = fields.Char(
         string=u'Ocupación',
@@ -42,14 +42,7 @@ class Partner(models.Model):
     x_ingreso_economico = fields.Float(
         string=u'Ingreso económico (MXN) diarios',
     )
-    
-    
-    
-    
-    
-    
-    
-    
+
     google_map_partner_test = fields.Char(string="Map",
                                           default='{"position":{"lat":19.04360786502212,"lng":-98.19820135831833},"zoom":15}',
                                           )

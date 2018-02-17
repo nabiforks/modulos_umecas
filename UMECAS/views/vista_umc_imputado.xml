@@ -44,7 +44,7 @@
             </xpath>
             <xpath expr="//field[@name='type']" position="after">
                 <field name="x_apodo" />
-                <field name="x_imputado" />
+                <field name="x_imputado" invisible="1" />
                 <field name="x_imputado_tipo" attrs="{'invisible': [('x_imputado','=',False)]}"/>
                 <field name="x_nacionalidad" />
                 <field name="x_originario" />
@@ -53,16 +53,7 @@
                 <field name="fecha_nacimiento" string="Fecha de nacimiento" />
                 <field name="edad" string="Edad" />
             </xpath>
-            <!--xpath expr="//notebook" position="inside">
-                <page string="Croquis de localización" name="partner_geo_map">
-                    <group>
-                        <group >
-                            <field name="google_map_partner_test" widget="map" nolabel="1"/>
-                        </group>
-                        <group ></group>
-                    </group>
-                </page>
-            </xpath-->
+            <!--xpath expr="//notebook" position="inside"><page string="Croquis de localización" name="partner_geo_map"><group><group ><field name="google_map_partner_test" widget="map" nolabel="1"/></group><group ></group></group></page></xpath-->
         </field>
     </record>
     <!--search view ///////////////////////////// -->
@@ -100,7 +91,7 @@
         <field name="res_model">res.partner</field>
         <field name="view_type">form</field>
         <field name="view_mode">kanban,tree,form,map</field>
-        <field name="context" eval="{'search_default_x_imputado': True}"/>
+        <field name="context" eval="{'search_default_x_imputado': True,'default_x_imputado':True}"/>
         <field name="help" type="html">
             <p class="oe_view_nocontent_create">Agregar primer registro                </p>
         </field>
