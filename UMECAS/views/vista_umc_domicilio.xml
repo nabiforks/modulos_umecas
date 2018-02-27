@@ -19,14 +19,17 @@
                                 <!--field name="zip" placeholder="ZIP" class="o_address_zip" attrs="{'readonly': [('type', '=', 'contact'),('parent_id', '!=', False)]}"/-->
                                 <!--field name="x_pais_id" placeholder="Country" class="o_address_country" options="{&quot;no_open&quot;: True, &quot;no_create&quot;: True}" /-->
                             </div>
+                            <field name="x_tipo_domicilio" />
+                            <field name="x_motivo_mudanza" attrs="{ 'invisible':[('x_tipo_domicilio','not in','anterior')] }" />
                         </group>
                         <group>
                             <field name="x_vivienda" />
+                            <field name="x_caracteristicas_ref" />
                         </group>
                     </group>
-                    <group>
+                    <!--group-->
                         <field name="x_croquis" widget="map" />
-                    </group>
+                    <!--/group-->
                 </sheet>
             </form>
         </field>
@@ -36,7 +39,10 @@
         <field name="model">umc_domicilio</field>
         <field name="arch" type="xml">
             <tree>
+                <field name="x_tipo_domicilio" />
                 <field name="x_calle" />
+                <field name="x_colonia" />
+                <field name="x_municipio" />
                 <field name="x_vivienda" />
                 <field name="x_croquis" />
             </tree>

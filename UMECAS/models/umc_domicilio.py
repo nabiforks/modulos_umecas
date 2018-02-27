@@ -37,9 +37,21 @@ class Domicilio(models.Model):
         comodel_name='umc_tipo_vivienda',
         ondelete='set null',
     )
+
+    x_tipo_domicilio = fields.Selection(
+        string=u'Tipo de domicilio ',
+        selection=[('actual', 'Actual'), ('secundario','Secundario'), ('anterior', 'Anterior')],
+        default='actual',
+    )
+    x_motivo_mudanza = fields.Text(
+        string=u'Motivos de mudanza',        
+    )  
+    x_caracteristicas_ref = fields.Text(
+        string=u'Caracteristicas y referencias',        
+    )
     
 
-    x_croquis = fields.Char(string="Croquis", default='{"position":{"lat":19.04360786502212,"lng":-98.19820135831833},"zoom":15}',
+    x_croquis = fields.Char(string="Geolocalización", default='{"position":{"lat":19.04360786502212,"lng":-98.19820135831833},"zoom":15}',
                             )
 
     x_evaluacion_id = fields.Many2one(

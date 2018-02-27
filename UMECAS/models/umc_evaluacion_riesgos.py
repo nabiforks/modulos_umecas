@@ -13,6 +13,7 @@ class Encuestas(models.Model):
         'umc_expedientes',
         string=u'Expediente',
         readonly=True,
+        required=True,
         ondelete='set null',
     )
     x_evaluador_id = fields.Many2one(
@@ -26,6 +27,7 @@ class Encuestas(models.Model):
         'res.partner',
         string=u'Imputado',
         readonly=True,
+        required=True,
         default=lambda self: self.env.context.get('partner_id'),
         ondelete='set null',
     )
@@ -35,30 +37,27 @@ class Encuestas(models.Model):
                    ('ret', 'Retenido'), ('int', 'Interno')],
         required=True,
     )
+    """message_ids = fields.One2many(
+        'mail.message', 'res_id', string='Messages',
+        domain=lambda self: [('model', '=', self._name)], auto_join=True,ondelete='cascade')"""
     state = fields.Selection([
         ('solicitud', 'Solicitud'),
         ('entrevista', 'Entrevista'),
         ('analisis', 'Analisis de Riesgo'),
         ('hecho', 'Hecho'),
     ], default='solicitud', readonly=True)
-    
-
-    
 
     @api.model
     def create(self, vals):
         if vals.get('x_name', 'Nuevo') == 'Nuevo':
             vals['x_name'] = self.env['ir.sequence'].next_by_code(
                 'umc_evaluacion') or'Nuevo'
-        print vals
         result = super(Encuestas, self).create(vals)
         return result
 
     @api.multi
     def asignar_borrador(self):
         self.state = 'solicitud'
-        print "xxxxxxxxxxxxpartner", self.partner_id.id
-        print "xxxxxxxxxxxxpartner--", self.x_domicilio_id.parent_id.id
 
     @api.multi
     def asignar_evaluador(self):
@@ -76,13 +75,13 @@ class Encuestas(models.Model):
     #///////////////////////////////////////Campos de las entrevistas////////////////
     #///////////////////////////////////////Campos de las entrevistas////////////////
     #///////////////////////////////////////Campos de las entrevistas////////////////
-    
+
     x_entrevistas_ids = fields.One2many(
         string=u'Entrevistas',
         comodel_name='umc_entrevistas',
         inverse_name='x_evaluacion_id',
     )
-    
+
     #///////////////////////////////////////////Evaluación de riesgos///////////////////////////////////////////////
     #///////////////////////////////////////////Evaluación de riesgos///////////////////////////////////////////
     #///////////////////////////////////////////Evaluación de riesgos///////////////////////////////////////////////
@@ -153,7 +152,7 @@ class Encuestas(models.Model):
         aux = int(self.x_arraigo_region) + int(self.x_telefono) + int(self.x_arraigo_residencia) + \
             int(self.x_relaciones_familiares) + \
             int(self.x_dependientes_economicos)
-        self.x_ponderacion= aux
+        self.x_ponderacion = aux
         if aux >= 4:
             self.x_escala_riesgos = '1'
         elif aux <= -7:

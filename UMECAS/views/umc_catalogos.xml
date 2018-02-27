@@ -22,13 +22,10 @@
             <form string="Delitos" create="1" delete="1" edit="1">
                 <header></header>
                 <sheet>
-                    <div class="oe_title">
-                        <label for="x_name" class="oe_edit_only" />
-                        <h1>
-                            <field name="x_name" class="oe_inline" placeholder="Delito" />
-                        </h1>
-                    </div>
-                    <group></group>
+                    <group>
+                        <field name="x_name" class="oe_inline" placeholder="Delito" />
+                        <group></group>
+                    </group>
                 </sheet>
             </form>
         </field>
@@ -57,6 +54,9 @@
         </field>
     </record>
     <!-- >Vista para catalogo de tipo de vivienda///////////////////////////////////////////////////<-->
+    <!-- >Vista para catalogo de tipo de vivienda///////////////////////////////////////////////////<-->
+    <!-- >Vista para catalogo de tipo de vivienda///////////////////////////////////////////////////<-->
+    <!-- >Vista para catalogo de tipo de vivienda///////////////////////////////////////////////////<-->
     <record id="view_umc_tipo_vivienda_tree" model="ir.ui.view">
         <field name="name">view.tipo_vivienda.tree</field>
         <field name="model">umc_tipo_vivienda</field>
@@ -79,13 +79,10 @@
             <form string="Tipo Vivienda" create="1" delete="1" edit="1">
                 <header></header>
                 <sheet>
-                    <div class="oe_title">
-                        <label for="x_name" class="oe_edit_only" />
-                        <h1>
-                            <field name="x_name" class="oe_inline" placeholder="Tipo vivienda" />
-                            <field name="x_valor" class="oe_inline" placeholder="1,2,3....." />
-                        </h1>
-                    </div>
+                    <group>
+                        <field name="x_name" class="oe_inline" placeholder="Tipo vivienda" />
+                        <field name="x_valor" class="oe_inline" placeholder="1,2,3....." />
+                    </group>
                     <group></group>
                 </sheet>
             </form>
@@ -103,10 +100,154 @@
             <p>         Tipo Vivienda                  </p>
         </field>
     </record>
-    <!-- Main menu for "${2/(.)/\1/g}" -->
+    <!-- >Vista para catalogo actividades que realiza///////////////////////////////////////////////////<-->
+    <!-- >Vista para catalogo actividades que realiza///////////////////////////////////////////////////<-->
+    <!-- >Vista para catalogo actividades que realiza///////////////////////////////////////////////////<-->
+    <!-- >Vista para catalogo actividades que realiza///////////////////////////////////////////////////<-->
+    <record id="view_umc_actividades_realiza_tree" model="ir.ui.view">
+        <field name="name">view.umc_actividades_realiza.tree</field>
+        <field name="model">umc_actividades</field>
+        <field name="type">tree</field>
+        <field name="mode">primary</field>
+        <field name="arch" type="xml">
+            <tree >
+                <field name="x_name" />
+                <field name="x_tipo" />
+                <field name="x_descripcion" />
+            </tree>
+        </field>
+    </record>
+    <!-- Form view -->
+    <record id="view_umc_actividades_realiza_form" model="ir.ui.view">
+        <field name="name">view.umc_actividades_realiza.form</field>
+        <field name="model">umc_actividades</field>
+        <field name="type">form</field>
+        <field name="mode">primary</field>
+        <field name="arch" type="xml">
+            <form string="Actividades que realiza" create="1" delete="1" edit="1">
+                <header></header>
+                <sheet>
+                    <group>
+                        <field name="x_name" class="oe_inline" placeholder="Actividad" />
+                        <field name="x_tipo" class="oe_inline" />
+                        <field name="x_descripcion" class="oe_inline" placeholder="Describir Actividad..." />
+                    </group>
+                    <group></group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <!-- Main window action para actividades_realiza" -->
+    <record id="action_umc_actividades_realiza_window" model="ir.actions.act_window">
+        <field name="type">ir.actions.act_window</field>
+        <field name="name">Actividades que realiza</field>
+        <field name="res_model">umc_actividades</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_type">form</field>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">                Click para agregar registros           </p>
+            <p>         Actividades                  </p>
+        </field>
+    </record>
+    <!-- >Vista para catalogo parentesco///////////////////////////////////////////////////<-->
+    <!-- >Vista para catalogo parentesco///////////////////////////////////////////////////<-->
+    <!-- >Vista para catalogo parentesco///////////////////////////////////////////////////<-->
+    <!-- >Vista para catalogo parentesco///////////////////////////////////////////////////<-->
+    <record id="view_umc_parentesco_tree" model="ir.ui.view">
+        <field name="name">view.umc_parentesco.tree</field>
+        <field name="model">umc_parentesco</field>
+        <field name="type">tree</field>
+        <field name="mode">primary</field>
+        <field name="arch" type="xml">
+            <tree >
+                <field name="x_name" />
+            </tree>
+        </field>
+    </record>
+    <!-- Form view -->
+    <record id="view_umc_parentesco_form" model="ir.ui.view">
+        <field name="name">view.umc_parentesco.form</field>
+        <field name="model">umc_parentesco</field>
+        <field name="type">form</field>
+        <field name="mode">primary</field>
+        <field name="arch" type="xml">
+            <form string="Parentescos" create="1" delete="1" edit="1">
+                <header></header>
+                <sheet>
+                    <group>
+                        <field name="x_name" class="oe_inline" placeholder="Ej. Hermano...." />
+                    </group>
+                    <group></group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <!-- Main window action para parentesco" -->
+    <record id="action_umc_parentesco_window" model="ir.actions.act_window">
+        <field name="type">ir.actions.act_window</field>
+        <field name="name">UMC parentesco</field>
+        <field name="res_model">umc_parentesco</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_type">form</field>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">                Click para agregar registros           </p>
+            <p>        parentesco                  </p>
+        </field>
+    </record>
+    <!-- >Vista para catalogo ocupación///////////////////////////////////////////////////<-->
+    <!-- >Vista para catalogo ocupación///////////////////////////////////////////////////<-->
+    <!-- >Vista para catalogo ocupación///////////////////////////////////////////////////<-->
+    <!-- >Vista para catalogo ocupación///////////////////////////////////////////////////<-->
+    <record id="view_umc_ocupacion_tree" model="ir.ui.view">
+        <field name="name">view.umc_ocupacion.tree</field>
+        <field name="model">umc_ocupacion</field>
+        <field name="type">tree</field>
+        <field name="mode">primary</field>
+        <field name="arch" type="xml">
+            <tree >
+                <field name="x_name" />
+            </tree>
+        </field>
+    </record>
+    <!-- Form view -->
+    <record id="view_umc_ocupacion_form" model="ir.ui.view">
+        <field name="name">view.umc_ocupacion.form</field>
+        <field name="model">umc_ocupacion</field>
+        <field name="type">form</field>
+        <field name="mode">primary</field>
+        <field name="arch" type="xml">
+            <form string="Ocupación" create="1" delete="1" edit="1">
+                <header></header>
+                <sheet>
+                    <group>
+                        <field name="x_name" class="oe_inline" placeholder="Ej. Estudiante, Obrero...." />
+                    </group>
+                    <group></group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <!-- Main window action para ocupacion" -->
+    <record id="action_umc_ocupacion_window" model="ir.actions.act_window">
+        <field name="type">ir.actions.act_window</field>
+        <field name="name">Ocupación</field>
+        <field name="res_model">umc_ocupacion</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_type">form</field>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">                Click para agregar registros           </p>
+            <p>         Ocupación                  </p>
+        </field>
+    </record>
+    <!-- Main menu for "Catalogos" ///////////////////////////////////////////////////////////-->
+    <!-- Main menu for "Catalogos" ///////////////////////////////////////////////////////////-->
+    <!-- //////////////// Main menu for "Catalogos" ///////////////////////////////////////////////////////////-->
     <menuitem id="umc_configuracion" name="Configuración" parent="main_umc_menu" />
     <menuitem id="umc_entrevistas_label" name="Entrevistas" parent="umc_configuracion" />
-    <menuitem id="umc_tipo_vivienda" name="Tipo Vivienda" parent="umc_entrevistas_label" action="action_umc_tipo_vivienda_window"/>    
+    <menuitem id="umc_tipo_vivienda" name="Tipo Vivienda" parent="umc_entrevistas_label" action="action_umc_tipo_vivienda_window"/>
+    <menuitem id="umc_actividades_realiza" name="Actividades" parent="umc_entrevistas_label" action="action_umc_actividades_realiza_window"/>
+    <menuitem id="umc_parentesco_realiza" name="Parentesco" parent="umc_entrevistas_label" action="action_umc_parentesco_window"/>
+    <menuitem id="umc_ocupacion" name="Ocupación" parent="umc_entrevistas_label" action="action_umc_ocupacion_window"/>
     <menuitem id="umc_catalogos_label" name="Evaluaciones" parent="umc_configuracion" />
     <menuitem id="umc_delitos" name="Delitos" parent="umc_catalogos_label" action="action_umc_delitos_window"/>
 </odoo>

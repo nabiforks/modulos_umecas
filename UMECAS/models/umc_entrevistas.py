@@ -12,26 +12,34 @@ class Entrevistas(models.Model):
     x_lugar_entrevista = fields.Char(
         string=u'Lugar',
     )
-
     x_fecha_entrevista = fields.Datetime(
         string=u'Fecha y hora',
         default=fields.Datetime.now,
-    )
-    
+    )    
     x_evaluacion_id = fields.Many2one(
         string=u'Evaluación',
         comodel_name='umc_evaluacion',
+        readonly=True,
         ondelete='set null',
     )
     x_evaluador_id = fields.Many2one(
         string=u'Evaluador',
         comodel_name='hr.employee',
+        readonly=True,
         ondelete='set null',
+    )    
+    """x_imputado_id = fields.Many2one(
+        string=u'Imputado',
+        comodel_name='res.partner',
+        readonly=True,
+        ondelete='set null',
+    )"""
+    x_imputado_name = fields.Char(
+        string=u'Imputado',
+        readonly=True,
+        related='x_evaluacion_id.partner_id.name',        
     )
     
-
-    
-
     @api.model
     def create(self, vals):
         if vals.get('x_name', 'Nuevo') == 'Nuevo':
@@ -80,12 +88,30 @@ class Entrevistas(models.Model):
     #///////////////////////// II.-Domicilio/////////////////
 
     x_domicilio_actual = fields.One2many(
-        string=u'Domicilio actual',
+        string=u'Domicilio(s)',
         comodel_name='umc_domicilio',
         inverse_name='x_evaluacion_id',
     )
-    x_domicilio_anterior = fields.One2many(
-        string=u'Domicilio anterior',
-        comodel_name='umc_domicilio',
-        inverse_name='x_evaluacion_id',
+    
+    
+    #//////////////////////////////////III.- Lazos con la comunidad////////////////
+    x_actividades_ids = fields.One2many(
+        string=u'Actividades que realiza',
+        comodel_name='umc_actividades',
+        inverse_name='x_entrevista2_id',
     )
+    #//////////////////////////////////IV.-Relaciones familiares/////////////////
+    
+    x_contacto_ids = fields.One2many(
+        string=u'Familiares',
+        comodel_name='res.partner',
+        inverse_name='x_entrevistas_id',
+    )
+    x_imputado_id = fields.Integer(
+        string=u'Inputado',
+        related='x_evaluacion_id.partner_id.id',        
+    )
+    @api.onchange('x_contacto_ids')
+    def testeron(self):
+        print "************************",self.x_evaluacion_id.partner_id.id
+    

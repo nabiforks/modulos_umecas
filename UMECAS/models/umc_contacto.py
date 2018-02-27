@@ -1,20 +1,50 @@
 # -*- coding: utf-8 -*-
-from datetime import timedelta
+
 from odoo import api, fields, models
-import json
-from geopy.geocoders import Nominatim
 
 
-class Partner(models.Model):
-    #_name = 'umc_imputado'
+class Contacto(models.Model):
+    #_name = 'umc_contacto'
 
     _inherit = 'res.partner'
 
     
+    x_parentesco = fields.Many2one(
+        string=u'Parentesco',
+        comodel_name='umc_parentesco',
+        ondelete='set null',
+    )    
+    x_entrevistas_id = fields.Many2one(
+        string=u'Entrevista',
+        comodel_name='umc_entrevistas',
+        ondelete='set null',
+    )
+    x_ocupacion = fields.Many2one(
+        string=u'Ocupación',
+        comodel_name='umc_ocupacion',
+        ondelete='set null',
+    )
+    x_habita_domicilio = fields.Boolean(
+        string=u'¿Habita el mismo domicilio?',
+    )
+    x_dependiente_economico = fields.Boolean(
+        string=u'Dependiente económico',
+    )
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    """
     fecha_nacimiento = fields.Date(string=u'Fecha_Nac')
     fecha_actual = fields.Date(default=fields.Date.today)
-    edad = fields.Integer(string="Edad")
-    #edad = fields.Integer(string="Edad", compute="_calcular_edad")
+    edad = fields.Integer(string="Edad", compute="_calcular_edad")
     x_imputado = fields.Boolean(
         string=u'Imputado',
     )
@@ -34,6 +64,9 @@ class Partner(models.Model):
         string=u'Estado Civil',
         selection=[('1', 'Soltero'), ('2', 'Casado'),
                    ('3', 'Unión Libre'), ('4', 'Divorciado'), ('5', 'Viudo')]
+    )
+    x_ocupacion = fields.Char(
+        string=u'Ocupación',
     )
     x_identificacion = fields.Char(
         string=u'Identificación',
@@ -71,3 +104,4 @@ class Partner(models.Model):
         location = geolocator.reverse(geol)
         # print location.address
         print geol
+    """

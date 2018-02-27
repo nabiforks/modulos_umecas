@@ -33,7 +33,12 @@
                     <group class="row">
                         <notebook>
                             <page string="Entrevista" attrs="{'invisible': [('state','in',('solicitud'))]}">
-                                <field name="x_entrevistas_ids" context="{'default_x_evaluacion_id': active_id,'default_x_evaluador_id': x_evaluador_id }" />
+                                <field name="x_entrevistas_ids" mode="tree" context="{'default_x_evaluacion_id': active_id,'default_x_evaluador_id': x_evaluador_id,'default_x_imputado_id':partner_id }">
+                                    <!--form editable="top">
+                                        <field name="x_name" />
+                                        <field name="x_imputado_id" />
+                                    </form-->
+                                </field>
                             </page>
                             <page string="Analisis de riesgos" attrs="{'invisible': [('state','in',('solicitud','entrevista'))]}">
                                 <!--group-->
@@ -59,7 +64,7 @@
                     </group>
                 </sheet>
                 <div class="oe_chatter">
-                    <field name="message_follower_ids" widget="mail_followers"/>
+                    <!--field name="message_follower_ids" widget="mail_followers"/-->
                     <field name="message_ids" widget="mail_thread"/>
                 </div>
             </form>
