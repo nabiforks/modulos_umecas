@@ -7,3 +7,17 @@ umecas_domicilio_jefe,UMC Domicilio,UMECAS.model_umc_domicilio,UMECAS.umc_jefe_d
 umecas_domicilio_all,UMC Domicilio all,UMECAS.model_umc_domicilio,,1,0,0,0
 umecas_delitos_jefe,UMC Delitos,UMECAS.model_umc_delitos,UMECAS.umc_jefe_depto,1,1,1,1
 umecas_delitos_all,UMC Delitos all,UMECAS.model_umc_delitos,,1,0,0,0
+umecas_tipo_vivienda_jefe,UMC tipo vivienda,UMECAS.model_umc_tipo_vivienda,UMECAS.umc_jefe_depto,1,1,1,1
+umecas_tipo_vivienda_all,UMC tipo_vivienda all,UMECAS.model_umc_tipo_vivienda,,1,0,0,0
+umecas_actividades_jefe,UMC actividades,UMECAS.model_umc_actividades,UMECAS.umc_jefe_depto,1,1,1,1
+umecas_actividades_all,UMC actividades all,UMECAS.model_umc_actividades,,1,0,0,0
+umecas_entrevistas_jefe,UMC entrevistas,UMECAS.model_umc_entrevistas,UMECAS.umc_jefe_depto,1,1,1,1
+umecas_entrevistas_all,UMC entrevistas all,UMECAS.model_umc_entrevistas,,1,0,0,0
+umecas_parentesco_jefe,UMC parentesco,UMECAS.model_umc_parentesco,UMECAS.umc_jefe_depto,1,1,1,1
+umecas_parentesco_all,UMC parentesco all,UMECAS.model_umc_parentesco,,1,0,0,0
+umecas_ocupacion_jefe,UMC ocupacion,UMECAS.model_umc_ocupacion,UMECAS.umc_jefe_depto,1,1,1,1
+umecas_ocupacion_all,UMC ocupacion all,UMECAS.model_umc_ocupacion,,1,0,0,0
+umecas_estudios_jefe,UMC estudios,UMECAS.model_umc_estudios,UMECAS.umc_jefe_depto,1,1,1,1
+umecas_estudios_all,UMC estudios all,UMECAS.model_umc_estudios,,1,0,0,0
+umecas_empleos_jefe,UMC empleos,UMECAS.model_umc_empleos,UMECAS.umc_jefe_depto,1,1,1,1
+umecas_empleos_all,UMC empleos all,UMECAS.model_umc_empleos,,1,0,0,0

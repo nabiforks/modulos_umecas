@@ -30,6 +30,8 @@
         'views/vista_umc_expedientes.xml',
         'views/vista_umc_evaluacion.xml',
         'views/umc_entrevistas.xml',
+        'views/umc_empleos.xml',
+        'views/umc_estudios.xml',
         'views/umc_catalogos.xml',                
         'data/sequence_names.xml',
         'views/vista_umc_domicilio.xml',

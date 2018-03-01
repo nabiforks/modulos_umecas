@@ -55,7 +55,17 @@ class Domicilio(models.Model):
                             )
 
     x_evaluacion_id = fields.Many2one(
-        string=u'Entrevista',
+        string=u'Entrevista ID',
         comodel_name='umc_entrevistas',
+        ondelete='set null',
+    )
+    x_empleo_id = fields.Many2one(
+        string=u'Empleo ID',
+        comodel_name='umc_empleos',
+        ondelete='set null',
+    )
+    x_estudios_id = fields.Many2one(
+        string=u'Estudio ID',
+        comodel_name='umc_estudios',
         ondelete='set null',
     )

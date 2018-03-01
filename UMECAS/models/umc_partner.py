@@ -10,11 +10,10 @@ class Partner(models.Model):
 
     _inherit = 'res.partner'
 
-    
     fecha_nacimiento = fields.Date(string=u'Fecha_Nac')
     fecha_actual = fields.Date(default=fields.Date.today)
     edad = fields.Integer(string="Edad")
-    #edad = fields.Integer(string="Edad", compute="_calcular_edad")
+    # edad = fields.Integer(string="Edad", compute="_calcular_edad")
     x_imputado = fields.Boolean(
         string=u'Imputado',
     )
@@ -46,19 +45,20 @@ class Partner(models.Model):
                                           default='{"position":{"lat":19.04360786502212,"lng":-98.19820135831833},"zoom":15}',
                                           )
 
+    """
     @api.depends('fecha_nacimiento', 'fecha_actual')
     def _calcular_edad(self):
         for r in self:
             if not (r.fecha_nacimiento and r.fecha_actual):
                 continue
             # diff = (datetime.date.today() - r.fecha_nac).days
-            #r.edad =  int(diff / 365)
-            #start_date = fields.Date.today
+            # r.edad =  int(diff / 365)
+            # start_date = fields.Date.today
             start_date = fields.Datetime.from_string(r.fecha_nacimiento)
             end_date = fields.Datetime.from_string(r.fecha_actual)
             r.edad = (end_date - start_date).days / 365
-            #r.edad = 10 * 10
-
+            # r.edad = 10 * 10
+    """
     @api.onchange('google_map_partner_test')
     def latitud_longitud(self):
         print "xxxxxxxxxxxxxxx", self.google_map_partner_test
@@ -71,3 +71,29 @@ class Partner(models.Model):
         location = geolocator.reverse(geol)
         # print location.address
         print geol
+
+    #//////////////////////////////////////////Campos usados en entrevista////////////
+    #//////////////////////////////////////////Campos usados en entrevista////////////
+    #//////////////////////////////////////////Campos usados en entrevista/////////////////
+    #//////////////////////////////////////////Campos usados en entrevista///////////////////
+    x_parentesco = fields.Many2one(
+        string=u'Parentesco',
+        comodel_name='umc_parentesco',
+        ondelete='set null',
+    )    
+    x_entrevistas_id = fields.Many2one(
+        string=u'Entrevista',
+        comodel_name='umc_entrevistas',
+        ondelete='set null',
+    )
+    x_ocupacion = fields.Many2one(
+        string=u'Ocupación',
+        comodel_name='umc_ocupacion',
+        ondelete='set null',
+    )
+    x_habita_domicilio = fields.Boolean(
+        string=u'¿Habita el mismo domicilio?',
+    )
+    x_dependiente_economico = fields.Boolean(
+        string=u'Dependiente económico',
+    )

@@ -22,18 +22,17 @@ class Entrevistas(models.Model):
         readonly=True,
         ondelete='set null',
     )
-    x_evaluador_id = fields.Many2one(
+    x_evaluador_id = fields.Integer(
+        string=u'Evaluador ID',
+        readonly=True,
+        related='x_evaluacion_id.x_evaluador_id.id',        
+    )
+    x_evaluador_name = fields.Char(
         string=u'Evaluador',
-        comodel_name='hr.employee',
         readonly=True,
-        ondelete='set null',
-    )    
-    """x_imputado_id = fields.Many2one(
-        string=u'Imputado',
-        comodel_name='res.partner',
-        readonly=True,
-        ondelete='set null',
-    )"""
+        related='x_evaluacion_id.x_evaluador_id.name',
+        store=True        
+    )
     x_imputado_name = fields.Char(
         string=u'Imputado',
         readonly=True,
@@ -100,8 +99,7 @@ class Entrevistas(models.Model):
         comodel_name='umc_actividades',
         inverse_name='x_entrevista2_id',
     )
-    #//////////////////////////////////IV.-Relaciones familiares/////////////////
-    
+    #//////////////////////////////////IV.-Relaciones familiares/////////////////    
     x_contacto_ids = fields.One2many(
         string=u'Familiares',
         comodel_name='res.partner',
@@ -111,7 +109,42 @@ class Entrevistas(models.Model):
         string=u'Inputado',
         related='x_evaluacion_id.partner_id.id',        
     )
-    @api.onchange('x_contacto_ids')
-    def testeron(self):
-        print "************************",self.x_evaluacion_id.partner_id.id
+    #//////////////////////////////////V.-Amistades Referencias personales/////////////////
+
+
+
+
+
+    #//////////////////////////////////VI.-Empleo/////////////////
+    
+    x_empleos_ids = fields.One2many(
+        string=u'Empleos',
+        comodel_name='umc_empleos',
+        inverse_name='x_entrevista_id',
+    )
+    #//////////////////////////////////VII.-Estudios/////////////////
+    
+    x_estudios_ids = fields.One2many(
+        string=u'Estudios',
+        comodel_name='umc_estudios',
+        ondelete='set null',
+        inverse_name="x_entrevista_id"
+    )
+
+    #//////////////////////////////////VIII.-Antecedentes penales/////////////////
+    """x_antecedentes_ids = fields.One2many(
+        string=u'Antecedentes',
+        comodel_name='umc_expedientes',
+        ondelete='set null',
+        inverse_name="x_entrevista_id"
+    )"""
+    
+    x_antecedentes_ids = fields.Many2many(
+        'umc_expedientes',
+        string=u'Antecedentes',        
+        default=lambda self: self.env['umc_expedientes'].search([('partner_id','=',self.x_imputado_id)]).ids,        
+    )
+
+    
+    
     

@@ -30,7 +30,7 @@ class Tipo_vivienda(models.Model):
 
 #/////////////////////////////////////////////////////////////////////////////////////////
 #/////////////////////////////Catalogo de actividades que realiza/////////////////////////////////////////
-class Actividades_participa(models.Model):
+class actividades_participa(models.Model):
     _name='umc_actividades'
     x_name = fields.Char(
         string=u'Actividad',        

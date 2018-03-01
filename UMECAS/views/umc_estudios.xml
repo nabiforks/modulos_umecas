@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <!--  session form view /////////////////////////////////////////////////////-->
+    <record model="ir.ui.view" id="umc_estudios_form_view">
+        <field name="name">umc_estudios.form.view</field>
+        <field name="model">umc_estudios</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <div class="oe_title">
+                        <h4>
+                            <field name="x_name" />
+                        </h4>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="x_institucion"/>
+                            <field name="x_desercion" />
+                        </group>
+                        <group>                            
+                        </group>
+                        <field name="x_domicilio_ids" mode="tree" context="{'default_x_estado_id': 504, }">
+                            <tree editable="top">
+                                <field name="x_calle" />
+                                <field name="x_colonia" />
+                                <field name="x_municipio" />
+                                <field name="x_estado_id" />
+                            </tree>
+                        </field>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record model="ir.ui.view" id="umc_estudios_tree_view">
+        <field name="name">umc_estudios.tree.view</field>
+        <field name="model">umc_estudios</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="x_name" />
+                <field name="x_institucion" />
+                <field name="x_domicilio_ids" />
+            </tree>
+        </field>
+    </record>
+    <record model="ir.actions.act_window" id="umc_estudios_list_action">
+        <field name="name">Estudios</field>
+        <field name="res_model">umc_estudios</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        <!--field name="context" eval="{'search_default_customer': 1}"/-->
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">Agregar primer registro                </p>
+        </field>
+    </record>
+</odoo>

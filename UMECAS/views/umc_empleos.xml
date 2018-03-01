@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <!--  session form view /////////////////////////////////////////////////////-->
+    <record model="ir.ui.view" id="umc_empleos_form_view">
+        <field name="name">empleos.form.view</field>
+        <field name="model">umc_empleos</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <div class="oe_title">
+                        <field name="x_actual_anterior" widget="radio" class="oe_edit_only" options="{'horizontal': true}" />
+                        <h4>
+                            <field name="x_name" />
+                        </h4>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="x_tipo_empleo" widget="radio"/>
+                            <field name="x_formal" widget="radio" />
+                            <field name="x_propio" widget="radio" />
+                        </group>
+                        <group>
+                            <field name="x_patron" />
+                            <field name="x_salario" />
+                            <field name="x_dias_trabaja" />
+                            <field name="x_hora_inicio" widget="float_time"/>
+                            <field name="x_hora_fin" widget="float_time" />
+                            <label string="Tiempo laborando"/>
+                            <div></div>
+                            <field name="x_anios_trabajando" placeholder="años" />
+                            <field name="x_meses_trabajando" placeholder="meses" />
+                        </group>
+                        <field name="x_domicilio_ids" mode="tree" context="{'default_x_estado_id': 504, }">
+                            <tree editable="top">
+                                <field name="x_calle" />
+                                <field name="x_colonia" />
+                                <field name="x_municipio" />
+                                <field name="x_estado_id" />
+                            </tree>
+                        </field>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record model="ir.ui.view" id="umc_empleos_tree_view">
+        <field name="name">empleos.tree.view</field>
+        <field name="model">umc_empleos</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="x_name" />
+                <field name="x_actual_anterior" />
+                <field name="x_tipo_empleo" />
+            </tree>
+        </field>
+    </record>
+    <record model="ir.actions.act_window" id="umc_empleos_list_action">
+        <field name="name">Empleos</field>
+        <field name="res_model">umc_empleos</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,kanban,form</field>
+        <!--field name="context" eval="{'search_default_customer': 1}"/-->
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">Agregar primer registro                </p>
+        </field>
+    </record>
+</odoo>

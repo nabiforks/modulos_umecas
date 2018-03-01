@@ -21,7 +21,8 @@
                             <field name="x_imputado_name" />
                             <field name="x_imputado_id" invisible="1" />
                             <field name="x_evaluacion_id" />
-                            <field name="x_evaluador_id" />
+                            <field name="x_evaluador_name" />
+                            <field name="x_evaluador_id" invisible="1"/>
                         </group>
                     </group>
                     <group>
@@ -77,9 +78,28 @@
                                 </group>
                             </page>
                             <page string="V.-Amistades (Referencias personales)"></page>
-                            <page string="VI.-Empleos"></page>
-                            <page string="VII.-Estudios"></page>
-                            <page string="VIII.-Antecedentes penales"></page>
+                            <page string="VI.-Empleos">
+                                <group>
+                                    <field name="x_empleos_ids"/>
+                                </group>
+                            </page>
+                            <page string="VII.-Estudios">
+                                <group>
+                                    <field name="x_estudios_ids"/>
+                                </group>
+                            </page>
+                            <page string="VIII.-Antecedentes penales" >
+                                <group>
+                                    <field name="x_antecedentes_ids" mode="tree" readonly="1">
+                                        <tree >
+                                            <field name="x_name" />
+                                            <field name="x_delito" />
+                                            <field name="x_fecha_inicio" />
+                                            <field name="partner_id" />
+                                        </tree>
+                                    </field>
+                                </group>
+                            </page>
                             <page string="IX.-Enfermedades"></page>
                             <page string="X.-Consumo de sustancias"></page>
                             <page string="XI.-Información del proceso actual"></page>
@@ -87,6 +107,21 @@
                     </group>
                 </sheet>
             </form>
+        </field>
+    </record>
+    <!--Agrgar filtros de busqueda -->
+    <record model="ir.ui.view" id="entrevistas_search_view">
+        <field name="name">expedientes.search.view</field>
+        <field name="model">umc_entrevistas</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="x_name" />
+                <field name="x_evaluador_id" />
+                <filter name="mis_entrevistas" string="Mis entrevistas" domain="[('x_evaluador_id', '=', uid)]"/>
+                <group string="Group By">
+                    <filter name="evaluador" string="Evaluador" context="{'group_by': 'x_evaluador_name'}"/>
+                </group>
+            </search>
         </field>
     </record>
     <record model="ir.actions.act_window" id="umc_entrevistas_list_action">
