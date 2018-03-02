@@ -32,7 +32,8 @@
         'views/umc_entrevistas.xml',
         'views/umc_empleos.xml',
         'views/umc_estudios.xml',
-        'views/umc_catalogos.xml',                
+        'views/umc_catalogos.xml',
+        'views/ucm_escalavalores_view.xml',                
         'data/sequence_names.xml',
         'views/vista_umc_domicilio.xml',
         'data/datos_demo.xml'

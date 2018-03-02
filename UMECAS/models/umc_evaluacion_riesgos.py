@@ -104,8 +104,8 @@ class Encuestas(models.Model):
         string=u'Escala de valores',
         comodel_name='ucm.escalavalores.evaluacion',
         inverse_name='x_evaluacion_id',
-        default=lambda self: self.env['ucm.escalavalores.evaluacion'].search([
-        ]).ids,
+        #default=lambda self: self.env['ucm.escalavalores.evaluacion'].search([
+        #]).ids,
     )
 
     @api.multi
@@ -123,5 +123,11 @@ class Encuestas(models.Model):
             else:
                 record.x_escala_riesgos = '2'
     #///////////////////////////////////////////Evaluación de riesgos/////////////////////////////////////////////
-
     
+    """x_secciones_ids = fields.One2many(
+        string=u'Escala de valores',
+        comodel_name='ucm.escalavalores.secciones',
+        inverse_name='x_evaluacion_id',
+        default=lambda self: self.env['ucm.escalavalores.secciones'].search([
+        ]).ids,
+    )"""

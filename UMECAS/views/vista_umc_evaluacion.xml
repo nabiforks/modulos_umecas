@@ -49,15 +49,20 @@
                                 </group>
                                 <group>
                                     <field name="x_escalas_ids">
+                                        <!--tree string="Escala de valores" editable="top"><field name="name" /><field name="x_seccion_ids" domain="[('seccion_id', '=', name)]"/></tree-->
                                         <tree string="Escala de valores" editable="top">
-                                            <field name="seccion"  />
+                                            <field name="seccion" />
                                             <field name="valor_ids" domain="[('seccion_id', '=', seccion)]"/>
                                             <field name="num_valor" />
                                         </tree>
                                     </field>
+                                    <!--field name="x_secciones_ids">
+                                        <tree string="Escala de valores" editable="top">
+                                            <field name="name" />
+                                        </tree>
+                                    </field-->
                                 </group>
                             </page>
-                            
                         </notebook>
                     </group>
                 </sheet>

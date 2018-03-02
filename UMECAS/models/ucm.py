@@ -8,15 +8,23 @@ from odoo import fields, models, api
 class Ucm(models.Model):
     _name = 'ucm.escalavalores.secciones'
 
-    x_seccion_id = fields.One2many(
-        'ucm.escalavalores.valor', 'seccion_id', 'Secciones')
-    name = fields.Char(string='Nombre')
-
+    x_seccion_ids = fields.One2many(
+        'ucm.escalavalores.valor', 'seccion_id', 'Respuestas',ondelete='cascade')
+    name = fields.Char(string='Seccion')
+    """
+    x_evaluacion_id = fields.Many2one(
+        string=u'Evaluacion ID',
+        comodel_name='umc_evaluacion',
+        ondelete='set null',
+    )
+    
+    """
+    
 
 class UcmValores(models.Model):
     _name = 'ucm.escalavalores.valor'
 
-    name = fields.Char(string='Nombre')
+    name = fields.Char(string='Respuesta')
     valor = fields.Integer(string='Valor')
     seccion_id = fields.Many2one(
         'ucm.escalavalores.secciones', string='Seccion')
@@ -35,6 +43,7 @@ class UcmEvaluacion(models.Model):
         comodel_name='umc_evaluacion',
         ondelete='set null',
     )
+    """
     _sql_constraints = [
         ('seccion_unique', 'unique(seccion)', 'la sección ya existe')
-    ]
+    ]"""

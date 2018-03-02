@@ -101,8 +101,8 @@
 		</record>
 		<!-- END TREE -->
 		
-		<menuitem id="main_ucm_menu" name="UMC Escalas"/>
-		<menuitem id="config_ucm_menu" parent="main_ucm_menu" name="Configuracion"/>
+		<!--menuitem id="main_ucm_menu" name="UMC Escalas"/-->
+		<menuitem id="config_ucm_menu" parent="UMECAS.umc_configuracion" name="Escala de riesgos"/>
 		<menuitem id="secciones_menu" name="Secciones" parent="config_ucm_menu" 
 			action="action_ucm_secciones"/>
 		<menuitem id="valores_menu" name="Valores" parent="config_ucm_menu" action="action_ucm_valores"/>
