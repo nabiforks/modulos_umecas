@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 from datetime import timedelta
 from odoo import api, fields, models
-import json
-from geopy.geocoders import Nominatim
+#import json
+#from geopy.geocoders import Nominatim
 
 
 class Partner(models.Model):
@@ -41,10 +41,11 @@ class Partner(models.Model):
         string=u'Ingreso económico (MXN) diarios',
     )
 
+    """
     google_map_partner_test = fields.Char(string="Map",
                                           default='{"position":{"lat":19.04360786502212,"lng":-98.19820135831833},"zoom":15}',
                                           )
-
+    """
     """
     @api.depends('fecha_nacimiento', 'fecha_actual')
     def _calcular_edad(self):
@@ -59,6 +60,7 @@ class Partner(models.Model):
             r.edad = (end_date - start_date).days / 365
             # r.edad = 10 * 10
     """
+    """
     @api.onchange('google_map_partner_test')
     def latitud_longitud(self):
         print "xxxxxxxxxxxxxxx", self.google_map_partner_test
@@ -71,7 +73,7 @@ class Partner(models.Model):
         location = geolocator.reverse(geol)
         # print location.address
         print geol
-
+    """
     #//////////////////////////////////////////Campos usados en entrevista////////////
     #//////////////////////////////////////////Campos usados en entrevista////////////
     #//////////////////////////////////////////Campos usados en entrevista/////////////////

@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data >
+        <!--Datos demo para delitos ////////////////////////////////-->    
+        <record id="umc_delitos_1" model="umc_delitos">
+            <field name="x_name">Robo</field>
+        </record>
+        <record id="umc_delitos_2" model="umc_delitos">
+            <field name="x_name">Violación</field>
+        </record>
+        <record id="umc_delitos_3" model="umc_delitos">
+            <field name="x_name">Asalto</field>
+        </record>
+        <record id="umc_delitos_4" model="umc_delitos">
+            <field name="x_name">Fraude</field>
+        </record>
+        <!--Datos demo para tipo tipo_vivienda ////////////////////////////////-->    
+        <record id="umc_tipo_vivienda_1" model="umc_tipo_vivienda">
+            <field name="x_name">Propia</field>
+        </record>
+        <record id="umc_tipo_vivienda_2" model="umc_tipo_vivienda">
+            <field name="x_name">Prestada</field>
+        </record>
+        <record id="umc_tipo_vivienda_3" model="umc_tipo_vivienda">
+            <field name="x_name">Rentada</field>
+        </record>
+        <record id="umc_tipo_vivienda_4" model="umc_tipo_vivienda">
+            <field name="x_name">Hipotecada</field>
+        </record>
+        <!--Datos demo para tipo_ocupacion ////////////////////////////////-->    
+        <record id="umc_ocupacion_1" model="umc_ocupacion">
+            <field name="x_name">Esposo(a)</field>
+        </record>
+        <record id="umc_ocupacion_2" model="umc_ocupacion">
+            <field name="x_name">Hijo(a)</field>
+        </record>
+        <record id="umc_ocupacion_3" model="umc_ocupacion">
+            <field name="x_name">Padre</field>
+        </record>
+        <record id="umc_ocupacion_4" model="umc_ocupacion">
+            <field name="x_name">Madre</field>
+        </record>
+        <!--Datos demo para tipo_parentesco ////////////////////////////////-->    
+        <record id="umc_parentesco_1" model="umc_parentesco">
+            <field name="x_name">Esposo(a)</field>
+        </record>
+        <record id="umc_parentesco_2" model="umc_parentesco">
+            <field name="x_name">Hijo(a)</field>
+        </record>
+        <record id="umc_parentesco_3" model="umc_parentesco">
+            <field name="x_name">Padre</field>
+        </record>
+        <record id="umc_parentesco_4" model="umc_parentesco">
+            <field name="x_name">Madre</field>
+        </record>
+        <!--Datos demo para parentesco ////////////////////////////////-->    
+        <record id="umc_ocupacion_1" model="umc_ocupacion">
+            <field name="x_name">Estudiante</field>
+        </record>
+        <record id="umc_ocupacion_2" model="umc_ocupacion">
+            <field name="x_name">Mécanico</field>
+        </record>
+        <record id="umc_ocupacion_3" model="umc_ocupacion">
+            <field name="x_name">Obrero</field>
+        </record>
+        <record id="umc_ocupacion_4" model="umc_ocupacion">
+            <field name="x_name">Campesino</field>
+        </record>
+    </data>
+</odoo>

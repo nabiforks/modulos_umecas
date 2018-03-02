@@ -132,12 +132,6 @@ class Entrevistas(models.Model):
     )
 
     #//////////////////////////////////VIII.-Antecedentes penales/////////////////
-    """x_antecedentes_ids = fields.One2many(
-        string=u'Antecedentes',
-        comodel_name='umc_expedientes',
-        ondelete='set null',
-        inverse_name="x_entrevista_id"
-    )"""
     
     x_antecedentes_ids = fields.Many2many(
         'umc_expedientes',

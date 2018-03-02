@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+	<data>
+		<record id="action_ucm_secciones" model="ir.actions.act_window">
+			<field name="name">Secciones</field>
+			<field name="res_model">ucm.escalavalores.secciones</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+			<field name="help" type="html">
+				<p class="oe_view_nocontent_create">Agregar</p>
+			</field>
+		</record>
+		<!-- END BASE FORM -->
+		<record model="ir.ui.view" id="ucm_secciones_form_view">
+			<field name="name">ucm.secciones.form</field>
+			<field name="model">ucm.escalavalores.secciones</field>
+			<field name="arch" type="xml">
+				<form string="Secciones">
+					<group>
+						<field name="name"/>
+					</group>
+				</form>
+			</field>
+		</record>
+		<!-- END FORM -->
+		<record model='ir.ui.view' id='ucm_secciones_tree_view'>
+			<field name='name'>ucm.secciones.tree</field>
+			<field name='model'>ucm.escalavalores.secciones</field>
+			<field name='arch' type='xml'>
+				<tree string='Nombre'>
+					<field name='name'/>
+				</tree>
+			</field>
+		</record>
+		<!-- END TREE -->
+		<record id="action_ucm_valores" model="ir.actions.act_window">
+			<field name="name">Valores</field>
+			<field name="res_model">ucm.escalavalores.valor</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+			<field name="help" type="html">
+				<p class="oe_view_nocontent_create">Agregar</p>
+			</field>
+		</record>
+		<!-- END BASE FORM -->
+		<record model="ir.ui.view" id="ucm_valores_form_view">
+			<field name="name">ucm.valores.form</field>
+			<field name="model">ucm.escalavalores.valor</field>
+			<field name="arch" type="xml">
+				<form string="Valores">
+					<group>
+						<field name="seccion_id"/>
+						<field name="name"/>
+						<field name="valor"/>
+					</group>
+				</form>
+			</field>
+		</record>
+		<!-- END FORM -->
+		<record model='ir.ui.view' id='ucm_valores_tree_view'>
+			<field name='name'>ucm.valores.tree</field>
+			<field name='model'>ucm.escalavalores.valor</field>
+			<field name='arch' type='xml'>
+				<tree string='Nombre'>
+					<field name="seccion_id"/>
+					<field name="name"/>
+					<field name="valor"/>
+				</tree>
+			</field>
+		</record>
+		<!-- END TREE -->
+		<record id="action_ucm_evaluacion" model="ir.actions.act_window">
+			<field name="name">Evaluacion</field>
+			<field name="res_model">ucm.escalavalores.evaluacion</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+		</record>
+		<!-- END BASE FORM -->
+		<record model="ir.ui.view" id="ucm_evaluacion_form_view">
+			<field name="name">ucm.evaluacion.form</field>
+			<field name="model">ucm.escalavalores.evaluacion</field>
+			<field name="arch" type="xml">
+				<form string="Valores">
+					<group>
+						<field name="seccion"/>
+						<field name="valor_ids" domain="[('seccion_id', '=', seccion)]"/>
+						<field name="num_valor"/>
+					</group>
+				</form>
+			</field>
+		</record>
+		<!-- END FORM -->
+		<record model='ir.ui.view' id='ucm_evaluacion_tree_view'>
+			<field name='name'>ucm.evaluacion.tree</field>
+			<field name='model'>ucm.escalavalores.evaluacion</field>
+			<field name='arch' type='xml'>
+				<tree string='Nombre'>
+					<field name="seccion"/>
+				</tree>
+			</field>
+		</record>
+		<!-- END TREE -->
+		
+		<menuitem id="main_ucm_menu" name="UMC Escalas"/>
+		<menuitem id="config_ucm_menu" parent="main_ucm_menu" name="Configuracion"/>
+		<menuitem id="secciones_menu" name="Secciones" parent="config_ucm_menu" 
+			action="action_ucm_secciones"/>
+		<menuitem id="valores_menu" name="Valores" parent="config_ucm_menu" action="action_ucm_valores"/>
+		<menuitem id="evaluacion_menu" name="Evaluacion" parent="config_ucm_menu" action="action_ucm_evaluacion"/>
+		
+	</data>
+</odoo>

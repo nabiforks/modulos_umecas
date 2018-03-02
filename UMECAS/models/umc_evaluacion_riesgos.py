@@ -86,7 +86,6 @@ class Encuestas(models.Model):
     #///////////////////////////////////////////Evaluación de riesgos///////////////////////////////////////////
     #///////////////////////////////////////////Evaluación de riesgos///////////////////////////////////////////////
     #///////////////////////////////////////////Evaluación de riesgos////////////////////////////////////////////////
-    #///////////////////////////////////////////Evaluación de riesgos/////////////////////////////////////////////
 
     x_fecha_analisis = fields.Date(
         string=u'Fecha Analisis de Riesgos',
@@ -101,61 +100,28 @@ class Encuestas(models.Model):
         selection=[('1', 'Bajo'), ('2', 'Medio'), ('3', 'Alto')],
         compute='calcular_ponderacion'
     )
-
-    x_telefono = fields.Selection(
-        string=u'Medios de localización a distancia',
-        selection=[('2', 'Cuenta con teléfono fijo'),
-                   ('1', 'Cuenta con número de referencia (Familiar, Amistad)'),
-                   ('0', 'Cuenta con teléfono móvil (Personal)'),
-                   ('-2', 'No proporcionó número telefónico'),
-                   ('-1', 'No cuenta con número teléfonico')
-                   ])
-
-    x_arraigo_region = fields.Selection(
-        string=u'Arraigo (En la región)',
-        selection=[('4', 'Tiene mas de 5 años viviendo en la región centro y en el mismo domicilio actual en el estado de Puebla'),
-                   ('3', 'Tiene mas de 3 años viviendo en la región centro del estado de Puebla y en el mismo domicilio actual'),
-                   ('2', 'Tiene mas de un año viviendo en la región centro del estado de Puebla o en el mismo domicilio actual'),
-                   ('1', 'Vive en condición de calle'),
-                   ('-2', 'No fue posible corroborar el arraigo domiciliario'),
-                   ('-3', 'Tiene menos de un año viviendo en la región centro del estado de Puebla o en el mismo domicilio actual'),
-                   ('-4', 'No vive en la región centro del estado de Puebla'),
-                   ('-5', 'No vive en el estado de Puebla')
-                   ]
-    )
-    x_arraigo_residencia = fields.Selection(
-        string=u'Arraigo (De residencia)',
-        selection=[('3', 'El domicilio que habita actualmente es de su propiedad'),
-                   ('2', 'El domicilio que habita actualmente es rentado'),
-                   ('1', 'El domicilio que habita actualmente es prestado'),
-                   ('-1', 'No fue posible corroborar que cuente con vivienda'),
-                   ('-2', 'Tiene varios domicilios'),
-                   ('-3', 'No tiene domicilio fijo')
-                   ]
-    )
-    x_relaciones_familiares = fields.Selection(
-        string=u'Relaciones familiares',
-        selection=[('2', 'Vive con un familiar (Padre, hijo, cónyugue)'),
-                   ('1', 'Vive con otra persona (Conocido, amigo)'),
-                   ('-1', 'No fue posible validar sus relaciones interpersonales o de independencia'),
-                   ('-2', 'Vive solo')
-                   ]
-    )
-    x_dependientes_economicos = fields.Selection(
-        string=u'Tiene dependientes económicos',
-        selection=[('2', 'Si'), ('0', 'No')]
+    x_escalas_ids = fields.One2many(
+        string=u'Escala de valores',
+        comodel_name='ucm.escalavalores.evaluacion',
+        inverse_name='x_evaluacion_id',
+        default=lambda self: self.env['ucm.escalavalores.evaluacion'].search([
+        ]).ids,
     )
 
-    #@api.multi
-    @api.depends("x_telefono", "x_arraigo_region", 'x_arraigo_residencia', 'x_relaciones_familiares', 'x_dependientes_economicos')
+    @api.multi
+    @api.depends('x_escalas_ids')
     def calcular_ponderacion(self):
-        aux = int(self.x_arraigo_region) + int(self.x_telefono) + int(self.x_arraigo_residencia) + \
-            int(self.x_relaciones_familiares) + \
-            int(self.x_dependientes_economicos)
-        self.x_ponderacion = aux
-        if aux >= 4:
-            self.x_escala_riesgos = '1'
-        elif aux <= -7:
-            self.x_escala_riesgos = '3'
-        else:
-            self.x_escala_riesgos = '2'
+        for record in self:
+            sumador = 0
+            for linea_escala in record.x_escalas_ids:
+                sumador += linea_escala.num_valor
+            record.x_ponderacion = sumador
+            if sumador >= 4:
+               record.x_escala_riesgos = '1'
+            elif sumador <= -7:
+                record.x_escala_riesgos = '3'
+            else:
+                record.x_escala_riesgos = '2'
+    #///////////////////////////////////////////Evaluación de riesgos/////////////////////////////////////////////
+
+    

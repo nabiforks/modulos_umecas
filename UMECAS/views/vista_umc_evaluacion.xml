@@ -34,14 +34,10 @@
                         <notebook>
                             <page string="Entrevista" attrs="{'invisible': [('state','in',('solicitud'))]}">
                                 <field name="x_entrevistas_ids" mode="tree" context="{'default_x_evaluacion_id': active_id,'default_x_evaluador_id': x_evaluador_id,'default_x_imputado_id':partner_id }">
-                                    <!--form editable="top">
-                                        <field name="x_name" />
-                                        <field name="x_imputado_id" />
-                                    </form-->
+                                    <!--form editable="top"><field name="x_name" /><field name="x_imputado_id" /></form-->
                                 </field>
                             </page>
                             <page string="Analisis de riesgos" attrs="{'invisible': [('state','in',('solicitud','entrevista'))]}">
-                                <!--group-->
                                 <group class="row">
                                     <group>
                                         <field name="x_fecha_analisis" />
@@ -52,14 +48,16 @@
                                     </group>
                                 </group>
                                 <group>
-                                    <field name="x_telefono" widget="radio" />
-                                    <field name="x_arraigo_region" widget="radio" />
-                                    <field name="x_arraigo_residencia" widget="radio" />
-                                    <field name="x_relaciones_familiares" widget="radio" />
-                                    <field name="x_dependientes_economicos" widget="radio" options="{'horizontal': true}" />
+                                    <field name="x_escalas_ids">
+                                        <tree string="Escala de valores" editable="top">
+                                            <field name="seccion"  />
+                                            <field name="valor_ids" domain="[('seccion_id', '=', seccion)]"/>
+                                            <field name="num_valor" />
+                                        </tree>
+                                    </field>
                                 </group>
-                                <!--/group-->
                             </page>
+                            
                         </notebook>
                     </group>
                 </sheet>

@@ -35,6 +35,7 @@
         'views/umc_catalogos.xml',                
         'data/sequence_names.xml',
         'views/vista_umc_domicilio.xml',
+        'data/datos_demo.xml'
     ],
     # only loaded in demonstration mode
     'demo': [

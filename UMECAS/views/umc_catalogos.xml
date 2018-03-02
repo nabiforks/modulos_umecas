@@ -185,7 +185,7 @@
     <!-- Main window action para parentesco" -->
     <record id="action_umc_parentesco_window" model="ir.actions.act_window">
         <field name="type">ir.actions.act_window</field>
-        <field name="name">UMC parentesco</field>
+        <field name="name">Parentesco</field>
         <field name="res_model">umc_parentesco</field>
         <field name="view_mode">tree,form</field>
         <field name="view_type">form</field>
