@@ -85,13 +85,33 @@
             </xpath>
         </field>
     </record>
+    <!--kanban view ///////////////////////////// -->
+    <record model="ir.ui.view" id="partner_umc_kanban_view">
+        <field name="name">partner_umc.kanban.view</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.res_partner_kanban_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[@class='o_kanban_image']" position="before">
+                <div class="o_dropdown_kanban dropdown">
+                    <a class="dropdown-toggle btn" data-toggle="dropdown" href="#">
+                        <span class="fa fa-bars fa-lg"/>
+                    </a>
+                    <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">                       
+                        <li>
+                            <ul class="oe_kanban_colorpicker" data-field="color"/>
+                        </li>
+                    </ul>
+                </div>
+            </xpath>
+        </field>
+    </record>
     <!-- window action ///////////////////////////////////////////////////////////////////////////////-->
     <record model="ir.actions.act_window" id="umc_list_action">
         <field name="name">Imputados</field>
         <field name="res_model">res.partner</field>
         <field name="view_type">form</field>
         <field name="view_mode">kanban,tree,form,map</field>
-        <field name="context" eval="{'search_default_x_imputado': True,'default_x_imputado':True}"/>
+        <field name="context" eval="{'search_default_x_imputado': True,'default_x_imputado':True,'default_color':2}"/>
         <field name="help" type="html">
             <p class="oe_view_nocontent_create">Agregar primer registro                </p>
         </field>
@@ -99,5 +119,5 @@
     <!-- top level menu: no parent //////////////////////////////////////////////////////////////////////////////////////-->
     <menuitem id="main_umc_menu" name="UMECAS"/>
     <!--menuitem id="regresar_imputados" name="Tablero" parent="main_umc_menu" action="umc_list_action"/-->
-    <menuitem id="registros_menu" name="Imputados" parent="main_umc_menu" action="umc_list_action"/>
+    <menuitem id="registros_menu" name="Imputados" parent="main_umc_menu" action="umc_list_action" groups="UMECAS.umc_jefe_depto"/>
 </odoo>

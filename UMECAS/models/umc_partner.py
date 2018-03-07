@@ -23,8 +23,12 @@ class Partner(models.Model):
     x_apodo = fields.Char(
         string=u'Apodo / Sobrenombre',
     )
-    x_nacionalidad = fields.Char(
+    x_nacionalidad = fields.Many2one(
         string=u'Nacionalidad',
+        comodel_name='umc_nacionalidad',
+        ondelete='cascade',        
+        default=lambda self:self.env['umc_nacionalidad'].search([('x_name','ilike','Mexican')]),
+        
     )
     x_originario = fields.Char(
         string=u'Originario',
@@ -34,8 +38,10 @@ class Partner(models.Model):
         selection=[('1', 'Soltero'), ('2', 'Casado'),
                    ('3', 'Unión Libre'), ('4', 'Divorciado'), ('5', 'Viudo')]
     )
-    x_identificacion = fields.Char(
+    x_identificacion = fields.Many2one(
         string=u'Identificación',
+        comodel_name='umc_identificacion',
+        ondelete='cascade',          
     )
     x_ingreso_economico = fields.Float(
         string=u'Ingreso económico (MXN) diarios',

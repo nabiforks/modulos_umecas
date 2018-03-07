@@ -17,7 +17,8 @@
                         </h1>
                     </div>
                     <group>
-                        <field name="partner_id" />
+                        <field name="x_imputado_name"/>
+                        <field name="partner_id" invisible="1"/>
                         <field name="x_cdi_nic" />
                         <field name="x_numero_oficio" />
                         <field name="x_fecha_inicio" />
@@ -39,7 +40,7 @@
         <field name="arch" type="xml">
             <tree>
                 <field name="x_name" />
-                <field name="partner_id" />
+                <field name="x_imputado_name" />
                 <field name="x_cdi_nic" />
                 <field name="x_numero_oficio" />
                 <field name="x_fecha_inicio" />
@@ -73,5 +74,5 @@
             <p class="oe_view_nocontent_create">Agregar primer registro                </p>
         </field>
     </record>
-    <menuitem id="expedientes_menu" name="Expedientes" parent="main_umc_menu" action="umc_expedientes_list_action"/>
+    <menuitem id="expedientes_menu" name="Expedientes" parent="main_umc_menu" action="umc_expedientes_list_action" groups="UMECAS.umc_jefe_depto"/>
 </odoo>

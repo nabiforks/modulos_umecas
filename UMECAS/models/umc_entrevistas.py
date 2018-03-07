@@ -36,7 +36,7 @@ class Entrevistas(models.Model):
     x_imputado_name = fields.Char(
         string=u'Imputado',
         readonly=True,
-        related='x_evaluacion_id.partner_id.name',        
+        related='x_evaluacion_id.partner_id.display_name',        
     )
     
     @api.model

@@ -66,5 +66,32 @@
         <record id="umc_ocupacion_4" model="umc_ocupacion">
             <field name="x_name">Campesino</field>
         </record>
+        
+        <!--Datos demo para nacionalidad ////////////////////////////////-->    
+        <record id="umc_nacionalidad_1" model="umc_nacionalidad">
+            <field name="x_codigo">mex</field>
+            <field name="x_name">Mexican@</field>
+        </record>
+        <record id="umc_nacionalidad_2" model="umc_nacionalidad">
+        <field name="x_codigo">per</field>
+            <field name="x_name">Peruan@</field>
+        </record>
+        <record id="umc_nacionalidad_3" model="umc_nacionalidad">
+        <field name="x_codigo">cub</field>
+            <field name="x_name">Cuban@</field>
+        </record>
+        <record id="umc_nacionalidad_4" model="umc_nacionalidad">
+        <field name="x_codigo">hon</field>
+            <field name="x_name">Hondureñ@</field>
+        </record>
+        <!--Datos demo para identificacion ////////////////////////////////-->    
+        <record id="umc_identificacion_1" model="umc_identificacion">
+            <field name="x_codigo">ine</field>
+            <field name="x_name">INE</field>
+        </record>
+        <record id="umc_identificacion_2" model="umc_identificacion">
+        <field name="x_codigo">lic</field>
+            <field name="x_name">Licencia para conducir</field>
+        </record>
     </data>
 </odoo>

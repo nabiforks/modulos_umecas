@@ -2,30 +2,11 @@
 from odoo import api, fields, models
 
 
-class umc_estudios(models.Model):
-    _name = 'umc_estudios'
+class umc_enfermedades(models.Model):
+    _name = 'umc_enfermedades'
 
-    x_name = fields.Selection(
-        string=u'Escolaridad',
-        selection=[('ninguno', 'Ninguno'), ('primaria', 'Primaria')],
-        default='ninguno',
+    x_name = fields.Char(
+        string=u'Enfermedad',
         required=True,
-
-    )        
-    x_institucion = fields.Char(
-        string=u'Nombre de la Institución',
-    )    
-    x_desercion = fields.Char(
-        string=u'Motivo deserción',
-    )    
-    x_domicilio_ids = fields.One2many(
-        string=u'Domicilio',
-        comodel_name='umc_domicilio',
-        inverse_name='x_estudios_id',
-    )
-    x_entrevista_id = fields.Many2one(
-        string=u'Entrevista ID',
-        comodel_name='umc_entrevistas',
-        ondelete='set null',
     )
     

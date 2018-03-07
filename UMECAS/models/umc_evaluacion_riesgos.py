@@ -31,11 +31,20 @@ class Encuestas(models.Model):
         default=lambda self: self.env.context.get('partner_id'),
         ondelete='set null',
     )
-    x_tipo_entrevista = fields.Selection(
+    x_imputado_name = fields.Char(
+        string=u'Imputado',        
+        related='partner_id.display_name',         
+        readonly=True,               
+    )
+    """x_tipo_entrevista = fields.Selection(
         string=u'Tipo de Entrevista',
         selection=[('ad', 'Adolescente'),
                    ('ret', 'Retenido'), ('int', 'Interno')],
         required=True,
+    )"""
+    x_tipo_entrevista = fields.Selection(
+        string=u'Tipo de Entrevista',
+        related='partner_id.x_imputado_tipo'
     )
     """message_ids = fields.One2many(
         'mail.message', 'res_id', string='Messages',
@@ -124,10 +133,3 @@ class Encuestas(models.Model):
                 record.x_escala_riesgos = '2'
     #///////////////////////////////////////////Evaluación de riesgos/////////////////////////////////////////////
     
-    """x_secciones_ids = fields.One2many(
-        string=u'Escala de valores',
-        comodel_name='ucm.escalavalores.secciones',
-        inverse_name='x_evaluacion_id',
-        default=lambda self: self.env['ucm.escalavalores.secciones'].search([
-        ]).ids,
-    )"""

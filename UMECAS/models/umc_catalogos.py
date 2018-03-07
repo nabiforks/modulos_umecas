@@ -62,7 +62,7 @@ class umc_parentesco(models.Model):
         required=True,        
     )
 #/////////////////////////////////////////////////////////////////////////////////////////
-#/////////////////////////////Catalogo de parentesco/////////////////////////////////////////
+#/////////////////////////////Catalogo de ocupacion/////////////////////////////////////////
 class umc_ocupacion(models.Model):
     _name='umc_ocupacion'
     x_name = fields.Char(
@@ -71,3 +71,25 @@ class umc_ocupacion(models.Model):
     )  
     
 
+#/////////////////////////////////////////////////////////////////////////////////////////
+#/////////////////////////////Catalogo de nacionalidad/////////////////////////////////////////
+class umc_nacionalidad(models.Model):
+    _name='umc_nacionalidad'
+    x_name = fields.Char(
+        string=u'Nacionalidad',        
+        required=True,        
+    )     
+    x_codigo = fields.Char(
+        string=u'Código',
+    )
+#/////////////////////////////////////////////////////////////////////////////////////////
+#/////////////////////////////Catalogo de identificacion/////////////////////////////////////////
+class umc_identificacion(models.Model):
+    _name='umc_identificacion'
+    x_name = fields.Char(
+        string=u'Identificación',        
+        required=True,        
+    )     
+    x_codigo = fields.Char(
+        string=u'Código',
+    )    

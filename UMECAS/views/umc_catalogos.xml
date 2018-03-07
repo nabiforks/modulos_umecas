@@ -239,11 +239,108 @@
             <p>         Ocupación                  </p>
         </field>
     </record>
+    <!-- >Vista para catalogo Nacionalidad///////////////////////////////////////////////////<-->
+    <!-- >Vista para catalogo Nacionalidad///////////////////////////////////////////////////<-->
+    <!-- >Vista para catalogo Nacionalidad///////////////////////////////////////////////////<-->
+    <!-- >Vista para catalogo Nacionalidad///////////////////////////////////////////////////<-->
+    <record id="view_umc_nacionalidad_tree" model="ir.ui.view">
+        <field name="name">view.umc_nacionalidad.tree</field>
+        <field name="model">umc_nacionalidad</field>
+        <field name="type">tree</field>
+        <field name="mode">primary</field>
+        <field name="arch" type="xml">
+            <tree >
+                <field name="x_codigo" />
+                <field name="x_name" />
+            </tree>
+        </field>
+    </record>
+    <!-- Form view -->
+    <record id="view_umc_nacionalidad_form" model="ir.ui.view">
+        <field name="name">view.umc_nacionalidad.form</field>
+        <field name="model">umc_nacionalidad</field>
+        <field name="type">form</field>
+        <field name="mode">primary</field>
+        <field name="arch" type="xml">
+            <form string="Nacionalidad" create="1" delete="1" edit="1">
+                <header></header>
+                <sheet>
+                    <group>
+                        <field name="x_codigo" />
+                        <field name="x_name" class="oe_inline" placeholder="Ej. Mexicana, Peruana...." />
+                    </group>
+                    <group></group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <!-- Main window action para nacionalidad" -->
+    <record id="action_umc_nacionalidad_window" model="ir.actions.act_window">
+        <field name="type">ir.actions.act_window</field>
+        <field name="name">Nacionalidad</field>
+        <field name="res_model">umc_nacionalidad</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_type">form</field>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">                Click para agregar registros           </p>
+            <p>         Nacionalidad                 </p>
+        </field>
+    </record>
+
+    <!-- >Vista para catalogo identificacion///////////////////////////////////////////////////<-->
+    <!-- >Vista para catalogo identificacion///////////////////////////////////////////////////<-->
+    <!-- >Vista para catalogo identificacion///////////////////////////////////////////////////<-->
+    <!-- >Vista para catalogo identificacion///////////////////////////////////////////////////<-->
+    <record id="view_umc_identificacion_tree" model="ir.ui.view">
+        <field name="name">view.umc_identificacion.tree</field>
+        <field name="model">umc_identificacion</field>
+        <field name="type">tree</field>
+        <field name="mode">primary</field>
+        <field name="arch" type="xml">
+            <tree >
+                <field name="x_codigo" />
+                <field name="x_name" />
+            </tree>
+        </field>
+    </record>
+    <!-- Form view -->
+    <record id="view_umc_identificacion_form" model="ir.ui.view">
+        <field name="name">view.umc_identificacion.form</field>
+        <field name="model">umc_identificacion</field>
+        <field name="type">form</field>
+        <field name="mode">primary</field>
+        <field name="arch" type="xml">
+            <form string="Identificación" create="1" delete="1" edit="1">
+                <header></header>
+                <sheet>
+                    <group>
+                        <field name="x_codigo" />
+                        <field name="x_name" class="oe_inline" placeholder="Ej. IFE, INE,...." />
+                    </group>
+                    <group></group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <!-- Main window action para identificacion" -->
+    <record id="action_umc_identificacion_window" model="ir.actions.act_window">
+        <field name="type">ir.actions.act_window</field>
+        <field name="name">Identificación</field>
+        <field name="res_model">umc_identificacion</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_type">form</field>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">                Click para agregar registros           </p>
+            <p>         Identificación                </p>
+        </field>
+    </record>
     <!-- Main menu for "Catalogos" ///////////////////////////////////////////////////////////-->
     <!-- Main menu for "Catalogos" ///////////////////////////////////////////////////////////-->
     <!-- //////////////// Main menu for "Catalogos" ///////////////////////////////////////////////////////////-->
-    <menuitem id="umc_configuracion" name="Configuración" parent="main_umc_menu" />
+    <menuitem id="umc_configuracion" name="Configuración" parent="main_umc_menu" groups="UMECAS.umc_jefe_depto"/>
     <menuitem id="umc_entrevistas_label" name="Entrevistas" parent="umc_configuracion" />
+    <menuitem id="umc_nacionalidad" name="Nacionalidad" parent="umc_entrevistas_label" action="action_umc_nacionalidad_window"/>
+    <menuitem id="umc_identificacion" name="Identificación" parent="umc_entrevistas_label" action="action_umc_identificacion_window"/>
     <menuitem id="umc_tipo_vivienda" name="Tipo Vivienda" parent="umc_entrevistas_label" action="action_umc_tipo_vivienda_window"/>
     <menuitem id="umc_actividades_realiza" name="Actividades" parent="umc_entrevistas_label" action="action_umc_actividades_realiza_window"/>
     <menuitem id="umc_parentesco_realiza" name="Parentesco" parent="umc_entrevistas_label" action="action_umc_parentesco_window"/>

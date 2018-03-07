@@ -25,7 +25,8 @@
                             <field name="x_tipo_entrevista" widget="radio" options="{'horizontal': true}"/>
                         </group>
                         <group>
-                            <field name="partner_id" />
+                            <field name="x_imputado_name" />
+                            <field name="partner_id" invisible="1" />
                             <field name="x_expediente_id" />
                             <field name="x_evaluador_id" attrs="{'readonly': [('state','not in',('solicitud'))]}" options="{'no_create': True, 'no_open': True}" />
                         </group>
@@ -56,11 +57,7 @@
                                             <field name="num_valor" />
                                         </tree>
                                     </field>
-                                    <!--field name="x_secciones_ids">
-                                        <tree string="Escala de valores" editable="top">
-                                            <field name="name" />
-                                        </tree>
-                                    </field-->
+                                    <!--field name="x_secciones_ids"><tree string="Escala de valores" editable="top"><field name="name" /></tree></field-->
                                 </group>
                             </page>
                         </notebook>
@@ -80,7 +77,8 @@
         <field name="arch" type="xml">
             <tree>
                 <field name="x_name" />
-                <field name="partner_id" />
+                <field name="x_imputado_name" />
+                <field name="partner_id" invisible="1" />
                 <field name="x_tipo_entrevista" />
                 <field name="x_evaluador_id" />
                 <field name="x_expediente_id" />
@@ -95,7 +93,7 @@
         <field name="arch" type="xml">
             <search>
                 <field name="x_expediente_id" />
-                <field name="partner_id" />
+                <field name="x_imputado_name" />                
                 <field name="x_tipo_entrevista" />
                 <field name="state" />
             </search>

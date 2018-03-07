@@ -185,4 +185,7 @@
             </button>
         </div>
     </t>
+    <t t-name="MapView.record">
+        <t t-raw="widget.content"/>
+    </t>
 </templates>
