@@ -110,10 +110,11 @@ class Entrevistas(models.Model):
         related='x_evaluacion_id.partner_id.id',        
     )
     #//////////////////////////////////V.-Amistades Referencias personales/////////////////
-
-
-
-
+    x_amistades_ids = fields.One2many(
+        string=u'Amistades (Referencias personales)',
+        comodel_name='umc_amistades',
+        inverse_name='x_entrevista_id',
+    )
 
     #//////////////////////////////////VI.-Empleo/////////////////
     
@@ -140,13 +141,16 @@ class Entrevistas(models.Model):
     )
 
     #//////////////////////////////////IX.-Enfermedades/////////////////
-    
-    
     x_enfermedades_ids = fields.One2many(
         string=u'Enfermedades',
         comodel_name='umc_enfermedades_padece',
         inverse_name='x_entrevista_id',
     )
     
-    
+    #//////////////////////////////////X.- Consumo de sustancias/////////////////
+    x_sustancias_ids = fields.One2many(
+        string=u'Consume sustancias',
+        comodel_name='umc_sustancias_consume',
+        inverse_name='x_entrevista_id',
+    )
     

@@ -77,7 +77,11 @@
                                     </field>
                                 </group>
                             </page>
-                            <page string="V.-Amistades (Referencias personales)"></page>
+                            <page string="V.-Amistades (Referencias personales)">
+                                <group>
+                                    <field name="x_amistades_ids" mode="tree"/>
+                                </group>
+                            </page>
                             <page string="VI.-Empleos">
                                 <group>
                                     <field name="x_empleos_ids"/>
@@ -102,7 +106,7 @@
                             </page>
                             <page string="IX.-Enfermedades">
                                 <group>
-                                    <field name="x_enfermedades_ids" mode="tree" >
+                                    <field name="x_enfermedades_ids" mode="tree">
                                         <tree editable="bottom">
                                             <field name="x_name" />
                                             <field name="x_tiempo_padece" />
@@ -112,7 +116,18 @@
                                     </field>
                                 </group>
                             </page>
-                            <page string="X.-Consumo de sustancias"></page>
+                            <page string="X.-Consumo de sustancias">
+                                <group>
+                                    <field name="x_sustancias_ids" mode="tree">
+                                        <tree editable="bottom">
+                                            <field name="x_name" />
+                                            <field name="x_frecuencia" />
+                                            <field name="x_cantidad" />
+                                            <field name="x_ultimo_consumo" />
+                                        </tree>
+                                    </field>
+                                </group>
+                            </page>
                             <page string="XI.-Información del proceso actual"></page>
                         </notebook>
                     </group>

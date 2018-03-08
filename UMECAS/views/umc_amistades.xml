@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record model="ir.ui.view" id="umc_amistades_form_view">
+        <field name="name">amistades.form.view</field>
+        <field name="model">umc_amistades</field>
+        <field name="arch" type="xml">
+            <form>
+                <header></header>
+                <sheet>
+                    <div class="oe_title">
+                        <h2>
+                        <field name="x_name" placeholder="Nombre completo"/>
+                        </h2>
+                    </div>
+                    <group>
+                        <field name="x_relacion" />
+                        <field name="x_numero" />
+                        <label string="Tiempo de conocer a la persona"/>
+                        <div></div>
+                        <field name="x_anios_conocer" placeholder="años" />
+                        <field name="x_meses_conocer" placeholder="meses" />
+                    </group>
+                    <!--group-->
+                    <field name="x_domicilio_ids" mode="tree" context="{'default_x_estado_id': 504, }">
+                        <tree editable="top">
+                            <field name="x_calle" />
+                            <field name="x_colonia" />
+                            <field name="x_municipio" />
+                            <field name="x_estado_id" />
+                        </tree>
+                    </field>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record model="ir.ui.view" id="umc_amistades_tree_view">
+        <field name="name">amistades.tree.view</field>
+        <field name="model">umc_amistades</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="x_name"/>
+                <field name="x_relacion" />
+                <field name="x_numero" />
+                <field name="x_domicilio_ids" />
+            </tree>
+        </field>
+    </record>
+    <record model="ir.actions.act_window" id="umc_amistades_list_action">
+        <field name="name">Amistades (Referencias personales)</field>
+        <field name="res_model">umc_amistades</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">form,tree</field>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">Agregar primer registro                </p>
+        </field>
+    </record>
+</odoo>
