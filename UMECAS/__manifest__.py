@@ -36,6 +36,7 @@
         'views/ucm_escalavalores_view.xml',                
         'data/sequence_names.xml',
         'views/vista_umc_domicilio.xml',
+        'views/umc_enfermedades.xml',
         'data/datos_demo.xml'
     ],
     # only loaded in demonstration mode

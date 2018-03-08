@@ -9,7 +9,7 @@
                 <sheet>
                     <div class="oe_title">
                         <h4>
-                            <field name="x_name" />
+                            <field name="x_name" placeholder="Primaria, Secundaria ...."/>
                         </h4>
                     </div>
                     <group>

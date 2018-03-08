@@ -139,6 +139,14 @@ class Entrevistas(models.Model):
         default=lambda self: self.env['umc_expedientes'].search([('partner_id','=',self.x_imputado_id)]).ids,        
     )
 
+    #//////////////////////////////////IX.-Enfermedades/////////////////
+    
+    
+    x_enfermedades_ids = fields.One2many(
+        string=u'Enfermedades',
+        comodel_name='umc_enfermedades_padece',
+        inverse_name='x_entrevista_id',
+    )
     
     
     

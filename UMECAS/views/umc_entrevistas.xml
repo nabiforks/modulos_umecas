@@ -100,7 +100,18 @@
                                     </field>
                                 </group>
                             </page>
-                            <page string="IX.-Enfermedades"></page>
+                            <page string="IX.-Enfermedades">
+                                <group>
+                                    <field name="x_enfermedades_ids" mode="tree" >
+                                        <tree editable="bottom">
+                                            <field name="x_name" />
+                                            <field name="x_tiempo_padece" />
+                                            <field name="x_tratamiento" />
+                                            <field name="x_discapacidad_id" />
+                                        </tree>
+                                    </field>
+                                </group>
+                            </page>
                             <page string="X.-Consumo de sustancias"></page>
                             <page string="XI.-Información del proceso actual"></page>
                         </notebook>
