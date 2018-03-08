@@ -29,6 +29,18 @@ umecas_actividad_jefe,UMC actividad,UMECAS.model_umc_actividad,UMECAS.umc_jefe_d
 umecas_actividad_all,UMC actividad all,UMECAS.model_umc_actividad,,1,0,0,0
 umecas_escolaridad_jefe,UMC escolaridad,UMECAS.model_umc_escolaridad,UMECAS.umc_jefe_depto,1,1,1,1
 umecas_escolaridad_all,UMC escolaridad all,UMECAS.model_umc_escolaridad,,1,0,0,0
+umecas_enfermedades_jefe,UMC enfermedades,UMECAS.model_umc_enfermedades,UMECAS.umc_jefe_depto,1,1,1,1
+umecas_enfermedades_all,UMC enfermedades all,UMECAS.model_umc_enfermedades,,1,0,0,0
+umecas_enfermedades_padece_jefe,UMC enfermedades_padece,UMECAS.model_umc_enfermedades_padece,UMECAS.umc_jefe_depto,1,1,1,1
+umecas_enfermedades_padece_all,UMC enfermedades_padece all,UMECAS.model_umc_enfermedades_padece,,1,0,0,0
+umecas_discapacidad_jefe,UMC discapacidad,UMECAS.model_umc_discapacidad,UMECAS.umc_jefe_depto,1,1,1,1
+umecas_discapacidad_all,UMC discapacidad all,UMECAS.model_umc_discapacidad,,1,0,0,0
+umecas_sustancia_jefe,UMC sustancia,UMECAS.model_umc_sustancia,UMECAS.umc_jefe_depto,1,1,1,1
+umecas_sustancia_all,UMC sustancia all,UMECAS.model_umc_sustancia,,1,0,0,0
+umecas_sustancias_consume_jefe,UMC sustancias_consume,UMECAS.model_umc_sustancias_consume,UMECAS.umc_jefe_depto,1,1,1,1
+umecas_sustancias_consume_all,UMC sustancias_consume all,UMECAS.model_umc_sustancias_consume,,1,0,0,0
+umecas_amistades_jefe,UMC amistades,UMECAS.model_umc_amistades,UMECAS.umc_jefe_depto,1,1,1,1
+umecas_amistades_all,UMC amistades all,UMECAS.model_umc_amistades,,1,0,0,0
 ,,,,,,,
 ,,,,,,,
 umecas_ucm_escalavalores_secciones_jefe,UMC ucm_escalavalores_secciones,UMECAS.model_ucm_escalavalores_secciones,UMECAS.umc_jefe_depto,1,1,1,1
@@ -47,3 +59,9 @@ umecas_nacionalidad_evaluador,UMC nacionalidad_evaluador,UMECAS.model_umc_nacion
 umecas_identificacion_evaluador,UMC identificacion_evaluador,UMECAS.model_umc_identificacion,UMECAS.umc_evaluador,1,1,1,0
 umecas_actividad_evaluador,UMC actividad_evaluador,UMECAS.model_umc_actividad,UMECAS.umc_evaluador,1,1,1,0
 umecas_escolaridad_evaluador,UMC escolaridad_evaluador,UMECAS.model_umc_escolaridad,UMECAS.umc_evaluador,1,1,1,0
+umecas_enfermedades_evaluador,UMC enfermedades_evaluador,UMECAS.model_umc_enfermedades,UMECAS.umc_evaluador,1,1,1,0
+umecas_enfermedades_padece_evaluador,UMC enfermedades_padece_evaluador,UMECAS.model_umc_enfermedades_padece,UMECAS.umc_evaluador,1,1,1,0
+umecas_discapacidad_evaluador,UMC discapacidad_evaluador,UMECAS.model_umc_discapacidad,UMECAS.umc_evaluador,1,1,1,0
+umecas_sustancia_evaluador,UMC sustancia_evaluador,UMECAS.model_umc_sustancia,UMECAS.umc_evaluador,1,1,1,0
+umecas_sustancias_consume_evaluador,UMC sustancias_consume_evaluador,UMECAS.model_umc_sustancias_consume,UMECAS.umc_evaluador,1,1,1,0
+umecas_amistades_evaluador,UMC amistades_evaluador,UMECAS.model_umc_amistades,UMECAS.umc_evaluador,1,1,1,1
