@@ -21,6 +21,7 @@ class Entrevistas(models.Model):
         comodel_name='umc_evaluacion',
         readonly=True,
         ondelete='set null',
+        required=True,
     )
     x_evaluador_id = fields.Integer(
         string=u'Evaluador ID',
@@ -53,31 +54,33 @@ class Entrevistas(models.Model):
     #/////////////////////Datos personales//////////////
     x_apellido_pat = fields.Char(
         string=u'Apellido Paterno',
-        # related='partner_id.lastname',
+        related='x_evaluacion_id.partner_id.ap_paterno',
     )
-
     x_apellido_mat = fields.Char(
         string=u'Apellido Materno',
-        # related='partner_id.x_apellido_mat',
+        related='x_evaluacion_id.partner_id.ap_materno',
     )
     x_nombre_entrevistado = fields.Char(
         string=u'Nombre(s)',
-        # related='partner_id.firstname',
+        related='x_evaluacion_id.partner_id.name',
     )
     x_otronombre = fields.Char(
         string=u'Otro nombre',
     )
     x_apodo = fields.Char(
         string=u'Apodo',
+        related='x_evaluacion_id.partner_id.x_apodo',
     )
     x_lugar_nacimiento = fields.Char(
         string=u'Lugar de Nacimiento',
     )
     x_fecha_nacimiento = fields.Date(
         string=u'Fecha de nacimiento',
+        related='x_evaluacion_id.partner_id.fecha_nacimiento',
     )
     x_edad = fields.Integer(
         string=u'Edad',
+        related='x_evaluacion_id.partner_id.edad',
     )
     x_sexo = fields.Selection(
         string=u'Sexo',

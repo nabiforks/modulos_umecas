@@ -19,7 +19,8 @@ class Expedientes(models.Model):
     x_imputado_name = fields.Char(
         string=u'Imputado',
         related='partner_id.display_name',        
-        readonly=True,        
+        readonly=True, 
+        required=True,       
     )
 
     x_cdi_nic = fields.Char(

@@ -19,7 +19,7 @@ class Encuestas(models.Model):
     x_evaluador_id = fields.Many2one(
         'hr.employee',
         string=u'Evaluador',
-        # readonly=True,
+        required=True,
         ondelete='set null',
     )
 
@@ -36,19 +36,11 @@ class Encuestas(models.Model):
         related='partner_id.display_name',         
         readonly=True,               
     )
-    """x_tipo_entrevista = fields.Selection(
-        string=u'Tipo de Entrevista',
-        selection=[('ad', 'Adolescente'),
-                   ('ret', 'Retenido'), ('int', 'Interno')],
-        required=True,
-    )"""
     x_tipo_entrevista = fields.Selection(
         string=u'Tipo de Entrevista',
         related='partner_id.x_imputado_tipo'
     )
-    """message_ids = fields.One2many(
-        'mail.message', 'res_id', string='Messages',
-        domain=lambda self: [('model', '=', self._name)], auto_join=True,ondelete='cascade')"""
+   
     state = fields.Selection([
         ('solicitud', 'Solicitud'),
         ('entrevista', 'Entrevista'),
