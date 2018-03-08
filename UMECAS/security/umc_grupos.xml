@@ -11,10 +11,16 @@
             <field name="name">UMC Analista evaluador</field>
         </record>
         <record id="umc_evaluador_CRU" model="ir.rule">
-            <field name="name">read and update only</field>
+            <field name="name">read and update mis evaluaciones</field>
             <field name="model_id" ref="model_umc_evaluacion"/>
             <field name="groups" eval="[(4, ref('umc_evaluador'))]"/>            
             <field name="domain_force">[('x_evaluador_id.user_id','=',user.id)]</field>
+        </record>
+        <record id="umc_evaluador_entrevistas_CRU" model="ir.rule">
+            <field name="name">read and update mis entrevistas</field>
+            <field name="model_id" ref="model_umc_entrevistas"/>
+            <field name="groups" eval="[(4, ref('umc_evaluador'))]"/>            
+            <field name="domain_force">[('x_evaluacion_id.x_evaluador_id.user_id','=',user.id)]</field>
         </record>
     </data>
 </odoo>

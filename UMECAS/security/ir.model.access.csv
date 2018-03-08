@@ -25,6 +25,10 @@ umecas_nacionalidad_jefe,UMC nacionalidad,UMECAS.model_umc_nacionalidad,UMECAS.u
 umecas_nacionalidad_all,UMC nacionalidad all,UMECAS.model_umc_nacionalidad,,1,0,0,0
 umecas_identificacion_jefe,UMC identificacion,UMECAS.model_umc_identificacion,UMECAS.umc_jefe_depto,1,1,1,1
 umecas_identificacion_all,UMC identificacion all,UMECAS.model_umc_identificacion,,1,0,0,0
+umecas_actividad_jefe,UMC actividad,UMECAS.model_umc_actividad,UMECAS.umc_jefe_depto,1,1,1,1
+umecas_actividad_all,UMC actividad all,UMECAS.model_umc_actividad,,1,0,0,0
+umecas_escolaridad_jefe,UMC escolaridad,UMECAS.model_umc_escolaridad,UMECAS.umc_jefe_depto,1,1,1,1
+umecas_escolaridad_all,UMC escolaridad all,UMECAS.model_umc_escolaridad,,1,0,0,0
 ,,,,,,,
 ,,,,,,,
 umecas_ucm_escalavalores_secciones_jefe,UMC ucm_escalavalores_secciones,UMECAS.model_ucm_escalavalores_secciones,UMECAS.umc_jefe_depto,1,1,1,1
@@ -36,3 +40,10 @@ umecas_ucm_escalavalores_evaluacion_all,UMC ucm_escalavalores_evaluacion all,UME
 ,,,,,,,
 umecas_evaluacion_evaluador,UMC Evaluaciones_evaluador,UMECAS.model_umc_evaluacion,UMECAS.umc_evaluador,1,1,0,0
 umecas_entrevistas_evaluador,UMC entrevistas_evaluador,UMECAS.model_umc_entrevistas,UMECAS.umc_evaluador,1,1,1,0
+umecas_domicilio_evaluador,UMC Domicilio_evaluador,UMECAS.model_umc_domicilio,UMECAS.umc_evaluador,1,1,1,0
+umecas_actividades_evaluador,UMC actividades_evaluador,UMECAS.model_umc_actividades,UMECAS.umc_evaluador,1,1,1,0
+umecas_empleos_evaluador,UMC empleos_evaluador,UMECAS.model_umc_empleos,UMECAS.umc_evaluador,1,1,1,0
+umecas_nacionalidad_evaluador,UMC nacionalidad_evaluador,UMECAS.model_umc_nacionalidad,UMECAS.umc_evaluador,1,1,1,0
+umecas_identificacion_evaluador,UMC identificacion_evaluador,UMECAS.model_umc_identificacion,UMECAS.umc_evaluador,1,1,1,0
+umecas_actividad_evaluador,UMC actividad_evaluador,UMECAS.model_umc_actividad,UMECAS.umc_evaluador,1,1,1,0
+umecas_escolaridad_evaluador,UMC escolaridad_evaluador,UMECAS.model_umc_escolaridad,UMECAS.umc_evaluador,1,1,1,0

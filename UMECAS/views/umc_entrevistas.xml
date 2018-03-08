@@ -88,7 +88,7 @@
                                     <field name="x_estudios_ids"/>
                                 </group>
                             </page>
-                            <page string="VIII.-Antecedentes penales" >
+                            <page string="VIII.-Antecedentes penales">
                                 <group>
                                     <field name="x_antecedentes_ids" mode="tree" readonly="1">
                                         <tree >
@@ -109,9 +109,21 @@
             </form>
         </field>
     </record>
+    <!--vista tree -->
+    <record model="ir.ui.view" id="umc_entrevistas_tree_view">
+        <field name="name">entrevistas.tree.view</field>
+        <field name="model">umc_entrevistas</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="x_name" />
+                <field name="x_evaluador_name" />
+                <field name="x_imputado_name" />
+            </tree>
+        </field>
+    </record>
     <!--Agrgar filtros de busqueda -->
-    <record model="ir.ui.view" id="entrevistas_search_view">
-        <field name="name">expedientes.search.view</field>
+    <record model="ir.ui.view" id="umc_entrevistas_search_view">
+        <field name="name">entrevistas.search.view</field>
         <field name="model">umc_entrevistas</field>
         <field name="arch" type="xml">
             <search>

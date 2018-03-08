@@ -32,9 +32,12 @@ class Tipo_vivienda(models.Model):
 #/////////////////////////////Catalogo de actividades que realiza/////////////////////////////////////////
 class actividades_participa(models.Model):
     _name='umc_actividades'
-    x_name = fields.Char(
-        string=u'Actividad',        
-        required=True,        
+    
+    x_name= fields.Many2one(
+        string=u'Actividad',
+        comodel_name='umc_actividad',
+        ondelete='set null',
+        required=True, 
     )
     x_tipo = fields.Selection(
         string=u'Tipo',
@@ -53,6 +56,14 @@ class actividades_participa(models.Model):
         comodel_name='umc_entrevistas',
         ondelete='set null',
     )
+#/////////////////////////////////////////////////////////////////////////////////////////
+#/////////////////////////////Catalogo de actividades/////////////////////////////////////////
+class actividades_catalogo(models.Model):
+    _name='umc_actividad'    
+    x_name = fields.Char(
+        string=u'Actividad',
+    )
+    
 #/////////////////////////////////////////////////////////////////////////////////////////
 #/////////////////////////////Catalogo de parentesco/////////////////////////////////////////
 class umc_parentesco(models.Model):

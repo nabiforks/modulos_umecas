@@ -5,13 +5,14 @@ from odoo import api, fields, models
 class umc_estudios(models.Model):
     _name = 'umc_estudios'
 
-    x_name = fields.Selection(
+    
+    x_name= fields.Many2one(
         string=u'Escolaridad',
-        selection=[('ninguno', 'Ninguno'), ('primaria', 'Primaria')],
-        default='ninguno',
-        required=True,
-
-    )        
+        comodel_name='umc_escolaridad',
+        ondelete='set null', 
+        required=True,        
+    )      
+      
     x_institucion = fields.Char(
         string=u'Nombre de la Institución',
     )    
@@ -28,4 +29,14 @@ class umc_estudios(models.Model):
         comodel_name='umc_entrevistas',
         ondelete='set null',
     )
+class umc_escolaridad(models.Model):
+    _name = 'umc_escolaridad' 
     
+    x_name= fields.Char(
+        string=u'Nivel escolar',
+    )    
+    x_codigo = fields.Char(
+        string=u'Código',
+    )
+    
+       

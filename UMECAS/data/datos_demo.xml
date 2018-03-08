@@ -70,19 +70,19 @@
         <!--Datos demo para nacionalidad ////////////////////////////////-->    
         <record id="umc_nacionalidad_1" model="umc_nacionalidad">
             <field name="x_codigo">mex</field>
-            <field name="x_name">Mexican@</field>
+            <field name="x_name">Mexicano(a)</field>
         </record>
         <record id="umc_nacionalidad_2" model="umc_nacionalidad">
         <field name="x_codigo">per</field>
-            <field name="x_name">Peruan@</field>
+            <field name="x_name">Peruano(a)</field>
         </record>
         <record id="umc_nacionalidad_3" model="umc_nacionalidad">
         <field name="x_codigo">cub</field>
-            <field name="x_name">Cuban@</field>
+            <field name="x_name">Cubano(a)</field>
         </record>
         <record id="umc_nacionalidad_4" model="umc_nacionalidad">
         <field name="x_codigo">hon</field>
-            <field name="x_name">Hondureñ@</field>
+            <field name="x_name">Hondureño(a)</field>
         </record>
         <!--Datos demo para identificacion ////////////////////////////////-->    
         <record id="umc_identificacion_1" model="umc_identificacion">

@@ -5,7 +5,7 @@ from odoo import api, fields, models
 
 class Encuestas(models.Model):
     _name = 'umc_evaluacion'
-    _inherit = 'mail.thread'
+    #_inherit = 'mail.thread'
 
     x_name = fields.Char('Evaluación', required=True, readonly=True,
                          default=lambda self: 'Nuevo')

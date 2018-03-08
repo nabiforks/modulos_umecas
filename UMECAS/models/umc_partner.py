@@ -12,13 +12,13 @@ class Partner(models.Model):
 
     fecha_nacimiento = fields.Date(string=u'Fecha_Nac')
     fecha_actual = fields.Date(default=fields.Date.today)
-    edad = fields.Integer(string="Edad")
-    # edad = fields.Integer(string="Edad", compute="_calcular_edad")
+    # edad = fields.Integer(string="Edad")
+    edad = fields.Integer(string="Edad", compute="_calcular_edad")
     x_imputado = fields.Boolean(
         string=u'Imputado',
     )
     x_imputado_tipo = fields.Selection(
-        [('1', 'Retenido'), ('2', 'Adolescente'), ('3', 'Interno')], string=u'Tipo')
+        [('1', 'Retenido'), ('2', 'Adolescente'), ('3', 'Interno')], default='1', required=True, string=u'Tipo de imputado')
 
     x_apodo = fields.Char(
         string=u'Apodo / Sobrenombre',
@@ -26,12 +26,13 @@ class Partner(models.Model):
     x_nacionalidad = fields.Many2one(
         string=u'Nacionalidad',
         comodel_name='umc_nacionalidad',
-        ondelete='cascade',        
-        default=lambda self:self.env['umc_nacionalidad'].search([('x_name','ilike','Mexican')]),
-        
+        ondelete='cascade',
+        default=lambda self: self.env['umc_nacionalidad'].search(
+            [('x_name', 'ilike', 'Mexican')]),
+
     )
     x_originario = fields.Char(
-        string=u'Originario',
+        string=u'Originario de: ',
     )
     x_estado_civil = fields.Selection(
         string=u'Estado Civil',
@@ -41,7 +42,7 @@ class Partner(models.Model):
     x_identificacion = fields.Many2one(
         string=u'Identificación',
         comodel_name='umc_identificacion',
-        ondelete='cascade',          
+        ondelete='cascade',
     )
     x_ingreso_economico = fields.Float(
         string=u'Ingreso económico (MXN) diarios',
@@ -52,7 +53,7 @@ class Partner(models.Model):
                                           default='{"position":{"lat":19.04360786502212,"lng":-98.19820135831833},"zoom":15}',
                                           )
     """
-    """
+    
     @api.depends('fecha_nacimiento', 'fecha_actual')
     def _calcular_edad(self):
         for r in self:
@@ -65,7 +66,7 @@ class Partner(models.Model):
             end_date = fields.Datetime.from_string(r.fecha_actual)
             r.edad = (end_date - start_date).days / 365
             # r.edad = 10 * 10
-    """
+    
     """
     @api.onchange('google_map_partner_test')
     def latitud_longitud(self):
@@ -80,6 +81,8 @@ class Partner(models.Model):
         # print location.address
         print geol
     """
+    
+
     #//////////////////////////////////////////Campos usados en entrevista////////////
     #//////////////////////////////////////////Campos usados en entrevista////////////
     #//////////////////////////////////////////Campos usados en entrevista/////////////////
@@ -88,7 +91,7 @@ class Partner(models.Model):
         string=u'Parentesco',
         comodel_name='umc_parentesco',
         ondelete='set null',
-    )    
+    )
     x_entrevistas_id = fields.Many2one(
         string=u'Entrevista',
         comodel_name='umc_entrevistas',

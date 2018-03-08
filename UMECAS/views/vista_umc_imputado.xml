@@ -31,6 +31,9 @@
             <field name="parent_id" position="attributes">
                 <attribute name="invisible">1</attribute>
             </field>
+            <!--field name="country_id" position="attributes">
+                <attribute name="deafult">get_default_country</attribute>
+            </field-->
             <!--field name="type" position="attributes"><attribute name="invisible">1</attribute></field-->
             <xpath expr="//page[@name='sales_purchases']" position="attributes">
                 <attribute name="invisible">1</attribute>
@@ -64,6 +67,7 @@
         <field name="arch" type="xml">
             <xpath expr="//search" position="replace">
                 <search>
+                    <field name="display_name" />
                     <filter string="Imputados" name="imputados_filter" domain="[('x_imputado','=',True)]"/>
                     <separator/>
                     <filter string="Retenidos" name="retenidos_filter" domain="[('x_imputado_tipo','=',1)]"/>
@@ -96,7 +100,7 @@
                     <a class="dropdown-toggle btn" data-toggle="dropdown" href="#">
                         <span class="fa fa-bars fa-lg"/>
                     </a>
-                    <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">                       
+                    <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
                         <li>
                             <ul class="oe_kanban_colorpicker" data-field="color"/>
                         </li>
@@ -111,7 +115,7 @@
         <field name="res_model">res.partner</field>
         <field name="view_type">form</field>
         <field name="view_mode">kanban,tree,form,map</field>
-        <field name="context" eval="{'search_default_x_imputado': True,'default_x_imputado':True,'default_color':2}"/>
+        <field name="context" eval="{'search_default_x_imputado': True,'default_x_imputado':True,'default_country_id':157}"/>
         <field name="help" type="html">
             <p class="oe_view_nocontent_create">Agregar primer registro                </p>
         </field>
