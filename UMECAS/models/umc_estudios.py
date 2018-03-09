@@ -11,7 +11,7 @@ class umc_estudios(models.Model):
         comodel_name='umc_escolaridad',
         ondelete='set null', 
         required=True,        
-    )      
+    )     
       
     x_institucion = fields.Char(
         string=u'Nombre de la Institución',

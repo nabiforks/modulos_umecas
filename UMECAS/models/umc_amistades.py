@@ -19,7 +19,7 @@ class umc_amistades(models.Model):
         comodel_name='umc_parentesco',
         ondelete='set null',
     )
-    x_numero = fields.Integer(
+    x_numero = fields.Char(
         string=u'Teléfono (Casa, empleo, cel.)',
     )
     x_anios_conocer = fields.Integer(

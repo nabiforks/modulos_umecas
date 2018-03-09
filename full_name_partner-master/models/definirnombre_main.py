@@ -15,7 +15,7 @@ class Definirnombre_main(models.Model):
 	@api.depends('name','ap_paterno','ap_materno')
 	def obtener_nombre_completo(self):
 		for record in self:
-			if record.ap_paterno and record.ap_materno:
+			if record.name and record.ap_paterno and record.ap_materno:
 				record.display_name = record.name + " " + record.ap_paterno + " " + record.ap_materno
 			else:
 				record.display_name = record.name

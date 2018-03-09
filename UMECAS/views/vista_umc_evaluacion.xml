@@ -11,7 +11,7 @@
                     <button name="asignar_evaluador" type="object" string="Asignar evaluador" class="oe_highlight" states="solicitud"/>
                     <button name="terminar_entrevista" type="object" string="Entrevista realizada" class="oe_highlight" states="entrevista"/>
                     <button name="terminar_analisis" type="object" string="Analisis realizado" class="oe_highlight" states="analisis"/>
-                    <button name="imprimir_reporte" type="object" string="Imprimir reporte" class="oe_highlight" states="hecho"/>
+                    
                     <field name="state" widget="statusbar" />
                 </header>
                 <sheet>

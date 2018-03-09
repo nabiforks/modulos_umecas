@@ -63,19 +63,21 @@
                                 </group>
                             </page>
                             <page string="IV.-Relaciones familiares">
-                                <group>
-                                    <field name="x_contacto_ids" mode="tree" context="{'default_parent_id': x_imputado_id}">
-                                        <tree editable="top">
-                                            <field name="name" />
-                                            <field name="edad" widget="integer"/>
-                                            <field name="x_parentesco" />
-                                            <field name="x_ocupacion" />
-                                            <field name="x_habita_domicilio" />
-                                            <field name="x_dependiente_economico" />
-                                            <field name="parent_id" invisible="1"/>
-                                        </tree>
-                                    </field>
-                                </group>
+                                <h3>
+                                    <label for='x_contacto_ids'></label>
+                                </h3>
+                                <field name="x_contacto_ids" mode="tree" context="{'default_parent_id': x_imputado_id}">
+                                    <tree editable="top">
+                                        <field name="name" />
+                                        <field name="fecha_nacimiento" />
+                                        <field name="edad" widget="integer"/>
+                                        <field name="x_parentesco" />
+                                        <field name="x_ocupacion" />
+                                        <field name="x_habita_domicilio" />
+                                        <field name="x_dependiente_economico" />
+                                        <field name="parent_id" invisible="1"/>
+                                    </tree>
+                                </field>
                             </page>
                             <page string="V.-Amistades (Referencias personales)">
                                 <group>

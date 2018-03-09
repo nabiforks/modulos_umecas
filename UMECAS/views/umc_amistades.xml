@@ -14,7 +14,7 @@
                     </div>
                     <group>
                         <field name="x_relacion" />
-                        <field name="x_numero" />
+                        <field name="x_numero" widget="phone"/>
                         <label string="Tiempo de conocer a la persona"/>
                         <div></div>
                         <field name="x_anios_conocer" placeholder="años" />
@@ -40,7 +40,7 @@
             <tree>
                 <field name="x_name"/>
                 <field name="x_relacion" />
-                <field name="x_numero" />
+                <field name="x_numero" widget="phone"/>
                 <field name="x_domicilio_ids" />
             </tree>
         </field>

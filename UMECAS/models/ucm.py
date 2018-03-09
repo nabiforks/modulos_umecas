@@ -9,7 +9,7 @@ class Ucm(models.Model):
     _name = 'ucm.escalavalores.secciones'
 
     x_seccion_ids = fields.One2many(
-        'ucm.escalavalores.valor', 'seccion_id', 'Respuestas',ondelete='cascade')
+        'ucm.escalavalores.valor', 'seccion_id', 'Respuestas')
     name = fields.Char(string='Seccion')
     """
     x_evaluacion_id = fields.Many2one(
@@ -34,14 +34,14 @@ class UcmEvaluacion(models.Model):
     _name = 'ucm.escalavalores.evaluacion'
 
     seccion = fields.Many2one('ucm.escalavalores.secciones', string='Sección')
-    valor_ids = fields.Many2one('ucm.escalavalores.valor', string='Nombre')
+    valor_ids = fields.Many2one('ucm.escalavalores.valor', string='Respuesta')
     num_valor = fields.Integer(
         'Valor', related='valor_ids.valor', readonly=True,)
 
     x_evaluacion_id = fields.Many2one(
         string=u'Evaluacion ID',
         comodel_name='umc_evaluacion',
-        ondelete='set null',
+        ondelete='cascade',
     )
     """
     _sql_constraints = [

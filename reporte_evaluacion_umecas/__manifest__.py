@@ -17,6 +17,8 @@
 
     'data': [
         'report/reporte_evaluacion.xml',
+        'views/evaluacion_inherit.xml',
+        #'security/accesos.csv',
     ],
 
     'installable':True,
