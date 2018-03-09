@@ -19,7 +19,7 @@ class Ucm(models.Model):
     )
     
     """
-    
+
 
 class UcmValores(models.Model):
     _name = 'ucm.escalavalores.valor'
@@ -27,7 +27,9 @@ class UcmValores(models.Model):
     name = fields.Char(string='Respuesta')
     valor = fields.Integer(string='Valor')
     seccion_id = fields.Many2one(
-        'ucm.escalavalores.secciones', string='Seccion')
+        'ucm.escalavalores.secciones', string='Seccion',
+        ondelete='cascade',
+    )
 
 
 class UcmEvaluacion(models.Model):

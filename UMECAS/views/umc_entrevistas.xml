@@ -96,7 +96,9 @@
                             </page>
                             <page string="VIII.-Antecedentes penales">
                                 <group>
-                                    <field name="x_antecedentes_ids" mode="tree" readonly="1">
+                                    <field name="x_antecedentes_ids" mode="tree" 
+                                    context="{'search_default_partner_id': x_imputado_id }"
+                                    >
                                         <tree >
                                             <field name="x_name" />
                                             <field name="x_delito" />

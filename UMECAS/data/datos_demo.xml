@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
     <data >
-        <!--Datos demo para delitos ////////////////////////////////-->    
+        <!--Datos demo para delitos ////////////////////////////////-->
         <record id="umc_delitos_1" model="umc_delitos">
             <field name="x_name">Robo</field>
         </record>
@@ -14,7 +14,7 @@
         <record id="umc_delitos_4" model="umc_delitos">
             <field name="x_name">Fraude</field>
         </record>
-        <!--Datos demo para tipo tipo_vivienda ////////////////////////////////-->    
+        <!--Datos demo para tipo tipo_vivienda ////////////////////////////////-->
         <record id="umc_tipo_vivienda_1" model="umc_tipo_vivienda">
             <field name="x_name">Propia</field>
         </record>
@@ -27,7 +27,7 @@
         <record id="umc_tipo_vivienda_4" model="umc_tipo_vivienda">
             <field name="x_name">Hipotecada</field>
         </record>
-        <!--Datos demo para tipo_ocupacion ////////////////////////////////-->    
+        <!--Datos demo para tipo_ocupacion ////////////////////////////////-->
         <record id="umc_ocupacion_1" model="umc_ocupacion">
             <field name="x_name">Esposo(a)</field>
         </record>
@@ -40,7 +40,7 @@
         <record id="umc_ocupacion_4" model="umc_ocupacion">
             <field name="x_name">Madre</field>
         </record>
-        <!--Datos demo para tipo_parentesco ////////////////////////////////-->    
+        <!--Datos demo para tipo_parentesco ////////////////////////////////-->
         <record id="umc_parentesco_1" model="umc_parentesco">
             <field name="x_name">Esposo(a)</field>
         </record>
@@ -53,7 +53,7 @@
         <record id="umc_parentesco_4" model="umc_parentesco">
             <field name="x_name">Madre</field>
         </record>
-        <!--Datos demo para parentesco ////////////////////////////////-->    
+        <!--Datos demo para parentesco ////////////////////////////////-->
         <record id="umc_ocupacion_1" model="umc_ocupacion">
             <field name="x_name">Estudiante</field>
         </record>
@@ -66,32 +66,72 @@
         <record id="umc_ocupacion_4" model="umc_ocupacion">
             <field name="x_name">Campesino</field>
         </record>
-        
-        <!--Datos demo para nacionalidad ////////////////////////////////-->    
+        <!--Datos demo para nacionalidad ////////////////////////////////-->
         <record id="umc_nacionalidad_1" model="umc_nacionalidad">
             <field name="x_codigo">mex</field>
             <field name="x_name">Mexicano(a)</field>
         </record>
         <record id="umc_nacionalidad_2" model="umc_nacionalidad">
-        <field name="x_codigo">per</field>
+            <field name="x_codigo">per</field>
             <field name="x_name">Peruano(a)</field>
         </record>
         <record id="umc_nacionalidad_3" model="umc_nacionalidad">
-        <field name="x_codigo">cub</field>
+            <field name="x_codigo">cub</field>
             <field name="x_name">Cubano(a)</field>
         </record>
         <record id="umc_nacionalidad_4" model="umc_nacionalidad">
-        <field name="x_codigo">hon</field>
+            <field name="x_codigo">hon</field>
             <field name="x_name">Hondureño(a)</field>
         </record>
-        <!--Datos demo para identificacion ////////////////////////////////-->    
+        <!--Datos demo para identificacion ////////////////////////////////-->
         <record id="umc_identificacion_1" model="umc_identificacion">
             <field name="x_codigo">ine</field>
             <field name="x_name">INE</field>
         </record>
         <record id="umc_identificacion_2" model="umc_identificacion">
-        <field name="x_codigo">lic</field>
+            <field name="x_codigo">lic</field>
             <field name="x_name">Licencia para conducir</field>
+        </record>
+        <!--///////////////////////Datos demo para escala de riesgos ////////////////////////////////-->
+        <record id="umc_seccion_1" model="ucm.escalavalores.secciones">
+            <field name="name">I.- Medios de localización a distancia</field>
+        </record>
+        <record id="umc_escalavalores_respuesta_1" model="ucm.escalavalores.valor">
+            <field name="name">Cuenta con teléfono en casa</field>
+            <field name="valor">2</field>
+            <field name="seccion_id" ref="umc_seccion_1"/>
+        </record>
+        <record id="umc_escalavalores_respuesta_2" model="ucm.escalavalores.valor">
+            <field name="name">Cuenta con número de referencia(Familiar, amistad)</field>
+            <field name="valor">1</field>
+            <field name="seccion_id" ref="umc_seccion_1"/>
+        </record>
+        <record id="umc_escalavalores_respuesta_3" model="ucm.escalavalores.valor">
+            <field name="name">Cuenta con teléfono móvil (personal)</field>
+            <field name="valor">0</field>
+            <field name="seccion_id" ref="umc_seccion_1"/>
+        </record>
+        <record id="umc_escalavalores_respuesta_4" model="ucm.escalavalores.valor">
+            <field name="name">No proporcionó número teléfonico</field>
+            <field name="valor">-2</field>
+            <field name="seccion_id" ref="umc_seccion_1"/>
+        </record>
+        <record id="umc_escalavalores_respuesta_5" model="ucm.escalavalores.valor">
+            <field name="name">No cuenta con número teléfonico</field>
+            <field name="valor">-1</field>
+            <field name="seccion_id" ref="umc_seccion_1"/>
+        </record>
+        <record id="umc_seccion_2" model="ucm.escalavalores.secciones">
+            <field name="name">II.- a) Arraigo (En la región )</field>
+        </record>
+        <record id="umc_seccion_3" model="ucm.escalavalores.secciones">
+            <field name="name">II.- b) Arraigo (De residencia)</field>
+        </record>
+        <record id="umc_seccion_4" model="ucm.escalavalores.secciones">
+            <field name="name">III.- Relaciones familiares extramuros</field>
+        </record>
+         <record id="umc_seccion_5" model="ucm.escalavalores.secciones">
+            <field name="name">IV.- Empleos/Estudios</field>
         </record>
     </data>
 </odoo>

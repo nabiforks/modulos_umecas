@@ -11,7 +11,6 @@
                     <button name="asignar_evaluador" type="object" string="Asignar evaluador" class="oe_highlight" states="solicitud"/>
                     <button name="terminar_entrevista" type="object" string="Entrevista realizada" class="oe_highlight" states="entrevista"/>
                     <button name="terminar_analisis" type="object" string="Analisis realizado" class="oe_highlight" states="analisis"/>
-                    
                     <field name="state" widget="statusbar" />
                 </header>
                 <sheet>
@@ -53,7 +52,7 @@
                                         <!--tree string="Escala de valores" editable="top"><field name="name" /><field name="x_seccion_ids" domain="[('seccion_id', '=', name)]"/></tree-->
                                         <tree string="Escala de valores" editable="top">
                                             <field name="seccion" />
-                                            <field name="valor_ids" domain="[('seccion_id', '=', seccion)]"/>
+                                            <field name="valor_ids" domain="[('seccion_id', '=', seccion)]"  />
                                             <field name="num_valor" />
                                         </tree>
                                     </field>
@@ -63,10 +62,7 @@
                         </notebook>
                     </group>
                 </sheet>
-                <!--div class="oe_chatter">
-                    <field name="message_follower_ids" widget="mail_followers"/>
-                    <field name="message_ids" widget="mail_thread"/>
-                </div-->
+                <!--div class="oe_chatter"><field name="message_follower_ids" widget="mail_followers"/><field name="message_ids" widget="mail_thread"/></div-->
             </form>
         </field>
     </record>
@@ -93,7 +89,7 @@
         <field name="arch" type="xml">
             <search>
                 <field name="x_expediente_id" />
-                <field name="x_imputado_name" />                
+                <field name="x_imputado_name" />
                 <field name="x_tipo_entrevista" />
                 <field name="state" />
             </search>

@@ -140,7 +140,7 @@ class Entrevistas(models.Model):
     x_antecedentes_ids = fields.Many2many(
         'umc_expedientes',
         string=u'Antecedentes',        
-        default=lambda self: self.env['umc_expedientes'].search([('partner_id','=',self.x_imputado_id)]).ids,        
+        default=lambda self: self.env['umc_expedientes'].search([('partner_id','=',self.x_evaluacion_id.partner_id.id)]).ids,        
     )
 
     #//////////////////////////////////IX.-Enfermedades/////////////////

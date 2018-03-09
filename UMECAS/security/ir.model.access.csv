@@ -67,7 +67,7 @@ umecas_discapacidad_evaluador,UMC discapacidad_evaluador,UMECAS.model_umc_discap
 umecas_sustancia_evaluador,UMC sustancia_evaluador,UMECAS.model_umc_sustancia,UMECAS.umc_evaluador,1,1,1,0
 umecas_sustancias_consume_evaluador,UMC sustancias_consume_evaluador,UMECAS.model_umc_sustancias_consume,UMECAS.umc_evaluador,1,1,1,1
 umecas_amistades_evaluador,UMC amistades_evaluador,UMECAS.model_umc_amistades,UMECAS.umc_evaluador,1,1,1,1
-,,,,,,,
+umecas_expedientes_evaluador,UMC expedientes_evaluador,UMECAS.model_umc_expedientes,UMECAS.umc_evaluador,1,1,1,0
 umecas_parentesco_evaluador,UMC parentesco_evaluador,UMECAS.model_umc_parentesco,UMECAS.umc_evaluador,1,1,1,0
 umecas_ucm_escalavalores_secciones_evaluador,UMC evaluador_escalavalores_secciones,UMECAS.model_ucm_escalavalores_secciones,UMECAS.umc_evaluador,1,1,1,1
 umecas_ucm_escalavalores_valor_evaluador,UMC evaluador_escalavalores_valor,UMECAS.model_ucm_escalavalores_valor,UMECAS.umc_evaluador,1,1,1,1

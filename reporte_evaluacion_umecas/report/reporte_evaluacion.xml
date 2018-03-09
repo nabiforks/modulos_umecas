@@ -7,7 +7,7 @@
 			string="Reporte de evaluación"
 			name="reporte_evaluacion_umecas.detalles_evaluacion"
 			file="reporte_evaluacion_umecas.evaluacion_umecas_report"
-			report_type="qweb-pdf"
+			report_type="qweb-pdf"			
 			/>
 
 		<template id="detalles_evaluacion">
