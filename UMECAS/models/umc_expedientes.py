@@ -25,6 +25,7 @@ class Expedientes(models.Model):
 
     x_cdi_nic = fields.Char(
         string=u'CDI/NIC',
+        required=True,
     )
     x_numero_oficio = fields.Char(
         string=u'Oficio Número',

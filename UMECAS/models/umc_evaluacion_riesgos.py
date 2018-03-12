@@ -68,6 +68,11 @@ class Encuestas(models.Model):
     @api.multi
     def terminar_entrevista(self):
         self.state = 'analisis'
+        secciones = self.env['ucm.escalavalores.secciones'].search([]).ids
+        for seccion in secciones:
+            aux2 = self.env['ucm.escalavalores.evaluacion'].create({'seccion':seccion,'x_evaluacion_id':self.id})
+        
+
 
     @api.multi
     def terminar_analisis(self):
@@ -105,8 +110,7 @@ class Encuestas(models.Model):
         string=u'Escala de valores',
         comodel_name='ucm.escalavalores.evaluacion',
         inverse_name='x_evaluacion_id',
-        #default=lambda self: self.env['ucm.escalavalores.evaluacion'].search([
-        #]).ids,
+        #default=lambda self: self.env['ucm.escalavalores.evaluacion'].search([]).ids,
     )
 
     @api.multi

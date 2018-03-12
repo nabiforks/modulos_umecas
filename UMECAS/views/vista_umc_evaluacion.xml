@@ -37,7 +37,7 @@
                                     <!--form editable="top"><field name="x_name" /><field name="x_imputado_id" /></form-->
                                 </field>
                             </page>
-                            <page string="Analisis de riesgos" attrs="{'invisible': [('state','in',('solicitud','entrevista'))]}">
+                            <page string="Escala de riesgos" attrs="{'invisible': [('state','in',('solicitud','entrevista'))]}">
                                 <group class="row">
                                     <group>
                                         <field name="x_fecha_analisis" />
@@ -48,11 +48,10 @@
                                     </group>
                                 </group>
                                 <group>
-                                    <field name="x_escalas_ids">
-                                        <!--tree string="Escala de valores" editable="top"><field name="name" /><field name="x_seccion_ids" domain="[('seccion_id', '=', name)]"/></tree-->
-                                        <tree string="Escala de valores" editable="top">
+                                    <field name="x_escalas_ids">                                        
+                                        <tree string="Escala de valores" create="0" edit="1" editable="top">
                                             <field name="seccion" />
-                                            <field name="valor_ids" domain="[('seccion_id', '=', seccion)]"  />
+                                            <field name="valor_ids" domain="[('seccion_id', '=', seccion)]" />
                                             <field name="num_valor" />
                                         </tree>
                                     </field>
