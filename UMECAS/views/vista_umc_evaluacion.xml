@@ -8,9 +8,9 @@
             <form>
                 <header>
                     <button name="asignar_borrador" type="object" string="Solicitud" states="entrevista"/>
-                    <button name="asignar_evaluador" type="object" string="Asignar evaluador" class="oe_highlight" states="solicitud"/>
-                    <button name="terminar_entrevista" type="object" string="Entrevista realizada" class="oe_highlight" states="entrevista"/>
-                    <button name="terminar_analisis" type="object" string="Analisis realizado" class="oe_highlight" states="analisis"/>
+                    <button name="generar_entrevista" type="object" string="Generar entrevista" class="oe_highlight" states="solicitud"/>
+                    <button name="terminar_entrevista" type="object" string="Escala de riesgos" class="oe_highlight" states="entrevista"/>
+                    <button name="terminar_analisis" type="object" string="Evaluación" class="oe_highlight" states="analisis"/>
                     <field name="state" widget="statusbar" />
                 </header>
                 <sheet>
@@ -31,11 +31,12 @@
                         </group>
                     </group>
                     <group class="row">
-                        <notebook>
+                        <notebook>                            
                             <page string="Entrevista" attrs="{'invisible': [('state','in',('solicitud'))]}">
-                                <field name="x_entrevistas_ids" mode="tree" context="{'default_x_evaluacion_id': active_id,'default_x_evaluador_id': x_evaluador_id,'default_x_imputado_id':partner_id }">
-                                    <!--form editable="top"><field name="x_name" /><field name="x_imputado_id" /></form-->
-                                </field>
+                                <group>
+                                    <field name="x_entrevista_id" />
+                                    <field name="x_entrevista_status" />
+                                </group>
                             </page>
                             <page string="Escala de riesgos" attrs="{'invisible': [('state','in',('solicitud','entrevista'))]}">
                                 <group class="row">
@@ -45,17 +46,26 @@
                                     <group>
                                         <field name="x_ponderacion" readonly="1"/>
                                         <field name="x_escala_riesgos" readonly="1"/>
+                                        
+                                        <field name="x_escala_valores_id" invisible="1"/>
+                                        
                                     </group>
                                 </group>
                                 <group>
-                                    <field name="x_escalas_ids">                                        
+                                    <field name="x_escalas_ids">
                                         <tree string="Escala de valores" create="0" edit="1" editable="top">
                                             <field name="seccion" />
                                             <field name="valor_ids" domain="[('seccion_id', '=', seccion)]" />
                                             <field name="num_valor" />
                                         </tree>
                                     </field>
-                                    <!--field name="x_secciones_ids"><tree string="Escala de valores" editable="top"><field name="name" /></tree></field-->
+                                    
+                                </group>
+                            </page>
+                            <page string="Conclusión" attrs="{'invisible': [('state','not in',('evaluacion'))]}">
+                                <group>
+                                    <field name="x_conclusion" />
+                                    
                                 </group>
                             </page>
                         </notebook>

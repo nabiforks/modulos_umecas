@@ -82,5 +82,5 @@
             <p class="oe_view_nocontent_create">Agregar primer registro                </p>
         </field>
     </record>
-    <menuitem id="expedientes_menu" name="Expedientes" parent="main_umc_menu" action="umc_expedientes_list_action" groups="UMECAS.umc_jefe_depto"/>
+    <menuitem id="expedientes_menu" name="Expedientes" parent="main_umc_menu" action="umc_expedientes_list_action" groups="base.group_system,UMECAS.umc_jefe_depto"/>
 </odoo>

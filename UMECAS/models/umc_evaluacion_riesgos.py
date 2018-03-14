@@ -3,7 +3,7 @@ from datetime import timedelta
 from odoo import api, fields, models
 
 
-class Encuestas(models.Model):
+class umc_evaluacion(models.Model):
     _name = 'umc_evaluacion'
     #_inherit = 'mail.thread'
 
@@ -22,30 +22,28 @@ class Encuestas(models.Model):
         required=True,
         ondelete='set null',
     )
-
     partner_id = fields.Many2one(
         'res.partner',
-        string=u'Imputado',
+        string=u'Imputado ID',
         readonly=True,
         required=True,
         default=lambda self: self.env.context.get('partner_id'),
         ondelete='set null',
     )
     x_imputado_name = fields.Char(
-        string=u'Imputado',        
-        related='partner_id.display_name',         
-        readonly=True,               
+        string=u'Imputado',
+        related='partner_id.display_name',
+        readonly=True,
     )
     x_tipo_entrevista = fields.Selection(
         string=u'Tipo de Entrevista',
         related='partner_id.x_imputado_tipo'
     )
-   
     state = fields.Selection([
         ('solicitud', 'Solicitud'),
         ('entrevista', 'Entrevista'),
-        ('analisis', 'Analisis de Riesgo'),
-        ('hecho', 'Hecho'),
+        ('analisis', 'Escala de Riesgos'),
+        ('evaluacion', 'Evaluación'),
     ], default='solicitud', readonly=True)
 
     @api.model
@@ -53,7 +51,7 @@ class Encuestas(models.Model):
         if vals.get('x_name', 'Nuevo') == 'Nuevo':
             vals['x_name'] = self.env['ir.sequence'].next_by_code(
                 'umc_evaluacion') or'Nuevo'
-        result = super(Encuestas, self).create(vals)
+        result = super(umc_evaluacion, self).create(vals)
         return result
 
     @api.multi
@@ -61,31 +59,43 @@ class Encuestas(models.Model):
         self.state = 'solicitud'
 
     @api.multi
-    def asignar_evaluador(self):
+    def generar_entrevista(self):
         if self.x_evaluador_id:
             self.state = 'entrevista'
+            valores_entrevista = {'x_evaluacion_id': self.id,
+                                'x_evaluador_id': self.x_evaluador_id,
+                                'x_imputado_id': self.partner_id}
+            res = self.env['umc_entrevistas'].create(valores_entrevista)
+            self.x_entrevista_id = res
+            return res
 
     @api.multi
     def terminar_entrevista(self):
-        self.state = 'analisis'
-        secciones = self.env['ucm.escalavalores.secciones'].search([]).ids
-        for seccion in secciones:
-            aux2 = self.env['ucm.escalavalores.evaluacion'].create({'seccion':seccion,'x_evaluacion_id':self.id})
-        
-
+        if self.x_entrevista_status == 'terminado':
+            self.state = 'analisis'
+            secciones = self.env['ucm.escalavalores.secciones'].search([]).ids
+            for seccion in secciones:
+                self.env['ucm.escalavalores.evaluacion'].create(
+                    {'seccion': seccion, 'x_evaluacion_id': self.id})
 
     @api.multi
     def terminar_analisis(self):
-        self.state = 'hecho'
+        self.state = 'evaluacion'
 
     #///////////////////////////////////////Campos de las entrevistas////////////////
     #///////////////////////////////////////Campos de las entrevistas////////////////
     #///////////////////////////////////////Campos de las entrevistas////////////////
 
-    x_entrevistas_ids = fields.One2many(
-        string=u'Entrevistas',
+    x_entrevista_id = fields.Many2one(
+        string=u'Entrevista',
         comodel_name='umc_entrevistas',
-        inverse_name='x_evaluacion_id',
+        readonly=True,
+        ondelete='cascade',
+    )    
+    x_entrevista_status = fields.Selection(
+        string=u'Estatus de Entrevista',
+        readonly=True,
+        related='x_entrevista_id.state',
     )
 
     #///////////////////////////////////////////Evaluación de riesgos///////////////////////////////////////////////
@@ -103,9 +113,18 @@ class Encuestas(models.Model):
     )
     x_escala_riesgos = fields.Selection(
         string=u'Escala de riesgo',
-        selection=[('1', 'Bajo'), ('2', 'Medio'), ('3', 'Alto')],
+        selection=[('bajo', 'Bajo'), ('medio', 'Medio'), ('alto', 'Alto')],
         compute='calcular_ponderacion'
     )
+    x_escala_valores_id = fields.Many2one(
+        string=u'Escala valores ID',
+        comodel_name='umc_escalas',         
+        store=True,               
+        default=lambda self: self.env['umc_escalas'].search([]),        
+        ondelete='set null',
+    )
+    
+
     x_escalas_ids = fields.One2many(
         string=u'Escala de valores',
         comodel_name='ucm.escalavalores.evaluacion',
@@ -114,18 +133,23 @@ class Encuestas(models.Model):
     )
 
     @api.multi
-    @api.depends('x_escalas_ids')
+    @api.depends('x_escalas_ids','x_escala_valores_id.x_bajo','x_escala_valores_id.x_alto')
     def calcular_ponderacion(self):
+        print self.x_escala_valores_id
         for record in self:
             sumador = 0
             for linea_escala in record.x_escalas_ids:
                 sumador += linea_escala.num_valor
             record.x_ponderacion = sumador
-            if sumador >= 4:
-               record.x_escala_riesgos = '1'
-            elif sumador <= -7:
-                record.x_escala_riesgos = '3'
+            if sumador >= self.x_escala_valores_id.x_bajo:
+                record.x_escala_riesgos = 'bajo'
+            elif sumador <= self.x_escala_valores_id.x_alto:
+                record.x_escala_riesgos = 'alto'
             else:
-                record.x_escala_riesgos = '2'
+                record.x_escala_riesgos = 'medio'
     #///////////////////////////////////////////Evaluación de riesgos/////////////////////////////////////////////
+    
+    x_conclusion = fields.Text(
+        string=u'Conclusión',
+    )
     

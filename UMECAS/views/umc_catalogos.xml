@@ -334,17 +334,65 @@
             <p>         Identificación                </p>
         </field>
     </record>
+    <!-- >Vista para catalogo regiones///////////////////////////////////////////////////<-->
+    <!-- >Vista para catalogo regiones///////////////////////////////////////////////////<-->
+    <!-- >Vista para catalogo regiones///////////////////////////////////////////////////<-->
+    <!-- >Vista para catalogo regiones///////////////////////////////////////////////////<-->
+    <record id="view_umc_regiones_tree" model="ir.ui.view">
+        <field name="name">view.umc_regiones.tree</field>
+        <field name="model">umc_regiones</field>
+        <field name="type">tree</field>
+        <field name="mode">primary</field>
+        <field name="arch" type="xml">
+            <tree >
+                <field name="x_codigo" />
+                <field name="x_name" />
+            </tree>
+        </field>
+    </record>
+    <!-- Form view -->
+    <record id="view_umc_regiones_form" model="ir.ui.view">
+        <field name="name">view.umc_regiones.form</field>
+        <field name="model">umc_regiones</field>
+        <field name="type">form</field>
+        <field name="mode">primary</field>
+        <field name="arch" type="xml">
+            <form string="Identificación" create="1" delete="1" edit="1">
+                <header></header>
+                <sheet>
+                    <group>
+                        <field name="x_codigo" />
+                        <field name="x_name" class="oe_inline" />
+                    </group>
+                    <group></group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <!-- Main window action para regiones" -->
+    <record id="action_umc_regiones_window" model="ir.actions.act_window">
+        <field name="type">ir.actions.act_window</field>
+        <field name="name">Regiones</field>
+        <field name="res_model">umc_regiones</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_type">form</field>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">                Click para agregar registros           </p>
+            <p>         Regiones                </p>
+        </field>
+    </record>
     <!-- Main menu for "Catalogos" ///////////////////////////////////////////////////////////-->
     <!-- Main menu for "Catalogos" ///////////////////////////////////////////////////////////-->
     <!-- //////////////// Main menu for "Catalogos" ///////////////////////////////////////////////////////////-->
-    <menuitem id="umc_configuracion" name="Configuración" parent="main_umc_menu" groups="UMECAS.umc_jefe_depto"/>
-    <menuitem id="umc_entrevistas_label" name="Entrevistas" parent="umc_configuracion" />
-    <menuitem id="umc_nacionalidad" name="Nacionalidad" parent="umc_entrevistas_label" action="action_umc_nacionalidad_window"/>
-    <menuitem id="umc_identificacion" name="Identificación" parent="umc_entrevistas_label" action="action_umc_identificacion_window"/>
-    <menuitem id="umc_tipo_vivienda" name="Tipo Vivienda" parent="umc_entrevistas_label" action="action_umc_tipo_vivienda_window"/>
-    <menuitem id="umc_actividades_realiza" name="Actividades" parent="umc_entrevistas_label" action="action_umc_actividades_realiza_window"/>
-    <menuitem id="umc_parentesco_realiza" name="Parentesco" parent="umc_entrevistas_label" action="action_umc_parentesco_window"/>
-    <menuitem id="umc_ocupacion" name="Ocupación" parent="umc_entrevistas_label" action="action_umc_ocupacion_window"/>
-    <menuitem id="umc_catalogos_label" name="Evaluaciones" parent="umc_configuracion" />
-    <menuitem id="umc_delitos" name="Delitos" parent="umc_catalogos_label" action="action_umc_delitos_window"/>
+    <menuitem id="umc_configuracion" name="Configuración" parent="main_umc_menu" groups="UMECAS.umc_jefe_depto,base.group_system"/>
+    <menuitem id="umc_regiones" sequence="5" name="Regiones" parent="umc_configuracion" action="action_umc_regiones_window" />
+    <menuitem id="umc_entrevistas_label" sequence="7" name="Entrevistas" parent="umc_configuracion" />
+    <menuitem id="umc_nacionalidad" sequence="9" name="Nacionalidad" parent="umc_entrevistas_label" action="action_umc_nacionalidad_window"/>
+    <menuitem id="umc_identificacion" sequence="11" name="Identificación" parent="umc_entrevistas_label" action="action_umc_identificacion_window"/>
+    <menuitem id="umc_tipo_vivienda" sequence="13" name="Tipo Vivienda" parent="umc_entrevistas_label" action="action_umc_tipo_vivienda_window"/>
+    <menuitem id="umc_actividades_realiza" sequence="15" name="Actividades" parent="umc_entrevistas_label" action="action_umc_actividades_realiza_window"/>
+    <menuitem id="umc_parentesco_realiza" sequence="17" name="Parentesco" parent="umc_entrevistas_label" action="action_umc_parentesco_window"/>
+    <menuitem id="umc_ocupacion" sequence="19" name="Ocupación" parent="umc_entrevistas_label" action="action_umc_ocupacion_window"/>
+    <menuitem id="umc_catalogos_label" sequence="21" name="Evaluaciones" parent="umc_configuracion" />
+    <menuitem id="umc_delitos" sequence="23" name="Delitos" parent="umc_catalogos_label" action="action_umc_delitos_window"/>
 </odoo>

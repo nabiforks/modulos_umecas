@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
     <data >
+        <!--Datos demo para Escalas ////////////////////////////////-->
+        <record id="umc_escalas_demo" model="umc_escalas">
+            <field name="x_name">Escalas 1</field>
+            <field name="x_bajo">4</field>
+            <field name="x_alto">-7</field>
+        </record>
         <!--Datos demo para delitos ////////////////////////////////-->
         <record id="umc_delitos_1" model="umc_delitos">
             <field name="x_name">Robo</field>
@@ -130,7 +136,7 @@
         <record id="umc_seccion_4" model="ucm.escalavalores.secciones">
             <field name="name">III.- Relaciones familiares extramuros</field>
         </record>
-         <record id="umc_seccion_5" model="ucm.escalavalores.secciones">
+        <record id="umc_seccion_5" model="ucm.escalavalores.secciones">
             <field name="name">IV.- Empleos/Estudios</field>
         </record>
     </data>

@@ -49,3 +49,24 @@ class UcmEvaluacion(models.Model):
     _sql_constraints = [
         ('seccion_unique', 'unique(seccion)', 'la sección ya existe')
     ]"""
+
+class umc_escalas(models.Model):
+    _name = 'umc_escalas'
+    
+    x_name = fields.Char(
+        string=u'Descripción',
+    )    
+    x_bajo = fields.Integer(
+        string=u'Bajo: Mayor que: ',
+    )
+    x_medio = fields.Char(
+        string=u'Medio: entre: ',        
+        compute='calcular_riesgo_medio'        
+    )
+    x_alto = fields.Integer(
+        string=u'Alto: Menor que: ',
+    )    
+    @api.depends('x_bajo','x_alto')
+    def calcular_riesgo_medio(self):
+        if self.x_bajo and self.x_alto:
+            self.x_medio= str(self.x_bajo-1)+" y "+str(self.x_alto+1)   

@@ -10,7 +10,7 @@
 				<p class="oe_view_nocontent_create">Agregar</p>
 			</field>
 		</record>
-		<!-- END BASE FORM -->
+		<!--  FORM -->
 		<record model="ir.ui.view" id="ucm_secciones_form_view">
 			<field name="name">ucm.secciones.form</field>
 			<field name="model">ucm.escalavalores.secciones</field>
@@ -22,7 +22,7 @@
 				</form>
 			</field>
 		</record>
-		<!-- END FORM -->
+		<!-- tree -->
 		<record model='ir.ui.view' id='ucm_secciones_tree_view'>
 			<field name='name'>ucm.secciones.tree</field>
 			<field name='model'>ucm.escalavalores.secciones</field>
@@ -32,7 +32,7 @@
 				</tree>
 			</field>
 		</record>
-		<!-- END TREE -->
+		<!-- escala valores ////////////////////////////////////////////////////////////// -->
 		<record id="action_ucm_valores" model="ir.actions.act_window">
 			<field name="name">Valores</field>
 			<field name="res_model">ucm.escalavalores.valor</field>
@@ -42,7 +42,7 @@
 				<p class="oe_view_nocontent_create">Agregar</p>
 			</field>
 		</record>
-		<!-- END BASE FORM -->
+		<!-- FORM -->
 		<record model="ir.ui.view" id="ucm_valores_form_view">
 			<field name="name">ucm.valores.form</field>
 			<field name="model">ucm.escalavalores.valor</field>
@@ -56,7 +56,7 @@
 				</form>
 			</field>
 		</record>
-		<!-- END FORM -->
+		<!-- tree -->
 		<record model='ir.ui.view' id='ucm_valores_tree_view'>
 			<field name='name'>ucm.valores.tree</field>
 			<field name='model'>ucm.escalavalores.valor</field>
@@ -68,14 +68,14 @@
 				</tree>
 			</field>
 		</record>
-		<!-- END TREE -->
+		<!-- evaluaciones ////////////////////////////////////////////////////////////-->
 		<record id="action_ucm_evaluacion" model="ir.actions.act_window">
 			<field name="name">Evaluacion</field>
 			<field name="res_model">ucm.escalavalores.evaluacion</field>
 			<field name="view_type">form</field>
 			<field name="view_mode">tree,form</field>
 		</record>
-		<!-- END BASE FORM -->
+		<!--  FORM -->
 		<record model="ir.ui.view" id="ucm_evaluacion_form_view">
 			<field name="name">ucm.evaluacion.form</field>
 			<field name="model">ucm.escalavalores.evaluacion</field>
@@ -89,7 +89,7 @@
 				</form>
 			</field>
 		</record>
-		<!-- END FORM -->
+		<!--tree  -->
 		<record model='ir.ui.view' id='ucm_evaluacion_tree_view'>
 			<field name='name'>ucm.evaluacion.tree</field>
 			<field name='model'>ucm.escalavalores.evaluacion</field>
@@ -99,14 +99,52 @@
 				</tree>
 			</field>
 		</record>
+		<!-- escalas de riesgo ////////////////////////////////////////////////////////////// -->
+		<record id="action_umc_escalas" model="ir.actions.act_window">
+			<field name="name">Escalas</field>
+			<field name="res_model">umc_escalas</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+		</record>
+		<!-- FORM -->
+		<record model="ir.ui.view" id="umc_escalas_form_view">
+			<field name="name">umc_escalas.form</field>
+			<field name="model">umc_escalas</field>
+			<field name="arch" type="xml">
+				<form string="Valores">
+					<sheet>
+						<div class="oe_title">
+							<h1>
+								<field name="x_name" />
+							</h1>
+						</div>
+						<group>
+							<group>
+								<field name="x_bajo" />
+								<field name="x_medio" />
+								<field name="x_alto" />
+							</group>
+							<group></group>
+						</group>
+					</sheet>
+				</form>
+			</field>
+		</record>
+		<!-- TREE -->
+		<record model='ir.ui.view' id='umc_escalas_tree_view'>
+			<field name='name'>umc_escalas.tree</field>
+			<field name='model'>umc_escalas</field>
+			<field name='arch' type='xml'>
+				<tree string='Nombre'>
+					<field name="x_name"/>
+				</tree>
+			</field>
+		</record>
 		<!-- END TREE -->
-		
 		<!--menuitem id="main_ucm_menu" name="UMC Escalas"/-->
-		<menuitem id="config_ucm_menu" parent="UMECAS.umc_configuracion" name="Escala de riesgos"/>
-		<menuitem id="secciones_menu" name="Secciones" parent="config_ucm_menu" 
-			action="action_ucm_secciones"/>
+		<menuitem id="config_ucm_menu" sequence="25" parent="UMECAS.umc_configuracion" name="Escala de riesgos"/>
+		<menuitem id="secciones_menu" name="Secciones" parent="config_ucm_menu" action="action_ucm_secciones"/>
 		<menuitem id="valores_menu" name="Valores" parent="config_ucm_menu" action="action_ucm_valores"/>
-		<menuitem id="evaluacion_menu" name="Evaluacion" parent="config_ucm_menu" action="action_ucm_evaluacion"/>
-		
+		<menuitem id="escalas_menu" name="Escalas" parent="config_ucm_menu" action="action_umc_escalas"/>
 	</data>
 </odoo>

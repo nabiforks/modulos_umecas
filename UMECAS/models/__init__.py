@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from . import ucm
+from . import umc_regiones
 from . import umc_catalogos
 from . import umc_entrevistas
 from . import umc_enfermedades

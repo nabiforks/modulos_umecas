@@ -15,31 +15,31 @@ class Entrevistas(models.Model):
     x_fecha_entrevista = fields.Datetime(
         string=u'Fecha y hora',
         default=fields.Datetime.now,
-    )    
+    )
     x_evaluacion_id = fields.Many2one(
         string=u'Evaluación',
         comodel_name='umc_evaluacion',
         readonly=True,
-        ondelete='set null',
+        ondelete='cascade',
         required=True,
     )
     x_evaluador_id = fields.Integer(
         string=u'Evaluador ID',
         readonly=True,
-        related='x_evaluacion_id.x_evaluador_id.id',        
+        related='x_evaluacion_id.x_evaluador_id.id',
     )
     x_evaluador_name = fields.Char(
         string=u'Evaluador',
         readonly=True,
         related='x_evaluacion_id.x_evaluador_id.name',
-        store=True        
+        store=True
     )
     x_imputado_name = fields.Char(
         string=u'Imputado',
         readonly=True,
-        related='x_evaluacion_id.partner_id.display_name',        
+        related='x_evaluacion_id.partner_id.display_name',
     )
-    
+
     @api.model
     def create(self, vals):
         if vals.get('x_name', 'Nuevo') == 'Nuevo':
@@ -47,6 +47,14 @@ class Entrevistas(models.Model):
                 'umc_entrevistas') or'Nuevo'
         result = super(Entrevistas, self).create(vals)
         return result
+    state = fields.Selection([
+        ('borrador', 'Borrador'),
+        ('terminado', 'Terminado'),
+    ], default='borrador', string='Estatus', readonly=True)
+    @api.multi
+    def entrevista_realizada(self):
+        self.state = 'terminado'
+
     #///////////////////////////////////////Campos de las entrevistas////////////////
     #///////////////////////////////////////Campos de las entrevistas////////////////
     #///////////////////////////////////////Campos de las entrevistas////////////////
@@ -94,15 +102,14 @@ class Entrevistas(models.Model):
         comodel_name='umc_domicilio',
         inverse_name='x_evaluacion_id',
     )
-    
-    
+
     #//////////////////////////////////III.- Lazos con la comunidad////////////////
     x_actividades_ids = fields.One2many(
         string=u'Actividades que realiza',
         comodel_name='umc_actividades',
         inverse_name='x_entrevista2_id',
     )
-    #//////////////////////////////////IV.-Relaciones familiares/////////////////    
+    #//////////////////////////////////IV.-Relaciones familiares/////////////////
     x_contacto_ids = fields.One2many(
         string=u'Familiares',
         comodel_name='res.partner',
@@ -110,7 +117,7 @@ class Entrevistas(models.Model):
     )
     x_imputado_id = fields.Integer(
         string=u'Inputado',
-        related='x_evaluacion_id.partner_id.id',        
+        related='x_evaluacion_id.partner_id.id',
     )
     #//////////////////////////////////V.-Amistades Referencias personales/////////////////
     x_amistades_ids = fields.One2many(
@@ -120,14 +127,14 @@ class Entrevistas(models.Model):
     )
 
     #//////////////////////////////////VI.-Empleo/////////////////
-    
+
     x_empleos_ids = fields.One2many(
         string=u'Empleos',
         comodel_name='umc_empleos',
         inverse_name='x_entrevista_id',
     )
     #//////////////////////////////////VII.-Estudios/////////////////
-    
+
     x_estudios_ids = fields.One2many(
         string=u'Estudios',
         comodel_name='umc_estudios',
@@ -136,11 +143,12 @@ class Entrevistas(models.Model):
     )
 
     #//////////////////////////////////VIII.-Antecedentes penales/////////////////
-    
+
     x_antecedentes_ids = fields.Many2many(
         'umc_expedientes',
-        string=u'Antecedentes',        
-        default=lambda self: self.env['umc_expedientes'].search([('partner_id','=',self.x_evaluacion_id.partner_id.id)]).ids,        
+        string=u'Antecedentes',
+        default=lambda self: self.env['umc_expedientes'].search(
+            [('partner_id', '=', self.x_evaluacion_id.partner_id.id)]).ids,
     )
 
     #//////////////////////////////////IX.-Enfermedades/////////////////
@@ -149,11 +157,10 @@ class Entrevistas(models.Model):
         comodel_name='umc_enfermedades_padece',
         inverse_name='x_entrevista_id',
     )
-    
+
     #//////////////////////////////////X.- Consumo de sustancias/////////////////
     x_sustancias_ids = fields.One2many(
         string=u'Consume sustancias',
         comodel_name='umc_sustancias_consume',
         inverse_name='x_entrevista_id',
     )
-    

@@ -6,6 +6,10 @@
         <field name="model">umc_entrevistas</field>
         <field name="arch" type="xml">
             <form>
+                <header>
+                    <button name="entrevista_realizada" type="object" string="Entrevista Realizada" class="oe_highlight" states="borrador"/>
+                    <field name="state" widget="statusbar" />
+                </header>
                 <sheet>
                     <div class="oe_title">
                         <h1>
@@ -146,6 +150,8 @@
                 <field name="x_name" />
                 <field name="x_evaluador_name" />
                 <field name="x_imputado_name" />
+                <field name="state" />
+                
             </tree>
         </field>
     </record>

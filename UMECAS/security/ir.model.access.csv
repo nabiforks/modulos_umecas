@@ -41,6 +41,11 @@ umecas_sustancias_consume_jefe,UMC sustancias_consume,UMECAS.model_umc_sustancia
 umecas_sustancias_consume_all,UMC sustancias_consume all,UMECAS.model_umc_sustancias_consume,,1,0,0,0
 umecas_amistades_jefe,UMC amistades,UMECAS.model_umc_amistades,UMECAS.umc_jefe_depto,1,1,1,1
 umecas_amistades_all,UMC amistades all,UMECAS.model_umc_amistades,,1,0,0,0
+umecas_escalas_jefe,UMC escalas,UMECAS.model_umc_escalas,UMECAS.umc_jefe_depto,1,1,1,1
+umecas_escalas_all,UMC escalas all,UMECAS.model_umc_escalas,,1,0,0,0
+umecas_regiones_jefe,UMC regiones,UMECAS.model_umc_regiones,UMECAS.umc_jefe_depto,1,1,1,1
+umecas_regiones_all,UMC regiones all,UMECAS.model_umc_regiones,,1,0,0,0
+,,,,,,,
 ,,,,,,,
 ,,,,,,,
 umecas_ucm_escalavalores_secciones_jefe,UMC ucm_escalavalores_secciones,UMECAS.model_ucm_escalavalores_secciones,UMECAS.umc_jefe_depto,1,1,1,1
@@ -72,3 +77,5 @@ umecas_parentesco_evaluador,UMC parentesco_evaluador,UMECAS.model_umc_parentesco
 umecas_ucm_escalavalores_secciones_evaluador,UMC evaluador_escalavalores_secciones,UMECAS.model_ucm_escalavalores_secciones,UMECAS.umc_evaluador,1,1,1,1
 umecas_ucm_escalavalores_valor_evaluador,UMC evaluador_escalavalores_valor,UMECAS.model_ucm_escalavalores_valor,UMECAS.umc_evaluador,1,1,1,1
 umecas_ucm_escalavalores_evaluacion_evaluador,UMC evaluador_escalavalores_evaluacion,UMECAS.model_ucm_escalavalores_evaluacion,UMECAS.umc_evaluador,1,1,1,1
+umecas_escalas_evaluador,UMC escalas_evaluador,UMECAS.model_umc_escalas,UMECAS.umc_evaluador,1,1,1,0
+umecas_regiones_evaluador,UMC regiones_evaluador,UMECAS.model_umc_regiones,UMECAS.umc_evaluador,1,1,1,0
