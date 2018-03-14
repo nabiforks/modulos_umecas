@@ -7,7 +7,36 @@
             <field name="x_bajo">4</field>
             <field name="x_alto">-7</field>
         </record>
-        <!--Datos demo para delitos ////////////////////////////////-->
+        <!--Datos para regiones //////////////////////////////////////////////-->
+        <!--Datos para regiones //////////////////////////////////////////////-->
+        <record id="umc_regiones_1" model="umc_regiones">
+            <field name="x_name">Región Oriente</field>
+            <field name="x_codigo">OTE</field>
+        </record>
+        <record id="umc_regiones_2" model="umc_regiones">
+            <field name="x_name">Región Norte</field>
+            <field name="x_codigo">NORTE</field>
+        </record>
+        <record id="umc_regiones_3" model="umc_regiones">
+            <field name="x_name">Región Sur</field>
+            <field name="x_codigo">SUR</field>
+        </record>
+        <record id="umc_regiones_4" model="umc_regiones">
+            <field name="x_name">Región Sur Oriente</field>
+            <field name="x_codigo">SUR-OTE</field>
+        </record>
+        <record id="umc_regiones_5" model="umc_regiones">
+            <field name="x_name">Región Centro Poniente</field>
+            <field name="x_codigo">CENTRO-PTE</field>
+        </record>
+        <record id="umc_regiones_6" model="umc_regiones">
+            <field name="x_name">Región Centro</field>
+            <field name="x_codigo">CENTRO</field>
+        </record>
+        <!--Datos demo para delitos ////////////////////////////////////////////////////-->
+        <!--Datos demo para delitos ////////////////////////////////////////////////////-->
+        <!--Datos demo para delitos ////////////////////////////////////////////////////-->
+        <!--Datos demo para delitos ////////////////////////////////////////////////////-->
         <record id="umc_delitos_1" model="umc_delitos">
             <field name="x_name">Robo</field>
         </record>
@@ -20,7 +49,10 @@
         <record id="umc_delitos_4" model="umc_delitos">
             <field name="x_name">Fraude</field>
         </record>
-        <!--Datos demo para tipo tipo_vivienda ////////////////////////////////-->
+        <!--Datos demo para tipo tipo_vivienda //////////////////////////////////////////////////-->
+        <!--Datos demo para tipo tipo_vivienda //////////////////////////////////////////////////-->
+        <!--Datos demo para tipo tipo_vivienda //////////////////////////////////////////////////-->
+        <!--Datos demo para tipo tipo_vivienda //////////////////////////////////////////////////-->
         <record id="umc_tipo_vivienda_1" model="umc_tipo_vivienda">
             <field name="x_name">Propia</field>
         </record>
@@ -33,7 +65,10 @@
         <record id="umc_tipo_vivienda_4" model="umc_tipo_vivienda">
             <field name="x_name">Hipotecada</field>
         </record>
-        <!--Datos demo para tipo_ocupacion ////////////////////////////////-->
+        <!--Datos demo para tipo_ocupacion //////////////////////////////////////////////////-->
+        <!--Datos demo para tipo_ocupacion //////////////////////////////////////////////////-->
+        <!--Datos demo para tipo_ocupacion //////////////////////////////////////////////////-->
+        <!--Datos demo para tipo_ocupacion //////////////////////////////////////////////////-->
         <record id="umc_ocupacion_1" model="umc_ocupacion">
             <field name="x_name">Esposo(a)</field>
         </record>
@@ -46,7 +81,10 @@
         <record id="umc_ocupacion_4" model="umc_ocupacion">
             <field name="x_name">Madre</field>
         </record>
-        <!--Datos demo para tipo_parentesco ////////////////////////////////-->
+        <!--Datos demo para tipo_parentesco ///////////////////////////////////////////////////-->
+        <!--Datos demo para tipo_parentesco ///////////////////////////////////////////////////-->
+        <!--Datos demo para tipo_parentesco ///////////////////////////////////////////////////-->
+        <!--Datos demo para tipo_parentesco ///////////////////////////////////////////////////-->
         <record id="umc_parentesco_1" model="umc_parentesco">
             <field name="x_name">Esposo(a)</field>
         </record>
@@ -99,6 +137,10 @@
             <field name="x_name">Licencia para conducir</field>
         </record>
         <!--///////////////////////Datos demo para escala de riesgos ////////////////////////////////-->
+        <!--///////////////////////Datos demo para escala de riesgos ////////////////////////////////-->
+        <!--///////////////////////Datos demo para escala de riesgos ////////////////////////////////-->
+        <!--///////////////////////Datos demo para escala de riesgos ////////////////////////////////-->
+        <!--///////////////////////Datos demo para escala de riesgos ////////////////////////////////-->
         <record id="umc_seccion_1" model="ucm.escalavalores.secciones">
             <field name="name">I.- Medios de localización a distancia</field>
         </record>
@@ -127,7 +169,6 @@
             <field name="valor">-1</field>
             <field name="seccion_id" ref="umc_seccion_1"/>
         </record>
-
         <!--Seccion 2-->
         <record id="umc_seccion_2" model="ucm.escalavalores.secciones">
             <field name="name">II.- a) Arraigo (En la región )</field>
@@ -172,7 +213,6 @@
             <field name="valor">-5</field>
             <field name="seccion_id" ref="umc_seccion_2"/>
         </record>
-
         <!--Seccion 3-->
         <record id="umc_seccion_3" model="ucm.escalavalores.secciones">
             <field name="name">II.- b) Arraigo (De residencia)</field>
@@ -207,7 +247,6 @@
             <field name="valor">-3</field>
             <field name="seccion_id" ref="umc_seccion_3"/>
         </record>
-
         <!--Seccion 4-->
         <record id="umc_seccion_4" model="ucm.escalavalores.secciones">
             <field name="name">III.- Relaciones familiares extramuros</field>
@@ -237,9 +276,8 @@
             <field name="valor">2</field>
             <field name="seccion_id" ref="umc_seccion_4"/>
         </record>
-
         <!--Seccion 5-->
-         <record id="umc_seccion_5" model="ucm.escalavalores.secciones">
+        <record id="umc_seccion_5" model="ucm.escalavalores.secciones">
             <field name="name">IV.- Empleos/Estudios</field>
         </record>
         <record id="umc_escalavalores_respuesta_25" model="ucm.escalavalores.valor">
@@ -282,9 +320,8 @@
             <field name="valor">-4</field>
             <field name="seccion_id" ref="umc_seccion_5"/>
         </record>
-        
         <!--Seccion 6-->
-         <record id="umc_seccion_6" model="ucm.escalavalores.secciones">
+        <record id="umc_seccion_6" model="ucm.escalavalores.secciones">
             <field name="name">V.- Consumo de sustancias</field>
         </record>
         <record id="umc_escalavalores_respuesta_33" model="ucm.escalavalores.valor">
@@ -312,9 +349,8 @@
             <field name="valor">-4</field>
             <field name="seccion_id" ref="umc_seccion_6"/>
         </record>
-
         <!--Seccion 7-->
-         <record id="umc_seccion_7" model="ucm.escalavalores.secciones">
+        <record id="umc_seccion_7" model="ucm.escalavalores.secciones">
             <field name="name">VI.- Situación legal</field>
         </record>
         <record id="umc_escalavalores_respuesta_38" model="ucm.escalavalores.valor">
@@ -322,9 +358,8 @@
             <field name="valor">-5</field>
             <field name="seccion_id" ref="umc_seccion_7"/>
         </record>
-
         <!--Seccion 8-->
-         <record id="umc_seccion_8" model="ucm.escalavalores.secciones">
+        <record id="umc_seccion_8" model="ucm.escalavalores.secciones">
             <field name="name">VII.- Comportamiento ante la detención</field>
         </record>
         <record id="umc_escalavalores_respuesta_39" model="ucm.escalavalores.valor">
@@ -332,9 +367,8 @@
             <field name="valor">-4</field>
             <field name="seccion_id" ref="umc_seccion_8"/>
         </record>
-
         <!--Seccion 9-->
-         <record id="umc_seccion_9" model="ucm.escalavalores.secciones">
+        <record id="umc_seccion_9" model="ucm.escalavalores.secciones">
             <field name="name">VIII.- Rose victimológico</field>
         </record>
         <record id="umc_escalavalores_respuesta_40" model="ucm.escalavalores.valor">
@@ -347,9 +381,8 @@
             <field name="valor">-6</field>
             <field name="seccion_id" ref="umc_seccion_9"/>
         </record>
-
         <!--Seccion 10-->
-         <record id="umc_seccion_10" model="ucm.escalavalores.secciones">
+        <record id="umc_seccion_10" model="ucm.escalavalores.secciones">
             <field name="name">IX.- Falsedad de información</field>
         </record>
         <record id="umc_escalavalores_respuesta_42" model="ucm.escalavalores.valor">

@@ -1,13 +1,14 @@
 # -*- coding: utf-8 -*-
 {
-    'name': "Agregar smart button",
+    'name': "UMECAS - smart button",
 
     'summary': """
-    Agregar smart button a los clientes para levantar ticket
+    Agregar smart button a los imputados y expedientes
     """,
 
     'description': """
-        Agregar campo relacionado con helpdesk
+        smart button a imputados para acceder a los expedientes del imputado,
+        smart button a expedientes para acceder a las solicitudes de evaluación de ee expediente
     """,
 
     'author': "Soluciones4g",

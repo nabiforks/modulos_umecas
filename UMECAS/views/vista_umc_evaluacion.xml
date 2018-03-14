@@ -31,7 +31,7 @@
                         </group>
                     </group>
                     <group class="row">
-                        <notebook>                            
+                        <notebook>
                             <page string="Entrevista" attrs="{'invisible': [('state','in',('solicitud'))]}">
                                 <group>
                                     <field name="x_entrevista_id" />
@@ -46,9 +46,7 @@
                                     <group>
                                         <field name="x_ponderacion" readonly="1"/>
                                         <field name="x_escala_riesgos" readonly="1"/>
-                                        
                                         <field name="x_escala_valores_id" invisible="1"/>
-                                        
                                     </group>
                                 </group>
                                 <group>
@@ -59,13 +57,11 @@
                                             <field name="num_valor" />
                                         </tree>
                                     </field>
-                                    
                                 </group>
                             </page>
                             <page string="Conclusión" attrs="{'invisible': [('state','not in',('evaluacion'))]}">
                                 <group>
                                     <field name="x_conclusion" />
-                                    
                                 </group>
                             </page>
                         </notebook>
@@ -97,6 +93,7 @@
         <field name="model">umc_evaluacion</field>
         <field name="arch" type="xml">
             <search>
+                <filter string="Estatus evaluación" name="state_eval" domain="[('state','=','evaluacion')]" help="Filtra las solicitudes que estan en estatus de evaluación" />
                 <field name="x_expediente_id" />
                 <field name="x_imputado_name" />
                 <field name="x_tipo_entrevista" />
@@ -115,5 +112,5 @@
             <p class="oe_view_nocontent_create">Agregar primer registro                </p>
         </field>
     </record>
-    <menuitem id="evaluaciones_menu" name="Evaluaciones" parent="main_umc_menu" action="umc_evaluacion_list_action"/>
+    <menuitem id="evaluaciones_menu" name="Solicitud/evaluación" parent="main_umc_menu" action="umc_evaluacion_list_action"/>
 </odoo>

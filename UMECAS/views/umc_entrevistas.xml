@@ -148,10 +148,11 @@
         <field name="arch" type="xml">
             <tree>
                 <field name="x_name" />
+                <field name="x_fecha_entrevista" />
                 <field name="x_evaluador_name" />
                 <field name="x_imputado_name" />
+                <field name="x_evaluacion_id" />
                 <field name="state" />
-                
             </tree>
         </field>
     </record>
@@ -164,6 +165,9 @@
                 <field name="x_name" />
                 <field name="x_evaluador_id" />
                 <filter name="mis_entrevistas" string="Mis entrevistas" domain="[('x_evaluador_id', '=', uid)]"/>
+                <group string="Group By">
+                    <filter name="status" string="Estatus" context="{'group_by': 'state'}"/>
+                </group>
                 <group string="Group By">
                     <filter name="evaluador" string="Evaluador" context="{'group_by': 'x_evaluador_name'}"/>
                 </group>

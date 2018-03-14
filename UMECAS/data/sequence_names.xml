@@ -11,12 +11,12 @@
         <record id="seq_names_evaluaciones" model="ir.sequence">
             <field name="name">Names_automatics_evaluaciones</field>
             <field name="code">umc_evaluacion</field>
-            <field name="prefix">EV</field>
-            <field name="padding">5</field>
+            <field name="prefix">SOL</field>
+            <field name="padding">4</field>
             <field eval="1" name="number_increment"/>
         </record>
         <record id="seq_names_entrevistas" model="ir.sequence">
-            <field name="name">Names_automatics_evaluaciones</field>
+            <field name="name">Names_automatics_entrevistas</field>
             <field name="code">umc_entrevistas</field>
             <field name="prefix">ENT</field>
             <field name="padding">5</field>

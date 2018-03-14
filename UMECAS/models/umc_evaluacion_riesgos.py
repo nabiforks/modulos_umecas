@@ -7,7 +7,7 @@ class umc_evaluacion(models.Model):
     _name = 'umc_evaluacion'
     #_inherit = 'mail.thread'
 
-    x_name = fields.Char('Evaluación', required=True, readonly=True,
+    x_name = fields.Char('Solicitud de evaluación', required=True, readonly=True,
                          default=lambda self: 'Nuevo')
     x_expediente_id = fields.Many2one(
         'umc_expedientes',
@@ -44,7 +44,7 @@ class umc_evaluacion(models.Model):
         ('entrevista', 'Entrevista'),
         ('analisis', 'Escala de Riesgos'),
         ('evaluacion', 'Evaluación'),
-    ], default='solicitud', readonly=True)
+    ], default='solicitud', readonly=True,string='Estatus')
 
     @api.model
     def create(self, vals):

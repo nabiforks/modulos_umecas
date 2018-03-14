@@ -1,8 +1,6 @@
 # -*- coding: utf-8 -*-
-from datetime import timedelta
+
 from odoo import api, fields, models
-import json
-from geopy.geocoders import Nominatim
 
 
 class Domicilio(models.Model):
