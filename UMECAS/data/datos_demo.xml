@@ -127,17 +127,235 @@
             <field name="valor">-1</field>
             <field name="seccion_id" ref="umc_seccion_1"/>
         </record>
+
+        <!--Seccion 2-->
         <record id="umc_seccion_2" model="ucm.escalavalores.secciones">
             <field name="name">II.- a) Arraigo (En la región )</field>
         </record>
+        <record id="umc_escalavalores_respuesta_6" model="ucm.escalavalores.valor">
+            <field name="name">Tiene más de cinco años viviendo en la región centro y en el mismo domicilio actual en el estado de Puebla</field>
+            <field name="valor">4</field>
+            <field name="seccion_id" ref="umc_seccion_2"/>
+        </record>
+        <record id="umc_escalavalores_respuesta_7" model="ucm.escalavalores.valor">
+            <field name="name">Tiene más de tres años viviendo en la región centro del estado de Puebla y en el mismo domicilio actual</field>
+            <field name="valor">3</field>
+            <field name="seccion_id" ref="umc_seccion_2"/>
+        </record>
+        <record id="umc_escalavalores_respuesta_8" model="ucm.escalavalores.valor">
+            <field name="name">Tiene más de un año viviendo en la región centro del estado de Puebla o en el mismo domicilio actual</field>
+            <field name="valor">2</field>
+            <field name="seccion_id" ref="umc_seccion_2"/>
+        </record>
+        <record id="umc_escalavalores_respuesta_9" model="ucm.escalavalores.valor">
+            <field name="name">Vive en condición de calle</field>
+            <field name="valor">1</field>
+            <field name="seccion_id" ref="umc_seccion_2"/>
+        </record>
+        <record id="umc_escalavalores_respuesta_10" model="ucm.escalavalores.valor">
+            <field name="name">No fue posible corroborar el arraigo domiciliario</field>
+            <field name="valor">-2</field>
+            <field name="seccion_id" ref="umc_seccion_2"/>
+        </record>
+        <record id="umc_escalavalores_respuesta_11" model="ucm.escalavalores.valor">
+            <field name="name">Tiene menos de un año viviendo en la región centro del estado de Puebla o en el mismo domicilio actual</field>
+            <field name="valor">-3</field>
+            <field name="seccion_id" ref="umc_seccion_2"/>
+        </record>
+        <record id="umc_escalavalores_respuesta_12" model="ucm.escalavalores.valor">
+            <field name="name">No vive en la región centro del estado de Puebla</field>
+            <field name="valor">-4</field>
+            <field name="seccion_id" ref="umc_seccion_2"/>
+        </record>
+        <record id="umc_escalavalores_respuesta_13" model="ucm.escalavalores.valor">
+            <field name="name">No vive en el estado de Puebla</field>
+            <field name="valor">-5</field>
+            <field name="seccion_id" ref="umc_seccion_2"/>
+        </record>
+
+        <!--Seccion 3-->
         <record id="umc_seccion_3" model="ucm.escalavalores.secciones">
             <field name="name">II.- b) Arraigo (De residencia)</field>
         </record>
+        <record id="umc_escalavalores_respuesta_14" model="ucm.escalavalores.valor">
+            <field name="name">El domicilio que habita actualmente es de su propiedad</field>
+            <field name="valor">3</field>
+            <field name="seccion_id" ref="umc_seccion_3"/>
+        </record>
+        <record id="umc_escalavalores_respuesta_15" model="ucm.escalavalores.valor">
+            <field name="name">El domicilio que habita actualmente es rentado</field>
+            <field name="valor">2</field>
+            <field name="seccion_id" ref="umc_seccion_3"/>
+        </record>
+        <record id="umc_escalavalores_respuesta_16" model="ucm.escalavalores.valor">
+            <field name="name">El domicilio que habita actualmente es prestado</field>
+            <field name="valor">1</field>
+            <field name="seccion_id" ref="umc_seccion_3"/>
+        </record>
+        <record id="umc_escalavalores_respuesta_17" model="ucm.escalavalores.valor">
+            <field name="name">No fue posible corroborar que cuente con vivienda</field>
+            <field name="valor">-1</field>
+            <field name="seccion_id" ref="umc_seccion_3"/>
+        </record>
+        <record id="umc_escalavalores_respuesta_18" model="ucm.escalavalores.valor">
+            <field name="name">Tiene varios domicilios</field>
+            <field name="valor">-2</field>
+            <field name="seccion_id" ref="umc_seccion_3"/>
+        </record>
+        <record id="umc_escalavalores_respuesta_19" model="ucm.escalavalores.valor">
+            <field name="name">No tiene domicilio fijo</field>
+            <field name="valor">-3</field>
+            <field name="seccion_id" ref="umc_seccion_3"/>
+        </record>
+
+        <!--Seccion 4-->
         <record id="umc_seccion_4" model="ucm.escalavalores.secciones">
             <field name="name">III.- Relaciones familiares extramuros</field>
         </record>
-        <record id="umc_seccion_5" model="ucm.escalavalores.secciones">
+        <record id="umc_escalavalores_respuesta_20" model="ucm.escalavalores.valor">
+            <field name="name">Vive con un familiar (padres, hijos conyuge)</field>
+            <field name="valor">2</field>
+            <field name="seccion_id" ref="umc_seccion_4"/>
+        </record>
+        <record id="umc_escalavalores_respuesta_21" model="ucm.escalavalores.valor">
+            <field name="name">Vive con otra persona (conocido o amigo)</field>
+            <field name="valor">1</field>
+            <field name="seccion_id" ref="umc_seccion_4"/>
+        </record>
+        <record id="umc_escalavalores_respuesta_22" model="ucm.escalavalores.valor">
+            <field name="name">No fue posible  validar sus relaciones interpersonales o dependencia</field>
+            <field name="valor">-1</field>
+            <field name="seccion_id" ref="umc_seccion_4"/>
+        </record>
+        <record id="umc_escalavalores_respuesta_23" model="ucm.escalavalores.valor">
+            <field name="name">Vive solo</field>
+            <field name="valor">-2</field>
+            <field name="seccion_id" ref="umc_seccion_4"/>
+        </record>
+        <record id="umc_escalavalores_respuesta_24" model="ucm.escalavalores.valor">
+            <field name="name">Tiene dependientes económicos </field>
+            <field name="valor">2</field>
+            <field name="seccion_id" ref="umc_seccion_4"/>
+        </record>
+
+        <!--Seccion 5-->
+         <record id="umc_seccion_5" model="ucm.escalavalores.secciones">
             <field name="name">IV.- Empleos/Estudios</field>
+        </record>
+        <record id="umc_escalavalores_respuesta_25" model="ucm.escalavalores.valor">
+            <field name="name">Realiza actividad laboral o estudia en la región centro del estado de Puebla de mayor a 2 años</field>
+            <field name="valor">4</field>
+            <field name="seccion_id" ref="umc_seccion_5"/>
+        </record>
+        <record id="umc_escalavalores_respuesta_26" model="ucm.escalavalores.valor">
+            <field name="name">Realiza actividad laboral o estudia en la región centro del estado de Puebla de 1 a 2 años</field>
+            <field name="valor">3</field>
+            <field name="seccion_id" ref="umc_seccion_5"/>
+        </record>
+        <record id="umc_escalavalores_respuesta_27" model="ucm.escalavalores.valor">
+            <field name="name">Realiza actividad laboral o estudia en la región centro del estado de Puebla mayora 1 año</field>
+            <field name="valor">2</field>
+            <field name="seccion_id" ref="umc_seccion_5"/>
+        </record>
+        <record id="umc_escalavalores_respuesta_28" model="ucm.escalavalores.valor">
+            <field name="name">Es dependiente económico</field>
+            <field name="valor">1</field>
+            <field name="seccion_id" ref="umc_seccion_5"/>
+        </record>
+        <record id="umc_escalavalores_respuesta_29" model="ucm.escalavalores.valor">
+            <field name="name">No fue posible constatar que desempeñe atividad laboral, académica o sea dependiente económico</field>
+            <field name="valor">-1</field>
+            <field name="seccion_id" ref="umc_seccion_5"/>
+        </record>
+        <record id="umc_escalavalores_respuesta_30" model="ucm.escalavalores.valor">
+            <field name="name">Realiza actividad laboral fuera de la región centro del estado de Puebla</field>
+            <field name="valor">-2</field>
+            <field name="seccion_id" ref="umc_seccion_5"/>
+        </record>
+        <record id="umc_escalavalores_respuesta_31" model="ucm.escalavalores.valor">
+            <field name="name">Realiza actividad fuera del estado de Puebla</field>
+            <field name="valor">-3</field>
+            <field name="seccion_id" ref="umc_seccion_5"/>
+        </record>
+        <record id="umc_escalavalores_respuesta_32" model="ucm.escalavalores.valor">
+            <field name="name">Actuamente no realiza actividad laboral ni estudia</field>
+            <field name="valor">-4</field>
+            <field name="seccion_id" ref="umc_seccion_5"/>
+        </record>
+        
+        <!--Seccion 6-->
+         <record id="umc_seccion_6" model="ucm.escalavalores.secciones">
+            <field name="name">V.- Consumo de sustancias</field>
+        </record>
+        <record id="umc_escalavalores_respuesta_33" model="ucm.escalavalores.valor">
+            <field name="name">No consume sustancias tóxicas</field>
+            <field name="valor">1</field>
+            <field name="seccion_id" ref="umc_seccion_6"/>
+        </record>
+        <record id="umc_escalavalores_respuesta_34" model="ucm.escalavalores.valor">
+            <field name="name">Consume alcohol dos veces al mes</field>
+            <field name="valor">-1</field>
+            <field name="seccion_id" ref="umc_seccion_6"/>
+        </record>
+        <record id="umc_escalavalores_respuesta_35" model="ucm.escalavalores.valor">
+            <field name="name">Consume alcohol u otro tipo de sustancias tóxicas una vez por semana</field>
+            <field name="valor">-2</field>
+            <field name="seccion_id" ref="umc_seccion_6"/>
+        </record>
+        <record id="umc_escalavalores_respuesta_36" model="ucm.escalavalores.valor">
+            <field name="name">Consume alcohol u otro tipo de sustancias tóxicas diariamente</field>
+            <field name="valor">-3</field>
+            <field name="seccion_id" ref="umc_seccion_6"/>
+        </record>
+        <record id="umc_escalavalores_respuesta_37" model="ucm.escalavalores.valor">
+            <field name="name">Consume diversas sustancias tóxicas</field>
+            <field name="valor">-4</field>
+            <field name="seccion_id" ref="umc_seccion_6"/>
+        </record>
+
+        <!--Seccion 7-->
+         <record id="umc_seccion_7" model="ucm.escalavalores.secciones">
+            <field name="name">VI.- Situación legal</field>
+        </record>
+        <record id="umc_escalavalores_respuesta_38" model="ucm.escalavalores.valor">
+            <field name="name">Ha incumplido resoluciones judiciales (medidas cautelares o SCP) y demás</field>
+            <field name="valor">-5</field>
+            <field name="seccion_id" ref="umc_seccion_7"/>
+        </record>
+
+        <!--Seccion 8-->
+         <record id="umc_seccion_8" model="ucm.escalavalores.secciones">
+            <field name="name">VII.- Comportamiento ante la detención</field>
+        </record>
+        <record id="umc_escalavalores_respuesta_39" model="ucm.escalavalores.valor">
+            <field name="name">Mostro resistencia, evasión, violencia, precaución, uso de armas</field>
+            <field name="valor">-4</field>
+            <field name="seccion_id" ref="umc_seccion_8"/>
+        </record>
+
+        <!--Seccion 9-->
+         <record id="umc_seccion_9" model="ucm.escalavalores.secciones">
+            <field name="name">VIII.- Rose victimológico</field>
+        </record>
+        <record id="umc_escalavalores_respuesta_40" model="ucm.escalavalores.valor">
+            <field name="name">Existe relación con la victima, afectado(a), parte agraviada</field>
+            <field name="valor">-2</field>
+            <field name="seccion_id" ref="umc_seccion_9"/>
+        </record>
+        <record id="umc_escalavalores_respuesta_41" model="ucm.escalavalores.valor">
+            <field name="name">No fue posible realizar los actos de corraboración, en virtud de que el/la entrevistado(a) no proporcionó la información suficiente que permita realizar la validación de actos</field>
+            <field name="valor">-6</field>
+            <field name="seccion_id" ref="umc_seccion_9"/>
+        </record>
+
+        <!--Seccion 10-->
+         <record id="umc_seccion_10" model="ucm.escalavalores.secciones">
+            <field name="name">IX.- Falsedad de información</field>
+        </record>
+        <record id="umc_escalavalores_respuesta_42" model="ucm.escalavalores.valor">
+            <field name="name">Hubo falsedad de información vertida por el entrevistado(a)</field>
+            <field name="valor">-3</field>
+            <field name="seccion_id" ref="umc_seccion_10"/>
         </record>
     </data>
 </odoo>
