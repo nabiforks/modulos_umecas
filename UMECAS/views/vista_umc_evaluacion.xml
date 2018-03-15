@@ -47,6 +47,11 @@
                                         <field name="x_ponderacion" readonly="1"/>
                                         <field name="x_escala_riesgos" readonly="1"/>
                                         <field name="x_escala_valores_id" invisible="1"/>
+                                        <div>
+                                            <button name="semaforo_verde" string="B" style="{border-radius: 25px}" type="button" class="btn btn-success" attrs="{'invisible': [('x_escala_riesgos','not in','bajo')]}"/>
+                                            <button name="semaforo_ambar" string="M" style="{border-radius: 25px}" type="button" class="btn btn-warning" attrs="{'invisible': [('x_escala_riesgos','not in','medio')]}"/>
+                                            <button name="semaforo_rojo" string="A" style="{border-radius: 25px}" type="button" class="btn btn-danger" attrs="{'invisible': [('x_escala_riesgos','not in','alto')]}"/>
+                                        </div>
                                     </group>
                                 </group>
                                 <group>
@@ -59,7 +64,7 @@
                                     </field>
                                 </group>
                             </page>
-                            <page string="Conclusión" attrs="{'invisible': [('state','not in',('evaluacion'))]}">
+                            <page string="Evaluación" attrs="{'invisible': [('state','not in',('evaluacion'))]}">
                                 <group>
                                     <field name="x_conclusion" />
                                 </group>
@@ -103,7 +108,7 @@
     </record>
     <!-- window action ///////////////////////////////////////////////////////////////////////////////-->
     <record model="ir.actions.act_window" id="umc_evaluacion_list_action">
-        <field name="name">Evaluación</field>
+        <field name="name">Solicitud de evaluación</field>
         <field name="res_model">umc_evaluacion</field>
         <field name="view_type">form</field>
         <field name="view_mode">tree,kanban,form</field>
