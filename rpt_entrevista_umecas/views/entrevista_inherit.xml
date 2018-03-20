@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <!--  form view /////////////////////////////////////////////////////-->
+    <record model="ir.ui.view" id="entrevista_inherit_view">
+        <field name="name">entrevista_inherit_form.view</field>
+        <field name="model">umc_entrevistas</field>
+        <field name="inherit_id" ref="UMECAS.umc_entrevistas_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//button[@name='entrevista_realizada']" position="before">
+                <button name="imprimir_reporte_entrevistas" type="object" string="Imprimir Entrevista" class="oe_highlight" states="terminado"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

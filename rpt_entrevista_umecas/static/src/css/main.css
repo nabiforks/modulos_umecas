@@ -1,0 +1,66 @@
+* {
+    font-family: "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 12px;
+}
+
+.custom_css {
+
+    background-color: yellow;
+
+}
+
+.main-container {
+    margin-top: 10%;
+}
+
+.table-border {
+    border: solid 1px #222222;
+}
+
+.cuadrado {
+
+    border: solid 1px #222222;
+}
+
+.borde {
+    border: solid 1px black;
+}
+
+.borde-right {
+    border-right: solid 1px black;
+}
+
+.borde-left {
+    border-left: solid 1px black;
+}
+
+.borde-bottom {
+    border-bottom: solid 1px black;
+}
+
+.borde-top {
+    border-top: solid 1px black;
+    padding: 25px;
+
+}
+
+.extra_top {
+    margin-top: 30px;
+}
+
+.text-small {
+    font-size: 9px;
+}
+
+.text-medio {
+    font-size: 11px;
+}
+
+table.table {
+    margin-top: 1px !important;
+    margin-bottom: 0px !important;
+}
+
+table.cuadrado > td {
+    border-left: solid 1px black;
+}

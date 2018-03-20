@@ -1,0 +1,1516 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+        <report
+                id="rpt_entrevista_umecas_detalles_entrevista"
+                model="umc_entrevistas"
+                string="Reporte de entrevista"
+                name="rpt_entrevista_umecas.detalles_entrevista"
+                file="rpt_entrevista_umecas.rpt_entrevista_umecas_detalles_entrevista"
+                report_type="qweb-html"
+        />
+        <template id="assets_common" name="rpt_entrevista_umecas assets" inherit_id="report.assets_common">
+            <xpath expr="." position="inside">
+                <link href="/rpt_entrevista_umecas/static/src/css/main.css" rel="stylesheet"/>
+            </xpath>
+        </template>
+
+        <template id="detalles_entrevista">
+            <t t-call="report.html_container">
+                <t t-foreach="docs" t-as="entrevista">
+                    <t t-call="report.external_layout">
+                        <div class="page">
+
+                            <div class="row">
+                                <div>
+                                    <h5 class="text-center ">ENTREVISTA PARA EL ADOLECENTE</h5>
+                                </div>
+                            </div>
+                            <div class="main-container">
+                                <div class="row cuadrado">
+                                    <div class="col-xs-2 borde-right">
+                                        <span>1. LUGAR</span>
+                                    </div>
+                                    <div class="col-xs-5 borde-right">
+                                        <span t-field="entrevista.x_lugar_entrevista"/>
+                                    </div>
+                                    <div class="col-xs-5 ">
+                                        <span>
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="row cuadrado">
+                                    <div class="col-xs-6">
+                                        <div class="col-xs-4 text-center">3.FECHA</div>
+                                        <div class="col-xs-8">
+                                            <div class="row">
+                                                <div class="col-xs-4 borde-right   borde-left  text-small">3.1 DÍA</div>
+                                                <div class="col-xs-4  borde-right  text-small">3.2 MES</div>
+                                                <div class="col-xs-4 borde-right text-small">3.3 AÑO</div>
+
+                                                <div class="col-xs-4 borde-right borde-left ">
+                                                    <span t-field="entrevista.x_fecha_entrevista"
+                                                          t-options='{"format": "dd"}'/>
+                                                </div>
+                                                <div class="col-xs-4 borde-right ">
+                                                    <span t-field="entrevista.x_fecha_entrevista"
+                                                          t-options='{"format": "MM"}'/>
+                                                </div>
+                                                <div class="col-xs-4 borde-right">
+                                                    <span t-field="entrevista.x_fecha_entrevista"
+                                                          t-options='{"format": "yyyy"}'/>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-6">
+                                        <div class="col-xs-6  borde-right">4. HORA DE INICIO</div>
+                                        <div class="col-xs-6 ">
+                                            <span t-field="entrevista.x_fecha_entrevista"
+                                                  t-options='{"format": "H:mm:s"}'/>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="row cuadrado">
+                                    <div class="col-xs-12">
+                                        <h5 class="text-center">I.- DATOS PERSONALES</h5>
+                                    </div>
+                                </div>
+                                <div class="row cuadrado">
+
+                                    <table class="col-xs-12 cuadrado table">
+                                        <tr>
+                                            <td class="borde-right text-medio">
+                                                <span>1.1 A. PATERNO</span>
+                                            </td>
+                                            <td class="borde-right">
+                                                <span t-field="entrevista.x_evaluacion_id.partner_id.ap_paterno"/>
+                                            </td>
+                                            <td class="borde-right text-medio">
+                                                <span>1.2 A. MATERNO</span>
+                                            </td>
+                                            <td class="borde-right">
+                                                <span t-field="entrevista.x_evaluacion_id.partner_id.ap_materno"/>
+                                            </td>
+                                            <td class="borde-right text-medio">
+                                                <span>1.3 NOMBRE</span>
+                                            </td>
+                                            <td>
+                                                <span t-field="entrevista.x_evaluacion_id.partner_id.name"/>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                    <table class="col-xs-12 cuadrado table">
+                                        <tr>
+                                            <td class="borde-right text-medio">
+                                                <span>1.4 OTROS NOMRES</span>
+                                            </td>
+                                            <td class="borde-right">
+                                                <span t-field="entrevista.x_otronombre"/>
+                                            </td>
+                                            <td class="borde-right text-medio">
+                                                <span>1.5 APODO ALIAS</span>
+                                            </td>
+                                            <td class="borde-right">
+                                                <span t-field="entrevista.x_apodo"/>
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td colspan="1" class="borde-right text-medio">
+                                                <span>1.6 LUGAR DE NACIMIENTO</span>
+                                            </td>
+                                            <td colspan="3" class="borde-right">
+                                                <span t-field="entrevista.x_lugar_nacimiento"/>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="4" aling="center" class="text-center text-small">
+                                                LOCALIDAD/ MUNICIPIO/ ESTADO
+                                            </td>
+                                        </tr>
+                                    </table>
+                                    <table class="col-xs-12 cuadrado table">
+                                        <tr>
+                                            <td width="10%" class="borde-right"></td>
+                                            <td width="10%" class="borde-right"></td>
+                                            <td width="10%" class="text-small borde-right">1.7.1 DÍA</td>
+                                            <td width="10%" class="text-small borde-right">1.7.1 MES</td>
+                                            <td width="10%" class="text-small borde-right">1.7.1 AÑO</td>
+                                            <td width="25%"></td>
+                                            <td width="25%"></td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="2" class="borde-right text-medio">
+                                                <span>1.7 FECHA DE NACIMIENTO</span>
+                                            </td>
+                                            <td class="borde-right">
+                                                <span t-field="entrevista.x_fecha_nacimiento"
+                                                      t-options='{"format": "dd"}'/>
+                                            </td>
+                                            <td class="borde-right">
+                                                <span t-field="entrevista.x_fecha_nacimiento"
+                                                      t-options='{"format": "MM"}'/>
+                                            </td>
+                                            <td class="borde-right">
+                                                <span t-field="entrevista.x_fecha_nacimiento"
+                                                      t-options='{"format": "yyyy"}'/>
+                                            </td>
+                                            <td class="borde-right ">
+                                                <span class="text-medio">
+                                                    EDAD:
+                                                </span>
+                                                <span t-field="entrevista.x_edad"/>
+                                            </td>
+                                            <td>
+                                                <span class="text-medio">
+                                                    1.9 SEXO
+                                                </span>
+                                                <span t-field="entrevista.x_sexo"/>
+                                            </td>
+                                        </tr>
+                                        <td>
+                                            <td colspan="4" class="borde-right">
+                                                1.10 ESTADO CIVIL
+
+                                            </td>
+                                            <td colspan="2">
+                                                <span t-field="entrevista.x_sexo"/>
+                                            </td>
+                                        </td>
+                                    </table>
+                                </div>
+                                <div class="row cuadrado">
+                                    <table class="col-xs-12 cuadrado table">
+                                        <tr>
+                                            <td class="borde-right text-small">1.12 LENGUA</td>
+                                            <td class="borde-right"></td>
+                                            <td class="borde-right text-small">1.13 GRUPO ETNICO</td>
+                                            <td class="borde-right"></td>
+                                            <td class="borde-right text-small">1.14 NACIONALIDAD</td>
+                                            <td class="borde-right text-small">1.15 IDIOMA</td>
+                                            <td class="borde-right "></td>
+                                        </tr>
+                                        <tr>
+                                            <td rowspan="2" class="borde-right  text-small">1.16 ¿SABE LEER Y
+                                                ESCRIBIR?
+                                            </td>
+                                            <td class="borde-right  text-small">1.16.1 SI</td>
+                                            <td class="borde-right  text-small">1.16.2 NO</td>
+                                            <td colspan="2" class="borde-right  text-small">1.17 TELÉFONO CASA</td>
+                                            <td class="borde-right"></td>
+                                            <td class="borde-right  text-small">1.19 TELÉFONO OTROS</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="borde-right"></td>
+                                            <td class="borde-right"></td>
+                                            <td colspan="2" class="borde-right"></td>
+                                            <td class="borde-right"></td>
+                                            <td class="borde-right"></td>
+
+                                        </tr>
+
+                                    </table>
+
+                                </div> <!-- Fin de datos personales -->
+                                <div class="row cuadrado">
+                                    <div class="col-xs-12">
+                                        <h5 class="text-center">II.- DOMICILIO</h5>
+                                    </div>
+                                </div>
+                                <div class="row cuadrado">
+
+                                    <table class="col-xs-12 cuadrado table">
+                                        <tr>
+                                            <td class="cuadrado text-small">2.1 A) DOMICILIO ACTUAL INTRAMUROS</td>
+                                            <td class="cuadrado">
+                                                <span/>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="2" class="cuadrado text-center text-small">
+                                                AREA/ NUMERO DE CELDA/ DORMITORIO/ ESTANCIA
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td rowspan="2" width="20%" class="cuadrado text-small">2.2 LUIGAR</td>
+                                            <td class="cuadrado text-small">2.3 CUANDO INGRESO/TIEMPO DE
+                                                INTERNAMIENTO EN EL CERESO
+                                            </td>
+
+                                        </tr>
+                                        <tr>
+                                            <td class="cuadrado">
+                                                <span>
+                                                    lorem
+                                                </span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td width="40%" class="cuadrado">2.1 B) DOMICILIO ANTES DE LA DETENCIÓN
+                                            </td>
+                                            <td class="">
+                                                <span>
+                                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                                                    Accusantium aperiam assumenda commodi consequuntur, eius enim facere
+                                                    fuga nihil quis reprehenderit, repudiandae ut voluptate. A ad
+                                                    ducimus non officia tempore veritatis!
+                                                </span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="2" aling="center" class="cuadrado text-center text-small">
+                                                CALLE/ NUMERO/ COLONIA/ LOCALIDAD/ MUNICIPIO/ ESTADO
+                                            </td>
+                                        </tr>
+                                    </table>
+                                    <table class="col-xs-12 cuadrado table">
+                                        <tr>
+                                            <td rowspan="2" class="cuadrado text-small">2.10 VIVIENDA</td>
+                                            <td class="cuadrado text-small">2.1.B.1 PROPIA</td>
+                                            <td class="cuadrado text-small">2.1.B.2 RENTADA</td>
+                                            <td class="cuadrado text-small">2.1.B.3 PRESTADA</td>
+                                            <td class="cuadrado text-small">2.1.B.4 HIPOTECADA</td>
+                                            <td class="cuadrado text-small">2.1.B.5 TIEMPO DE VIVIR EN ESTE
+                                                DOMICILIO
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="cuadrado text-small"></td>
+                                            <td class="cuadrado text-small"></td>
+                                            <td class="cuadrado text-small"></td>
+                                            <td class="cuadrado text-small"></td>
+                                            <td class="cuadrado text-small"></td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="1" class="cuadrado text-small">2.1.B.6 COMENTARIOS</td>
+                                            <td colspan="5" class="cuadrado text-small"></td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="6" class="cuadrado">
+                                                <h6 class="text-center">
+                                                    2.5 CROQUIS DEL DOMICILIO ANTES DE LA DETENCIÓN
+                                                </h6>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="6" class="cuadrado">
+                                                <span>
+                                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam
+                                                    autem dolores eius exercitationem, in magni maxime minima nesciunt
+                                                    nobis non quidem quisquam repellendus suscipit, velit vero. Dolorem
+                                                    in iure voluptates.
+                                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad amet
+                                                    atque cumque enim fugiat nisi pariatur repellat repellendus
+                                                    veritatis. Magnam, nemo soluta. Ad architecto dignissimos omnis
+                                                    repellat sapiente sunt tempora!
+                                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus
+                                                    at cumque doloribus expedita, id illum impedit, in magni nam nobis
+                                                    optio reiciendis temporibus vitae? Debitis quasi quidem quod veniam
+                                                    voluptatum?
+                                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid,
+                                                    cupiditate delectus eaque facere iure iusto mollitia nemo numquam
+                                                    odio officia optio provident rerum sed sint tempore vel voluptas
+                                                    voluptate! Expedita?
+                                                </span>
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td colspan="6" class="cuadrado">
+                                                <h6 class="text-center">
+                                                    2.6 CARACTERÍSTICAS Y REFERENCIAS PARA LLEGAR AL DOMICILIO:
+                                                </h6>
+                                            </td>
+
+                                        </tr>
+                                        <tr>
+                                            <td colspan="6" class="cuadrado">
+                                                <span>
+                                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam
+                                                    autem dolores eius exercitationem, in magni maxime minima nesciunt
+                                                    nobis non quidem quisquam repellendus suscipit, velit vero. Dolorem
+                                                    in iure voluptates.
+                                                </span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="cuadrado text-small" colspan="3" width="30%">
+                                                2.13. C) DOMICILIO INTERIOR 1
+                                            </td>
+                                            <td colspan="3" class="cuadrado">
+                                                <span>
+                                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam
+                                                    autem dolores eius exercitationem, in magni maxime minima nesciunt
+
+                                                </span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="6" aling="center" class="cuadrado text-center text-small">
+                                                CALLE/ NUMERO/ COLONIA/ LOCALIDAD/ MUNICIPIO/ ESTADO
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="cuadrado text-small" colspan="3" width="30%">
+                                                2.15 MOTIVOS DE MUDANZA
+                                            </td>
+                                            <td colspan="3" class="cuadrado">
+                                                <span>
+                                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam
+                                                    autem dolores eius exercitationem, in magni maxime minima nesciunt
+
+                                                </span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td rowspan="2" class="cuadrado text-small">2.16 VIVIENDA</td>
+                                            <td class="cuadrado text-small">2.16.1 PROPIA</td>
+                                            <td class="cuadrado text-small">2.16.2 RENTADA</td>
+                                            <td class="cuadrado text-small">2.16.3 PRESTADA</td>
+                                            <td class="cuadrado text-small">2.16.4 HIPOTECADA</td>
+                                            <td class="cuadrado text-small">2.17 TIEMPO DE VIVIR EN ESTE
+                                                DOMICILIO
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="cuadrado text-small"></td>
+                                            <td class="cuadrado text-small"></td>
+                                            <td class="cuadrado text-small"></td>
+                                            <td class="cuadrado text-small"></td>
+                                            <td class="cuadrado text-small"></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="cuadrado text-small" colspan="3" width="30%">
+                                                2.18. D) DOMICILIO INTERIOR 2
+                                            </td>
+                                            <td colspan="3" class="cuadrado">
+                                                <span>
+                                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam
+                                                    autem dolores eius exercitationem, in magni maxime minima nesciunt
+
+                                                </span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="6" aling="center" class="cuadrado text-center text-small">
+                                                CALLE/ NUMERO/ COLONIA/ LOCALIDAD/ MUNICIPIO/ ESTADO
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="cuadrado text-small" colspan="3" width="30%">
+                                                2.20 MOTIVOS DE MUDANZA
+                                            </td>
+                                            <td colspan="3">
+                                                <span>
+                                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam
+                                                    autem dolores eius exercitationem, in magni maxime minima nesciunt
+
+                                                </span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td rowspan="2" class="cuadrado text-small">2.21 VIVIENDA</td>
+                                            <td class="cuadrado text-small">2.21.1 PROPIA</td>
+                                            <td class="cuadrado text-small">2.21.2 RENTADA</td>
+                                            <td class="cuadrado text-small">2.21.3 PRESTADA</td>
+                                            <td class="cuadrado text-small">2.21.4 HIPOTECADA</td>
+                                            <td class="cuadrado text-small">2.22 TIEMPO DE VIVIR EN ESTE
+                                                DOMICILIO
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="cuadrado text-small"></td>
+                                            <td class="cuadrado text-small"></td>
+                                            <td class="cuadrado text-small"></td>
+                                            <td class="cuadrado text-small"></td>
+                                            <td class="cuadrado text-small"></td>
+                                        </tr>
+                                    </table>
+                                </div><!-- Fin de los datos de domicilio -->
+                                <div class="row cuadrado">
+                                    <div class="col-xs-12">
+                                        <h5 class="text-center">III.- LAZOS DE LA COMUNIDAD</h5>
+                                    </div>
+                                </div>
+                                <div class="row cuadrado">
+                                    <table class="col-xs-12 cuadrado table">
+                                        <tr>
+                                            <td width="20%" class="cuadrado text-small" rowspan="2">3.1 ¿PARTICIPA USTED
+                                                EN
+                                                ACTIVIDADES INTRAMUROS?
+                                            </td>
+                                            <td class="cuadrado text-small">3.1.1 CIVICAS</td>
+                                            <td class="cuadrado text-small">3.1.2 CULTURALES</td>
+                                            <td class="cuadrado text-small">3.1.3 RELIGIOSAS</td>
+                                            <td class="cuadrado text-small">3.2 ¿CUALES?</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="cuadrado text-small"></td>
+                                            <td class="cuadrado text-small"></td>
+                                            <td class="cuadrado text-small"></td>
+                                            <td class="cuadrado text-small"></td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="5" class="cuadrado ">
+                                                <span class="text-small">
+                                                    3.3 ¿QUÉ ACTIVIDADES REALIZA EN SU TIEMPO LIBRE?
+                                                </span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td width="20%" class="cuadrado text-small" rowspan="2">3.1.4 ¿PARTICIPA
+                                                USTED
+                                                EN
+                                                ACTIVIDADES EXTRAMUROS?
+                                            </td>
+                                            <td class="cuadrado text-small">3.1.1.4 CIVICAS</td>
+                                            <td class="cuadrado text-small">3.1.2 CULTURALES</td>
+                                            <td class="cuadrado text-small">3.1.3 RELIGIOSAS</td>
+                                            <td class="cuadrado text-small">3.2 ¿CUALES?</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="cuadrado text-small"></td>
+                                            <td class="cuadrado text-small"></td>
+                                            <td class="cuadrado text-small"></td>
+                                            <td class="cuadrado text-small"></td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="5" class="cuadrado ">
+                                                <span class="text-small">
+                                                    3.3 ¿QUÉ ACTIVIDADES REALIZA EN SU TIEMPO LIBRE?
+                                                </span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="2" class="cuadrado " rowspan="2">
+                                                <span class="text-small">
+                                                    3.4 ¿PERTENECE A ALGÚN GRUPO SOCIAL?
+                                                </span>
+                                            </td>
+                                            <td class="cuadrado text-small">3.4.1 SI</td>
+                                            <td class="cuadrado text-small">3.4.2 NO</td>
+                                            <td class="cuadrado"></td>
+
+                                        </tr>
+                                        <tr>
+                                            <td class="cuadrado"></td>
+                                            <td class="cuadrado"></td>
+                                            <td class="cuadrado"></td>
+                                        </tr>
+
+                                    </table>
+
+                                </div> <!-- FIn de lazos de la comunidad-->
+                                <div class="row cuadrado">
+                                    <div class="col-xs-12">
+                                        <h5 class="text-center">IV.- RELACIONES FAMILIARES</h5>
+                                    </div>
+                                </div>
+                                <div class="row cuadrado">
+                                    <table class="col-xs-12 cuadrado table">
+                                        <tr>
+                                            <td class="cuadrado" rowspan="2">4.1 NOMBRE</td>
+                                            <td class="cuadrado" rowspan="2">4.2 DOMICILIO</td>
+                                            <td class="cuadrado" rowspan="2">4.3 PARENTESTO/EDAD</td>
+                                            <td class="cuadrado" rowspan="2">4.5 OCUPACIÓN</td>
+                                            <td class="cuadrado text-small" colspan="2">4.6 HABITA EL MISMO
+                                                <br/>
+                                                DOMICIIO
+                                            </td>
+                                            <td class="cuadrado text-small" colspan="2">4.7 DEPENDIENTE ECONOMICO</td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="1" class="cuadrado text-small">SI</td>
+                                            <td colspan="1" class="cuadrado text-small">NO</td>
+                                            <td colspan="1" class="cuadrado text-small">SI</td>
+                                            <td colspan="1" class="cuadrado text-small">NO</td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="8" class="cuadrado text-small text-center">PRIMARIO</td>
+                                        </tr>
+                                        <t t-foreach="entrevista.x_contacto_ids" t-as="familiares">
+                                            <tr>
+                                                <td class="cuadrado text-samll">
+                                                    <span t-field="familiares.name"/>
+                                                </td>
+                                                <td class="cuadrado text-samll">
+
+                                                </td>
+                                                <td class="cuadrado text-samll">
+                                                    <span t-field="familiares.x_parentesco"/>
+                                                </td>
+                                                <td class="cuadrado text-samll">
+                                                    <span t-field="familiares.x_ocupacion"/>
+                                                </td>
+                                                <td class="cuadrado text-samll">
+                                                    <t t-if="familiares.x_habita_domicilio">
+                                                        X
+                                                    </t>
+                                                </td>
+                                                <td class="cuadrado text-samll">
+                                                    <t t-if="familiares.x_habita_domicilio==False">
+                                                        X
+                                                    </t>
+
+                                                </td>
+                                                <td class="cuadrado text-samll">
+                                                    <t t-if="familiares.x_dependiente_economico">
+                                                        X
+                                                    </t>
+                                                </td>
+                                                <td class="cuadrado text-samll">
+                                                    <t t-if="familiares.x_dependiente_economico==False">
+                                                        X
+                                                    </t>
+                                                </td>
+                                            </tr>
+                                        </t>
+                                        <tr>
+                                            <td colspan="1" class="cuadrado text-small text-center">4.8 ¿IPO DE
+                                                RELACIONES INTRAFAMILIARES?
+                                            </td>
+                                            <td class="cuadrado" colspan="7">
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="8" class="cuadrado text-small text-center">4.9 secundario</td>
+                                        </tr>
+                                        <t t-foreach="entrevista.x_contacto_ids" t-as="familiares">
+                                            <tr>
+                                                <td class="cuadrado text-samll">
+                                                    <span t-field="familiares.name"/>
+                                                </td>
+                                                <td class="cuadrado text-samll">
+
+                                                </td>
+                                                <td class="cuadrado text-samll">
+                                                    <span t-field="familiares.x_parentesco"/>
+                                                </td>
+                                                <td class="cuadrado text-samll">
+                                                    <span t-field="familiares.x_ocupacion"/>
+                                                </td>
+                                                <td class="cuadrado text-samll">
+                                                    <t t-if="familiares.x_habita_domicilio">
+                                                        X
+                                                    </t>
+                                                </td>
+                                                <td class="cuadrado text-samll">
+                                                    <t t-if="familiares.x_habita_domicilio==False">
+                                                        X
+                                                    </t>
+
+                                                </td>
+                                                <td class="cuadrado text-samll">
+                                                    <t t-if="familiares.x_dependiente_economico">
+                                                        X
+                                                    </t>
+                                                </td>
+                                                <td class="cuadrado text-samll">
+                                                    <t t-if="familiares.x_dependiente_economico==False">
+                                                        X
+                                                    </t>
+                                                </td>
+                                            </tr>
+                                        </t>
+                                        <tr>
+                                            <td colspan="1" class="cuadrado text-small text-center">4.10 ¿IPO DE
+                                                RELACIONES INTRAFAMILIARES?
+                                            </td>
+                                            <td class="cuadrado" colspan="7">
+
+                                            </td>
+                                        </tr>
+
+                                    </table>
+                                </div> <!-- Fin de relaciones familiares-->
+                                <div class="row cuadrado">
+                                    <div class="col-xs-12">
+                                        <h5 class="text-center">V.- AMISTADES (REFERENCIAS PERSONALES)</h5>
+                                    </div>
+                                    <div class="col-xs-12 cuadrado">
+                                        <h6 class="text-center">
+                                            REFERENCIAS PERSONALES E INFORMACIÓN DE LOCALIZACIÓN
+                                        </h6>
+                                    </div>
+                                    <div class="col-xs-12 cuadrado">
+                                        <h6 class="text-center  text-small">
+                                            Información Sobre Personas Adultas (Familiares, Vecinos, Amistades o
+                                            Laborales )
+                                        </h6>
+                                    </div>
+                                </div>
+                                <div class="row cuadrado">
+                                    <table class="col-xs-12 cuadrado table">
+                                        <tr>
+                                            <td class="cuadrado text-small">
+                                                5.1 NOMBRE
+                                            </td>
+                                            <td class="cuadrado text-small" colspan="3"></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="cuadrado text-small">
+                                                5.2 DOMICILIO
+                                            </td>
+                                            <td class="cuadrado text-small" colspan="3"></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="cuadrado text-small text-center" colspan="4">
+                                                CALLE/ NUMERO/ COLONIA/ LOCALIDAD/ MUNICIPIO/ ESTADO
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="1" class="cuadrado text-smal">
+                                                5.3 TIPO DE RELACIÓN
+                                            </td>
+                                            <td colspan="1" class="cuadrado text-smal"></td>
+                                            <td colspan="1" class="cuadrado text-smal">
+                                                5.6 TIEMPO DE CONOCER A LA PERSONA
+                                            </td>
+                                            <td colspan="1" class="cuadrado text-smal"></td>
+                                        </tr>
+
+
+                                    </table>
+                                </div> <!-- Fin de amistades -->
+                                <div class="row cuadrado">
+                                    <div class="col-xs-12 cuadrado">
+                                        <h5 class="text-center">VI.- EMPLEOS</h5>
+                                    </div>
+                                    <div class="col-xs-12 cuadrado">
+                                        <h6 class="text-center">A) EMPLEO ACTUAL INTRAMUROS</h6>
+                                    </div>
+                                </div>
+                                <div class="row cuadrado">
+                                    <table class="col-xs-12 cuadrado table">
+                                        <tr>
+                                            <td class="cuadrado text-small" colspan="3">
+                                                6.1 OCUPACIÓN
+                                            </td>
+                                            <td class="cuadrado text-small" colspan="5">
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="1" class="cuadrado text-small">6.2 CONSTANTE</td>
+                                            <td colspan="1" class="cuadrado text-small">6.3 VARIABLE</td>
+                                            <td colspan="1" class="cuadrado text-small">6.4 INFORMAL</td>
+                                            <td colspan="1" class="cuadrado text-small">6.5 FORMAL</td>
+                                            <td colspan="2" class="cuadrado text-small">6.6 POR CUENTA PROPIA</td>
+                                            <td colspan="2" class="cuadrado text-small">6.7 AL SERVICIO DE ALGUIEN</td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="1" class="cuadrado text-small"></td>
+                                            <td colspan="1" class="cuadrado text-small"></td>
+                                            <td colspan="1" class="cuadrado text-small"></td>
+                                            <td colspan="1" class="cuadrado text-small"></td>
+                                            <td colspan="2" class="cuadrado text-small"></td>
+                                            <td colspan="2" class="cuadrado text-small"></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="cuadrado text-small" colspan="3">
+                                                6.8 DIRECCIÓN
+                                            </td>
+                                            <td class="cuadrado text-small" colspan="5">
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="cuadrado text-small text-center" colspan="8">
+                                                CALLE/ NUMERO/ COLONIA/ LOCALIDAD/ MUNICIPIO/ ESTADO
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="cuadrado text-small">
+                                                6.8 A) NOMBRE DEL PATRÓN O JEFE INMEDIATO Y/0 EMPRESA
+                                            </td>
+                                            <td class="cuadrado text-small" colspan="7">
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="cuadrado text-small" colspan="2">
+                                                SALARIO
+                                            </td>
+                                            <td class="cuadrado text-small" colspan="2">
+
+                                            </td>
+                                            <td class="cuadrado text-small" colspan="2">
+                                                6.12.A TIEMPO LABORANDO
+                                            </td>
+                                            <td class="cuadrado text-small" colspan="2">
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="cuadrado text-small" colspan="1">
+                                                6.14.A DÍAS
+                                            </td>
+                                            <td class="cuadrado text-small" colspan="1">
+
+                                            </td>
+                                            <td class="cuadrado text-small" colspan="1">
+                                                6.15.A HORARIO
+                                            </td>
+                                            <td class="cuadrado text-small" colspan="1">
+
+                                            </td>
+                                            <td class="cuadrado text-small" colspan="1">
+                                                MOTIVO:
+                                            </td>
+                                            <td class="cuadrado text-small" colspan="1">
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="cuadrado  text-center" colspan="8">
+                                                <h6 class="text-center">
+                                                    B)EMPLEO ANTES DE SU DETENCIÓN
+                                                </h6>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="cuadrado text-small" colspan="3">
+                                                6.1 OCUPACIÓN
+                                            </td>
+                                            <td class="cuadrado text-small" colspan="5">
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="1" class="cuadrado text-small">6.2 CONSTANTE</td>
+                                            <td colspan="1" class="cuadrado text-small">6.3 VARIABLE</td>
+                                            <td colspan="1" class="cuadrado text-small">6.4 INFORMAL</td>
+                                            <td colspan="1" class="cuadrado text-small">6.5 FORMAL</td>
+                                            <td colspan="2" class="cuadrado text-small">6.6 POR CUENTA PROPIA</td>
+                                            <td colspan="2" class="cuadrado text-small">6.7 AL SERVICIO DE ALGUIEN</td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="1" class="cuadrado text-small"></td>
+                                            <td colspan="1" class="cuadrado text-small"></td>
+                                            <td colspan="1" class="cuadrado text-small"></td>
+                                            <td colspan="1" class="cuadrado text-small"></td>
+                                            <td colspan="2" class="cuadrado text-small"></td>
+                                            <td colspan="2" class="cuadrado text-small"></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="cuadrado text-small" colspan="3">
+                                                6.8 DIRECCIÓN
+                                            </td>
+                                            <td class="cuadrado text-small" colspan="5">
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="cuadrado text-small text-center" colspan="8">
+                                                CALLE/ NUMERO/ COLONIA/ LOCALIDAD/ MUNICIPIO/ ESTADO
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="cuadrado text-small">
+                                                6.9 NOMBRE DEL PATRÓN O JEFE INMEDIATO Y/0 EMPRESA
+                                            </td>
+                                            <td class="cuadrado text-small" colspan="7">
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="cuadrado text-small" colspan="2">
+                                                SALARIO
+                                            </td>
+                                            <td class="cuadrado text-small" colspan="2">
+
+                                            </td>
+                                            <td class="cuadrado text-small" colspan="2">
+                                                6.12 TIEMPO LABORANDO
+                                            </td>
+                                            <td class="cuadrado text-small" colspan="2">
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="cuadrado text-small" colspan="1">
+                                                6.14 DÍAS
+                                            </td>
+                                            <td class="cuadrado text-small" colspan="1">
+
+                                            </td>
+                                            <td class="cuadrado text-small" colspan="1">
+                                                6.15 HORARIO
+                                            </td>
+                                            <td class="cuadrado text-small" colspan="1">
+
+                                            </td>
+                                            <td class="cuadrado text-small" colspan="1">
+                                                MOTIVO:
+                                            </td>
+                                            <td class="cuadrado text-small" colspan="1">
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="cuadrado  text-center" colspan="8">
+                                                <h6 class="text-center">
+                                                    6.16 EMPLEOS ANTERIORES
+                                                </h6>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="cuadrado text-small" colspan="3">
+                                                6.17 OCUPACIÓN
+                                            </td>
+                                            <td class="cuadrado text-small" colspan="5">
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="1" class="cuadrado text-small">6.18 CONSTANTE</td>
+                                            <td colspan="1" class="cuadrado text-small">6.19 VARIABLE</td>
+                                            <td colspan="1" class="cuadrado text-small">6.20 INFORMAL</td>
+                                            <td colspan="1" class="cuadrado text-small">6.21 FORMAL</td>
+                                            <td colspan="2" class="cuadrado text-small">6.22 POR CUENTA PROPIA</td>
+                                            <td colspan="2" class="cuadrado text-small">6.23 AL SERVICIO DE ALGUIEN</td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="1" class="cuadrado text-small"></td>
+                                            <td colspan="1" class="cuadrado text-small"></td>
+                                            <td colspan="1" class="cuadrado text-small"></td>
+                                            <td colspan="1" class="cuadrado text-small"></td>
+                                            <td colspan="2" class="cuadrado text-small"></td>
+                                            <td colspan="2" class="cuadrado text-small"></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="cuadrado text-small" colspan="3">
+                                                6.4 DIRECCIÓN
+                                            </td>
+                                            <td class="cuadrado text-small" colspan="5">
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="cuadrado text-small text-center" colspan="8">
+                                                CALLE/ NUMERO/ COLONIA/ LOCALIDAD/ MUNICIPIO/ ESTADO
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="cuadrado text-small">
+                                                6.25 NOMBRE DEL PATRÓN O JEFE INMEDIATO Y/0 EMPRESA
+                                            </td>
+                                            <td class="cuadrado text-small" colspan="7">
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="cuadrado text-small" colspan="2">
+                                                SALARIO
+                                            </td>
+                                            <td class="cuadrado text-small" colspan="2">
+
+                                            </td>
+                                            <td class="cuadrado text-small" colspan="2">
+                                                6.28 TIEMPO LABORANDO
+                                            </td>
+                                            <td class="cuadrado text-small" colspan="2">
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="cuadrado text-small" colspan="1">
+                                                6.30 DÍAS
+                                            </td>
+                                            <td class="cuadrado text-small" colspan="1">
+
+                                            </td>
+                                            <td class="cuadrado text-small" colspan="1">
+                                                6.31 HORARIO
+                                            </td>
+                                            <td class="cuadrado text-small" colspan="1">
+
+                                            </td>
+                                            <td class="cuadrado text-small" colspan="1">
+                                                6.33 MOTIVO:
+                                            </td>
+                                            <td class="cuadrado text-small" colspan="1">
+
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div> <!--Fin de empleos -->
+                                <div class="row cuadrado">
+                                    <div class="col-xs-12 cuadrado">
+                                        <h5 class="text-center">VII.- ESCOLARIDAD INTRAMUROS</h5>
+                                    </div>
+
+                                </div>
+                                <div class="row cuadrado">
+                                    <table class="table cuadrado col-xs-12">
+                                        <tr>
+                                            <td class="text-small cuadrado">7.1 ESCOLARIDAD</td>
+                                            <td class="text-small cuadrado"></td>
+                                            <td class="text-small cuadrado">7.2 NOMBRE DE LA INSTITUCIÓN</td>
+                                            <td class="text-small cuadrado"></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-small cuadrado">7.3 DIRECCIÓN</td>
+                                            <td class="text-small cuadrado" colspan="3"></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="cuadrado text-small text-center" colspan="4">
+                                                CALLE/ NUMERO/ COLONIA/ LOCALIDAD/ MUNICIPIO/ ESTADO
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-small cuadrado">7.5 MOTIVO DE DESERCIÓN</td>
+                                            <td class="text-small cuadrado" colspan="3"></td>
+                                        </tr>
+                                    </table>
+                                </div> <!-- Fin de escoliridad intramuros -->
+                                <div class="row cuadrado">
+                                    <div class="col-xs-12 cuadrado">
+                                        <h5 class="text-center">VIII.- ESCOLARIDAD ESTRAMUROS</h5>
+                                    </div>
+                                </div>
+                                <div class="row cuadrado">
+                                    <table class="table cuadrado col-xs-12">
+                                        <tr>
+                                            <td class="text-small cuadrado">7.1.A ESCOLARIDAD</td>
+                                            <td class="text-small cuadrado"></td>
+                                            <td class="text-small cuadrado">7.2.A NOMBRE DE LA INSTITUCIÓN</td>
+                                            <td class="text-small cuadrado"></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-small cuadrado">7.3.A DIRECCIÓN</td>
+                                            <td class="text-small cuadrado" colspan="3"></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="cuadrado text-small text-center" colspan="4">
+                                                CALLE/ NUMERO/ COLONIA/ LOCALIDAD/ MUNICIPIO/ ESTADO
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-small cuadrado">7.5.A MOTIVO DE DESERCIÓN</td>
+                                            <td class="text-small cuadrado" colspan="3"></td>
+                                        </tr>
+                                    </table>
+                                </div> <!-- Fin de escoliridad EXTRAMUROS -->
+                                <div class="row cuadrado">
+                                    <div class="col-xs-12 cuadrado">
+                                        <h5 class="text-center">IX.- ANTECEDENTES</h5>
+                                    </div>
+                                </div>
+                                <div class="row cuadrado">
+                                    <table class="col-xs-12 cuadrado">
+                                        <tr>
+                                            <td class="cuadrado text-small" width="15%" rowspan="2">8.1 ¿HA ESTADO
+                                                DETENIDO ANTERIORMENTE?
+                                            </td>
+                                            <td class="cuadrado text-small">8.1.1 SI</td>
+                                            <td class="cuadrado text-small">8.1.2 NO</td>
+                                            <td class="cuadrado text-small">8.1.3 ¿EN DONDE?</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="cuadrado text-small"></td>
+                                            <td class="cuadrado text-small"></td>
+                                            <td class="cuadrado text-small"></td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="1" class="cuadrado text-small">¿POR QUÉ DELITO?</td>
+                                            <td colspan="3" class="cuadrado text-small"></td>
+                                        </tr>
+                                    </table>
+                                </div> <!--  fin de antecedentes penales-->
+                                <div class="row cuadrado">
+                                    <div class="col-xs-12 cuadrado">
+                                        <h5 class="text-center">X.- ENFERMEDADES</h5>
+                                    </div>
+                                </div>
+                                <div class="row cuadrado">
+                                    <table class="col-xs-12 cuadrado">
+                                        <t t-foreach="entrevista.x_enfermedades_ids" t-as="enfermedad">
+                                            <tr>
+                                                <td colspan="2" class="cuadrado text-small">10.1 ¿PADECE DE ALGUNA
+                                                    ENFERMEDAD? (ESPECIFICAR EL NOMBRE)
+                                                </td>
+                                                <td colspan="2" class="cuadrado text-small">
+                                                    <span t-field="enfermedad.x_name"/>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="1" class="cuadrado text-small">10.2 ¿TIEMPO DE
+                                                    PADECIMIENTO?
+                                                </td>
+                                                <td colspan="1" class="cuadrado text-small">
+                                                    <span t-field="enfermedad.x_tiempo_padece"/>
+                                                </td>
+                                                <td colspan="1" class="cuadrado text-small">10.3 TRATAMIENTO
+                                                    (ESPECIFICAR)
+                                                </td>
+                                                <td colspan="1" class="cuadrado text-small">
+                                                    <span t-field="enfermedad.x_tratamiento"/>
+                                                </td>
+                                            </tr>
+                                        </t>
+                                        <t t-if="not len(entrevista.x_enfermedades_ids)">
+                                            <tr>
+                                                <td colspan="2" class="cuadrado text-small">10.1 ¿PADECE DE ALGUNA
+                                                    ENFERMEDAD? (ESPECIFICAR EL NOMBRE)
+                                                </td>
+                                                <td colspan="2" class="cuadrado text-small">
+
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="1" class="cuadrado text-small">10.2 ¿TIEMPO DE
+                                                    PADECIMIENTO?
+                                                </td>
+                                                <td colspan="1" class="cuadrado text-small">
+
+                                                </td>
+                                                <td colspan="1" class="cuadrado text-small">10.3 TRATAMIENTO
+                                                    (ESPECIFICAR)
+                                                </td>
+                                                <td colspan="1" class="cuadrado text-small">
+
+                                                </td>
+                                            </tr>
+                                        </t>
+                                        <tr>
+                                            <td class="cuadrado text-small">10.4 ¿PADECE DE ALGUNA
+                                                DISCAPACIDAD?
+                                            </td>
+                                            <td class="cuadrado text-small">10.4.1 SI</td>
+                                            <td class="cuadrado text-small">10.4.2 NO</td>
+                                            <td class="cuadrado text-small" colspan="2">¿CÚAL?</td>
+                                        </tr>
+                                        <t t-if="len(entrevista.x_enfermedades_ids)">
+                                            <t t-foreach="entrevista.x_enfermedades_ids" t-as="enfermedad">
+                                                <tr>
+                                                    <td></td>
+                                                    <td class="cuadrado text-small text-center">
+                                                        <t t-if="enfermedad.x_discapacidad_id">
+                                                            <span class="text-center">X</span>
+                                                        </t>
+                                                    </td>
+                                                    <td class="cuadrado text-small text-center">
+                                                        <t t-if="not enfermedad.x_discapacidad_id">
+                                                            <span class="text-center">X</span>
+                                                        </t>
+                                                    </td>
+                                                    <td class="cuadrado text-small" colspan="2">
+                                                        <span t-field="enfermedad.x_discapacidad_id"/>
+                                                    </td>
+                                                </tr>
+                                            </t>
+                                        </t>
+                                        <t t-if="not len(entrevista.x_enfermedades_ids)">
+                                            <tr>
+                                                <td></td>
+                                                <td class="cuadrado text-small text-center">
+
+                                                </td>
+                                                <td class="cuadrado text-small text-center">
+                                                    x
+                                                </td>
+                                                <td class="cuadrado text-small" colspan="2">
+
+                                                </td>
+                                            </tr>
+                                        </t>
+                                    </table>
+                                </div><!-- Fin de enfermedades -->
+                                <div class="row cuadrado">
+                                    <div class="col-xs-12 cuadrado">
+                                        <h5 class="text-center">XI.- CONSUMO DE SUSTANCIAS INTRAMUROS</h5>
+                                    </div>
+                                </div>
+                                <div class="row cuadrado">
+                                    <table class="col-xs-12 cuadrado">
+                                        <tr>
+                                            <td class="cuadrado text-small">11.1 ¿CONSUME SUSTANCIAS?</td>
+                                            <td class="cuadrado text-small">11.1.1 SI</td>
+                                            <td class="cuadrado text-small"></td>
+                                            <td class="cuadrado text-small">11.1.2 NO</td>
+                                            <td class="cuadrado text-small"></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="cuadrado text-small">11.2 SUSTANCIA</td>
+                                            <td class="cuadrado text-small" colspan="2">11.3 FRECUENCIA DE CONSUMO</td>
+                                            <td class="cuadrado text-small">11.4 CANTIDAD</td>
+                                            <td class="cuadrado text-small">11.5 FECHA DE ULTIMO CONSUMO</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="cuadrado text-small">
+
+                                            </td>
+                                            <td class="cuadrado text-small" colspan="2">
+                                            </td>
+                                            <td class="cuadrado text-small">
+
+                                            </td>
+                                            <td class="cuadrado text-small">
+
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div> <!-- fin de sustancias intramuros -->
+                                <div class="row cuadrado">
+                                    <div class="col-xs-12 cuadrado">
+                                        <h5 class="text-center">XII.- CONSUMO DE SUSTANCIAS EXTRAMUROS</h5>
+                                    </div>
+                                </div>
+                                <div class="row cuadrado">
+                                    <table class="col-xs-12 cuadrado table">
+                                        <tr>
+                                            <td class="cuadrado text-small">12.1 ¿CONSUME SUSTANCIAS?</td>
+                                            <td class="cuadrado text-small">12.1.1 SI</td>
+                                            <td class="cuadrado text-small"></td>
+                                            <td class="cuadrado text-small">12.1.2 NO</td>
+                                            <td class="cuadrado text-small"></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="cuadrado text-small">12.2 SUSTANCIA</td>
+                                            <td class="cuadrado text-small" colspan="2">11.3 FRECUENCIA DE CONSUMO</td>
+                                            <td class="cuadrado text-small">12.4 CANTIDAD</td>
+                                            <td class="cuadrado text-small">12.5 FECHA DE ULTIMO CONSUMO</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="cuadrado text-small">
+
+                                            </td>
+                                            <td class="cuadrado text-small" colspan="2">
+                                            </td>
+                                            <td class="cuadrado text-small">
+
+                                            </td>
+                                            <td class="cuadrado text-small">
+
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div> <!-- fin de sustancias EXTRAMUROS -->
+                                <div class="row cuadrado">
+                                    <div class="col-xs-12 cuadrado">
+                                        <h5 class="text-center">XII.- INFORMACIÓN DEL PROCESO ACTUAL</h5>
+                                    </div>
+                                    <div class="col-xs-12 cuadrado">
+                                        <h6 class="text-center">(ESTOS DATOS SE RECABAN DE LA CARPETA DE
+                                            INVESTIGACIÓN)
+                                        </h6>
+                                    </div>
+                                </div>
+                                <div class="row cuadrado">
+                                    <table class="col-xs-12 cuadrado table">
+                                        <tr>
+                                            <td width="30%" class="cuadrado text-small">13.1 DELITO(S)</td>
+                                            <td width="30%" class="cuadrado text-small">13.2 FUNDAMENTO</td>
+                                            <td class="cuadrado text-small">13.1.1 GRAVE</td>
+                                            <td class="cuadrado text-small">13.1.2 NO GRAVE</td>
+                                            <td class="cuadrado text-small">13.1.3 FED.</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="cuadrado text-small"></td>
+                                            <td class="cuadrado text-small"></td>
+                                            <td class="cuadrado text-small"></td>
+                                            <td class="cuadrado text-small"></td>
+                                            <td class="cuadrado text-small"></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="cuadrado text-small">13.3 DINAMICA DE LOS HECHOS DE LA CONDUCTA
+                                                ANTISOCIAL
+                                            </td>
+                                            <td class="cuadrado text-small" colspan="4"></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="cuadrado text-small">13.4 LUGAR DE DETENCIÓN</td>
+                                            <td class="cuadrado text-small">13.5 AUTORIDAD QUE REALIZÓ LA
+                                                DETENCIÓN
+                                            </td>
+                                            <td class="cuadrado text-small text-center" colspan="3">13.7 PUESTA A
+                                                DISPOSICIÓN
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="cuadrado text-small" rowspan="3"></td>
+                                            <td class="cuadrado text-small" rowspan="3">
+                                            </td>
+                                            <td class="cuadrado text-small">13.6 HORA</td>
+                                            <td class="cuadrado text-small" colspan="2">13.7.1 FECHA</td>
+                                        </tr>
+                                        <tr>
+
+                                            <td class="cuadrado text-small">
+
+                                            </td>
+                                            <td class="cuadrado text-small" colspan="2">
+
+                                            </td>
+
+                                        </tr>
+                                        <tr>
+                                            <td class="cuadrado text-small text-center" colspan="3">
+                                                13.6 DETENCIÓN
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td width="30%" class="cuadrado text-small" rowspan="2">13.8 ¿DETUVIERON A
+                                                OTRAS PERSONAS JUNTO CON EL ENTREVISTADO?
+                                            </td>
+                                            <td class="cuadrado text-small">13.8.1 SI</td>
+                                            <td class="cuadrado text-small">13.8.2 NO</td>
+                                            <td class="cuadrado text-small">13.6.2 HORA</td>
+                                            <td class="cuadrado text-small">13.7.1 FECHA</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="cuadrado text-small"></td>
+                                            <td class="cuadrado text-small">
+                                            </td>
+                                            <td class="cuadrado text-small"></td>
+                                            <td class="cuadrado text-small"></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="cuadrado text-small" colspan="2">
+                                                13.9 COMPORTAMIENTO ANTE LA DETENCIÓN (RESISTENCIA, PERSECUCIÓN
+                                                VIOLENCIA, ETC)
+                                            </td>
+                                            <td class="cuadrado text-small" colspan="3">
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="cuadrado text-small" colspan="2">
+                                                13.10 NOMBRE
+                                            </td>
+                                            <td class="cuadrado text-small" colspan="3">
+                                                RELACIÓN
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="cuadrado text-small" colspan="2">
+                                                13.12 NOMBRE DE LA VICTIMA
+                                            </td>
+                                            <td class="cuadrado text-small" colspan="3">
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="cuadrado text-small" colspan="2">
+                                                13.13 RELACIÓN CON LA VICTIMA
+                                            </td>
+                                            <td class="cuadrado text-small" colspan="3">
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="cuadrado text-small text-center" colspan="5">
+                                                13.17 PROCESOS PENDIENTES/ANTERIORES (Analizar el cumplimiento de
+                                                condiciones judiciales anteriores )
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td class="cuadrado text-small text-center" colspan="5">
+                                                13.24 OBSERVACIONES (ACTITUD ANTE LA ENTREVISTA)
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="cuadrado text-small" colspan="5">
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="cuadrado text-small text-center" colspan="2">
+                                                13.21 CUMPLIO CON MEDIDAS CAUTELARES
+                                            </td>
+                                            <td class="cuadrado text-small text-center" colspan="2">
+                                                13.22 CUMPLIO CON SCP
+                                            </td>
+                                            <td class="cuadrado text-small text-center" colspan="1">
+                                                13.23 PERMITIO O COLABORO CON PROCESOS ANTERIORES
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="cuadrado text-small text-center" colspan="1">
+                                                13.21.1 SI
+                                            </td>
+
+                                            <td class="cuadrado text-small text-center" colspan="1">
+                                                13.21.2 NO
+                                            </td>
+                                            <td class="cuadrado text-small text-center" colspan="1">
+                                                13.22.1 SI
+                                            </td>
+
+                                            <td class="cuadrado text-small text-center" colspan="1">
+                                                13.22.2 NO
+                                            </td>
+                                            <td class="cuadrado text-small text-center" colspan="1">
+                                                13.23.1 SI
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="cuadrado text-small" colspan="1">
+                                                13.12 NOMBRE DEL ENTREVISTADOR
+                                            </td>
+                                            <td class="cuadrado text-small" colspan="4">
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="cuadrado text-small" colspan="1">
+                                                FIRMA
+                                            </td>
+                                            <td class="cuadrado text-small" colspan="1">
+
+                                            </td>
+                                            <td class="cuadrado text-small" colspan="1">
+                                                HORA DE CONCLUSIÓN:
+                                            </td>
+                                            <td class="cuadrado text-small" colspan="2">
+
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div> <!-- FIN de proceso actual -->
+                            </div> <!-- Fin del main-container-->
+                            <p style="page-break-after:always;"></p>
+                            <div class="main-container">
+                                <div class="row">
+                                    <div class="col-xs-12">
+                                        <h6 class="text-center ">DIRECCIÓN GENERAL DE CENTROS DE REINSERCIÓN SOCIAL DEL
+                                            ESTADO DE PUEBLA
+                                        </h6>
+                                    </div>
+                                    <div class="col-xs-12">
+                                        <h6 class="text-center ">DIRECCIÓN DE MEDIDAS CAUTELARES Y POLICÍA PROCESAL</h6>
+                                    </div>
+                                    <div class="col-xs-12">
+                                        <h6 class="text-center ">REGIÓN JUDICAL CENTRO</h6>
+                                    </div>
+                                    <div class="col-xs-12">
+                                        <h5 class="text-center ">CONSENTIMIENTO PARA REALIZAR LA ENTREVISTA DE
+                                            EVALUACIÓN DE RIESGOS
+                                        </h5>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-12">
+                                        <p class="text-justify">
+                                            Con fundamento en los artículos 5,71, 72 Fracción I, de la Ley Nacional del
+                                            Sistema Integral de Justicia Penal para Adolecentes articulos 153, 154, 155,
+                                            156, 157, 158 y 164 del Código Nacional de Procedimientos Penales 65, 66 67
+                                            y 68 de la Ley de Ejecución de Medidas Cautelares y Sanciones Penales, 8, 30
+                                            bis. Fracciones I, III, VII, XII del regalmento interior de la Secretaria de
+                                            Seguridad Publica, ambas para el estado de Puebla: le solicito su
+                                            autorización para realizarle una entrevista con el objetivo de obtener
+                                            información relevante que será proporcionada al Ministerio Publico y a su
+                                            defensor para que el Juez de control determine sobre la imposiciónde medidas
+                                            cautelares; así como se le hace saber que la información que suministre no
+                                            podría ser usada para demostrar su culpabilidad, que será manejada de forma
+                                            confidencial y será corroborada pro diversos medios para determinar la
+                                            calidad de la misam; así como que puede abstenerse de proporcionar datos.
+                                            Haciendole de su conocimiento que tiene derecho a que su defensor y tutor
+                                            estén presentes durante la entrevista.
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-12">
+                                        <p class="text-justify">
+                                            EL personal del área de evaluación de riesgos siendo el suscrito
+                                            <u>______________________</u>
+                                            se identifica con el/la Adolescente
+                                            <u>________________________</u>
+                                            quien se encuentra retenido (a) en:
+                                            <u>________________________</u>
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-12">
+                                        <p class="text-justify">
+                                            <u>______________________</u>
+                                            Entendí la explicación y <u>________________________</u> otorgo mi
+                                            consentimiento para que el operador me realice la entrevista
+
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-12">
+                                        <p class="text-justify">
+                                            <u>______________________</u>
+                                            Entendí la explicación y <u>________________________</u> otorgo mi
+                                            consentimiento para que el operador me realice la entrevista
+
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-12">
+                                        <p class="text-justify">
+                                            A la presente explicación, hecha por el evaluador al adolecente, la defensa
+                                            y el padre o tutor del mismo
+                                            <u>________________________</u>
+                                            autorizan la aplicación de la presente entrevista, firmando la conformidad.
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-12">
+                                        <table class="col-xs-12 extra_top">
+                                            <tr>
+                                                <td class="borde-top">
+                                                    Nombre y firma
+                                                </td>
+                                                <td>padre o tutor</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="borde-top">
+                                                    Nombre y firma
+                                                </td>
+                                                <td>Defensa</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="borde-top">
+                                                    Nombre y firma
+                                                </td>
+                                                <td>
+                                                    Otro:
+                                                    <u>_______________</u>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-12">
+                                        <p class="text-justify">
+                                            Nombre completo adolecente
+                                            <u>____________________________________________________________</u>
+                                            <br/>
+                                            Firma <u>_________________________________________</u> Fecha: <u>
+                                            ____________________________________________
+                                        </u>
+                                            <br/>
+                                            Hora:
+                                            <u>_________________________________________</u>
+
+                                        </p>
+                                    </div>
+                                </div>
+
+
+                            </div>
+
+                        </div> <!-- FIn del page -->
+
+                    </t>
+                </t>
+            </t>
+        </template>
+    </data>
+</odoo>
+
