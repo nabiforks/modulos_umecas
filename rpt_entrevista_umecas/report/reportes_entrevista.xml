@@ -9,10 +9,10 @@
                 file="rpt_entrevista_umecas.rpt_entrevista_umecas_detalles_entrevista"
                 report_type="qweb-pdf"
         />
-         <record id="rpt_entrevista_umecas_detalles_entrevista_paper" model="report.paperformat">
+        <record id="rpt_entrevista_umecas_detalles_entrevista_paper" model="report.paperformat">
             <field name="name">LEGAL</field>
-             <field name="format">Legal</field>
-             <field name="orientation">Landscape</field>
+            <field name="format">Legal</field>
+            <field name="orientation">Landscape</field>
 
         </record>
         <template id="assets_common" name="rpt_entrevista_umecas assets" inherit_id="report.assets_common">
@@ -32,7 +32,7 @@
                                     <h5 class="text-center ">ENTREVISTA PARA EL ADOLECENTE</h5>
                                 </div>
                             </div>
-                            <div class="main-container">
+                            <div class="">
                                 <div class="row cuadrado">
                                     <div class="col-xs-2 borde-right">
                                         <span>1. LUGAR</span>
@@ -1497,9 +1497,10 @@
                                             Nombre completo adolecente
                                             <u>____________________________________________________________</u>
                                             <br/>
-                                            Firma <u>_________________________________________</u> Fecha: <u>
-                                            ____________________________________________
-                                        </u>
+                                            Firma <u>_________________________________________</u> Fecha:
+                                            <u>
+                                                ____________________________________________
+                                            </u>
                                             <br/>
                                             Hora:
                                             <u>_________________________________________</u>
