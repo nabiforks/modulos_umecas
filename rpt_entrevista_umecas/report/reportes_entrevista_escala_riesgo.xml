@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+        <report
+                id="rpt_entrevista_umecas_detalles_entrevista_escala_riesgo"
+                model="umc_entrevistas"
+                string="Reporte de entrevista"
+                name="rpt_entrevista_umecas.detalles_entrevista_escala_riesgos"
+                file="rpt_entrevista_umecas.rpt_entrevista_umecas_detalles_entrevista_escala_riesgo"
+                report_type="qweb-pdf"
+        />
+
+        <record id="rpt_entrevista_umecas_detalles_entrevista_escala_riesgo_paper" model="report.paperformat">
+            <field name="name">LEGAL</field>
+             <field name="format">Legal</field>
+             <field name="orientation">Landscape</field>
+
+        </record>
+        <template id="assets_common" name="rpt_entrevista_umecas assets" inherit_id="report.assets_common">
+            <xpath expr="." position="inside">
+                <link href="/rpt_entrevista_umecas/static/src/css/main.css" rel="stylesheet"/>
+            </xpath>
+        </template>
+
+        <template id="detalles_entrevista_escala_riesgos">
+            <t t-call="report.html_container">
+                <t t-foreach="docs" t-as="entrevista">
+                    <t t-call="report.external_layout">
+                        <div class="page">
+
+                        </div>
+                    </t>
+                </t>
+            </t>
+        </template>
+    </data>
+</odoo>

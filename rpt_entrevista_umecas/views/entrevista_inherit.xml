@@ -8,6 +8,7 @@
         <field name="arch" type="xml">
             <xpath expr="//button[@name='entrevista_realizada']" position="before">
                 <button name="imprimir_reporte_entrevistas" type="object" string="Imprimir Entrevista" class="oe_highlight" states="terminado"/>
+                 <button name="imprimir_reporte_entrevistas_escala_riesgos" type="object" string="Imprimir Escala de Riesgos" class="oe_highlight" states="terminado"/>
             </xpath>
         </field>
     </record>
