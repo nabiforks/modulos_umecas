@@ -109,11 +109,7 @@
     </record>
     <!-- window action ///////////////////////////////////////////////////////////////////////////////-->
     <record model="ir.actions.act_window" id="umc_evaluacion_list_action">
-<<<<<<< HEAD
-        <field name="name">Solicitud de evaluación</field>
-=======
         <field name="name">Solicitud/evaluación</field>
->>>>>>> pcs_local
         <field name="res_model">umc_evaluacion</field>
         <field name="view_type">form</field>
         <field name="view_mode">tree,kanban,form</field>
