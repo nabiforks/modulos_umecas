@@ -45,6 +45,13 @@ class umc_evaluacion(models.Model):
         ('analisis', 'Escala de Riesgos'),
         ('evaluacion', 'Evaluación'),
     ], default='solicitud', readonly=True,string='Estatus')
+    x_casa_justicia = fields.Many2one(
+        string=u'Casa de Justicia',
+        comodel_name='res.company',
+        ondelete='set null',
+        readonly=True,
+        required=True,       
+    )
 
     @api.model
     def create(self, vals):
@@ -64,7 +71,8 @@ class umc_evaluacion(models.Model):
             self.state = 'entrevista'
             valores_entrevista = {'x_evaluacion_id': self.id,
                                 'x_evaluador_id': self.x_evaluador_id,
-                                'x_imputado_id': self.partner_id}
+                                'x_imputado_id': self.partner_id,
+                                'x_casa_justicia':self.x_casa_justicia.id}
             res = self.env['umc_entrevistas'].create(valores_entrevista)
             self.x_entrevista_id = res
             return res
@@ -90,7 +98,7 @@ class umc_evaluacion(models.Model):
         string=u'Entrevista',
         comodel_name='umc_entrevistas',
         readonly=True,
-        ondelete='cascade',
+        ondelete='set null',
     )    
     x_entrevista_status = fields.Selection(
         string=u'Estatus de Entrevista',
@@ -98,10 +106,10 @@ class umc_evaluacion(models.Model):
         related='x_entrevista_id.state',
     )
 
-    #///////////////////////////////////////////Evaluación de riesgos///////////////////////////////////////////////
-    #///////////////////////////////////////////Evaluación de riesgos///////////////////////////////////////////
-    #///////////////////////////////////////////Evaluación de riesgos///////////////////////////////////////////////
-    #///////////////////////////////////////////Evaluación de riesgos////////////////////////////////////////////////
+    #///////////////////////////////////////////Escala de riesgos///////////////////////////////////////////////
+    #///////////////////////////////////////////Escala de riesgos///////////////////////////////////////////
+    #///////////////////////////////////////////Escala de riesgos///////////////////////////////////////////////
+    #///////////////////////////////////////////Escala de riesgos////////////////////////////////////////////////
 
     x_fecha_analisis = fields.Date(
         string=u'Fecha Analisis de Riesgos',
@@ -131,6 +139,7 @@ class umc_evaluacion(models.Model):
         inverse_name='x_evaluacion_id',
         #default=lambda self: self.env['ucm.escalavalores.evaluacion'].search([]).ids,
     )
+    
 
     @api.multi
     @api.depends('x_escalas_ids','x_escala_valores_id.x_bajo','x_escala_valores_id.x_alto')
@@ -147,9 +156,13 @@ class umc_evaluacion(models.Model):
                 record.x_escala_riesgos = 'alto'
             else:
                 record.x_escala_riesgos = 'medio'
-    #///////////////////////////////////////////Evaluación de riesgos/////////////////////////////////////////////
+    #///////////////////////////////////////////Evaluación/////////////////////////////////////////////
+    #///////////////////////////////////////////Evaluación/////////////////////////////////////////////
+    #///////////////////////////////////////////Evaluación/////////////////////////////////////////////
+    #///////////////////////////////////////////Evaluación/////////////////////////////////////////////
     
     x_conclusion = fields.Text(
         string=u'Conclusión',
     )
+    
     

@@ -9,7 +9,6 @@ class Expedientes(models.Model):
 
     x_name = fields.Char('Expediente', required=True, readonly=True,
                          default=lambda self: 'Nuevo')
-
     partner_id = fields.Many2one(
         'res.partner',
         string=u'Imputado',
@@ -22,7 +21,6 @@ class Expedientes(models.Model):
         readonly=True, 
         required=True,       
     )
-
     x_cdi_nic = fields.Char(
         string=u'CDI/NIC',
         required=True,
@@ -30,7 +28,6 @@ class Expedientes(models.Model):
     x_numero_oficio = fields.Char(
         string=u'Oficio Número',
     )
-
     x_fecha_inicio = fields.Datetime(
         string=u'Fecha/Hora Inicio',
         default=fields.Datetime.now,
@@ -39,11 +36,16 @@ class Expedientes(models.Model):
         'umc_delitos',
         string=u'Delitos'
     )
-
     x_delito_descripcion = fields.Text(
         string=u'Descripción Delito',
     )
-
+    
+    x_casa_justicia = fields.Many2one(
+        string=u'Casa de Justicia',
+        comodel_name='res.company',
+        ondelete='set null',        
+        default=lambda self: self.env.user.company_id,        
+    )    
     @api.model
     def create(self, vals):
         if vals.get('x_name', 'New') == 'New':

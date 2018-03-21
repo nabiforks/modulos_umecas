@@ -21,13 +21,14 @@
                     </div>
                     <group>
                         <group>
+                            <field name="x_evaluador_id" attrs="{'readonly': [('state','not in',('solicitud'))]}" options="{'no_create': True, 'no_open': True}" />
                             <field name="x_tipo_entrevista" widget="radio" options="{'horizontal': true}"/>
                         </group>
                         <group>
                             <field name="x_imputado_name" />
                             <field name="partner_id" invisible="1" />
                             <field name="x_expediente_id" />
-                            <field name="x_evaluador_id" attrs="{'readonly': [('state','not in',('solicitud'))]}" options="{'no_create': True, 'no_open': True}" />
+                            <field name="x_casa_justicia" />
                         </group>
                     </group>
                     <group class="row">
@@ -108,7 +109,11 @@
     </record>
     <!-- window action ///////////////////////////////////////////////////////////////////////////////-->
     <record model="ir.actions.act_window" id="umc_evaluacion_list_action">
+<<<<<<< HEAD
         <field name="name">Solicitud de evaluación</field>
+=======
+        <field name="name">Solicitud/evaluación</field>
+>>>>>>> pcs_local
         <field name="res_model">umc_evaluacion</field>
         <field name="view_type">form</field>
         <field name="view_mode">tree,kanban,form</field>

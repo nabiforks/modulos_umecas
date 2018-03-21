@@ -27,6 +27,7 @@
                             <field name="x_evaluacion_id" />
                             <field name="x_evaluador_name" />
                             <field name="x_evaluador_id" invisible="1"/>
+                            <field name="x_casa_justicia" />
                         </group>
                     </group>
                     <group>

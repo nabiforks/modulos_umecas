@@ -39,6 +39,12 @@ class Entrevistas(models.Model):
         readonly=True,
         related='x_evaluacion_id.partner_id.display_name',
     )
+    x_casa_justicia = fields.Many2one(
+        string=u'Casa de Justicia',
+        comodel_name='res.company',
+        ondelete='set null',
+        readonly=True,
+    )
 
     @api.model
     def create(self, vals):
@@ -51,6 +57,7 @@ class Entrevistas(models.Model):
         ('borrador', 'Borrador'),
         ('terminado', 'Terminado'),
     ], default='borrador', string='Estatus', readonly=True)
+
     @api.multi
     def entrevista_realizada(self):
         self.state = 'terminado'
