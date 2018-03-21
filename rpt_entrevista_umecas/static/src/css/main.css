@@ -64,3 +64,6 @@ table.table {
 table.cuadrado > td {
     border-left: solid 1px black;
 }
+.fondo{
+    background-color: #cdcfd7;
+}

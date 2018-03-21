@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+        <report
+                id="rpt_entrevista_umecas_detalles_entrevista_escala_riesgo"
+                model="umc_entrevistas"
+                string="Reporte de entrevista"
+                name="rpt_entrevista_umecas.detalles_entrevista_escala_riesgos"
+                file="rpt_entrevista_umecas.rpt_entrevista_umecas_detalles_entrevista_escala_riesgo"
+                report_type="qweb-pdf"
+        />
+
+        <record id="rpt_entrevista_umecas_detalles_entrevista_escala_riesgo_paper" model="report.paperformat">
+            <field name="name">LEGAL</field>
+            <field name="format">Legal</field>
+            <field name="orientation">Landscape</field>
+
+        </record>
+        <template id="assets_common" name="rpt_entrevista_umecas assets" inherit_id="report.assets_common">
+            <xpath expr="." position="inside">
+                <link href="/rpt_entrevista_umecas/static/src/css/main.css" rel="stylesheet"/>
+            </xpath>
+        </template>
+
+        <template id="detalles_entrevista_escala_riesgos">
+            <t t-call="report.html_container">
+                <t t-foreach="docs" t-as="entrevista">
+                    <t t-call="report.external_layout">
+                        <div class="page">
+                            <div class="row">
+                                <table class="table cuadrado col-xs-12">
+                                    <tr class="fondo">
+                                        <td>
+                                            NOMBRE DEL ADOLECENTE EN INTERNAMIENTO
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <span t-field="entrevista.x_evaluacion_id.partner_id.display_name"/>
+
+                                        </td>
+                                    </tr>
+
+                                </table>
+                            </div>
+                            <br/>
+                            <t t-foreach="entrevista.x_evaluacion_id.x_escalas_ids" t-as="escala">
+                                <div class="row" style="margin-top:10px;">
+                                    <table class="table cuadrado col-xs-12">
+                                        <tr class="fondo">
+                                            <td width="60%">
+                                                <span t-field="escala.seccion"/>
+                                            </td>
+                                            <td>
+                                                CDIA
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <span t-field="escala.valor_ids"/>
+
+                                            </td>
+                                            <td>
+                                                <span t-field="escala.num_valor"/>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                    <br/>
+                                </div>
+                            </t>
+                            <div class="row " style="margin-top:10px;">
+                                <div class="col-xs-12">
+                                    <p class="text-small">
+                                        FORMULA: I+IIA+IIB+III+IV+V+VI+VIII
+                                    </p>
+                                </div>
+                                <table class="table cuadrado col-xs-12">
+                                    <tr class="cuadrado fondo">
+                                        <t t-set="i" t-value="1"/>
+                                        <t t-foreach="entrevista.x_evaluacion_id.x_escalas_ids" t-as="escala">
+
+                                            <td class="cuadrado">
+                                                <span t-esc="entrevista.numberToRoman(i)"/>
+                                            </td>
+                                            <t t-set="i" t-value="i+1"/>
+                                        </t>
+                                        <td>
+                                            Total
+                                        </td>
+                                    </tr>
+                                    <tr class="cuadrado">
+
+                                        <t t-foreach="entrevista.x_evaluacion_id.x_escalas_ids" t-as="escala">
+
+                                            <td class="cuadrado">
+                                                <span t-field="escala.num_valor"/>
+                                            </td>
+
+                                        </t>
+                                        <td class="cuadrado">
+                                            <span t-field="entrevista.x_evaluacion_id.x_ponderacion"/>
+
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                            <div class="row " style="margin-top:10px;">
+                                <div class="col-xs-12">
+                                    <p class="text-small">
+                                        ESCALA DE RIESGOS
+                                    </p>
+                                </div>
+                                <table class="cuadrado col-xs-4">
+                                    <tr>
+                                        <td class="cuadrado">Nivel de Riesgo</td>
+                                        <td class="cuadrado">Rango</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="cuadrado text-center">Bajo (14/4)</td>
+                                        <td class="cuadrado text-center">
+                                            <t t-if="entrevista.x_evaluacion_id.x_escala_riesgos =='bajo' ">
+                                                <span class="text-center">X</span>
+                                            </t>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="cuadrado text-center">Medio (3/-6)</td>
+                                        <td class="cuadrado text-center">
+                                            <t t-if="entrevista.x_evaluacion_id.x_escala_riesgos =='medio' ">
+                                                <span class="text-center">X</span>
+                                            </t>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="cuadrado text-center">Alto 7/-17+</td>
+                                        <td class="cuadrado text-center">
+                                            <t t-if="entrevista.x_evaluacion_id.x_escala_riesgos =='alto' ">
+                                                <span class="text-center">X</span>
+                                            </t>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="cuadrado text-center">Entrevistó:</td>
+                                        <td class="cuadrado text-center">
+                                            <span t-field="entrevista.x_evaluacion_id.x_evaluador_id"/>
+
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="cuadrado text-center">Elaboró:</td>
+                                        <td class="cuadrado text-center"></td>
+                                    </tr>
+                                </table>
+                                <table class="col-xs-offset-1 col-xs-5">
+                                    <tr>
+                                        <td width="100%">Fecha:
+                                            <span t-field="entrevista.x_evaluacion_id.x_fecha_analisis"/>
+                                        </td>
+                                        <td>Firma</td>
+                                    </tr>
+                                </table>
+
+                            </div>
+                        </div>
+                    </t>
+                </t>
+            </t>
+        </template>
+    </data>
+</odoo>

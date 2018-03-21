@@ -7,8 +7,14 @@
                 string="Reporte de entrevista"
                 name="rpt_entrevista_umecas.detalles_entrevista"
                 file="rpt_entrevista_umecas.rpt_entrevista_umecas_detalles_entrevista"
-                report_type="qweb-html"
+                report_type="qweb-pdf"
         />
+         <record id="rpt_entrevista_umecas_detalles_entrevista_paper" model="report.paperformat">
+            <field name="name">LEGAL</field>
+             <field name="format">Legal</field>
+             <field name="orientation">Landscape</field>
+
+        </record>
         <template id="assets_common" name="rpt_entrevista_umecas assets" inherit_id="report.assets_common">
             <xpath expr="." position="inside">
                 <link href="/rpt_entrevista_umecas/static/src/css/main.css" rel="stylesheet"/>
