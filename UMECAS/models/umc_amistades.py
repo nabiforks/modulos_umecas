@@ -12,7 +12,7 @@ class umc_amistades(models.Model):
     x_domicilio_ids = fields.One2many(
         string=u'Domicilio',
         comodel_name='umc_domicilio',
-        inverse_name='x_empleo_id',
+        inverse_name='x_amistades_id',
     )
     x_relacion = fields.Many2one(
         string=u'Tipo de relación',
