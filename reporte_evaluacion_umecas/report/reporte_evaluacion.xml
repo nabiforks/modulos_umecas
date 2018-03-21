@@ -4,7 +4,7 @@
 		<report
 			id="evaluacion_umecas_report"
 			model="umc_evaluacion"
-			string="Reporte de evaluación"
+			string="Reporte de Evaluación"
 			name="reporte_evaluacion_umecas.detalles_evaluacion"
 			file="reporte_evaluacion_umecas.evaluacion_umecas_report"
 			report_type="qweb-pdf"			

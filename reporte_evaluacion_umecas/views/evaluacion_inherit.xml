@@ -7,7 +7,7 @@
         <field name="inherit_id" ref="UMECAS.umc_eval_form_view"/>
         <field name="arch" type="xml">
             <xpath expr="//button[@name='terminar_analisis']" position="after">
-                <button name="imprimir_reporte_evaluacion" type="object" string="Imprimir Evaluación" class="oe_highlight" states="hecho"/>
+                <button name="imprimir_reporte_evaluacion" type="object" string="Imprimir Evaluación" class="oe_highlight" states="evaluacion"/>
             </xpath>
         </field>
     </record>

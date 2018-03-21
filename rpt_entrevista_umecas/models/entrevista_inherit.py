@@ -31,12 +31,23 @@ class Partner(models.Model):
             return False
 
     @api.multi
+    def numberToRoman(self, number):
+        result = ""
+        number = int(number)
+        for (arabic, roman) in ROMAN:
+            (factor, number) = divmod(number, arabic)
+            result += roman * factor
+        return result;
+
+class umc_evaluacion_inherit(models.Model):
+    _inherit = 'umc_evaluacion'
+    
+    @api.multi
     def imprimir_reporte_entrevistas_escala_riesgos(self):
-        if self.state == 'terminado':
+        if self.state == 'analisis':
             return self.env['report'].get_action(self, 'rpt_entrevista_umecas.detalles_entrevista_escala_riesgos')
         else:
             return False
-
     @api.multi
     def numberToRoman(self, number):
         result = ""
