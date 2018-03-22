@@ -23,14 +23,14 @@
 
     # always loaded
     'data': [
-        # 'views/vista_ssp.xml',
-        'views/umc_evaluacion_riesgos.xml',
+        # 'views/vista_ssp.xml',        
         'security/umc_grupos.xml',
         'security/ir.model.access.csv',
         'views/vista_umc_imputado.xml',
         'views/vista_umc_expedientes.xml',
         'views/vista_umc_evaluacion.xml',
         'views/umc_entrevistas.xml',
+        'views/umc_evaluacion_riesgos.xml',
         'views/umc_empleos.xml',
         'views/umc_estudios.xml',
         'views/umc_catalogos.xml',
