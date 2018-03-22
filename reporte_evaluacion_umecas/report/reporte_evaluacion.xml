@@ -26,7 +26,14 @@
 							</div>
 							
 							<div class="row">
-								<div class="col-xs-12 text-left">Abogado(a) <br/>
+								<div class="col-xs-12 text-justify">
+									Abogado(a)
+									<br/>
+									<strong>
+										<span t-field="entrevista.x_name_abogado" />
+									</strong>
+									
+									<br/>
 									Defensa del entrevistado</div>
 							</div>
 							<br/>
@@ -39,7 +46,7 @@
 					
 							<div class="row">
 								<div class="col-xs-12 text-justify">
-									En atención al oficio <strong><span t-field="entrevista.x_expediente_id.x_numero_oficio"/></strong>, asignado por la <strong>XXXXXXXXXX</strong> Agente del Ministerio Público Adscrito a la Unidad de Flagrancia de fecha  
+									En atención al oficio <strong><span t-field="entrevista.x_expediente_id.x_numero_oficio"/></strong>, asignado por el Abogado <strong><span t-field="entrevista.x_agente" /></strong>, Agente del Ministerio Público Adscrito a la Unidad de Flagrancia de fecha  
 									<strong>
 										<span t-field="entrevista.x_expediente_id.x_fecha_inicio" t-options="{'format': 'd'}"/> de 
 										<span t-field="entrevista.x_expediente_id.x_fecha_inicio" t-options="{'format': 'MMMM'}"/> de 
@@ -61,7 +68,7 @@
 										</div>
 										<div class="col-xs-12">
 											<p class="text-justify">
-												Al constituirse de manera física y legal en el Área de XXXXXXXX, y una vez que se realizó el conversatorio con el XXXXXXX, éste expresó y autorizó la recolección de datos y su posterior comprobación; en razón de lo anterior siendo las <span t-field="entrevista.x_entrevista_id.x_fecha_entrevista" t-options="{&quot;format&quot;: &quot;HH:mm &quot;}"/> horas del 
+												Al constituirse de manera física y legal en el Área de  <span t-field="entrevista.x_area" />, y una vez que se realizó el conversatorio con  <span t-field="entrevista.x_imputado_name"/>, éste expresó y autorizó la recolección de datos y su posterior comprobación; en razón de lo anterior siendo las <span t-field="entrevista.x_entrevista_id.x_fecha_entrevista" t-options="{&quot;format&quot;: &quot;HH:mm &quot;}"/> horas del 
 												<span t-field="entrevista.x_entrevista_id.x_fecha_entrevista" t-options="{'format': 'd'}"/> de 
 												<span t-field="entrevista.x_entrevista_id.x_fecha_entrevista" t-options="{'format': 'MMMM'}"/> de 
 												<span t-field="entrevista.x_entrevista_id.x_fecha_entrevista" t-options="{'format': 'y'}"/>
@@ -72,246 +79,164 @@
 							
 									<!-- Puntos 1 y 2 de la entrevista -->
 									<div class="row" style="border-bottom: solid 1px #000000;">
-										<div class="col-xs-6" style="border-right: solid 1px #000000; padding: 0;">
-											<div class="text-center text-uppercase" >
-												<strong>1.-Historia Personal</strong>
-											</div>
-											<div class="text-left text-uppercase" style="border-top: solid 1px #000000;padding-left: 25;">
-												Entrevistado: 
-												<strong>
-													<span t-field="entrevista.x_imputado_name" />
-												</strong>
-												<br/>
+										<div class="col-xs-12" style="padding: 0;">
+										<table width="100%">
+											<tr>
+												<td width="50%" style="border-right:1px solid;">
+													<div class="text-center text-uppercase" >
+														<strong>1.-Historia Personal</strong>
+													</div>
+													<div class="text-left text-uppercase" style="border-top: solid 1px #000000;padding-left: 25;">
+														Entrevistado: 
+														<strong>
+															<span t-field="entrevista.x_imputado_name" />
+														</strong>
+														<br/>
+														
+														Fecha de nacimiento: <span t-field="entrevista.partner_id.fecha_nacimiento" />
+														<br/>
+														
+														Edad: <span t-field="entrevista.partner_id.edad" />
+														<br/>
+														
+														Alias o Apodo: <span t-field="entrevista.partner_id.x_apodo" />
+														<br/>
+														
+														Lugar de nacimiento: <span t-field="entrevista.partner_id.x_originario" />
+														<br/>
+									
+														Lengua y/o dialecto: 
+														<br/>
+									
+														Grupo Étnico:
+														<br/>
+									
+														Estado Civil: <span t-field="entrevista.partner_id.x_estado_civil" />
+														<br/>
+									
+														Domicilio: 
+														<span t-field="entrevista.partner_id.street" />
+														<span t-field="entrevista.partner_id.street2" />
+														<span t-field="entrevista.partner_id.city" />
+														<span t-field="entrevista.partner_id.state_id" />
+													</div>
+												</td>
 												
-												Fecha de nacimiento: <span t-field="entrevista.partner_id.fecha_nacimiento" />
-												<br/>
-												
-												Edad: <span t-field="entrevista.partner_id.edad" />
-												<br/>
-												
-												Alias o Apodo: <span t-field="entrevista.partner_id.x_apodo" />
-												<br/>
-												
-												Lugar de nacimiento: <span t-field="entrevista.partner_id.x_originario" />
-												<br/>
-							
-												Lengua y/o dialecto: 
-												<br/>
-							
-												Grupo Étnico:
-												<br/>
-							
-												Estado Civil: <span t-field="entrevista.partner_id.x_estado_civil" />
-												<br/>
-							
-												Domicilio: 
-												<span t-field="entrevista.partner_id.street" />
-												<span t-field="entrevista.partner_id.street2" />
-												<span t-field="entrevista.partner_id.city" />
-												<span t-field="entrevista.partner_id.state_id" />
-											</div>
-										</div>
-
-										<div class="col-xs-6" style="padding: 0;">
-											<div class="text-center text-uppercase">
-												<strong>2.-Lazos con la comunidad</strong>
-											</div>
-											<div class="text-left" style="border-top: solid 1px #000000;">
-												Tipo de actividades desarrolladas:
-												<br/>
-												<!--Condicional-->
-												<t t-if="entrevista.x_entrevista_id.x_actividades_ids">
-													<table style="width:100%;" onload="">
-														<thead>
-															<tr>
-														        <th>Actividad</th>
-														        <th>Tipo</th>
-														        <th>Descripción</th>
-														    </tr>
-														</thead>
-														<tbody>
-															<tr t-foreach = "entrevista.x_entrevista_id.x_actividades_ids"  t-as = "i">
-																<td><span  t-field="i.x_name"/></td>
-																<td><span  t-field="i.x_tipo"/></td>
-																<td><span  t-field="i.x_descripcion"/></td>
-															</tr>
-														</tbody>
-													</table>
-												</t>
-											</div>
+												<td width="50%">
+													<div class="text-center text-uppercase" style="border-bottom: solid 1px #000000;padding: 0;">
+														<strong>2.-Lazos con la comunidad</strong>
+													</div>
+													<div class="text-justify" style="padding: 4;padding-right: 20;">
+														<strong>Tipo de actividades desarrolladas:</strong>
+														<br/>
+														<span t-field="entrevista.x_actividades_desarrolladas"/>
+													</div>
+												</td>
+											</tr>
+										</table>
 										</div>
 									</div>
 
 									<!-- Puntos 3 y 4 de la entrevista -->
 									<div class="row" style="border-bottom: solid 1px #000000;">
-										<div class="col-xs-6" style="border-right: solid 1px #000000; padding: 0;">
-											<div class="text-center text-uppercase">
-												<strong>3.-Relaciones familiares</strong>
-											</div>
-											<div class="text-left" style="border-top: solid 1px #000000;padding-left: 20;"> 
-												Núcleo primario :
-												<br/>
-												<!--Condicional-->
-												<t t-if="entrevista.x_entrevista_id.x_contacto_ids">
-													<table style="width:100%;">
-														<thead>
-															<tr>
-														        <th>Nombre</th>
-														        <th>Parentesco</th>
-														        <th>Ocupación</th>
-														    </tr>
-														</thead>
-														<tbody>
-															<tr t-foreach = "entrevista.x_entrevista_id.x_contacto_ids"  t-as = "i">
-																<td><span  t-field="i.name"/></td>
-																<td><span  t-field="i.x_parentesco"/></td>
-																<td><span  t-field="i.x_ocupacion"/></td>
-															</tr>
-														</tbody>
-													</table>
-												</t>
+										<div class="col-xs-12" style="padding: 0;">
+										<table width="100%">
+											<tr>
+												<td width="50%" style="border-right:1px solid;">
+													<div class="text-center text-uppercase">
+														<strong>3.-Relaciones familiares</strong>
+													</div>
+													<div class="text-justify" style="border-top: solid 1px #000000;padding-left: 20;padding-right: 20;"> 
+														<strong>Núcleo primario :</strong>
+														<br/>
+														<span t-field="entrevista.x_nucleo_primario"/>
 
-												<br/>
-												Núcleo Secundario: 
-												<br/>
-												<p>
-													<!--Contenido-->
-												</p>
-											</div>
-										</div>
-
-										<div class="col-xs-6" style="padding: 0;">
-											<div class="text-center text-uppercase">
-												<strong>4.-Referencias personales</strong>
-											</div>
-											<div class="text-left" style="border-top: solid 1px #000000;">
-												<!--Condicional-->
-												<t t-if="entrevista.x_entrevista_id.x_amistades_ids">
-													<table style="width:100%;">
-														<thead>
-															<tr>
-														        <th>Nombre</th>
-														        <th>Relación</th>
-														        <th>Domicilio</th>
-														    </tr>
-														</thead>
-														<tbody>
-															<tr t-foreach = "entrevista.x_entrevista_id.x_amistades_ids"  t-as = "i">
-																<td><span  t-field="i.x_name"/></td>
-																<td><span  t-field="i.x_relacion"/></td>
-																<td><span  t-field="i.x_domicilio_ids.x_municipio"/><span  t-field="i.x_domicilio_ids.x_estado_id"/></td>
-															</tr>
-														</tbody>
-													</table>
-												</t>
-											</div>
+														<br/>
+														Núcleo Secundario: 
+														<br/>
+														<span t-field="entrevista.x_nucleo_secundario"/>
+													</div>
+												</td>
+												
+												<td width="50%">
+													<div class="text-center text-uppercase" style="border-bottom: solid 1px #000000;">
+														<strong>4.-Referencias personales</strong>
+													</div>
+													<div class="text-justify" style="padding: 4;padding-right: 20;">
+														<span t-field="entrevista.x_ref_personales"/>
+													</div>
+												</td>
+											</tr>
+										</table>
 										</div>
 									</div>
 
 									<!-- Puntos 5 y 6 de la entrevista -->
 									<div class="row" style="border-bottom: solid 1px #000000;">
-										<div class="col-xs-6" style="border-right: solid 1px #000000;padding: 0;">
-											<div class="text-center text-uppercase">
-												<strong>5.-Empleos</strong>
-											</div>
-											<div class="text-left" style="border-top: solid 1px #000000;padding-left: 20;">
-												Síntesis de actividad laboral:
-												<br/>
-												<!--Condicional-->
-												<t t-if="entrevista.x_entrevista_id.x_empleos_ids">
-													<table style="width:100%;">
-														<thead>
-															<tr>
-														        <th>Ocupación</th>
-														        <th>Actual/anterior</th>
-														        <th>Tipo empleo</th>
-														    </tr>
-														</thead>
-														<tbody>
-															<tr t-foreach = "entrevista.x_entrevista_id.x_empleos_ids"  t-as = "i">
-																<td><span  t-field="i.x_name"/></td>
-																<td><span  t-field="i.x_actual_anterior"/></td>
-																<td><span  t-field="i.x_tipo_empleo"/></td>
-															</tr>
-														</tbody>
-													</table>
-												</t>
-
-												Antecedentes laborales:
-												<br/>
-												<p>
-													<!--Contenido-->
-												</p>
-											</div>
+										<div class="col-xs-12" style="padding: 0;">
+										<table width="100%">
+											<tr>
+												<td width="50%" style="border-right:1px solid;">
+													<div class="text-center text-uppercase">
+														<strong>5.-Empleos</strong>
+													</div>
+													<div class="text-justify" style="border-top: solid 1px #000000;padding-left: 20;padding-right: 20;">
+														<strong>Síntesis de actividad laboral:</strong>
+														<br/>
+														<span t-field="entrevista.x_sintesis_act_laboral"/>
+														
+														<strong>Antecedentes laborales:</strong>
+														<br/>
+														<p>
+															<span t-field="entrevista.x_ant_laborales"/>
+														</p>
+													</div>
+												</td>
+												
+												<td width="50%">
+													<div class="text-center text-uppercase" style="border-bottom: solid 1px #000000;">
+														<strong>6.-Lugar de residencia</strong>
+													</div>
+													<div class="text-justify" style="padding: 4;padding-right: 20;">
+														<strong>Síntesis domiciliaria:</strong>
+														<br/>
+														<span t-field="entrevista.x_sintesis_domiciliaria"/>
+													</div>
+												</td>
+											</tr>
+										</table>
 										</div>
-										<div class="col-xs-6" style="padding: 0;">
-											<div class="text-center text-uppercase">
-												<strong>6.-Lugar de residencia</strong>
-											</div>
-											<div class="text-left" style="border-top: solid 1px #000000;">
-												Síntesis domiciliaria:
-												<br/>
-												<!--Condicional-->
-												<t t-if="entrevista.x_entrevista_id.x_domicilio_actual">
-													<table style="width:100%;">
-														<thead>
-															<tr>
-														        <th>Tipo domicilio</th>
-														        <th>Tipo vivienda</th>
-														        <th>Dirección</th>
-														    </tr>
-														</thead>
-														<tbody>
-															<tr t-foreach = "entrevista.x_entrevista_id.x_domicilio_actual"  t-as = "i">
-																<td><span  t-field="i.x_tipo_domicilio"/></td>
-																<td><span  t-field="i.x_vivienda.x_name"/></td>
-																<td><span  t-field="i.x_calle"/> <span  t-field="i.x_colonia"/> <span  t-field="i.x_municipio"/></td>
-															</tr>
-														</tbody>
-													</table>
-												</t>
-											</div>
-										</div>
+										
 									</div>
 
 									<!-- Puntos 7 y 8 de la entrevista -->
 									<div class="row">
-										<div class="col-xs-6" style="border-right: solid 1px #000000;padding: 0;">
-											<div class="text-center text-uppercase">
-												<strong>7.-Estudios</strong>
-											</div>
-											<div class="text-left" style="border-top: solid 1px #000000;padding-left: 20;">
-												Síntesis educativa
-												<br/>
-												<!--Condicional-->
-												<t t-if="entrevista.x_entrevista_id.x_estudios_ids">
-													<table style="width:100%;">
-														<thead>
-															<tr>
-														        <th>Escolaridad</th>
-														        <th>Institución</th>
-														    </tr>
-														</thead>
-														<tbody>
-															<tr t-foreach = "entrevista.x_entrevista_id.x_estudios_ids"  t-as = "i">
-																<td><span  t-field="i.x_name.x_name"/></td>
-																<td><span  t-field="i.x_institucion"/></td>
-															</tr>
-														</tbody>
-													</table>
-												</t>
-											</div>
-										</div>
-
-										<div class="col-xs-6" style="padding: 0;">
-											<div class="text-center text-uppercase">
-												<strong>8.-Información destacada</strong>
-											</div>
-											<div class="text-left" style="border-top: solid 1px #000000;">
-												<p>
-													<!--Contenido-->
-												</p>
-											</div>
+										<div class="col-xs-12" style="padding: 0;">
+										<table width="100%">
+											<tr>
+												<td width="50%" style="border-right:1px solid;">
+													<div class="text-center text-uppercase">
+														<strong>7.-Estudios</strong>
+													</div>
+													<div class="text-justify" style="border-top: solid 1px #000000;padding-left: 20;padding-right: 20;">
+														<strong>Síntesis educativa</strong>
+														<br/>
+														<span t-field="entrevista.x_sintesis_educativa"/>
+													</div>
+												</td>
+												
+												<td width="50%">
+													<div class="text-center text-uppercase" style="border-bottom: solid 1px #000000;">
+														<strong>8.-Información destacada</strong>
+													</div>
+													<div class="text-justify" style="padding:4;padding-right: 20;">
+														<p>
+															<span t-field="entrevista.x_inf_destacada"/>
+														</p>
+													</div>
+												</td>
+											</tr>
+										</table>
 										</div>
 									</div>
 								</div>
@@ -323,21 +248,26 @@
 								<div class="col-xs-12 text-center text-uppercase" style="border-bottom: solid 1px #000000;">
 									<strong>9.-Cumplimiento de las medidas cautelares anteriores</strong>
 								</div>
-								<div class="col-xs-12 text-left">
-									<p></p>
-									<p></p>
+								<div class="col-xs-12 text-justify">
+									<span t-field="entrevista.x_mc_anteriores"/>
 								</div>
 							</div>
 							<br/>
 							<!-- Punto 10 -->
 							<center><strong>VERIFICACIÓN DE DATOS</strong></center>
+							<div class="row">
+								<div class="col-xs-12">
+									<span t-field="entrevista.x_verificacion_datos"/>
+								</div>
+							</div>
+							<br/>
+
 							<div class="row" style="border: solid 1px #000000;padding: 0;">
 								<div class="col-xs-12 text-center text-uppercase" style="border-bottom: solid 1px #000000;">
 									<strong>10.- Comportamiento en la entrevista</strong>
 								</div>
-								<div class="col-xs-12 text-center">
-									<p></p>
-									<p></p>
+								<div class="col-xs-12 text-justify">
+									<span t-field="entrevista.x_comportamiento"/>
 								</div>
 							</div>
 							<br/>
@@ -357,9 +287,18 @@
 									<p>Arraigos.</p>
 									<div style="padding-left:20px;">
 										<ul style="list-style-type: circle;">
-											<li>Domiciliario: </li>
-											<li>Laboral y escolar: </li>
-											<li>Familiar: </li>
+											<li>
+												<strong>Domiciliario:</strong>
+												<span t-field="entrevista.x_conc_domiciliaria"/>
+											</li>
+											<li>
+												<strong>Laboral y escolar: </strong>
+												<span t-field="entrevista.x_conc_laboral_esc"/>
+											</li>
+											<li>
+												<strong>Familiar: </strong>
+												<span t-field="entrevista.x_conc_familiar"/>
+											</li>
 										</ul>
 									</div>
 
@@ -367,20 +306,41 @@
 									<p class="text-uppercase"><strong>Riesgo para la victima u ofendido, testigos o para la comunidad: </strong></p>
 									<div style="padding-left:20px;">
 										<ul style="list-style-type: circle;">
-											<li>Victima u ofendido: </li>
-											<li>Testigos: </li>
-											<li>Comunidad y/o sociedad: </li>
+											<li>
+												<strong>Victima u ofendido: </strong>
+												<span t-field="entrevista.x_conc_victima"/>
+											</li>
+											<li>
+												<strong>Testigos: </strong>
+												<span t-field="entrevista.x_conc_testigos"/>
+											</li>
+											<li>
+												<strong>Comunidad y/o sociedad: </strong>
+												<span t-field="entrevista.x_conc_comunidad"/>
+											</li>
 										</ul>
 									</div>
 
 									<!--//////////Peligro de obstaculización del desarrollo de la investigación//////////-->
 									<p class="text-uppercase"><strong>Peligro de obstaculización del desarrollo de la investigación: </strong></p>
-									<p>Retención:</p>
 									<div style="padding-left:20px;">
 										<ul style="list-style-type: circle;">
-											<li>Antecedentes y/o reincidencias: </li>
-											<li>Ingresos económicos: </li>
-											<li>Proximidad: </li>
+											<li>
+												<strong>Retención: </strong>
+												<span t-field="entrevista.x_conc_retencion"/>
+											</li>
+											<li>
+												<strong>Antecedentes y/o reincidencias: </strong>
+												<span t-field="entrevista.x_conc_ant_reincidencias"/>
+											</li>
+											<li>
+												<strong>Ingresos económicos: </strong>
+												<span t-field="entrevista.x_conc_ingresos"/>
+											</li>
+											<li>
+												<strong>Proximidad: </strong>
+												<span t-field="entrevista.x_conc_proximidad"/>
+											</li>
 										</ul>
 									</div>
 
@@ -393,14 +353,14 @@
 
 								</div>
 							</div>
+							<br/>
 
 							<div class="row">
 								<div class="col-xs-12 text-justify">
-									<p>
-										El entrevistado...
-									</p>	
+									<span t-field="entrevista.x_conclusion"/>	
 								</div>
 							</div>
+							<br/>
 							<div class="row">
 								<div class="col-xs-4"></div>
 								<div class="col-xs-4 text-center">
@@ -414,9 +374,7 @@
 										<span t-field="entrevista.x_fecha_analisis" t-options="{'format': 'y'}"/>
 									</p>
 									<br/>
-									<p>
-										Lic. XXXX
-									</p>
+									<span t-field="entrevista.x_evaluador_id"/>
 									<p>
 										Evaluador(a) de Riesgos Procesales de la Dirección de Medidas Cautelares y Policía Procesal, Región Centro, Puebla.
 									</p>

@@ -165,4 +165,79 @@ class umc_evaluacion(models.Model):
         string=u'Conclusión',
     )
     
-    
+    #==========Campos para reporte==========
+    x_name_abogado = fields.Char(
+        string='Abogado',
+    )
+    x_area = fields.Char(
+        string='Área',
+    )
+    x_agente = fields.Char(
+        string='Agente',
+    )
+    x_actividades_desarrolladas = fields.Text(
+        string='Tipo de actividades desarrolladas',
+    )
+    x_nucleo_primario = fields.Text(
+        string='Núcleo primario',
+    )
+    x_nucleo_secundario = fields.Text(
+        string='Núcleo secundario',
+    )
+    x_ref_personales = fields.Text(
+        string='Referencias personales',
+    )
+    x_sintesis_act_laboral = fields.Text(
+        string='Síntesis de actividad laboral',
+    )
+    x_ant_laborales = fields.Text(
+        string='Antecedentes laborales',
+    )
+    x_sintesis_domiciliaria = fields.Text(
+        string='Síntesis domiciliaria',
+    )
+    x_sintesis_educativa = fields.Text(
+        string='Síntesis educativa',
+    )
+    x_inf_destacada = fields.Text(
+        string='Información destacada',
+    )
+    x_mc_anteriores = fields.Text(
+        string='Cumplimiento de medidas cautelares anteriores',
+    )
+    x_verificacion_datos = fields.Text(
+        string='Verificación de datos',
+    )
+    x_comportamiento = fields.Text(
+        string='Comportamiento en la entrevista',
+    )
+    x_conc_domiciliaria = fields.Text(
+        string='Domiciliario',
+    )
+    x_conc_laboral_esc = fields.Text(
+        string='Laboral y/o escolar',
+    )
+    x_conc_familiar = fields.Text(
+        string='Familiar',
+    )
+    x_conc_victima = fields.Text(
+        string='Victima u ofendido',
+    )
+    x_conc_testigos = fields.Text(
+        string='Testigos',
+    )
+    x_conc_comunidad = fields.Text(
+        string='Comunidad y/o sociedad',
+    )
+    x_conc_retencion = fields.Text(
+        string='Retención',
+    )
+    x_conc_ant_reincidencias = fields.Text(
+        string='Antecedentes y/o Reincidencias',
+    )
+    x_conc_ingresos = fields.Text(
+        string='Ingresos económicos',
+    )
+    x_conc_proximidad = fields.Text(
+        string='Proximidad',
+    )

@@ -66,9 +66,130 @@
                                 </group>
                             </page>
                             <page string="Evaluación" attrs="{'invisible': [('state','not in',('evaluacion'))]}">
-                                <group>
-                                    <field name="x_conclusion" />
-                                </group>
+                                <div class="row">
+                                    <div class="col-xs-6">
+                                        <h4>Datos para reporte</h4>
+                                        <group>
+                                            <field name="x_name_abogado"/>
+                                            <field name="x_area"/>
+                                        </group>
+                                    </div>
+                                    <div class="col-xs-6">
+                                        <h4>Datos para reporte</h4>
+                                        <group>
+                                            <field name="x_agente"/>
+                                        </group>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-6">
+                                        <h4>Lazos con la comunidad</h4>
+                                        <label style="font-weight: bold;" for="x_actividades_desarrolladas"/>
+                                        <field name="x_actividades_desarrolladas"/>
+                                    </div>
+                                    <div class="col-xs-6">
+                                        <h4>Relaciones familiares</h4>
+                                        <label style="font-weight: bold;" for="x_nucleo_primario"/>
+                                        <field name="x_nucleo_primario"/>
+                                        <label style="font-weight: bold;" for="x_nucleo_secundario"/>
+                                        <field name="x_nucleo_secundario"/>
+                                    </div>
+                                    
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-6">
+                                        <h4>Referencias personales</h4>
+                                        <label style="font-weight: bold;" for="x_ref_personales"/>
+                                        <field name="x_ref_personales"/>
+                                    </div>
+                                    <div class="col-xs-6">
+                                        <h4>Empleos</h4>
+                                        <label style="font-weight: bold;" for="x_sintesis_act_laboral"/>
+                                        <field name="x_sintesis_act_laboral"/>
+                                        <label style="font-weight: bold;" for="x_ant_laborales"/>
+                                        <field name="x_ant_laborales"/>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-6">
+                                        <h4>Lugar de recidencia</h4>
+                                        <label style="font-weight: bold;" for="x_sintesis_domiciliaria"/>
+                                        <field name="x_sintesis_domiciliaria"/>
+                                    </div>
+                                    <div class="col-xs-6">
+                                        <h4>Estudios</h4>
+                                        <label style="font-weight: bold;" for="x_sintesis_educativa"/>
+                                        <field name="x_sintesis_educativa"/>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-6">
+                                        <h4>Información destacada</h4>
+                                        <field name="x_inf_destacada"/>
+                                    </div>
+                                    <div class="col-xs-6">
+                                        <h4>Cumplimiento de medidas cautelares ateriores</h4>
+                                        <field name="x_mc_anteriores"/>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-xs-12">
+                                        <h4>Verificación de datos</h4>
+                                        <field name="x_verificacion_datos"/>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-12">
+                                        <h4>Comportamiento en la entrevista</h4>
+                                        <field name="x_comportamiento"/>
+                                    </div>
+                                </div>
+                                <br/>
+                                <h3>Conclusión</h3>
+                                <hr/>
+                                <div class="row">
+                                    <div class="col-xs-6">
+                                        <h4>Peligro de sustracción del imputado</h4>
+                                        <group>
+                                            <field name="x_conc_domiciliaria"/>
+                                            <field name="x_conc_laboral_esc"/>
+                                            <field name="x_conc_familiar"/>
+                                        </group>
+                                    </div>
+                                    <div class="col-xs-6">
+                                        <h4>Riesgo para la victima u ofendido</h4>
+                                        <group>
+                                            <field name="x_conc_victima"/>
+                                            <field name="x_conc_testigos"/>
+                                            <field name="x_conc_comunidad"/>
+                                        </group>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-12">
+                                        <h4>Peligro de obstaculización del desarrollo de la investigació</h4>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-6">
+                                        <group>
+                                            <field name="x_conc_retencion"/>
+                                            <field name="x_conc_ant_reincidencias"/>
+                                        </group>
+                                    </div>
+                                    <div class="col-xs-6">
+                                        <group>
+                                            <field name="x_conc_ingresos"/>
+                                            <field name="x_conc_proximidad"/>
+                                        </group>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-12">
+                                        <field name="x_conclusion" placeholder="El entrevistado no manifestó haber estado..."/>
+                                    </div>
+                                </div>
                             </page>
                         </notebook>
                     </group>
