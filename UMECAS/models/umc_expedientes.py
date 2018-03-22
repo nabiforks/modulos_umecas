@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from datetime import timedelta
+from datetime import timedelta, datetime
 from odoo import api, fields, models
 
 
@@ -50,7 +50,14 @@ class Expedientes(models.Model):
     def create(self, vals):
         if vals.get('x_name', 'New') == 'New':
             vals['x_name'] = self.env['ir.sequence'].next_by_code(
-                'umc_expedientes') or'New'
+                'umc_expedientes') or 'New'
+            #now = datetime.now()
+            #print self.createFolioExpedienteByAnio(vals, now.year)
         print vals
         result = super(Expedientes, self).create(vals)
         return result
+
+    @api.model
+    def createFolioExpedienteByAnio(self,par_values, par_anio_fiscal):
+
+        return "adadfs" + str(par_anio_fiscal)
