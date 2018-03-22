@@ -39,6 +39,7 @@
         'views/umc_enfermedades.xml',
         'views/umc_sustancias.xml',
         'views/umc_amistades.xml',
+        'views/umc_company.xml',
         'data/datos_demo.xml'
     ],
     # only loaded in demonstration mode

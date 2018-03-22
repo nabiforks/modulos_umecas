@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <record id="view_company_inherit_form" model="ir.ui.view">
+            <field name="name">Company - Casa de justicia</field>
+            <field name="model">res.company</field>
+            <field name="inherit_id" ref="base.view_company_form" />
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='name']" position="attributes">
+                    <attribute name="string">Nombre</attribute>
+                </xpath>
+                <xpath expr="//field[@name='partner_id']" position="attributes">
+                    <attribute name="string">Casa Justicia</attribute>
+                </xpath>
+                <xpath expr="//field[@name='parent_id']" position="attributes">
+                    <attribute name="string">Casa Matriz</attribute>
+                </xpath>
+                <xpath expr="//field[@name='vat']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//field[@name='company_registry']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//field[@name='currency_id']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <field name="partner_id" position="after">
+                    <field name="x_abreviatura" />
+                    <field name="x_region" /></field>
+            </field>
+        </record>
+        <record id="view_company_inherit_tree" model="ir.ui.view">
+            <field name="name">Company - Casa de justicia- tree</field>
+            <field name="model">res.company</field>
+            <field name="inherit_id" ref="base.view_company_tree" />
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='name']" position="attributes">
+                    <attribute name="string">Nombre</attribute>
+                </xpath>
+                <xpath expr="//field[@name='partner_id']" position="attributes">
+                    <attribute name="string">Casa Justicia</attribute>
+                </xpath>
+            </field>
+        </record>
+        <!--record id="view_company_inherit_tree" model="ir.ui.view"><field name="name">Company - Casa de justicia- tree</field><field name="model">res.company</field><field name="inherit_id" ref="base.view_company_tree" /><field name="arch" type="xml"><xpath expr="//field[@name='name']" position="attributes"><attribute name="string">Nombre</attribute></xpath><xpath expr="//field[@name='partner_id']" position="attributes"><attribute name="string">Casa Justicia</attribute></xpath></field></record-->
+        <record model="ir.ui.menu" id="base.menu_action_res_company_form">
+            <field name="name">Casas de Justicia</field>
+        </record>
+    </data>
+</odoo>

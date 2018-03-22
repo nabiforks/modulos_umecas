@@ -33,6 +33,32 @@
             <field name="x_name">Región Centro</field>
             <field name="x_codigo">CENTRO</field>
         </record>
+        <!--Datos Casas de justicia ////////////////////////////////-->
+        <record id="umc_casa_justicia_1" model="res.company">
+            <field name="name">Casa de Justicia Tezuitlán</field>
+            <field name="x_abreviatura">Tezuitlán</field>
+            <field name="x_region" ref='umc_regiones_1'/>
+        </record>
+        <record id="umc_casa_justicia_2" model="res.company">
+            <field name="name">Casa de Justicia de Ciudad Serdán</field>
+            <field name="x_abreviatura">Cd.Serdán</field>
+            <field name="x_region" ref='umc_regiones_1'/>
+        </record>
+        <record id="umc_casa_justicia_3" model="res.company">
+            <field name="name">Sala de Oralidad de Libres</field>
+            <field name="x_abreviatura">Libres</field>
+            <field name="x_region" ref='umc_regiones_1'/>
+        </record>
+        <record id="umc_casa_justicia_4" model="res.company">
+            <field name="name">Casa de Justicia de Huauchinango</field>
+            <field name="x_abreviatura">Huauchinango</field>
+            <field name="x_region" ref='umc_regiones_2'/>
+        </record>
+        <record id="umc_casa_justicia_5" model="res.company">
+            <field name="name">Casa de Justicia Zacatlán</field>
+            <field name="x_abreviatura">Zacatlán</field>
+            <field name="x_region" ref='umc_regiones_2'/>
+        </record>
         <!--Datos demo para delitos ////////////////////////////////////////////////////-->
         <!--Datos demo para delitos ////////////////////////////////////////////////////-->
         <!--Datos demo para delitos ////////////////////////////////////////////////////-->
