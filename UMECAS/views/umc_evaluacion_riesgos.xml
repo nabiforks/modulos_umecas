@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<openerp>
+    <data>
+        <record model="ir.ui.view" id="umc_evaluacion_escala_tree_view">
+            <field name="name">umc_evaluacion_riesgos.tree.view</field>
+            <field name="model">umc_evaluacion</field>
+            <field name="umc_entrevistas_tree_view" ref="UMECAS.umc_entrevistas_tree_view"/>
+            <field name="arch" type="xml">
+                <tree string="Escalas de riesgos ddz"  create="false" edit="false">
+                    <field name="x_name"/>
+                    <field name="x_evaluador_id"/>
+                    <field name="x_imputado_name"/>
+                    <field name="x_tipo_entrevista"/>
+                    <field name="x_fecha_analisis"/>
+                    <field name="x_ponderacion"/>
+                    <field name="x_escala_riesgos"/>
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="umc_entrevistas_escala_search_view">
+            <field name="name">umc_evaluacion_riesgos.search.view</field>
+            <field name="model">umc_evaluacion</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="x_name"/>
+                    <field name="x_evaluador_id"/>
+                    <field name="x_ponderacion"/>
+                    <filter name="mis_entrevistas" string="Mis entrevistas" domain="[('x_evaluador_id', '=', uid)]"/>
+
+                    <group string="Group By">
+                        <filter name="evaluador" string="Evaluador" context="{'group_by': 'x_evaluador_id'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="umc_escala_riesgos_list_action">
+            <field name="name">Escala de riesgos</field>
+            <field name="res_model">umc_evaluacion</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="umc_evaluacion_escala_tree_view"/>
+            <!--field name="context" eval="{'search_default_customer': 1}"/-->
+        </record>
+
+
+        <menuitem id="escala_riesgos_menu" name="Escala de Riesgos" parent="main_umc_menu"
+                  action="umc_escala_riesgos_list_action"/>
+    </data>
+</openerp>
