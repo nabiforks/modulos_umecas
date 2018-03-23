@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+
+        <record model="ir.ui.view" id="umc_casas_justicia_anio_fiscal_view_tree">
+            <field name="name">Consecutivos casa de justicia</field>
+            <field name="model">umc_casas_justicia_anio_fiscal</field>
+            <field name="arch" type="xml">
+                <tree string="Consecutivos casa de justicia">
+                    <field name="company_id"/>
+                    <field name="anio" widget="char"/>
+                    <field name="secuencial"/>
+                </tree>
+            </field>
+        </record>
+        <record id="umc_casas_justicia_anio_fiscal_view" model="ir.actions.act_window">
+            <field name="name">Configuración casa de justicia</field>
+            <field name="res_model">umc_casas_justicia_anio_fiscal</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">Agregar</p>
+            </field>
+        </record>
+
+
+        <menuitem id="umc_casa_justicia_anio_fiscal" sequence="24" name="Casa de justicia año fiscal"
+                  parent="umc_catalogos_label" action="umc_casas_justicia_anio_fiscal_view"/>
+    </data>
+</odoo>
