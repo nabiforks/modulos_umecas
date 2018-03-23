@@ -28,7 +28,7 @@ class umc_casas_justicia_anio_fiscal(models.Model):
         return False
 
     def getPrefijoCasaById(self, par_casa_id):
-        prefijo = self.env['res.company'].search([('partner_id', '=', par_casa_id)])
+        prefijo = self.env['res.company'].search([('id', '=', par_casa_id)])
         if prefijo.x_abreviatura:
             return  prefijo.x_region.x_codigo + "/" + prefijo.x_abreviatura
         return ""
