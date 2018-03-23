@@ -56,17 +56,18 @@ class Expedientes(models.Model):
             vals['x_name'] = self.env['ir.sequence'].next_by_code(
                 'umc_expedientes') or 'New'
             now = datetime.now()
-            folio = self.createFolioExpedienteByAnio(vals, now.year)
+            folio = self.createFolioExpedienteByAnio(now.year,1)
             vals['x_name'] = folio or 'new'
             # print vals
         result = super(Expedientes, self).create(vals)
         return result
 
     @api.model
-    def createFolioExpedienteByAnio(self, par_values, par_anio_fiscal):
+    def createFolioExpedienteByAnio(self, par_anio_fiscal, par_tipo_configuracion):
         folio = self.env[
                     'umc_casas_justicia_anio_fiscal'].getConsecutivoByAnioAndCasaJusticia(self.env.user.company_id.id,
-                                                                                          par_anio_fiscal) + "/" + \
+                                                                                          par_anio_fiscal,
+                                                                                          par_tipo_configuracion) + "/" + \
                 self.env['umc_casas_justicia_anio_fiscal'].getPrefijoCasaById(
                     self.env.user.company_id.id) + "/" + str(par_anio_fiscal)
         return folio

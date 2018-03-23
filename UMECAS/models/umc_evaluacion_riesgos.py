@@ -1,14 +1,16 @@
 # -*- coding: utf-8 -*-
-from datetime import timedelta
+from datetime import timedelta, datetime
 from odoo import api, fields, models
 
 
 class umc_evaluacion(models.Model):
     _name = 'umc_evaluacion'
-    #_inherit = 'mail.thread'
+    # _inherit = 'mail.thread'
 
     x_name = fields.Char('Solicitud de evaluación', required=True, readonly=True,
                          default=lambda self: 'Nuevo')
+    folio_evalucion = fields.Char('Folio de la evaluación', readonly=True, default=lambda self: '')
+
     x_expediente_id = fields.Many2one(
         'umc_expedientes',
         string=u'Expediente',
@@ -44,20 +46,21 @@ class umc_evaluacion(models.Model):
         ('entrevista', 'Entrevista'),
         ('analisis', 'Escala de Riesgos'),
         ('evaluacion', 'Evaluación'),
-    ], default='solicitud', readonly=True,string='Estatus')
+        ('evaluacion_terminada', 'Evaluación Terminada'),
+    ], default='solicitud', readonly=True, string='Estatus')
     x_casa_justicia = fields.Many2one(
         string=u'Casa de Justicia',
         comodel_name='res.company',
         ondelete='set null',
         readonly=True,
-        required=True,       
+        required=True,
     )
 
     @api.model
     def create(self, vals):
         if vals.get('x_name', 'Nuevo') == 'Nuevo':
             vals['x_name'] = self.env['ir.sequence'].next_by_code(
-                'umc_evaluacion') or'Nuevo'
+                'umc_evaluacion') or 'Nuevo'
         result = super(umc_evaluacion, self).create(vals)
         return result
 
@@ -70,9 +73,9 @@ class umc_evaluacion(models.Model):
         if self.x_evaluador_id:
             self.state = 'entrevista'
             valores_entrevista = {'x_evaluacion_id': self.id,
-                                'x_evaluador_id': self.x_evaluador_id,
-                                'x_imputado_id': self.partner_id,
-                                'x_casa_justicia':self.x_casa_justicia.id}
+                                  'x_evaluador_id': self.x_evaluador_id,
+                                  'x_imputado_id': self.partner_id,
+                                  'x_casa_justicia': self.x_casa_justicia.id}
             res = self.env['umc_entrevistas'].create(valores_entrevista)
             self.x_entrevista_id = res
             return res
@@ -87,29 +90,46 @@ class umc_evaluacion(models.Model):
                     {'seccion': seccion, 'x_evaluacion_id': self.id})
 
     @api.multi
+    def getFolioEvaluacion(self):
+        now = datetime.now()
+        folio = self.env['umc_expedientes'].createFolioExpedienteByAnio(now.year, 2)
+        return folio
+
+    @api.multi
     def terminar_analisis(self):
         self.state = 'evaluacion'
 
-    #///////////////////////////////////////Campos de las entrevistas////////////////
-    #///////////////////////////////////////Campos de las entrevistas////////////////
-    #///////////////////////////////////////Campos de las entrevistas////////////////
+    @api.multi
+    def terminar_evaluacion(self):
+        print self.folio_evalucion
+        if self.folio_evalucion:
+            print "-->>  Ya fue asignado el folio de la evalución -->>"
+            return
+        else:
+            self.folio_evalucion = self.getFolioEvaluacion()
+            self.state='evaluacion_terminada'
+
+
+    # ///////////////////////////////////////Campos de las entrevistas////////////////
+    # ///////////////////////////////////////Campos de las entrevistas////////////////
+    # ///////////////////////////////////////Campos de las entrevistas////////////////
 
     x_entrevista_id = fields.Many2one(
         string=u'Entrevista',
         comodel_name='umc_entrevistas',
         readonly=True,
         ondelete='set null',
-    )    
+    )
     x_entrevista_status = fields.Selection(
         string=u'Estatus de Entrevista',
         readonly=True,
         related='x_entrevista_id.state',
     )
 
-    #///////////////////////////////////////////Escala de riesgos///////////////////////////////////////////////
-    #///////////////////////////////////////////Escala de riesgos///////////////////////////////////////////
-    #///////////////////////////////////////////Escala de riesgos///////////////////////////////////////////////
-    #///////////////////////////////////////////Escala de riesgos////////////////////////////////////////////////
+    # ///////////////////////////////////////////Escala de riesgos///////////////////////////////////////////////
+    # ///////////////////////////////////////////Escala de riesgos///////////////////////////////////////////
+    # ///////////////////////////////////////////Escala de riesgos///////////////////////////////////////////////
+    # ///////////////////////////////////////////Escala de riesgos////////////////////////////////////////////////
 
     x_fecha_analisis = fields.Date(
         string=u'Fecha Analisis de Riesgos',
@@ -126,23 +146,21 @@ class umc_evaluacion(models.Model):
     )
     x_escala_valores_id = fields.Many2one(
         string=u'Escala valores ID',
-        comodel_name='umc_escalas',         
-        store=True,               
-        default=lambda self: self.env['umc_escalas'].search([]),        
+        comodel_name='umc_escalas',
+        store=True,
+        default=lambda self: self.env['umc_escalas'].search([]),
         ondelete='set null',
     )
-    
 
     x_escalas_ids = fields.One2many(
         string=u'Escala de valores',
         comodel_name='ucm.escalavalores.evaluacion',
         inverse_name='x_evaluacion_id',
-        #default=lambda self: self.env['ucm.escalavalores.evaluacion'].search([]).ids,
+        # default=lambda self: self.env['ucm.escalavalores.evaluacion'].search([]).ids,
     )
-    
 
     @api.multi
-    @api.depends('x_escalas_ids','x_escala_valores_id.x_bajo','x_escala_valores_id.x_alto')
+    @api.depends('x_escalas_ids', 'x_escala_valores_id.x_bajo', 'x_escala_valores_id.x_alto')
     def calcular_ponderacion(self):
         print self.x_escala_valores_id
         for record in self:
@@ -156,13 +174,12 @@ class umc_evaluacion(models.Model):
                 record.x_escala_riesgos = 'alto'
             else:
                 record.x_escala_riesgos = 'medio'
-    #///////////////////////////////////////////Evaluación/////////////////////////////////////////////
-    #///////////////////////////////////////////Evaluación/////////////////////////////////////////////
-    #///////////////////////////////////////////Evaluación/////////////////////////////////////////////
-    #///////////////////////////////////////////Evaluación/////////////////////////////////////////////
-    
+
+    # ///////////////////////////////////////////Evaluación/////////////////////////////////////////////
+    # ///////////////////////////////////////////Evaluación/////////////////////////////////////////////
+    # ///////////////////////////////////////////Evaluación/////////////////////////////////////////////
+    # ///////////////////////////////////////////Evaluación/////////////////////////////////////////////
+
     x_conclusion = fields.Text(
         string=u'Conclusión',
     )
-    
-    

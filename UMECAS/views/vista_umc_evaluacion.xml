@@ -8,66 +8,81 @@
             <form>
                 <header>
                     <button name="asignar_borrador" type="object" string="Solicitud" states="entrevista"/>
-                    <button name="generar_entrevista" type="object" string="Generar entrevista" class="oe_highlight" states="solicitud"/>
-                    <button name="terminar_entrevista" type="object" string="Escala de riesgos" class="oe_highlight" states="entrevista"/>
-                    <button name="terminar_analisis" type="object" string="Evaluación" class="oe_highlight" states="analisis"/>
-                    <field name="state" widget="statusbar" />
+                    <button name="generar_entrevista" type="object" string="Generar entrevista" class="oe_highlight"
+                            states="solicitud"/>
+                    <button name="terminar_entrevista" type="object" string="Escala de riesgos" class="oe_highlight"
+                            states="entrevista"/>
+                    <button name="terminar_analisis" type="object" string="Evaluación" class="oe_highlight"
+                            states="analisis"/>
+                    <button name="terminar_evaluacion" type="object" string="Terminar Evaluación" class="oe_highlight"
+                            states="evaluacion"/>
+                    <field name="state" widget="statusbar"/>
                 </header>
                 <sheet>
                     <div class="oe_title">
                         <h1>
-                            <field name="x_name" />
+                            <field name="x_name"/>
                         </h1>
                     </div>
+
                     <group>
                         <group>
-                            <field name="x_evaluador_id" attrs="{'readonly': [('state','not in',('solicitud'))]}" options="{'no_create': True, 'no_open': True}" />
+                            <field name="x_evaluador_id" attrs="{'readonly': [('state','not in',('solicitud'))]}"
+                                   options="{'no_create': True, 'no_open': True}"/>
                             <field name="x_tipo_entrevista" widget="radio" options="{'horizontal': true}"/>
+                            <field name="folio_evalucion"/>
                         </group>
                         <group>
-                            <field name="x_imputado_name" />
-                            <field name="partner_id" invisible="1" />
-                            <field name="x_expediente_id" />
-                            <field name="x_casa_justicia" />
+                            <field name="x_imputado_name"/>
+                            <field name="partner_id" invisible="1"/>
+                            <field name="x_expediente_id"/>
+                            <field name="x_casa_justicia"/>
                         </group>
                     </group>
                     <group class="row">
                         <notebook>
                             <page string="Entrevista" attrs="{'invisible': [('state','in',('solicitud'))]}">
                                 <group>
-                                    <field name="x_entrevista_id" />
-                                    <field name="x_entrevista_status" />
+                                    <field name="x_entrevista_id"/>
+                                    <field name="x_entrevista_status"/>
                                 </group>
                             </page>
-                            <page string="Escala de riesgos" attrs="{'invisible': [('state','in',('solicitud','entrevista'))]}">
+                            <page string="Escala de riesgos"
+                                  attrs="{'invisible': [('state','in',('solicitud','entrevista'))]}">
                                 <group class="row">
                                     <group>
-                                        <field name="x_fecha_analisis" />
+                                        <field name="x_fecha_analisis"/>
                                     </group>
                                     <group>
                                         <field name="x_ponderacion" readonly="1"/>
                                         <field name="x_escala_riesgos" readonly="1"/>
                                         <field name="x_escala_valores_id" invisible="1"/>
                                         <div>
-                                            <button name="semaforo_verde" string="B" style="{border-radius: 25px}" type="button" class="btn btn-success" attrs="{'invisible': [('x_escala_riesgos','not in','bajo')]}"/>
-                                            <button name="semaforo_ambar" string="M" style="{border-radius: 25px}" type="button" class="btn btn-warning" attrs="{'invisible': [('x_escala_riesgos','not in','medio')]}"/>
-                                            <button name="semaforo_rojo" string="A" style="{border-radius: 25px}" type="button" class="btn btn-danger" attrs="{'invisible': [('x_escala_riesgos','not in','alto')]}"/>
+                                            <button name="semaforo_verde" string="B" style="{border-radius: 25px}"
+                                                    type="button" class="btn btn-success"
+                                                    attrs="{'invisible': [('x_escala_riesgos','not in','bajo')]}"/>
+                                            <button name="semaforo_ambar" string="M" style="{border-radius: 25px}"
+                                                    type="button" class="btn btn-warning"
+                                                    attrs="{'invisible': [('x_escala_riesgos','not in','medio')]}"/>
+                                            <button name="semaforo_rojo" string="A" style="{border-radius: 25px}"
+                                                    type="button" class="btn btn-danger"
+                                                    attrs="{'invisible': [('x_escala_riesgos','not in','alto')]}"/>
                                         </div>
                                     </group>
                                 </group>
                                 <group>
                                     <field name="x_escalas_ids">
                                         <tree string="Escala de valores" create="0" edit="1" editable="top">
-                                            <field name="seccion" />
-                                            <field name="valor_ids" domain="[('seccion_id', '=', seccion)]" />
-                                            <field name="num_valor" />
+                                            <field name="seccion"/>
+                                            <field name="valor_ids" domain="[('seccion_id', '=', seccion)]"/>
+                                            <field name="num_valor"/>
                                         </tree>
                                     </field>
                                 </group>
                             </page>
                             <page string="Evaluación" attrs="{'invisible': [('state','not in',('evaluacion'))]}">
                                 <group>
-                                    <field name="x_conclusion" />
+                                    <field name="x_conclusion"/>
                                 </group>
                             </page>
                         </notebook>
@@ -83,13 +98,13 @@
         <field name="model">umc_evaluacion</field>
         <field name="arch" type="xml">
             <tree>
-                <field name="x_name" />
-                <field name="x_imputado_name" />
-                <field name="partner_id" invisible="1" />
-                <field name="x_tipo_entrevista" />
-                <field name="x_evaluador_id" />
-                <field name="x_expediente_id" />
-                <field name="state" />
+                <field name="x_name"/>
+                <field name="x_imputado_name"/>
+                <field name="partner_id" invisible="1"/>
+                <field name="x_tipo_entrevista"/>
+                <field name="x_evaluador_id"/>
+                <field name="x_expediente_id"/>
+                <field name="state"/>
             </tree>
         </field>
     </record>
@@ -99,11 +114,12 @@
         <field name="model">umc_evaluacion</field>
         <field name="arch" type="xml">
             <search>
-                <filter string="Estatus evaluación" name="state_eval" domain="[('state','=','evaluacion')]" help="Filtra las solicitudes que estan en estatus de evaluación" />
-                <field name="x_expediente_id" />
-                <field name="x_imputado_name" />
-                <field name="x_tipo_entrevista" />
-                <field name="state" />
+                <filter string="Estatus evaluación" name="state_eval" domain="[('state','=','evaluacion')]"
+                        help="Filtra las solicitudes que estan en estatus de evaluación"/>
+                <field name="x_expediente_id"/>
+                <field name="x_imputado_name"/>
+                <field name="x_tipo_entrevista"/>
+                <field name="state"/>
             </search>
         </field>
     </record>
@@ -115,8 +131,9 @@
         <field name="view_mode">tree,kanban,form</field>
         <!--field name="context" eval="{'search_default_customer': 1}"/-->
         <field name="help" type="html">
-            <p class="oe_view_nocontent_create">Agregar primer registro                </p>
+            <p class="oe_view_nocontent_create">Agregar primer registro</p>
         </field>
     </record>
-    <menuitem id="evaluaciones_menu" name="Solicitud/evaluación" parent="main_umc_menu" action="umc_evaluacion_list_action"/>
+    <menuitem id="evaluaciones_menu" name="Solicitud/evaluación" parent="main_umc_menu"
+              action="umc_evaluacion_list_action"/>
 </odoo>
