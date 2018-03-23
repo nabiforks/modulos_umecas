@@ -59,6 +59,25 @@
             <field name="x_abreviatura">Zacatlán</field>
             <field name="x_region" ref='umc_regiones_2'/>
         </record>
+        <!--Datos demo para actividad ////////////////////////////////////////////////////-->
+        <!--Datos demo para actividad ////////////////////////////////////////////////////-->
+        <!--Datos demo para actividad ////////////////////////////////////////////////////-->
+        <!--Datos demo para actividad ////////////////////////////////////////////////////-->
+        <record id="umc_actividad_1" model="umc_actividad">
+            <field name="x_name">Cívica</field>
+        </record>
+        <record id="umc_actividad_2" model="umc_actividad">
+            <field name="x_name">Cultural</field>
+        </record>
+        <record id="umc_actividad_3" model="umc_actividad">
+            <field name="x_name">Religiosa</field>
+        </record>
+        <record id="umc_actividad_4" model="umc_actividad">
+            <field name="x_name">Deportiva</field>
+        </record>
+        <record id="umc_actividad_5" model="umc_actividad">
+            <field name="x_name">Otra</field>
+        </record>
         <!--Datos demo para delitos ////////////////////////////////////////////////////-->
         <!--Datos demo para delitos ////////////////////////////////////////////////////-->
         <!--Datos demo para delitos ////////////////////////////////////////////////////-->

@@ -1,60 +1,111 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
-    <record model="ir.ui.view" id="umc_direccion_form_view">
-        <field name="name">direcciones.form.view</field>
-        <field name="model">umc_domicilio</field>
-        <field name="arch" type="xml">
-            <form>
-                <header></header>
-                <sheet>
-                    <group>
+    <data>
+        <record model="ir.ui.view" id="umc_direccion_form_view">
+            <field name="name">direcciones.form.view</field>
+            <field name="model">umc_domicilio</field>
+            <field name="arch" type="xml">
+                <form>
+                    <header></header>
+                    <sheet>
                         <group>
-                            <label for="street" string="Dirección"/>
-                            <div class="o_address_format">
-                                <!--div class="oe_edit_only"><button name="open_parent" type="object" string="(edit)" class="oe_link" attrs="{'invisible': ['|', ('parent_id', '=', False), ('type', '!=', 'contact')]}"/></div-->
-                                <field name="x_calle" placeholder="Calle..." class="o_address_street" />
-                                <field name="x_colonia" placeholder="Colonia..." class="o_address_street" />
-                                <field name="x_municipio" placeholder="Municipio.." class="o_address_city" />
-                                <field name="x_estado_id" class="o_address_state" placeholder="Estado" options="{&quot;no_open&quot;: True}" domain="[('country_id', '=', 157)]" />
-                                <!--field name="zip" placeholder="ZIP" class="o_address_zip" attrs="{'readonly': [('type', '=', 'contact'),('parent_id', '!=', False)]}"/-->
-                                <!--field name="x_pais_id" placeholder="Country" class="o_address_country" options="{&quot;no_open&quot;: True, &quot;no_create&quot;: True}" /-->
-                            </div>
-                            <field name="x_tipo_domicilio" />
-                            <field name="x_motivo_mudanza" attrs="{ 'invisible':[('x_tipo_domicilio','not in','anterior')] }" />
+                            <group>
+                                <label for="street" string="Dirección"/>
+                                <div class="o_address_format">
+                                    <!--div class="oe_edit_only"><button name="open_parent" type="object" string="(edit)" class="oe_link" attrs="{'invisible': ['|', ('parent_id', '=', False), ('type', '!=', 'contact')]}"/></div-->
+                                    <field name="x_calle" placeholder="Calle..." class="o_address_street" />
+                                    <field name="x_colonia" placeholder="Colonia..." class="o_address_street" />
+                                    <field name="x_municipio" placeholder="Municipio.." class="o_address_city" />
+                                    <field name="x_estado_id" class="o_address_state" placeholder="Estado" options="{&quot;no_open&quot;: True}" domain="[('country_id', '=', 157)]" />
+                                    <!--field name="zip" placeholder="ZIP" class="o_address_zip" attrs="{'readonly': [('type', '=', 'contact'),('parent_id', '!=', False)]}"/-->
+                                    <!--field name="x_pais_id" placeholder="Country" class="o_address_country" options="{&quot;no_open&quot;: True, &quot;no_create&quot;: True}" /-->
+                                </div>
+                                <field name="x_tipo_domicilio" />
+                                <field name="x_motivo_mudanza" attrs="{ 'invisible':[('x_tipo_domicilio','not in','anterior')] }" />
+                            </group>
+                            <group>
+                                <field name="x_vivienda" />
+                                <field name="x_vivienda_name" invisible="1" />
+                                <field name="x_porquien" attrs="{ 'invisible':[('x_vivienda_name','!=','Prestada')] }" />
+                                <label string="Tiempo de vivir en este domicilio"/>
+                                <div></div>
+                                <field name="x_tiempo_cantidad" />
+                                <field name="x_tiempo_unidad" />
+                                <field name="x_caracteristicas_ref" />
+                            </group>
                         </group>
-                        <group>
-                            <field name="x_vivienda" />
-                            <field name="x_caracteristicas_ref" />
-                        </group>
-                    </group>
-                    <!--group-->
+                        <!--group-->
                         <field name="x_croquis" widget="map" />
-                    <!--/group-->
-                </sheet>
-            </form>
-        </field>
-    </record>
-    <record model="ir.ui.view" id="umc_direccion_tree_view">
-        <field name="name">direcciones.tree.view</field>
-        <field name="model">umc_domicilio</field>
-        <field name="arch" type="xml">
-            <tree>
-                <field name="x_tipo_domicilio" />
-                <field name="x_calle" />
-                <field name="x_colonia" />
-                <field name="x_municipio" />
-                <field name="x_vivienda" />
-                <field name="x_croquis" />
-            </tree>
-        </field>
-    </record>
-    <record model="ir.actions.act_window" id="umc_direccion_list_action">
-        <field name="name">Direccion</field>
-        <field name="res_model">umc_domicilio</field>
-        <field name="view_type">form</field>
-        <field name="view_mode">form,tree</field>
-        <field name="help" type="html">
-            <p class="oe_view_nocontent_create">Agregar primer registro                </p>
-        </field>
-    </record>
+                        <!--/group-->
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="umc_direccion_tree_view">
+            <field name="name">direcciones.tree.view</field>
+            <field name="model">umc_domicilio</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="x_tipo_domicilio" />
+                    <field name="x_calle" />
+                    <field name="x_colonia" />
+                    <field name="x_municipio" />
+                    <field name="x_vivienda" />
+                    <field name="x_croquis" />
+                </tree>
+            </field>
+        </record>
+        <record model="ir.actions.act_window" id="umc_direccion_list_action">
+            <field name="name">Direccion</field>
+            <field name="res_model">umc_domicilio</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form,tree</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">Agregar primer registro                </p>
+            </field>
+        </record>
+        <!--- //////////////////////////UBICACION INTRAMURIS/////////////-->
+        <!--- //////////////////////////UBICACION INTRAMURIS/////////////-->
+        <!--- //////////////////////////UBICACION INTRAMURIS/////////////-->
+        <!--- //////////////////////////UBICACION INTRAMURIS/////////////-->
+        <record model="ir.ui.view" id="umc_ubicacion_form_view">
+            <field name="name">ubicacion.form.view</field>
+            <field name="model">umc_ubicacion_intramuros</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <field name="x_area" />
+                            <field name="x_celda" />
+                            <field name="x_dormitorio" />
+                            <field name="x_estancia" />
+                            <field name="x_fecha_ingreso" />
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="umc_ubicacion_intramuros_tree_view">
+            <field name="name">ubicaciones.tree.view</field>
+            <field name="model">umc_ubicacion_intramuros</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="x_area" />
+                    <field name="x_celda" />
+                    <field name="x_dormitorio" />
+                    <field name="x_estancia" />
+                    <field name="x_fecha_ingreso" />
+                </tree>
+            </field>
+        </record>
+        <record model="ir.actions.act_window" id="umc_ubicacion_intramuros_list_action">
+            <field name="name">UBICACION</field>
+            <field name="res_model">umc_ubicacion_intramuros</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form,tree</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">Agregar primer registro                </p>
+            </field>
+        </record>
+    </data>
 </odoo>

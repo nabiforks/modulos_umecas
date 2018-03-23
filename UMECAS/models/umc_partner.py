@@ -108,3 +108,12 @@ class Partner(models.Model):
     x_dependiente_economico = fields.Boolean(
         string=u'Dependiente económico',
     )
+    x_domicilio = fields.Char(
+        string=u'Domicilio',
+    )
+    x_nucleo = fields.Selection(
+        string=u'Núcleo',
+        selection=[('primario', 'Primario'),('secundario','Secundario')]
+    )
+    
+    

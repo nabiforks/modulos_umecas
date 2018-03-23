@@ -41,20 +41,15 @@ class actividades_participa(models.Model):
     )
     x_tipo = fields.Selection(
         string=u'Tipo',
-        selection=[('1', 'Cívica'), ('2', 'Cultural'),('3', 'Religiosa'),('4', 'Deportiva'),('5', 'Otro')]
+        selection=[('normal', 'Normal'), ('intramuro', 'Intramuro'),('3', 'Extramuro')]
     )            
     x_descripcion = fields.Text(
-        string=u'Descripción',
-    )    
-    x_entrevista_id = fields.Many2one(
-        string=u'Entrevista Id',
-        comodel_name='umc_entrevistas',
-        ondelete='set null',
+        string=u'¿Cuales?',
     )
     x_entrevista2_id = fields.Many2one(
         string=u'Entrevista Id',
         comodel_name='umc_entrevistas',
-        ondelete='set null',
+        ondelete='cascade',
     )
 #/////////////////////////////////////////////////////////////////////////////////////////
 #/////////////////////////////Catalogo de actividades/////////////////////////////////////////
@@ -104,3 +99,36 @@ class umc_identificacion(models.Model):
     x_codigo = fields.Char(
         string=u'Código',
     )    
+#/////////////////////////////////////////////////////////////////////////////////////////
+#/////////////////////////////Catalogo de lengua/////////////////////////////////////////
+class umc_lengua(models.Model):
+    _name='umc_lengua'
+    x_name = fields.Char(
+        string=u'Lengua',        
+        required=True,        
+    )     
+    x_codigo = fields.Char(
+        string=u'Código',
+    )
+#/////////////////////////////////////////////////////////////////////////////////////////
+#/////////////////////////////Catalogo de grupoetnico/////////////////////////////////////////
+class umc_grupoetnico(models.Model):
+    _name='umc_grupoetnico'
+    x_name = fields.Char(
+        string=u'Grupo Étnico',        
+        required=True,        
+    )     
+    x_codigo = fields.Char(
+        string=u'Código',
+    )
+#/////////////////////////////////////////////////////////////////////////////////////////
+#/////////////////////////////Catalogo de idioma/////////////////////////////////////////
+class umc_idioma(models.Model):
+    _name='umc_idioma'
+    x_name = fields.Char(
+        string=u'Idioma',        
+        required=True,        
+    )     
+    x_codigo = fields.Char(
+        string=u'Código',
+    )

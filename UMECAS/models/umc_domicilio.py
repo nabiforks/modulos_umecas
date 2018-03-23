@@ -24,18 +24,19 @@ class Domicilio(models.Model):
         default=lambda self: 504,
         ondelete='set null',
     )
-    """x_pais_id = fields.Many2one(
-        string=u'País',
-        comodel_name='res.country',
-        default=lambda self: 157,
-        ondelete='set null',
-    )"""
     x_vivienda = fields.Many2one(
         string=u'Tipo Vivienda',
         comodel_name='umc_tipo_vivienda',
         ondelete='set null',
     )
-
+    x_vivienda_name = fields.Char(
+        string=u'Vivienda nombre',        
+        related='x_vivienda.x_name',        
+    )    
+    x_porquien = fields.Char(
+        string=u'¿Por quien?',
+    )
+        
     x_tipo_domicilio = fields.Selection(
         string=u'Tipo de domicilio ',
         selection=[('actual', 'Actual'), ('secundario','Secundario'), ('anterior', 'Anterior')],
@@ -47,6 +48,13 @@ class Domicilio(models.Model):
     x_caracteristicas_ref = fields.Text(
         string=u'Caracteristicas y referencias',        
     )
+    x_tiempo_cantidad = fields.Integer(
+        string=u'Cantidad',
+    )
+    x_tiempo_unidad = fields.Selection(
+        string=u'Días/Semanas/Meses/Años',
+        selection=[('dias', 'Días'), ('semanas', 'Semanas'),('meses', 'Meses'),('anios', 'Años')]
+    ) 
     
 
     x_croquis = fields.Char(string="Geolocalización", default='{"position":{"lat":19.04360786502212,"lng":-98.19820135831833},"zoom":15}',

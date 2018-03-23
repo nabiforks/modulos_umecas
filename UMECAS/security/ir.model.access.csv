@@ -45,6 +45,16 @@ umecas_escalas_jefe,UMC escalas,UMECAS.model_umc_escalas,UMECAS.umc_jefe_depto,1
 umecas_escalas_all,UMC escalas all,UMECAS.model_umc_escalas,,1,0,0,0
 umecas_regiones_jefe,UMC regiones,UMECAS.model_umc_regiones,UMECAS.umc_jefe_depto,1,1,1,1
 umecas_regiones_all,UMC regiones all,UMECAS.model_umc_regiones,,1,0,0,0
+umecas_lengua_jefe,UMC lengua,UMECAS.model_umc_lengua,UMECAS.umc_jefe_depto,1,1,1,1
+umecas_lengua_all,UMC lengua all,UMECAS.model_umc_lengua,,1,0,0,0
+umecas_grupoetnico_jefe,UMC grupoetnico,UMECAS.model_umc_grupoetnico,UMECAS.umc_jefe_depto,1,1,1,1
+umecas_grupoetnico_all,UMC grupoetnico all,UMECAS.model_umc_grupoetnico,,1,0,0,0
+umecas_idioma_jefe,UMC idioma,UMECAS.model_umc_idioma,UMECAS.umc_jefe_depto,1,1,1,1
+umecas_idioma_all,UMC idioma all,UMECAS.model_umc_idioma,,1,0,0,0
+umecas_ubicacion_intramuros_jefe,UMC ubicacion_intramuros,UMECAS.model_umc_ubicacion_intramuros,UMECAS.umc_jefe_depto,1,1,1,1
+umecas_ubicacion_intramuros_all,UMC ubicacion_intramuros all,UMECAS.model_umc_ubicacion_intramuros,,1,0,0,0
+,,,,,,,
+,,,,,,,
 ,,,,,,,
 ,,,,,,,
 ,,,,,,,
@@ -79,3 +89,7 @@ umecas_ucm_escalavalores_valor_evaluador,UMC evaluador_escalavalores_valor,UMECA
 umecas_ucm_escalavalores_evaluacion_evaluador,UMC evaluador_escalavalores_evaluacion,UMECAS.model_ucm_escalavalores_evaluacion,UMECAS.umc_evaluador,1,1,1,1
 umecas_escalas_evaluador,UMC escalas_evaluador,UMECAS.model_umc_escalas,UMECAS.umc_evaluador,1,1,1,0
 umecas_regiones_evaluador,UMC regiones_evaluador,UMECAS.model_umc_regiones,UMECAS.umc_evaluador,1,1,1,0
+umecas_lengua_evaluador,UMC lengua_evaluador,UMECAS.model_umc_lengua,UMECAS.umc_evaluador,1,1,1,0
+umecas_grupoetnico_evaluador,UMC grupoetnico_evaluador,UMECAS.model_umc_grupoetnico,UMECAS.umc_evaluador,1,1,1,0
+umecas_idioma_evaluador,UMC idioma_evaluador,UMECAS.model_umc_idioma,UMECAS.umc_evaluador,1,1,1,0
+umecas_ubicacion_intramuros_evaluador,UMC ubicacion_intramuros_evaluador,UMECAS.model_umc_ubicacion_intramuros,UMECAS.umc_evaluador,1,1,1,0

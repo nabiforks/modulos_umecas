@@ -8,10 +8,13 @@ class Entrevistas(models.Model):
 
     x_name = fields.Char('Entrevista', required=True, readonly=True,
                          default=lambda self: 'Nuevo'
-                         )
+                         )    
     x_lugar_entrevista = fields.Char(
         string=u'Lugar',
     )
+    x_causa_penal = fields.Char(
+        string=u'Causa Penal',
+    )        
     x_fecha_entrevista = fields.Datetime(
         string=u'Fecha y hora',
         default=fields.Datetime.now,
@@ -22,6 +25,10 @@ class Entrevistas(models.Model):
         readonly=True,
         ondelete='cascade',
         required=True,
+    )
+    x_tipo = fields.Selection(
+        string=u'Tipo de Entrevista',
+        related='x_evaluacion_id.x_tipo_entrevista'
     )
     x_evaluador_id = fields.Integer(
         string=u'Evaluador ID',
@@ -99,11 +106,62 @@ class Entrevistas(models.Model):
     )
     x_sexo = fields.Selection(
         string=u'Sexo',
-        selection=[('m', 'Masculino'), ('f', 'Femenino')]
+        selection=[('m', 'Masculino'), ('f', 'Femenino'),('o', 'Otro')]
     )
-
+    x_estado_civil = fields.Selection(
+        string=u'Estado civil',
+        selection=[('soltero', 'Soltero'), ('casado', 'Casado'),('cuncubinato','Cuncubinato'),('otro','Otro')]
+    )    
+    x_estado_civil_otro = fields.Char(
+        string=u'Otro',
+    )
+    x_tiempo = fields.Integer(
+        string=u'Tiempo',
+    )
+    x_tiempo_unidad = fields.Selection(
+        string=u'Días/Semanas/Meses/Años',
+        selection=[('dias', 'Días'), ('semanas', 'Semanas'),('meses', 'Meses'),('anios', 'Años')]
+    )
+    x_lengua = fields.Many2one(
+        string=u'Lengua',
+        comodel_name='umc_lengua',
+        ondelete='set null',
+    )
+    x_grupo_etnico = fields.Many2one(
+        string=u'Grupo Etnico',
+        comodel_name='umc_grupoetnico',
+        ondelete='set null',
+    )
+    x_nacionalidad = fields.Many2one(
+        string=u'Nacionalidad',
+        comodel_name='umc_nacionalidad',
+        ondelete='set null',
+    )
+    x_idioma = fields.Many2one(
+        string=u'Idioma',
+        comodel_name='umc_idioma',
+        ondelete='set null',
+    )
+    x_leer_escribir = fields.Selection(
+        string=u'¿Sabe leer y escribir?',
+        selection=[('si', 'Si'), ('no', 'No')]
+    )
+    x_telefono = fields.Char(
+        string=u'Teléfono Casa',
+    )
+    x_telefono_otro = fields.Char(
+        string=u'Teléfono Otros',
+    )
+    
     #///////////////////////// II.-Domicilio/////////////////
 
+    
+    x_ubicacion_intramuros = fields.Many2one(
+        string=u'Ubicación Intramuros',
+        comodel_name='umc_ubicacion_intramuros',
+        ondelete='set null',
+    )
+    
     x_domicilio_actual = fields.One2many(
         string=u'Domicilio(s)',
         comodel_name='umc_domicilio',
@@ -116,12 +174,28 @@ class Entrevistas(models.Model):
         comodel_name='umc_actividades',
         inverse_name='x_entrevista2_id',
     )
+    x_tiempo_libre = fields.Selection(
+        string=u'¿Realiza otra(s) actividad en su tiempo libre?',
+        selection=[('si', 'Si'), ('no', 'No')]
+    )
+    x_tiempo_libre_cuales = fields.Text(
+        string=u'¿Cuales?',
+    )
+    
+    
     #//////////////////////////////////IV.-Relaciones familiares/////////////////
     x_contacto_ids = fields.One2many(
         string=u'Familiares',
         comodel_name='res.partner',
         inverse_name='x_entrevistas_id',
     )
+    x_intrafamiliares_primario = fields.Char(
+        string=u'¿Tipo de relaciones intrafamiliares?',
+    )
+    x_intrafamiliares_secundario = fields.Char(
+        string=u'¿Tipo de relaciones intrafamiliares?(Secundario)',
+    )
+    
     x_imputado_id = fields.Integer(
         string=u'Inputado',
         related='x_evaluacion_id.partner_id.id',

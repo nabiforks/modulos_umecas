@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from datetime import timedelta
 from odoo import api, fields, models
+from odoo.exceptions import ValidationError
 
 
 class umc_evaluacion(models.Model):
@@ -35,22 +36,25 @@ class umc_evaluacion(models.Model):
         related='partner_id.display_name',
         readonly=True,
     )
-    x_tipo_entrevista = fields.Selection(
+    """x_tipo_entrevista = fields.Selection(
         string=u'Tipo de Entrevista',
         related='partner_id.x_imputado_tipo'
-    )
+    )"""
+    x_tipo_entrevista = fields.Selection(
+        [('retenido', 'Retenido'), ('adolescente', 'Adolescente'), ('interno', 'Interno')], default='1', required=True, string=u'Tipo de Entrevista')
+
     state = fields.Selection([
         ('solicitud', 'Solicitud'),
         ('entrevista', 'Entrevista'),
         ('analisis', 'Escala de Riesgos'),
         ('evaluacion', 'Evaluación'),
-    ], default='solicitud', readonly=True,string='Estatus')
+    ], default='solicitud', readonly=True, string='Estatus')
     x_casa_justicia = fields.Many2one(
         string=u'Casa de Justicia',
         comodel_name='res.company',
         ondelete='set null',
         readonly=True,
-        required=True,       
+        required=True,
     )
 
     @api.model
@@ -70,9 +74,9 @@ class umc_evaluacion(models.Model):
         if self.x_evaluador_id:
             self.state = 'entrevista'
             valores_entrevista = {'x_evaluacion_id': self.id,
-                                'x_evaluador_id': self.x_evaluador_id,
-                                'x_imputado_id': self.partner_id,
-                                'x_casa_justicia':self.x_casa_justicia.id}
+                                  'x_evaluador_id': self.x_evaluador_id,
+                                  'x_imputado_id': self.partner_id,
+                                  'x_casa_justicia': self.x_casa_justicia.id}
             res = self.env['umc_entrevistas'].create(valores_entrevista)
             self.x_entrevista_id = res
             return res
@@ -85,6 +89,8 @@ class umc_evaluacion(models.Model):
             for seccion in secciones:
                 self.env['ucm.escalavalores.evaluacion'].create(
                     {'seccion': seccion, 'x_evaluacion_id': self.id})
+        else:
+            raise ValidationError("La entrevista aun no ha sido terminada")
 
     @api.multi
     def terminar_analisis(self):
@@ -99,7 +105,7 @@ class umc_evaluacion(models.Model):
         comodel_name='umc_entrevistas',
         readonly=True,
         ondelete='set null',
-    )    
+    )
     x_entrevista_status = fields.Selection(
         string=u'Estatus de Entrevista',
         readonly=True,
@@ -126,12 +132,11 @@ class umc_evaluacion(models.Model):
     )
     x_escala_valores_id = fields.Many2one(
         string=u'Escala valores ID',
-        comodel_name='umc_escalas',         
-        store=True,               
-        default=lambda self: self.env['umc_escalas'].search([]),        
+        comodel_name='umc_escalas',
+        store=True,
+        default=lambda self: self.env['umc_escalas'].search([]),
         ondelete='set null',
     )
-    
 
     x_escalas_ids = fields.One2many(
         string=u'Escala de valores',
@@ -139,10 +144,9 @@ class umc_evaluacion(models.Model):
         inverse_name='x_evaluacion_id',
         #default=lambda self: self.env['ucm.escalavalores.evaluacion'].search([]).ids,
     )
-    
 
     @api.multi
-    @api.depends('x_escalas_ids','x_escala_valores_id.x_bajo','x_escala_valores_id.x_alto')
+    @api.depends('x_escalas_ids', 'x_escala_valores_id.x_bajo', 'x_escala_valores_id.x_alto')
     def calcular_ponderacion(self):
         print self.x_escala_valores_id
         for record in self:
@@ -160,9 +164,7 @@ class umc_evaluacion(models.Model):
     #///////////////////////////////////////////Evaluación/////////////////////////////////////////////
     #///////////////////////////////////////////Evaluación/////////////////////////////////////////////
     #///////////////////////////////////////////Evaluación/////////////////////////////////////////////
-    
+
     x_conclusion = fields.Text(
         string=u'Conclusión',
     )
-    
-    

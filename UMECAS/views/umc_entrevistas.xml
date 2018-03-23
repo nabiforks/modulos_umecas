@@ -18,7 +18,9 @@
                     </div>
                     <group>
                         <group>
+                            <field name="x_tipo" />
                             <field name="x_lugar_entrevista" />
+                            <field name="x_causa_penal" attrs="{ 'invisible':[('x_tipo','not in','interno')] }" />
                             <field name="x_fecha_entrevista" />
                         </group>
                         <group>
@@ -40,16 +42,30 @@
                                         <field name="x_nombre_entrevistado" />
                                         <field name="x_otronombre" />
                                         <field name="x_apodo" />
-                                    </group>
-                                    <group>
                                         <field name="x_lugar_nacimiento" placeholder='Localidad/Municipio/Estado'/>
                                         <field name="x_fecha_nacimiento" />
                                         <field name="x_edad"/>
-                                        <field name="x_sexo" widget="radio" />
+                                        <field name="x_sexo" widget="radio" options="{'horizontal': true}"/>
+                                    </group>
+                                    <group>
+                                        <field name="x_estado_civil" />
+                                        <field name="x_estado_civil_otro" attrs="{ 'invisible':[('x_estado_civil','not in','otro')] }" />
+                                        <field name="x_tiempo" attrs="{ 'invisible':[('x_estado_civil','in','soltero')] }"/>
+                                        <field name="x_tiempo_unidad" attrs="{ 'invisible':[('x_estado_civil','in','soltero')] }"/>
+                                        <field name="x_lengua" />
+                                        <field name="x_grupo_etnico" />
+                                        <field name="x_nacionalidad" />
+                                        <field name="x_idioma" />
+                                        <field name="x_leer_escribir" widget="radio" options="{'horizontal': true}"/>
+                                        <field name="x_telefono" widget="phone"/>
+                                        <field name="x_telefono_otro" widget="phone"/>
                                     </group>
                                 </group>
                             </page>
                             <page string="II.-Domicilio">
+                                <group>
+                                    <field name="x_ubicacion_intramuros" domain="[('id', '=', -1)]" attrs="{ 'invisible':[('x_tipo','in','retenido')] }" />
+                                </group>
                                 <p>
                                     <h4>Domicilio </h4>
                                 </p>
@@ -60,11 +76,13 @@
                                 <group>
                                     <field name="x_actividades_ids" mode="tree">
                                         <tree editable="bottom">
-                                            <field name="x_name" />
+                                            <field name="x_name" widget="selection" />
                                             <field name="x_tipo" />
                                             <field name="x_descripcion" />
                                         </tree>
                                     </field>
+                                    <field name="x_tiempo_libre" />
+                                    <field name="x_tiempo_libre_cuales" attrs="{ 'invisible' : [('x_tiempo_libre','=',False)] }" />
                                 </group>
                             </page>
                             <page string="IV.-Relaciones familiares">
@@ -73,9 +91,11 @@
                                 </h3>
                                 <field name="x_contacto_ids" mode="tree" context="{'default_parent_id': x_imputado_id}">
                                     <tree editable="top">
+                                        <field name="x_nucleo" />
                                         <field name="name" />
                                         <field name="fecha_nacimiento" />
                                         <field name="edad" widget="integer"/>
+                                        <field name="x_domicilio" />
                                         <field name="x_parentesco" />
                                         <field name="x_ocupacion" />
                                         <field name="x_habita_domicilio" />
@@ -83,6 +103,10 @@
                                         <field name="parent_id" invisible="1"/>
                                     </tree>
                                 </field>
+                                <group>
+                                    <field name="x_intrafamiliares_primario" />
+                                    <field name="x_intrafamiliares_secundario" />
+                                </group>
                             </page>
                             <page string="V.-Amistades (Referencias personales)">
                                 <group>
