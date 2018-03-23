@@ -65,7 +65,16 @@ class Expedientes(models.Model):
     @api.model
     def createFolioExpedienteByAnio(self, par_values, par_anio_fiscal):
         folio = self.env[
-                    'umc_casas_justicia_anio_fiscal'].getConsecutivoByAnioAndCasaJusticia(par_values['x_casa_justicia'], par_anio_fiscal) + "/" + \
+                    'umc_casas_justicia_anio_fiscal'].getConsecutivoByAnioAndCasaJusticia(self.env.user.company_id.id,
+                                                                                          par_anio_fiscal) + "/" + \
                 self.env['umc_casas_justicia_anio_fiscal'].getPrefijoCasaById(
-                    par_values['x_casa_justicia']) + "/" + str(par_anio_fiscal)
+                    self.env.user.company_id.id) + "/" + str(par_anio_fiscal)
         return folio
+
+
+"""
+  folio = self.env['core_generador_folio'].getFolio(
+                self.env['umc_casas_justicia_anio_fiscal'].getPrefijoCasaById(
+                    vals['x_casa_justicia']))
+            # self.createFolioExpedienteByAnio(vals, now.year)
+"""
