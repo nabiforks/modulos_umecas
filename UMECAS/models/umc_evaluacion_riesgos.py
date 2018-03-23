@@ -1,15 +1,17 @@
 # -*- coding: utf-8 -*-
-from datetime import timedelta
+from datetime import timedelta, datetime
 from odoo import api, fields, models
 from odoo.exceptions import ValidationError
 
 
 class umc_evaluacion(models.Model):
     _name = 'umc_evaluacion'
-    #_inherit = 'mail.thread'
+    # _inherit = 'mail.thread'
 
     x_name = fields.Char('Solicitud de evaluación', required=True, readonly=True,
                          default=lambda self: 'Nuevo')
+    folio_evalucion = fields.Char('Folio de la evaluación', readonly=True, default=lambda self: '')
+
     x_expediente_id = fields.Many2one(
         'umc_expedientes',
         string=u'Expediente',
@@ -48,6 +50,7 @@ class umc_evaluacion(models.Model):
         ('entrevista', 'Entrevista'),
         ('analisis', 'Escala de Riesgos'),
         ('evaluacion', 'Evaluación'),
+        ('evaluacion_terminada', 'Evaluación Terminada'),
     ], default='solicitud', readonly=True, string='Estatus')
     x_casa_justicia = fields.Many2one(
         string=u'Casa de Justicia',
@@ -61,7 +64,7 @@ class umc_evaluacion(models.Model):
     def create(self, vals):
         if vals.get('x_name', 'Nuevo') == 'Nuevo':
             vals['x_name'] = self.env['ir.sequence'].next_by_code(
-                'umc_evaluacion') or'Nuevo'
+                'umc_evaluacion') or 'Nuevo'
         result = super(umc_evaluacion, self).create(vals)
         return result
 
@@ -93,12 +96,29 @@ class umc_evaluacion(models.Model):
             raise ValidationError("La entrevista aun no ha sido terminada")
 
     @api.multi
+    def getFolioEvaluacion(self):
+        now = datetime.now()
+        folio = self.env['umc_expedientes'].createFolioExpedienteByAnio(now.year, 2)
+        return folio
+
+    @api.multi
     def terminar_analisis(self):
         self.state = 'evaluacion'
 
-    #///////////////////////////////////////Campos de las entrevistas////////////////
-    #///////////////////////////////////////Campos de las entrevistas////////////////
-    #///////////////////////////////////////Campos de las entrevistas////////////////
+    @api.multi
+    def terminar_evaluacion(self):
+        print self.folio_evalucion
+        if self.folio_evalucion:
+            print "-->>  Ya fue asignado el folio de la evalución -->>"
+            return
+        else:
+            self.folio_evalucion = self.getFolioEvaluacion()
+            self.state='evaluacion_terminada'
+
+
+    # ///////////////////////////////////////Campos de las entrevistas////////////////
+    # ///////////////////////////////////////Campos de las entrevistas////////////////
+    # ///////////////////////////////////////Campos de las entrevistas////////////////
 
     x_entrevista_id = fields.Many2one(
         string=u'Entrevista',
