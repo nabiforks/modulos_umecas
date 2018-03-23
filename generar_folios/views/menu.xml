@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+        <menuitem id="main_core_genera_folios_menu" name="Generar Folios"/>
+        <!-- A first level in the left side menu is needed             before using action= attribute -->
+        <menuitem id="act_core_genera_folios_menu" name="Crear Folios" parent="main_core_genera_folios_menu"/>
+        <!-- the following menuitem should appear *after*             its parent openacademy_menu and *after* its             action course_list_action -->
+        <menuitem id="core_genera_folios_menu" name="Crear Folios" parent="main_core_genera_folios_menu"
+                  action="core_generar_folios_view"/>
+        <menuitem id="core_genera_folios_tipo_menu" name="Tipos de Folios" parent="main_core_genera_folios_menu"
+                  action="core_generar_folios_tipo_view"/>
+    </data>
+</odoo>
