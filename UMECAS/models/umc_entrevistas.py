@@ -215,7 +215,17 @@ class Entrevistas(models.Model):
         inverse_name='x_entrevista_id',
     )
     #//////////////////////////////////VII.-Estudios/////////////////
-
+    
+    x_escolaridad_intramuros = fields.Selection(
+        string=u'¿Se ha incorporado a algun sistema educativo?',
+        selection=[('si', 'Si'), ('no', 'No')]
+    )
+    x_escolaridad_intramuros_cual = fields.Char(
+        string=u'¿Cúal?',
+    )
+    x_observaciones = fields.Char(
+        string=u'Observaciones',
+    )
     x_estudios_ids = fields.One2many(
         string=u'Estudios',
         comodel_name='umc_estudios',
@@ -225,12 +235,32 @@ class Entrevistas(models.Model):
 
     #//////////////////////////////////VIII.-Antecedentes penales/////////////////
 
-    x_antecedentes_ids = fields.Many2many(
-        'umc_expedientes',
-        string=u'Antecedentes',
-        default=lambda self: self.env['umc_expedientes'].search(
-            [('partner_id', '=', self.x_evaluacion_id.partner_id.id)]).ids,
+    x_antecedentes = fields.Selection(
+        string=u'¿Ha estado detenido anteriormente?',
+        selection=[('si', 'Si'), ('no', 'No')]
     )
+    x_donde_lugar = fields.Char(
+        string=u'Lugar',
+    )
+    x_donde_institucion = fields.Char(
+        string=u'Institución penitenciaria',
+    )
+    x_delitos = fields.Many2many(
+        string=u'¿Porqué delito?',
+        comodel_name='umc_delitos',
+    )
+    x_temporalidad_cantidad = fields.Integer(
+        string=u'Temporalidad',
+    )
+    x_temporalidad_unidad = fields.Selection(
+        string=u'Días/Semanas/Meses/Años',
+        selection=[('dias', 'Días'), ('semanas', 'Semanas'),('meses', 'Meses'),('anios', 'Años')]
+    ) 
+    
+
+    
+    
+    
 
     #//////////////////////////////////IX.-Enfermedades/////////////////
     x_enfermedades_ids = fields.One2many(

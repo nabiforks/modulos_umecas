@@ -120,19 +120,38 @@
                             </page>
                             <page string="VII.-Estudios">
                                 <group>
-                                    <field name="x_estudios_ids"/>
+                                    <label for="x_estudios_ids" string="Escolaridad Intramuros" attrs="{ 'invisible': [('x_tipo','in','retenido')]}" />
+                                    <div>
+                                        <br/>
+                                    </div>
+                                    <field name="x_escolaridad_intramuros" attrs="{ 'invisible': [('x_tipo','in','retenido')]}" />
+                                    <field name="x_escolaridad_intramuros_cual" attrs="{'invisible':['|',('x_escolaridad_intramuros','not in','si'),('x_tipo','in','retenido')] }" />
+                                    <field name="x_observaciones" attrs="{ 'invisible': [('x_tipo','in','retenido')]}"/>
+                                    <label for="x_estudios_ids" string="Escolaridad Extramuros" attrs="{ 'invisible': [('x_tipo','in','retenido')]}" />
+                                    <div></div>
+                                    <label for="x_estudios_ids" string="Estudios" attrs="{ 'invisible': [('x_tipo','not in','retenido')]}" />
+                                    <div>
+                                        <field name="x_estudios_ids"/>
+                                    </div>
                                 </group>
                             </page>
                             <page string="VIII.-Antecedentes penales">
                                 <group>
-                                    <field name="x_antecedentes_ids" mode="tree" context="{'search_default_partner_id': x_imputado_id }">
-                                        <tree >
-                                            <field name="x_name" />
-                                            <field name="x_delito" />
-                                            <field name="x_fecha_inicio" />
-                                            <field name="partner_id" />
-                                        </tree>
-                                    </field>
+                                    <field name="x_antecedentes" />
+                                </group>
+                                <group attrs="{ 'invisible': [('x_antecedentes','not in','si')]}">
+                                    <label for="x_donde_lugar" string="¿Donde?" />
+                                    <div>
+                                        <br/>
+                                    </div>
+                                    <field name="x_donde_lugar" />
+                                    <field name="x_donde_institucion" />
+                                    <field name="x_delitos" widget="many2many_tags"/>
+                                    <label for="x_temporalidad_cantidad"/>
+                                    <div class="address_format">
+                                        <field name="x_temporalidad_cantidad" style="width: 30%"/>
+                                        <field name="x_temporalidad_unidad" style="width: 70%"/>
+                                    </div>
                                 </group>
                             </page>
                             <page string="IX.-Enfermedades">

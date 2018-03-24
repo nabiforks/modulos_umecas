@@ -9,6 +9,10 @@ class umc_amistades(models.Model):
         string=u'Nombre Completo',
         required=True,
     )
+    x_edad = fields.Integer(
+        string=u'Edad',        
+        default=18,        
+    )    
     x_domicilio_ids = fields.One2many(
         string=u'Domicilio',
         comodel_name='umc_domicilio',
@@ -21,13 +25,14 @@ class umc_amistades(models.Model):
     )
     x_numero = fields.Char(
         string=u'Teléfono (Casa, empleo, cel.)',
+    )    
+    x_tiempo_cantidad = fields.Integer(
+        string=u'Cantidad',
     )
-    x_anios_conocer = fields.Integer(
-        string=u'Años',
-    )
-    x_meses_conocer = fields.Integer(
-        string=u'Meses',
-    )
+    x_tiempo_unidad = fields.Selection(
+        string=u'Días/Semanas/Meses/Años',
+        selection=[('dias', 'Días'), ('semanas', 'Semanas'),('meses', 'Meses'),('anios', 'Años')]
+    ) 
 
     x_entrevista_id = fields.Many2one(
         string=u'Entrevista _ID',
