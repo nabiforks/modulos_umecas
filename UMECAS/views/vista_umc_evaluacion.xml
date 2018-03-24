@@ -80,7 +80,7 @@
                                     </field>
                                 </group>
                             </page>
-                            <page string="Evaluación" attrs="{'invisible': [('state','not in',('evaluacion'))]}">
+                            <page string="Evaluación" attrs="{'invisible': [('state','not in',('evaluacion','evaluacion_terminada'))]}">
 
                                 <div class="row">
                                     <div class="col-xs-6">

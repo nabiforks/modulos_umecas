@@ -101,11 +101,11 @@ class umc_evaluacion(models.Model):
         folio = self.env['umc_expedientes'].createFolioExpedienteByAnio(now.year, 2)
         return folio
 
-    @api.multi
+    """@api.multi
     def getFolioEvaluacion(self):
         now = datetime.now()
         folio = self.env['umc_expedientes'].createFolioExpedienteByAnio(now.year, 2)
-        return folio
+        return folio"""
 
     @api.multi
     def terminar_analisis(self):
@@ -174,15 +174,14 @@ class umc_evaluacion(models.Model):
     @api.multi
     @api.depends('x_escalas_ids', 'x_escala_valores_id.x_bajo', 'x_escala_valores_id.x_alto')
     def calcular_ponderacion(self):
-        print self.x_escala_valores_id
         for record in self:
             sumador = 0
             for linea_escala in record.x_escalas_ids:
                 sumador += linea_escala.num_valor
             record.x_ponderacion = sumador
-            if sumador >= self.x_escala_valores_id.x_bajo:
+            if sumador >= record.x_escala_valores_id.x_bajo:
                 record.x_escala_riesgos = 'bajo'
-            elif sumador <= self.x_escala_valores_id.x_alto:
+            elif sumador <= record.x_escala_valores_id.x_alto:
                 record.x_escala_riesgos = 'alto'
             else:
                 record.x_escala_riesgos = 'medio'
