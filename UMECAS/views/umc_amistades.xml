@@ -13,12 +13,15 @@
                         </h2>
                     </div>
                     <group>
+                        <field name="x_edad" />
                         <field name="x_relacion" />
                         <field name="x_numero" widget="phone"/>
-                        <label string="Tiempo de conocer a la persona"/>
-                        <div></div>
-                        <field name="x_anios_conocer" placeholder="años" />
-                        <field name="x_meses_conocer" placeholder="meses" />
+                        <label for="1234"/>
+                        <p class="text-muted" id="1234">
+                            <h4> Tiempo de conocer a la persona                             </h4>
+                        </p>
+                        <field name="x_tiempo_cantidad" placeholder="1,2,3...." />
+                        <field name="x_tiempo_unidad"/>
                     </group>
                     <!--group-->
                     <field name="x_domicilio_ids" mode="tree" context="{'default_x_estado_id': 504, }">
@@ -39,6 +42,7 @@
         <field name="arch" type="xml">
             <tree>
                 <field name="x_name"/>
+                <field name="x_edad" />
                 <field name="x_relacion" />
                 <field name="x_numero" widget="phone"/>
                 <field name="x_domicilio_ids" />

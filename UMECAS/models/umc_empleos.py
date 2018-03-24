@@ -13,8 +13,9 @@ class umc_empleos(models.Model):
     )
     x_actual_anterior = fields.Selection(
         string=u'Actual/Anterior',
-        selection=[('1', 'Actual'), ('2', 'Anterior')],
-        default='1',
+        selection=[('actual', 'Actual'), ('actual2',
+                                          'Actual Intramuros'), ('anterior', 'Anterior')],
+        default='actual',
     )
     x_tipo_empleo = fields.Selection(
         string=u'Tipo de Empleo',
@@ -42,20 +43,42 @@ class umc_empleos(models.Model):
         string=u'Patrón o Jefe inmediato y/o empresa',
     )
     x_salario = fields.Float(
-        string=u'Salario mensual',
+        string=u'Salario',
     )
-    x_dias_trabaja = fields.Integer(
-        string=u'Días a la semana',
+    x_moneda = fields.Selection(
+        string=u'Moneda',
+        selection=[('peso', 'Pesos'), ('dolar', 'Dolares'), ('otro', 'Otro')]
+    )
+    x_salario_pagos = fields.Selection(
+        string=u'Pagos ',
+        selection=[('1', 'Por hora'), ('2', 'Diarios'),
+                   ('3', 'Semanal'), ('4', 'Quincenal'), ('5', 'Mensual')]
+    )
+    x_dias_trabaja = fields.Selection(
+        string=u'Días',
+        selection=[('1', 'Lunes'), ('2', 'Martes'), ('3', 'Miercoles'),
+                   ('4', 'Jueves'), ('5', 'Viernes'), ('6', 'Sábado'), ('7', 'Domingo')]
+    )
+    x_dias_trabaja_hasta = fields.Selection(
+        string=u'Hasta',
+        selection=[('1', 'Lunes'), ('2', 'Martes'), ('3', 'Miercoles'),
+                   ('4', 'Jueves'), ('5', 'Viernes'), ('6', 'Sábado'), ('7', 'Domingo')]
     )
     x_hora_inicio = fields.Float(
-        string=u'Trabaja desde',
+        string=u'Horario',
     )
     x_hora_fin = fields.Float(
         string=u'Trabaja hasta',
     )
     x_anios_trabajando = fields.Integer(
-        string=u'Años',
+        string=u'Tiempo trabajando',
     )
-    x_meses_trabajando = fields.Integer(
-        string=u'Meses',
+    x_tiempo_unidad = fields.Selection(
+        string=u'Días/Semanas/Meses/Años',
+        selection=[('dias', 'Días'), ('semanas', 'Semanas'),
+                   ('meses', 'Meses'), ('anios', 'Años')]
     )
+    x_motivo = fields.Char(
+        string=u'Motivo de cambio',
+    )
+    

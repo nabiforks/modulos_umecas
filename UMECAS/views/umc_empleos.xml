@@ -21,14 +21,28 @@
                         </group>
                         <group>
                             <field name="x_patron" />
-                            <field name="x_salario" />
-                            <field name="x_dias_trabaja" />
-                            <field name="x_hora_inicio" widget="float_time"/>
-                            <field name="x_hora_fin" widget="float_time" />
-                            <label string="Tiempo laborando"/>
-                            <div></div>
-                            <field name="x_anios_trabajando" placeholder="años" />
-                            <field name="x_meses_trabajando" placeholder="meses" />
+                            <label for='x_salario'/>
+                            <div class="address_format">
+                                <field name="x_salario" style="width: 33%"/>
+                                <field name="x_moneda" style="width: 33%"/>
+                                <field name="x_salario_pagos" style="width: 33%"/>
+                            </div>
+                            <label for="x_anios_trabajando"/>
+                            <div class="address_format">
+                                <field name="x_anios_trabajando" style="width: 50%"/>
+                                <field name="x_tiempo_unidad" style="width: 50%"/>
+                            </div>
+                            <label for="x_dias_trabaja"/>
+                            <div class="address_format">
+                                <field name="x_dias_trabaja" style="width: 50%"/>
+                                <field name="x_dias_trabaja_hasta" style="width: 50%"/>
+                            </div>
+                            <label for="x_hora_inicio"/>
+                            <div class="address_format">
+                                <field name="x_hora_inicio" widget="float_time" style="width: 50%"/>
+                                <field name="x_hora_fin" widget="float_time" style="width: 50%"/>
+                            </div>
+                            <field name="x_motivo" attrs="{ 'invisible':[('x_actual_anterior','not in','anterior')] }" />
                         </group>
                         <field name="x_domicilio_ids" mode="tree" context="{'default_x_estado_id': 504, }">
                             <tree editable="top">
