@@ -203,8 +203,8 @@ class umc_evaluacion(models.Model):
     x_area = fields.Char(
         string='Área',
     )
-    x_agente = fields.Char(
-        string='Agente',
+    x_puesto = fields.Char(
+        string='Puesto',
     )
     x_actividades_desarrolladas = fields.Text(
         string='Tipo de actividades desarrolladas',
@@ -271,5 +271,26 @@ class umc_evaluacion(models.Model):
     )
     x_conc_proximidad = fields.Text(
         string='Proximidad',
+    )
+    x_nombre_elav = fields.Char(
+        string='Elavoró',
+    )
+    x_puesto_elav = fields.Char(
+        string='Puesto',
+    )
+    x_seccion = fields.Char(
+        string='Sección',
+    )
+    x_serie = fields.Char(
+        string='Serie',
+    )
+    x_sub_serie = fields.Char(
+        string='Subserie',
+    )
+
+    #==========Default value==========
+    x_parrafo = fields.Text(
+        string='Párrafo inicializado',
+        default='En atención al oficio X, asignado por el Abogado X, Agente del Ministerio Público Adscrito a la Unidad de Flagrancia de fecha, con fundamento en lo dispuesto por los articulos 153, 155, 156, 157, 158, 164, 168, 169 y 170 del Código Nacional de Procedimientos Penales: 65, 66, 67 y 68 de la Ley de Ejecucíón de Medidas Cautelares y Sanciones Penales para el Estado de Puebla y 17 fracción XIII y XIV de la Ley de Seguridad Pública del Estado; se emite la presente evaluación de riesgos del entrevistado X, dentro de la Carpeta de Investigación  X. Con base al resultado de la entrevista y recopilación de datos.',
     )
 
