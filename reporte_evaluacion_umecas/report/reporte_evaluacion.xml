@@ -19,7 +19,7 @@
 							<div class="row">
 								<div class="col-xs-12 text-right">
 									<strong>
-										EVALUACIÓN:
+										EVALUACIÓN:<span t-field="entrevista.folio_evalucion" />
 									</strong>
 									
 								</div>
@@ -46,13 +46,15 @@
 					
 							<div class="row">
 								<div class="col-xs-12 text-justify">
-									En atención al oficio <strong><span t-field="entrevista.x_expediente_id.x_numero_oficio"/></strong>, asignado por el Abogado <strong><span t-field="entrevista.x_agente" /></strong>, Agente del Ministerio Público Adscrito a la Unidad de Flagrancia de fecha  
+									<span t-field="entrevista.x_parrafo" />
+									<!--En atención al oficio <strong><span t-field="entrevista.x_expediente_id.x_numero_oficio"/></strong>, asignado por el Abogado <strong><span t-field="entrevista.x_agente" /></strong>, Agente del Ministerio Público Adscrito a la Unidad de Flagrancia de fecha  
 									<strong>
 										<span t-field="entrevista.x_expediente_id.x_fecha_inicio" t-options="{'format': 'd'}"/> de 
 										<span t-field="entrevista.x_expediente_id.x_fecha_inicio" t-options="{'format': 'MMMM'}"/> de 
 										<span t-field="entrevista.x_expediente_id.x_fecha_inicio" t-options="{'format': 'y'}"/>
 									</strong>
 									, con fundamento en lo dispuesto por los articulos 153, 155, 156, 157, 158, 164, 168, 169 y 170 del Código Nacional de Procedimientos Penales: 65, 66, 67 y 68 de la Ley de Ejecucíón de Medidas Cautelares y Sanciones Penales para el Estado de Puebla y 17 fracción XIII y XIV de la Ley de Seguridad Pública del Estado; se emite la presente evaluación de riesgos del entrevistado <strong><span t-field="entrevista.x_imputado_name"/></strong>, dentro de la Carpeta de Investigación  <strong><span t-field="entrevista.x_expediente_id.x_cdi_nic"/></strong>. Con base al resultado de la entrevista y recopilación de datos.
+								-->
 								</div>
 							</div>
 							<br/>
@@ -392,10 +394,14 @@
 										</thead>
 										<tbody>
 											<tr style="background-color:#f2f2f2;">
-												<td style="padding: 0;">Texto</td>
+												<td style="padding: 0;">
+													<span t-field="entrevista.x_nombre_elav"/>
+												</td>
 											</tr>
 											<tr>
-												<td style="padding: 0;">Texto</td>
+												<td style="padding: 0;">
+													<span t-field="entrevista.x_puesto_elav"/>
+												</td>
 											</tr>
 										</tbody>
 									</table>
@@ -415,9 +421,15 @@
 												<td style="padding: 0;">SUBSERIE</td>
 											</tr>
 											<tr>
-												<td style="padding: 0;">Texto</td>
-												<td style="padding: 0;">Texto</td>
-												<td style="padding: 0;">Texto</td>
+												<td style="padding: 0;">
+													<span t-field="entrevista.x_seccion"/>
+												</td>
+												<td style="padding: 0;">
+													<span t-field="entrevista.x_serie"/>
+												</td>
+												<td style="padding: 0;">
+													<span t-field="entrevista.x_sub_serie"/>
+												</td>
 											</tr>
 										</tbody>
 									</table>

@@ -69,18 +69,25 @@
                             </page>
                             <page string="Evaluación" attrs="{'invisible': [('state','not in',('evaluacion','evaluacion_terminada'))]}">
                                 <div class="row">
-                                    <div class="col-xs-6">
+                                    <div class="col-xs-12">
                                         <h4>Datos para reporte</h4>
                                         <group>
-                                            <field name="x_name_abogado"/>
-                                            <field name="x_area"/>
+                                            <group>
+                                                <field name="x_name_abogado"/>
+                                                <field name="x_area"/>
+                                            </group>
+                                            <group>
+                                                <field name="x_puesto"/>
+                                            </group>
                                         </group>
                                     </div>
-                                    <div class="col-xs-6">
-                                        <h4>Datos para reporte</h4>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-12">
                                         <group>
-                                            <field name="x_agente"/>
+                                            <label for="x_parrafo"/>
                                         </group>
+                                        <field name="x_parrafo"/>
                                     </div>
                                 </div>
                                 <div class="row">
@@ -168,7 +175,7 @@
                                 </div>
                                 <div class="row">
                                     <div class="col-xs-12">
-                                        <h4>Peligro de obstaculización del desarrollo de la investigació</h4>
+                                        <h4>Peligro de obstaculización del desarrollo de la investigación</h4>
                                     </div>
                                 </div>
                                 <div class="row">
@@ -193,6 +200,45 @@
                                 <group>
                                     <field name="x_conclusion"/>
                                 </group>
+                                <br/>
+                                <div class="row">
+                                    <div class="col-xs-6">
+                                        <table class="table table-bordered text-center">
+                                            <tbody>
+                                                <tr>
+                                                    <th><center>Elaboró</center></th>
+                                                </tr>
+                                                <tr>
+                                                    <td><field name="x_nombre_elav"/></td>
+                                                </tr>
+                                                <tr>
+                                                    <td><field name="x_puesto_elav"/></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    
+                                    <div class="col-xs-6">
+                                        <table class="table table-bordered text-center">
+                                            <tbody>
+                                                <tr>
+                                                    <th colspan="4"><center>Clasificación archivista</center></th>
+                                                </tr>
+                                                <tr>
+                                                    <td>Sección</td>
+                                                    <td>Serie</td>
+                                                    <td>Subserie</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><field name="x_seccion"/></td>
+                                                    <td><field name="x_serie"/></td>
+                                                    <td><field name="x_sub_serie"/></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+
                             </page>
                         </notebook>
                     </group>
