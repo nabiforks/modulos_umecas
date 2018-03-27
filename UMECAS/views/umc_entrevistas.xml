@@ -192,6 +192,7 @@
         <field name="arch" type="xml">
             <tree>
                 <field name="x_name" />
+                <field name="x_tipo" />
                 <field name="x_fecha_entrevista" />
                 <field name="x_evaluador_name" />
                 <field name="x_imputado_name" />

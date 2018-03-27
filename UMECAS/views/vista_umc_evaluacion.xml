@@ -8,14 +8,10 @@
             <form>
                 <header>
                     <button name="asignar_borrador" type="object" string="Solicitud" states="entrevista"/>
-                    <button name="generar_entrevista" type="object" string="Generar entrevista" class="oe_highlight"
-                            states="solicitud"/>
-                    <button name="terminar_entrevista" type="object" string="Escala de riesgos" class="oe_highlight"
-                            states="entrevista"/>
-                    <button name="terminar_analisis" type="object" string="Evaluación" class="oe_highlight"
-                            states="analisis"/>
-                    <button name="terminar_evaluacion" type="object" string="Terminar Evaluación" class="oe_highlight"
-                            states="evaluacion"/>
+                    <button name="generar_entrevista" type="object" string="Generar entrevista" class="oe_highlight" states="solicitud"/>
+                    <button name="terminar_entrevista" type="object" string="Escala de riesgos" class="oe_highlight" states="entrevista"/>
+                    <button name="terminar_analisis" type="object" string="Evaluación" class="oe_highlight" states="analisis"/>
+                    <button name="terminar_evaluacion" type="object" string="Terminar Evaluación" class="oe_highlight" states="evaluacion"/>
                     <field name="state" widget="statusbar"/>
                 </header>
                 <sheet>
@@ -24,11 +20,9 @@
                             <field name="x_name"/>
                         </h1>
                     </div>
-
                     <group>
                         <group>
-                            <field name="x_evaluador_id" attrs="{'readonly': [('state','not in',('solicitud'))]}"
-                                   options="{'no_create': True, 'no_open': True}"/>
+                            <field name="x_evaluador_id"  attrs="{'readonly': [('state','not in',('solicitud'))]}" options="{'no_create': True, 'no_open': True}"/>
                             <field name="x_tipo_entrevista" widget="radio" options="{'horizontal': true}"/>
                             <field name="folio_evalucion"/>
                         </group>
@@ -47,8 +41,7 @@
                                     <field name="x_entrevista_status"/>
                                 </group>
                             </page>
-                            <page string="Escala de riesgos"
-                                  attrs="{'invisible': [('state','in',('solicitud','entrevista'))]}">
+                            <page string="Escala de riesgos" attrs="{'invisible': [('state','in',('solicitud','entrevista'))]}">
                                 <group class="row">
                                     <group>
                                         <field name="x_fecha_analisis"/>
@@ -58,30 +51,23 @@
                                         <field name="x_escala_riesgos" readonly="1"/>
                                         <field name="x_escala_valores_id" invisible="1"/>
                                         <div>
-                                            <button name="semaforo_verde" string="B" style="{border-radius: 25px}"
-                                                    type="button" class="btn btn-success"
-                                                    attrs="{'invisible': [('x_escala_riesgos','not in','bajo')]}"/>
-                                            <button name="semaforo_ambar" string="M" style="{border-radius: 25px}"
-                                                    type="button" class="btn btn-warning"
-                                                    attrs="{'invisible': [('x_escala_riesgos','not in','medio')]}"/>
-                                            <button name="semaforo_rojo" string="A" style="{border-radius: 25px}"
-                                                    type="button" class="btn btn-danger"
-                                                    attrs="{'invisible': [('x_escala_riesgos','not in','alto')]}"/>
+                                            <button name="semaforo_verde" string="B" style="{border-radius: 25px}" type="button" class="btn btn-success" attrs="{'invisible': [('x_escala_riesgos','not in','bajo')]}"/>
+                                            <button name="semaforo_ambar" string="M" style="{border-radius: 25px}" type="button" class="btn btn-warning" attrs="{'invisible': [('x_escala_riesgos','not in','medio')]}"/>
+                                            <button name="semaforo_rojo" string="A" style="{border-radius: 25px}" type="button" class="btn btn-danger" attrs="{'invisible': [('x_escala_riesgos','not in','alto')]}"/>
                                         </div>
                                     </group>
                                 </group>
                                 <group>
                                     <field name="x_escalas_ids">
-                                        <tree string="Escala de valores" create="0" edit="1" editable="top">
-                                            <field name="seccion"/>
-                                            <field name="valor_ids" domain="[('seccion_id', '=', seccion)]"/>
+                                        <tree string="Escala de valores" create="0" delete="0" edit="1" editable="top">
+                                            <field name="seccion" options="{'no_create': True, 'no_open': True}"/>
+                                            <field name="valor_ids" options="{'no_create': True, 'no_open': True}" domain="[('seccion_id', '=', seccion)]"/>
                                             <field name="num_valor"/>
                                         </tree>
                                     </field>
                                 </group>
                             </page>
                             <page string="Evaluación" attrs="{'invisible': [('state','not in',('evaluacion','evaluacion_terminada'))]}">
-
                                 <div class="row">
                                     <div class="col-xs-6">
                                         <h4>Datos para reporte</h4>
@@ -110,7 +96,6 @@
                                         <label style="font-weight: bold;" for="x_nucleo_secundario"/>
                                         <field name="x_nucleo_secundario"/>
                                     </div>
-                                    
                                 </div>
                                 <div class="row">
                                     <div class="col-xs-6">
@@ -148,7 +133,6 @@
                                         <field name="x_mc_anteriores"/>
                                     </div>
                                 </div>
-
                                 <div class="row">
                                     <div class="col-xs-12">
                                         <h4>Verificación de datos</h4>
@@ -206,11 +190,9 @@
                                         <field name="x_conclusion" placeholder="El entrevistado no manifestó haber estado..."/>
                                     </div>
                                 </div>
-
                                 <group>
                                     <field name="x_conclusion"/>
                                 </group>
-
                             </page>
                         </notebook>
                     </group>
@@ -228,7 +210,7 @@
                 <field name="x_name"/>
                 <field name="x_imputado_name"/>
                 <field name="partner_id" invisible="1"/>
-                <field name="x_tipo_entrevista"/>
+                <field name="folio_evalucion"/>
                 <field name="x_evaluador_id"/>
                 <field name="x_expediente_id"/>
                 <field name="state"/>
@@ -241,8 +223,7 @@
         <field name="model">umc_evaluacion</field>
         <field name="arch" type="xml">
             <search>
-                <filter string="Estatus evaluación" name="state_eval" domain="[('state','=','evaluacion')]"
-                        help="Filtra las solicitudes que estan en estatus de evaluación"/>
+                <filter string="Estatus evaluación" name="state_eval" domain="[('state','=','evaluacion')]" help="Filtra las solicitudes que estan en estatus de evaluación"/>
                 <field name="x_expediente_id"/>
                 <field name="x_imputado_name"/>
                 <field name="x_tipo_entrevista"/>
@@ -252,7 +233,7 @@
     </record>
     <!-- window action ///////////////////////////////////////////////////////////////////////////////-->
     <record model="ir.actions.act_window" id="umc_evaluacion_list_action">
-        <field name="name">Solicitud/evaluación</field>
+        <field name="name">Solicitud</field>
         <field name="res_model">umc_evaluacion</field>
         <field name="view_type">form</field>
         <field name="view_mode">tree,kanban,form</field>
@@ -261,6 +242,5 @@
             <p class="oe_view_nocontent_create">Agregar primer registro</p>
         </field>
     </record>
-    <menuitem id="evaluaciones_menu" name="Solicitud/evaluación" parent="main_umc_menu"
-              action="umc_evaluacion_list_action"/>
+    <menuitem id="evaluaciones_menu" name="Solicitudes" parent="main_umc_menu" action="umc_evaluacion_list_action"/>
 </odoo>
