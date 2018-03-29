@@ -8,7 +8,7 @@ class umc_evaluacion(models.Model):
     _name = 'umc_evaluacion'
     # _inherit = 'mail.thread'
 
-    x_name = fields.Char('Solicitud de evaluación', required=True, readonly=True,
+    x_name = fields.Char('Solicitud', required=True, readonly=True,
                          default=lambda self: 'Nuevo')
     folio_evalucion = fields.Char('Folio de la evaluación', readonly=True, default=lambda self: '')
 
@@ -20,10 +20,11 @@ class umc_evaluacion(models.Model):
         ondelete='set null',
     )
     x_evaluador_id = fields.Many2one(
-        'hr.employee',
+        'res.users',
         string=u'Evaluador',
         required=True,
-        ondelete='set null',
+        ondelete='set null',        
+        domain="[('company_id','=',x_casa_justicia)]",        
     )
     partner_id = fields.Many2one(
         'res.partner',
@@ -38,10 +39,6 @@ class umc_evaluacion(models.Model):
         related='partner_id.display_name',
         readonly=True,
     )
-    """x_tipo_entrevista = fields.Selection(
-        string=u'Tipo de Entrevista',
-        related='partner_id.x_imputado_tipo'
-    )"""
     x_tipo_entrevista = fields.Selection(
         [('retenido', 'Retenido'), ('adolescente', 'Adolescente'), ('interno', 'Interno')], default='1', required=True, string=u'Tipo de Entrevista')
 
@@ -154,7 +151,8 @@ class umc_evaluacion(models.Model):
     x_escala_riesgos = fields.Selection(
         string=u'Escala de riesgo',
         selection=[('bajo', 'Bajo'), ('medio', 'Medio'), ('alto', 'Alto')],
-        compute='calcular_ponderacion'
+        compute='calcular_ponderacion',        
+        store=True,        
     )
     x_escala_valores_id = fields.Many2one(
         string=u'Escala valores ID',

@@ -46,5 +46,47 @@
         <record model="ir.ui.menu" id="base.menu_action_res_company_form">
             <field name="name">Casas de Justicia</field>
         </record>
+        <!--//////////////////////////////RES:USERS//////////////////////////////////////////////////-->
+        <!--//////////////////////////////RES:USERS//////////////////////////////////////////////////-->
+        <!--//////////////////////////////RES:USERS//////////////////////////////////////////////////-->
+        <!--//////////////////////////////RES:USERS//////////////////////////////////////////////////-->
+        <!--//////////////////////////////RES:USERS//////////////////////////////////////////////////-->
+        <!--//////////////////////////////RES:USERS//////////////////////////////////////////////////-->
+        <record id="view_users_inherit_form" model="ir.ui.view">
+            <field name="name">UMC - Usuarios</field>
+            <field name="model">res.users</field>
+            <field name="inherit_id" ref="base.view_users_form" />
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='company_ids']" position="attributes">
+                    <attribute name="string">Casas de justicia permitidas</attribute>
+                </xpath>
+                <xpath expr="//field[@name='partner_id']" position="attributes">
+                    <attribute name="string">Relacionado a</attribute>
+                </xpath>
+                <xpath expr="//field[@name='company_id']" position="attributes">
+                    <attribute name="string">Casa de justicia actual</attribute>
+                </xpath>
+                <xpath expr="//page[@name='access_rights']//group" position="attributes">
+                    <attribute name="string">Casas de justicia</attribute>
+                </xpath>
+            </field>
+        </record>
+        <record id="view_users_inherit_tree" model="ir.ui.view">
+            <field name="name">users - Casa de justicia- tree</field>
+            <field name="model">res.users</field>
+            <field name="inherit_id" ref="base.view_users_tree" />
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='login']" position="after">
+                    <field name="company_id" />
+                </xpath>
+                <xpath expr="//field[@name='company_id']" position="attributes">
+                    <attribute name="string">Casa de Justicia</attribute>
+                </xpath>
+            </field>
+        </record>
+        
+        <record model="ir.ui.menu" id="mail.mail_channel_menu_root_chat">
+            <field name="name">Comunicación</field>
+        </record>
     </data>
 </odoo>

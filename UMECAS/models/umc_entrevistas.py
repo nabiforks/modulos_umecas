@@ -20,7 +20,7 @@ class Entrevistas(models.Model):
         default=fields.Datetime.now,
     )
     x_evaluacion_id = fields.Many2one(
-        string=u'Solicitud de evaluación',
+        string=u'Solicitud',
         comodel_name='umc_evaluacion',
         readonly=True,
         ondelete='cascade',
