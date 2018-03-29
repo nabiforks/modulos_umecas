@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+	<data>
+		<record model="ir.ui.view" id="audiencias_form_view">
+			<field name="name">audiencias.form.view</field>
+			<field name="model">pp.audiencia</field>
+			<field name="arch" type="xml">
+				<form>
+					<sheet>
+						<group>
+							<group>
+								<field name="name"/>
+							</group>
+							<group>
+								<field name="lugar"/>
+							</group>
+						</group>
+						<div class="row">
+							<div class="col-xs-3">
+								<label for="tipo_audiencia"/>
+								<field name="tipo_audiencia"/>
+							</div>
+							<div class="col-xs-3">
+								<label for="causa_penal"/>
+								<field name="causa_penal"/>
+							</div>
+							<div class="col-xs-3">
+								<label for="no_sala"/>
+								<field name="no_sala"/>
+							</div>
+							<div class="col-xs-3">
+								<label for="fecha_hora"/>
+								<field name="fecha_hora"/>
+							</div>
+						</div>
+						<br/>
+						<div class="row">
+							<div class="col-xs-12">
+								<label for="expediente_ids"/>
+								<field name="expediente_ids">
+									<tree>
+										<field name="x_imputado_name"/>
+										<field name="x_delito"/>
+										<field name="x_delito_descripcion"/>
+									</tree>
+								</field>
+							</div>
+						</div>
+						<group>
+							<group>
+								<field name="hora_inicio" widget="float_time"/>
+								<field name="juez_nombre"/>
+								<field name="juez_cargo"/>
+								<field name="juez_region"/>
+							</group>
+							<group>
+								<field name="hora_termino" widget="float_time"/>
+								<field name="resolucion"/>
+								<field name="observaciones"/>
+							</group>
+						</group>
+						<group>
+							<label string="Responsable de la Policía Procesal en turno"/>
+							<group>
+								<field name="employee_id"/>
+							</group>
+							<group>
+								<field name="pp_cargo"/>
+							</group>
+						</group>
+					</sheet>
+				</form>
+			</field>
+		</record>
+
+		<!--Tree-->
+		<record model='ir.ui.view' id='audiencia_tree_view'>
+			<field name='name'>audiencia.tree</field>
+			<field name='model'>pp.audiencia</field>
+			<field name='arch' type='xml'>
+				<tree>
+					<field name='name'/>
+					<field name='fecha_hora'/>
+				</tree>
+			</field>
+		</record>
+
+		<!--Action-->
+		<record id="audiencia_action_list" model="ir.actions.act_window">
+			<field name="name">Control de audiencias</field>
+			<field name="res_model">pp.audiencia</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+		</record>
+	</data>
+</odoo>

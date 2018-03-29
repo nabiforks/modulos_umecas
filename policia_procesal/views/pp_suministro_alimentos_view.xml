@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+	<data>
+		<record model="ir.ui.view" id="suministro_alimentos_form_view">
+			<field name="name">pp.suministro.form</field>
+			<field name="model">pp.suministro</field>
+			<field name="arch" type="xml">
+				<form >
+					<sheet>
+						<group>
+							<group>
+								<field name="name" domain="[('x_imputado','=',True)]"/>
+							</group>
+							<group></group>
+						</group>
+						<field name="alimentos_list">
+							<tree editable="bottom">
+								<field name="fecha"/>
+								<field name="tercio" widget="selection"/>
+								<field name="descripcion"/>
+							</tree>
+						</field>
+						<br/>
+						<label string="Policía procesal que realiza el registro"/>
+						<group>
+							<group>
+								<field name="employee_id"/>
+							</group>
+							<group>
+								<field name="conducta" />
+							</group>
+						</group>
+					</sheet>
+				</form>
+			</field>
+		</record>
+
+		<record model='ir.ui.view' id='suministro_alimentos_tree_view'>
+			<field name='name'>suministro_alimentos.tree.view</field>
+			<field name='model'>pp.suministro</field>
+			<field name='arch' type='xml'>
+				<tree >
+					<field name='name'/>
+					<field name='employee_id' string="Empleado que suministró"/>
+				</tree>
+			</field>
+		</record>
+
+		<!--Search-->
+		<record model="ir.ui.view" id="suministro_alimentos_search_view">
+	        <field name="name">suministro_alimentos.search.view</field>
+	        <field name="model">pp.suministro</field>
+	        <field name="arch" type="xml">
+	            <search>
+	                <field name="name"/>
+	            </search>
+	        </field>
+	    </record>
+
+		<!--Action-->
+		<record id="suministro_alimentos_action_list" model="ir.actions.act_window">
+			<field name="name">Suministro de alimentos</field>
+			<field name="res_model">pp.suministro</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+			<field name="help" type="html">
+	            <p class="oe_view_nocontent_create">Agregar primer registro</p>
+	        </field>
+		</record>
+	</data>
+</odoo>
