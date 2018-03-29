@@ -6,4 +6,3 @@ from . import pp_vehiculos
 from . import pp_custodia_provicional
 from . import pp_audiencias
 from . import pp_suministro_alimentos
-from . import pp_umc_expedientes_inherit

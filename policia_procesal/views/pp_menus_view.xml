@@ -37,7 +37,7 @@
 		<menuitem id="autoridades_menu" name="Autoridades" parent="pp_menu" action="autoridades_action_list"/>
 
 		<!--Crear menu medicos-->
-		<menuitem id="medico_menu" name="Medicos" parent="pp_menu" action="medicos_action_list"/>
+		<menuitem id="medico_menu" name="Médicos" parent="pp_menu" action="medicos_action_list"/>
 
 		<!--Crear menu vehiculos-->
 		<menuitem id="vehiculos_manu" name="Vehículos oficiales" parent="pp_menu" action="vehiculos_action_list"/>

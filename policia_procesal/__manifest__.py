@@ -31,7 +31,6 @@
        'views/pp_custodia_provicional_view.xml',
        'views/pp_audiencias_view.xml',
        'views/pp_suministro_alimentos_view.xml',
-      # 'views/pp_umc_exp_inherit_view.xml',
        'views/pp_menus_view.xml',
        'data/sequence_names.xml'
     ],
