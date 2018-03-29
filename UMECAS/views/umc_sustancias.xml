@@ -9,6 +9,7 @@
                 <sheet>
                     <group>
                         <group>
+                            <field name="x_intra_extra" />
                             <field name="x_name" />
                             <field name="x_frecuencia" />
                             <field name="x_cantidad" />
@@ -24,6 +25,7 @@
         <field name="model">umc_sustancias_consume</field>
         <field name="arch" type="xml">
             <tree>
+                <field name="x_intra_extra" />
                 <field name="x_name" />
                 <field name="x_frecuencia" />
                 <field name="x_cantidad" />
@@ -40,5 +42,4 @@
             <p class="oe_view_nocontent_create">Agregar primer registro                </p>
         </field>
     </record>
-    
 </odoo>

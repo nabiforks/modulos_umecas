@@ -10,9 +10,12 @@
                     <group>
                         <group>
                             <field name="x_name" />
-                            <field name="x_tiempo_padece" />
+                            <label for="_x_tiempo_padece"/>
+                            <div>
+                                <field name="x_tiempo_padece" />
+                                <field name="x_tiempo_unidad" />
+                            </div>
                             <field name="x_tratamiento" />
-                            <field name="x_discapacidad_id" />
                         </group>
                     </group>
                 </sheet>
@@ -26,8 +29,8 @@
             <tree>
                 <field name="x_name" />
                 <field name="x_tiempo_padece" />
+                <field name="x_tiempo_unidad" />
                 <field name="x_tratamiento" />
-                <field name="x_discapacidad_id" />
             </tree>
         </field>
     </record>
@@ -40,5 +43,4 @@
             <p class="oe_view_nocontent_create">Agregar primer registro                </p>
         </field>
     </record>
-    
 </odoo>

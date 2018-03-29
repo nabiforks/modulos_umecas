@@ -142,7 +142,10 @@
         <record id="umc_parentesco_4" model="umc_parentesco">
             <field name="x_name">Madre</field>
         </record>
-        <!--Datos demo para parentesco ////////////////////////////////-->
+        <!--Datos demo para ocupacion//////////////////////////////////////////////////////////-->
+        <!--Datos demo para ocupacion//////////////////////////////////////////////////////////-->
+        <!--Datos demo para ocupacion//////////////////////////////////////////////////////////-->
+        <!--Datos demo para ocupacion//////////////////////////////////////////////////////////-->
         <record id="umc_ocupacion_1" model="umc_ocupacion">
             <field name="x_name">Estudiante</field>
         </record>
@@ -155,7 +158,10 @@
         <record id="umc_ocupacion_4" model="umc_ocupacion">
             <field name="x_name">Campesino</field>
         </record>
-        <!--Datos demo para nacionalidad ////////////////////////////////-->
+        <!--Datos demo para nacionalidad ////////////////////////////////////////////////////-->
+        <!--Datos demo para nacionalidad ////////////////////////////////////////////////////-->
+        <!--Datos demo para nacionalidad ////////////////////////////////////////////////////-->
+        <!--Datos demo para nacionalidad ////////////////////////////////////////////////////-->
         <record id="umc_nacionalidad_1" model="umc_nacionalidad">
             <field name="x_codigo">mex</field>
             <field name="x_name">Mexicano(a)</field>
@@ -172,7 +178,10 @@
             <field name="x_codigo">hon</field>
             <field name="x_name">Hondureño(a)</field>
         </record>
-        <!--Datos demo para identificacion ////////////////////////////////-->
+        <!--Datos demo para identificacion ///////////////////////////////////////////////////-->
+        <!--Datos demo para identificacion ///////////////////////////////////////////////////-->
+        <!--Datos demo para identificacion ///////////////////////////////////////////////////-->
+        <!--Datos demo para identificacion ///////////////////////////////////////////////////-->
         <record id="umc_identificacion_1" model="umc_identificacion">
             <field name="x_codigo">ine</field>
             <field name="x_name">INE</field>
@@ -180,6 +189,172 @@
         <record id="umc_identificacion_2" model="umc_identificacion">
             <field name="x_codigo">lic</field>
             <field name="x_name">Licencia para conducir</field>
+        </record>
+        <!--Datos demo para sustancia /////////////////////////////////////////////////////-->
+        <!--Datos demo para sustancia /////////////////////////////////////////////////////-->
+        <!--Datos demo para sustancia /////////////////////////////////////////////////////-->
+        <!--Datos demo para sustancia /////////////////////////////////////////////////////-->
+        <record id="umc_sustancia_1" model="umc_sustancia">
+            <field name="x_name">Alcohol</field>
+        </record>
+        <record id="umc_sustancia_2" model="umc_sustancia">
+            <field name="x_name">Marihuana</field>
+        </record>
+        <record id="umc_sustancia_3" model="umc_sustancia">
+            <field name="x_name">Cocaína</field>
+        </record>
+        <record id="umc_sustancia_4" model="umc_sustancia">
+            <field name="x_name">Heroína</field>
+        </record>
+        <record id="umc_sustancia_5" model="umc_sustancia">
+            <field name="x_name">Solventes</field>
+        </record>
+        <record id="umc_sustancia_6" model="umc_sustancia">
+            <field name="x_name">Otros</field>
+        </record>
+        <!--Datos demo para autoridad /////////////////////////////////////////////////////-->
+        <!--Datos demo para autoridad /////////////////////////////////////////////////////-->
+        <!--Datos demo para autoridad /////////////////////////////////////////////////////-->
+        <!--Datos demo para autoridad /////////////////////////////////////////////////////-->
+        <record id="umc_autoridad_1" model="umc_autoridad">
+            <field name="x_name">Policía Auxiliar</field>
+            <field name="x_codigo">PAUX</field>
+        </record>
+        <record id="umc_autoridad_2" model="umc_autoridad">
+            <field name="x_name">Policía Municipal</field>
+            <field name="x_codigo">PMPAL</field>
+        </record>
+        <record id="umc_autoridad_3" model="umc_autoridad">
+            <field name="x_name">Policía Estatal</field>
+            <field name="x_codigo">PEST</field>
+        </record>
+        <record id="umc_autoridad_4" model="umc_autoridad">
+            <field name="x_name">Policía Ministerial Estatal</field>
+            <field name="x_codigo">PMEST</field>
+        </record>
+        <record id="umc_autoridad_5" model="umc_autoridad">
+            <field name="x_name">Policía Federal</field>
+            <field name="x_codigo">PFED</field>
+        </record>
+        <record id="umc_autoridad_6" model="umc_autoridad">
+            <field name="x_name">Policía Ministerial Federal</field>
+            <field name="x_codigo">PMFED</field>
+        </record>
+        <record id="umc_autoridad_7" model="umc_autoridad">
+            <field name="x_name">Policía Militar</field>
+            <field name="x_codigo">PMIL</field>
+        </record>
+        <record id="umc_autoridad_8" model="umc_autoridad">
+            <field name="x_name">Otro</field>
+            <field name="x_codigo">OTRO</field>
+        </record>
+        <!--Datos demo para lugares /////////////////////////////////////////////////////-->
+        <!--Datos demo para lugares /////////////////////////////////////////////////////-->
+        <!--Datos demo para lugares /////////////////////////////////////////////////////-->
+        <!--Datos demo para lugares /////////////////////////////////////////////////////-->
+        <record id="umc_lugares_1" model="umc_lugares">
+            <field name="x_name">Fiscalia General del Estado</field>
+            <field name="x_codigo">FGE</field>
+        </record>
+        <record id="umc_lugares_2" model="umc_lugares">
+            <field name="x_name">Área de entrevista Dirección de Medidas Cautelares</field>
+            <field name="x_codigo">UMECAS</field>
+        </record>
+        <record id="umc_lugares_3" model="umc_lugares">
+            <field name="x_name">Hospital</field>
+            <field name="x_codigo">HOSPITAL</field>
+        </record>
+        <record id="umc_lugares_4" model="umc_lugares">
+            <field name="x_name">Cereso de Puebla</field>
+            <field name="x_codigo">CPUE</field>
+        </record>
+        <record id="umc_lugares_5" model="umc_lugares">
+            <field name="x_name">Cereso de Tehuacán</field>
+            <field name="x_codigo">CTEHU</field>
+        </record>
+        <record id="umc_lugares_6" model="umc_lugares">
+            <field name="x_name">Cereso Huauchinango</field>
+            <field name="x_codigo">CHUAU</field>
+        </record>
+        <record id="umc_lugares_7" model="umc_lugares">
+            <field name="x_name">Cereso San Pedro</field>
+            <field name="x_codigo">CSNPEDRO</field>
+        </record>
+        <record id="umc_lugares_8" model="umc_lugares">
+            <field name="x_name">Cholula</field>
+            <field name="x_codigo">CHO</field>
+        </record>
+        <record id="umc_lugares_9" model="umc_lugares">
+            <field name="x_name">Carcel Distrital Cicotepec de Juárez</field>
+            <field name="x_codigo">CDISTR</field>
+        </record>
+        <record id="umc_lugares_10" model="umc_lugares">
+            <field name="x_name">Carcel Distrital Zacatlán</field>
+            <field name="x_codigo">CZACATLAN</field>
+        </record>
+        <record id="umc_lugares_11" model="umc_lugares">
+            <field name="x_name">Carcel Distrital Huejotzingo</field>
+            <field name="x_codigo">CHUEJO</field>
+        </record>
+        <record id="umc_lugares_12" model="umc_lugares">
+            <field name="x_name">Carcel Distrital Tezuhitlán</field>
+            <field name="x_codigo">CDTEZU</field>
+        </record>
+        <record id="umc_lugares_13" model="umc_lugares">
+            <field name="x_name">Carcel Distrital Izucar de Matamoros</field>
+            <field name="x_codigo">CDIZUCAR</field>
+        </record>
+        <record id="umc_lugares_14" model="umc_lugares">
+            <field name="x_name">Carcel Distrital Tecamachalco </field>
+            <field name="x_codigo">CDTECAMA</field>
+        </record>
+        <record id="umc_lugares_15" model="umc_lugares">
+            <field name="x_name">Carcel Distrital Atlixco</field>
+            <field name="x_codigo">CDATLI</field>
+        </record>
+        <record id="umc_lugares_16" model="umc_lugares">
+            <field name="x_name">Carcel Distrital Tlauquitepec </field>
+            <field name="x_codigo">CDTLAUQUITEPEC</field>
+        </record>
+        <record id="umc_lugares_17" model="umc_lugares">
+            <field name="x_name">Carcel Distrital Zacapoaxtla </field>
+            <field name="x_codigo">CDZACAPOAXTLA</field>
+        </record>
+        <record id="umc_lugares_18" model="umc_lugares">
+            <field name="x_name">Carcel Distrital Tepeaca</field>
+            <field name="x_codigo">CDTEPEACA</field>
+        </record>
+        <record id="umc_lugares_19" model="umc_lugares">
+            <field name="x_name">Carcel Distrital Acatlán de Osorio</field>
+            <field name="x_codigo">CDACATLAN</field>
+        </record>
+        <record id="umc_lugares_20" model="umc_lugares">
+            <field name="x_name">Carcel Distrital Tetela de Ocampo</field>
+            <field name="x_codigo">CDTETELA</field>
+        </record>
+        <record id="umc_lugares_21" model="umc_lugares">
+            <field name="x_name">Carcel Distrital Tecali de Herrera</field>
+            <field name="x_codigo">CDTECALI</field>
+        </record>
+        <record id="umc_lugares_22" model="umc_lugares">
+            <field name="x_name">Carcel Distrital Libres</field>
+            <field name="x_codigo">CDLIBRES</field>
+        </record>
+        <record id="umc_lugares_23" model="umc_lugares">
+            <field name="x_name">Carcel Distrital  Chiautla de Tapia</field>
+            <field name="x_codigo">CDCHIAUTLA</field>
+        </record>
+        <record id="umc_lugares_24" model="umc_lugares">
+            <field name="x_name">Carcel Distrital Chignahuapan</field>
+            <field name="x_codigo">CDCHIGNAHUAPAN</field>
+        </record>
+        <record id="umc_lugares_25" model="umc_lugares">
+            <field name="x_name">Centro Penitenciario Tepexi de Rodríguez</field>
+            <field name="x_codigo">CPTEPEXI</field>
+        </record>
+        <record id="umc_lugares_26" model="umc_lugares">
+            <field name="x_name">Centro Penitenciario Estatal CD. Serdán</field>
+            <field name="x_codigo">CPCDSERDAN</field>
         </record>
         <!--///////////////////////Datos demo para escala de riesgos ////////////////////////////////-->
         <!--///////////////////////Datos demo para escala de riesgos ////////////////////////////////-->

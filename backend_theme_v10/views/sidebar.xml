@@ -10,11 +10,11 @@
                 <div class="app-sidebar navbar-collapse collapse">
                     <span>
                         <div class="container">
-                            <h4>
-                                <tag t-if="request.env.user.company_id.x_abreviatura">
+                            <h3>
+                                <tag t-if="'x_abreviatura' in request.env['res.company']._fields">
                                     <t t-esc="request.env.user.company_id.x_abreviatura" />
                                 </tag>
-                            </h4>
+                            </h3>
                         </div>
                     </span>
                     <ul id="sidebar" class="app-sidebar-menu">

@@ -53,10 +53,16 @@ umecas_idioma_jefe,UMC idioma,UMECAS.model_umc_idioma,UMECAS.umc_jefe_depto,1,1,
 umecas_idioma_all,UMC idioma all,UMECAS.model_umc_idioma,,1,0,0,0
 umecas_ubicacion_intramuros_jefe,UMC ubicacion_intramuros,UMECAS.model_umc_ubicacion_intramuros,UMECAS.umc_jefe_depto,1,1,1,1
 umecas_ubicacion_intramuros_all,UMC ubicacion_intramuros all,UMECAS.model_umc_ubicacion_intramuros,,1,0,0,0
-,,,,,,,
-,,,,,,,
-,,,,,,,
-,,,,,,,
+umecas_casas_justicia_anio_fiscal_jefe,UMC casas_justicia_anio_fiscal,UMECAS.model_umc_casas_justicia_anio_fiscal,UMECAS.umc_jefe_depto,1,1,1,1
+umecas_casas_justicia_anio_fiscal_all,UMC casas_justicia_anio_fiscal all,UMECAS.model_umc_casas_justicia_anio_fiscal,,1,0,0,0
+umecas_delitos_proceso_jefe,UMC delitos_proceso,UMECAS.model_umc_delitos_proceso,UMECAS.umc_jefe_depto,1,1,1,1
+umecas_delitos_proceso_all,UMC delitos_proceso all,UMECAS.model_umc_delitos_proceso,,1,0,0,0
+umecas_autoridad_jefe,UMC autoridad,UMECAS.model_umc_autoridad,UMECAS.umc_jefe_depto,1,1,1,1
+umecas_autoridad_all,UMC autoridad all,UMECAS.model_umc_autoridad,,1,0,0,0
+umecas_lugares_jefe,UMC lugares,UMECAS.model_umc_lugares,UMECAS.umc_jefe_depto,1,1,1,1
+umecas_lugares_all,UMC lugares all,UMECAS.model_umc_lugares,,1,0,0,0
+umecas_detenidos_con_jefe,UMC detenidos_con,UMECAS.model_umc_detenidos_con,UMECAS.umc_jefe_depto,1,1,1,1
+umecas_detenidos_con_all,UMC detenidos_con all,UMECAS.model_umc_detenidos_con,,1,0,0,0
 ,,,,,,,
 umecas_ucm_escalavalores_secciones_jefe,UMC ucm_escalavalores_secciones,UMECAS.model_ucm_escalavalores_secciones,UMECAS.umc_jefe_depto,1,1,1,1
 umecas_ucm_escalavalores_secciones_all,UMC ucm_escalavalores_secciones all,UMECAS.model_ucm_escalavalores_secciones,,1,0,0,0
@@ -93,3 +99,8 @@ umecas_lengua_evaluador,UMC lengua_evaluador,UMECAS.model_umc_lengua,UMECAS.umc_
 umecas_grupoetnico_evaluador,UMC grupoetnico_evaluador,UMECAS.model_umc_grupoetnico,UMECAS.umc_evaluador,1,1,1,0
 umecas_idioma_evaluador,UMC idioma_evaluador,UMECAS.model_umc_idioma,UMECAS.umc_evaluador,1,1,1,0
 umecas_ubicacion_intramuros_evaluador,UMC ubicacion_intramuros_evaluador,UMECAS.model_umc_ubicacion_intramuros,UMECAS.umc_evaluador,1,1,1,0
+umecas_casas_justicia_anio_fiscal_evaluador,UMC casas_justicia_anio_fiscal_evaluador,UMECAS.model_umc_casas_justicia_anio_fiscal,UMECAS.umc_evaluador,1,1,1,0
+umecas_delitos_proceso_evaluador,UMC delitos_proceso_evaluador,UMECAS.model_umc_delitos_proceso,UMECAS.umc_evaluador,1,1,1,0
+umecas_autoridad_evaluador,UMC autoridad_evaluador,UMECAS.model_umc_autoridad,UMECAS.umc_evaluador,1,1,1,0
+umecas_lugares_evaluador,UMC lugares_evaluador,UMECAS.model_umc_lugares,UMECAS.umc_evaluador,1,1,1,0
+umecas_detenidos_con_evaluador,UMC detenidos_con_evaluador,UMECAS.model_umc_detenidos_con,UMECAS.umc_evaluador,1,1,1,0

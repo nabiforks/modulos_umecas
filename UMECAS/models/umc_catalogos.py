@@ -132,3 +132,26 @@ class umc_idioma(models.Model):
     x_codigo = fields.Char(
         string=u'Código',
     )
+#/////////////////////////////////////////////////////////////////////////////////////////
+#/////////////////////////////Catalogo de autoridad/////////////////////////////////////////
+class umc_autoridad(models.Model):
+    _name='umc_autoridad'
+    x_name = fields.Char(
+        string=u'Autoridad',        
+        required=True,        
+    )     
+    x_codigo = fields.Char(
+        string=u'Código',
+    )
+
+#/////////////////////////////////////////////////////////////////////////////////////////
+#/////////////////////////////Catalogo de lugares/////////////////////////////////////////
+class umc_lugares(models.Model):
+    _name='umc_lugares'
+    x_name = fields.Char(
+        string=u'Lugares',        
+        required=True,        
+    )     
+    x_codigo = fields.Char(
+        string=u'Código',
+    )

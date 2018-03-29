@@ -19,9 +19,11 @@
                     <group>
                         <group>
                             <field name="x_tipo" />
-                            <field name="x_lugar_entrevista" />
+                            <field name="x_lugar_entrevista" options="{ 'no_open': True}" />
                             <field name="x_causa_penal" attrs="{ 'invisible':[('x_tipo','not in','interno')] }" />
                             <field name="x_fecha_entrevista" />
+                            <field name="x_hora_inicio" widget="float_time" />
+                            <field name="x_hora_fin" widget="float_time" />
                         </group>
                         <group>
                             <field name="x_imputado_name" />
@@ -160,16 +162,20 @@
                                         <tree editable="bottom">
                                             <field name="x_name" />
                                             <field name="x_tiempo_padece" />
+                                            <field name="x_tiempo_unidad"/>
                                             <field name="x_tratamiento" />
-                                            <field name="x_discapacidad_id" />
                                         </tree>
                                     </field>
+                                    <field name="x_discapacidad_padece" />
+                                    <field name="x_discapacidad_id" />
                                 </group>
                             </page>
                             <page string="X.-Consumo de sustancias">
                                 <group>
-                                    <field name="x_sustancias_ids" mode="tree">
+                                    <field name="x_consume_sustancias" widget="radio" options="{'horizontal': true}" />
+                                    <field name="x_sustancias_ids" mode="tree" attrs="{ 'invisible': [('x_consume_sustancias','not in','si')] }">
                                         <tree editable="bottom">
+                                            <field name="x_intra_extra" />
                                             <field name="x_name" />
                                             <field name="x_frecuencia" />
                                             <field name="x_cantidad" />
@@ -178,7 +184,50 @@
                                     </field>
                                 </group>
                             </page>
-                            <page string="XI.-Información del proceso actual"></page>
+                            <page string="XI.-Información del proceso actual">
+                                <label for="x_delitos_ids"></label>
+                                <field name="x_delitos_ids" mode="tree">
+                                    <tree editable="top">
+                                        <field name="x_name" options="{ 'no_open': True}" />
+                                        <field name="x_fundamento" />
+                                        <field name="x_gravedad" />
+                                    </tree>
+                                </field>
+                                <group>
+                                    <group>
+                                        <field name="x_hechos_conducta" />
+                                        <field name="x_autoridad_id" options="{'no_create_edit': True,'no_open': True}" />
+                                        <field name="x_comportamiento" />
+                                    </group>
+                                    <group>
+                                        <field name="x_fecha_disposicion" />
+                                        <field name="x_fecha_detencion" />
+                                    </group>
+                                </group>
+                                <group>
+                                    <field name="x_otras_personas" widget="radio" options="{'horizontal': true}" />
+                                    <field name="x_otras_personas_ids" mode="tree" attrs="{ 'invisible':[('x_otras_personas','not in','si')] }">
+                                        <tree editable="top">
+                                            <field name="x_name" />
+                                            <field name="x_relacion" />
+                                        </tree>
+                                    </field>
+                                    <label for="x_victima_edad"></label>
+                                    <div class="address_format">
+                                        <field name="x_victima_edad" style="width: 40%"/>
+                                        <field name="x_victima_anios" style="width: 60%"/>
+                                    </div>
+                                    <field name="x_victima_domicilio" />
+                                    <field name="x_victima_relacion" />
+                                </group>
+                                <h4>PROCESOS PENDIENTES/ANTERIORES (Analizar el cumplimiento de condiciones judiciales anteriores)</h4>
+                                <group>
+                                    <field name="x_cumplio_medidas" widget="radio" options="{'horizontal': true}" />
+                                    <field name="x_cumplio_scp" widget="radio" options="{'horizontal': true}"/>
+                                    <field name="x_colaboro_anteriores" widget="radio" options="{'horizontal': true}"/>
+                                    <field name="x_observaciones_actitud" />
+                                </group>
+                            </page>
                         </notebook>
                     </group>
                 </sheet>

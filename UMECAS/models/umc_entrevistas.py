@@ -8,16 +8,27 @@ class Entrevistas(models.Model):
 
     x_name = fields.Char('Entrevista', required=True, readonly=True,
                          default=lambda self: 'Nuevo'
-                         )    
-    x_lugar_entrevista = fields.Char(
+                         )        
+    x_lugar_entrevista = fields.Many2one(
         string=u'Lugar',
-    )
+        comodel_name='umc_lugares',
+        ondelete='restrict',
+    )    
     x_causa_penal = fields.Char(
         string=u'Causa Penal',
     )        
-    x_fecha_entrevista = fields.Datetime(
-        string=u'Fecha y hora',
-        default=fields.Datetime.now,
+    x_fecha_entrevista = fields.Date(
+        string=u'Fecha y hora',        
+    )
+    x_fecha_entrevista = fields.Date(
+        string=u'Fecha',
+        default=fields.Date.context_today,
+    )
+    x_hora_inicio = fields.Float(
+        string=u'Hora inicio',
+    )
+    x_hora_fin = fields.Float(
+        string=u'Hora de conclusión',
     )
     x_evaluacion_id = fields.Many2one(
         string=u'Solicitud',
@@ -257,9 +268,6 @@ class Entrevistas(models.Model):
         selection=[('dias', 'Días'), ('semanas', 'Semanas'),('meses', 'Meses'),('anios', 'Años')]
     ) 
     
-
-    
-    
     
 
     #//////////////////////////////////IX.-Enfermedades/////////////////
@@ -268,6 +276,16 @@ class Entrevistas(models.Model):
         comodel_name='umc_enfermedades_padece',
         inverse_name='x_entrevista_id',
     )
+    x_discapacidad_id = fields.Many2one(
+        string=u'¿Cúal?',
+        comodel_name='umc_discapacidad',
+        ondelete='set null',
+    )
+    x_discapacidad_padece = fields.Selection(
+        string=u'¿Padece alguna discapacidad?',
+        selection=[('si', 'Si'), ('no', 'No')]
+    )
+     
 
     #//////////////////////////////////X.- Consumo de sustancias/////////////////
     x_sustancias_ids = fields.One2many(
@@ -275,3 +293,93 @@ class Entrevistas(models.Model):
         comodel_name='umc_sustancias_consume',
         inverse_name='x_entrevista_id',
     )
+    x_consume_sustancias = fields.Selection(
+        string=u'¿Consume sustancias?',
+        selection=[('si', 'Si'), ('no', 'No')]
+    )
+
+    #/////////////////////////////////// XI.- Información del proceso actual///////////////
+    
+    x_delitos_ids = fields.One2many(
+        string=u'Delitos',
+        comodel_name='umc_delitos_proceso',
+        inverse_name='x_entrevista_id',
+    )
+    x_hechos_conducta = fields.Text(
+        string=u'Dinámica de los hechos de la conducta antisocial',
+    )
+    x_lugar_detencion = fields.Char(
+        string=u'Lugar de detención',
+    )
+    x_autoridad_id = fields.Many2one(
+        string=u'Autoridad que realizó la detención',
+        comodel_name='umc_autoridad',
+        ondelete='set null',        
+    )
+    x_fecha_disposicion = fields.Datetime(
+        string=u'Puesta a disposición',
+    )
+    x_fecha_detencion = fields.Datetime(
+        string=u'Detención',
+    )
+    x_comportamiento = fields.Text(
+        string=u'Comportamiento ante la detención: (Resistencia, persecución, violencia, etc.',
+    )
+    
+    x_otras_personas = fields.Selection(
+        string=u'¿Detuvieron a otras personas junto con el entrevistado?',
+        selection=[('si', 'Si'), ('no', 'No')]
+    )
+    x_otras_personas_ids = fields.One2many(
+        string=u'Otras personas',
+        comodel_name='umc_detenidos_con',
+        inverse_name='x_entrevista_id2'
+    )
+    x_victima_nombre = fields.Char(
+        string=u'Nombre de la víctima',
+    )
+    x_victima_edad = fields.Integer(
+        string=u'Edad',
+    )
+    x_victima_anios = fields.Selection(
+        string=u'Meses/años',
+        selection=[('meses', 'Meses'), ('anios', 'Años')]
+    )
+    x_victima_domicilio = fields.Char(
+        string=u'Domicilio de la víctima',
+    )    
+    x_victima_relacion = fields.Many2one(
+        string=u'Relación con la víctima',
+        comodel_name='umc_parentesco',
+        ondelete='set null',
+    )
+    
+    x_cumplio_medidas = fields.Selection(
+        string=u'Cumplió con medidas cautelares',
+        selection=[('si', 'Si'),( 'no','No')]
+    )
+    x_cumplio_scp = fields.Selection(
+        string=u'Cumplió con SCP',
+        selection=[('si', 'Si'),( 'no','No')]
+    )
+    x_colaboro_anteriores = fields.Selection(
+        string=u'Permitió o Colaboró con procesos anteriores',
+        selection=[('si', 'Si'),( 'no','No')]
+    )
+    x_observaciones_actitud = fields.Text(
+        string=u'Observaciones (Actitud ante la entrevista)',
+    )
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    

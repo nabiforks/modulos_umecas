@@ -14,13 +14,13 @@
             <field name="name">read and update mis evaluaciones</field>
             <field name="model_id" ref="model_umc_evaluacion"/>
             <field name="groups" eval="[(4, ref('umc_evaluador'))]"/>
-            <field name="domain_force">[('x_evaluador_id.user_id','=',user.id)]</field>
+            <field name="domain_force">[('x_evaluador_id','=',user.id)]</field>
         </record>
         <record id="umc_evaluador_entrevistas_CRU" model="ir.rule">
             <field name="name">read and update mis entrevistas</field>
             <field name="model_id" ref="model_umc_entrevistas"/>
             <field name="groups" eval="[(4, ref('umc_evaluador'))]"/>
-            <field name="domain_force">[('x_evaluacion_id.x_evaluador_id.user_id','=',user.id)]</field>
+            <field name="domain_force">[('x_evaluador_id','=',user.id)]</field>
         </record>
         <record model="ir.rule" id="umc_expedientes_companias_rule">
             <field name="name">Expedientes multi-company</field>

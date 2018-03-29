@@ -14,6 +14,11 @@ class umc_sustancia(models.Model):
 class umc_sustancias_consume(models.Model):
     _name = 'umc_sustancias_consume'
 
+    x_intra_extra = fields.Selection(
+        string=u'Intramuros/Extramuros',
+        selection=[('intramuros', 'Intramuros'), ('extramuros', 'Extramuros')],
+        default='extramuros',
+    )
     x_name = fields.Many2one(
         string=u'Sustancia',
         comodel_name='umc_sustancia',
@@ -23,10 +28,9 @@ class umc_sustancias_consume(models.Model):
     x_frecuencia = fields.Selection(
         string=u'Frecuencia de consumo',
         help='Días a la semana que consume esta sustancia',
-        selection=[('1', '1'), ('2', '2'), ('3', '3'), ('4', '4'),
-                   ('5', '5'), ('6', '6'), ('7', '7')]
+        selection=[('1', 'Cada X hora'), ('2', 'Diario'), ('3', 'Semanal'), ('4', 'Mensual'),
+                   ('5', 'Ocacional')]
     )
-
     x_cantidad = fields.Char(
         string=u'Cantidad',
     )
