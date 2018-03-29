@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+	<data>
+		<record model="ir.ui.view" id="custodia_form_view">
+			<field name="name">pp.custodia.form</field>
+			<field name="model">pp.custodia</field>
+			<field name="arch" type="xml">
+				<form>
+					<header>
+	                    <button name="reg_custodia_realizado" type="object" string="Registro completado" class="oe_highlight" states="borrador"/>
+	                    <field name="state" widget="statusbar" />
+		             </header>
+					<sheet>
+						<!--<div class="oe_button_box" name="button_box">
+							<button name="policia_procesal.pertenencias_action_list" type="action" class="oe_stat_button o_res_partner_tip_opp" icon="fa-list-ol" context="{'search_default_partner_id': name}">
+								<field string="Pertenencias" name="pertenencias" widget="statinfo"/>
+							</button>
+							<button name="policia_procesal.suministro_alimentos_action_list" type="action" class="oe_stat_button o_res_partner_tip_opp" icon="fa-coffee" context="{'search_default_partner_id': name}">
+								<field string="Suministro de alimentos" name="alimentos" widget="statinfo"/>
+							</button>
+						</div>-->
+						<h2>
+							<field name="name"/>
+						</h2>
+						<group>
+							<field name="no_registrado"/>
+						</group>
+						<div>
+	                    	<label for="expediente_ids" attrs="{'invisible':[('no_registrado','=',True)]}"/>
+	                    	<field name="expediente_ids" attrs="{'invisible':[('no_registrado','=',True)]}">
+                    			<tree>
+                    				<field name="x_name"/>
+                    				<field name="x_cdi_nic"/>
+                    				<field name="x_imputado_name"/>
+                    			</tree>
+                    		</field>
+                    		<group  attrs="{'invisible':[('no_registrado','=',False)]}" >
+                    			<group>
+                    				<field name="temp_imputados" placeholder="Nombre de los imputados"/>
+                    			</group>
+                    			<group>
+                    				<field name="temp_delitos" placeholder="Delito(s)"/>
+                    			</group>
+                    		</group>
+                    		
+	                    </div>
+						<group>
+							<group>
+								<field name="traslado_id"/>
+								<field name="procedencia"/>
+								<field name="autoridad_que_solicita_id"/>
+								<field name="autoridad_que_realiza_id"/>
+							</group>
+							<group>
+								<field name="fecha_recepcion"/>
+								<field name="fecha_hora_entrega"/>
+								<field name="vehiculo"/>
+								<field name="no_economico"/>
+								<field name="placas"/>
+							</group>
+						</group>
+						<group>
+							<field name="observaciones"/>
+						</group>
+					</sheet>
+				</form>
+			</field>
+		</record>
+		<record model='ir.ui.view' id='custodia_tree_view'>
+			<field name='name'>pp.custodia.tree</field>
+			<field name='model'>pp.custodia</field>
+			<field name='arch' type='xml'>
+				<tree>
+					<field name='name'/>
+					<field name='traslado_id'/>
+					<field name='expediente_ids'/>
+					<field name='fecha_recepcion'/>
+					<field name='desc_reg_imputados'/>
+					<field name='state'/>
+				</tree>
+			</field>
+		</record>
+		<record id="custodia_action_list" model="ir.actions.act_window">
+			<field name="name">Custodia provicional</field>
+			<field name="res_model">pp.custodia</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+		</record>
+	</data>
+</odoo>

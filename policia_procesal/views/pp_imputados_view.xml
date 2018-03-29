@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+	<data>
+		<record model="ir.ui.view" id="name_id_form">
+			<field name="name">imputado_pp_res.partner.form</field>
+			<field name="res_model">res.partner</field>
+			<field name="inherit_id" ref="base.view_partner_form"></field>
+			<field name="arch" type="xml">
+				<xpath expr="//button[@name='toggle_active']" position="before">
+					<button name="traslados_action_list" type="action" class="oe_stat_button" icon="fa-exchange" string="Traslados" context="{'default_user_id': uid}">
+                        <field  name="traslados_count" widget="statinfo" nolabel="1"/>
+                    </button>
+				</xpath>
+			</field>
+		</record>
+	</data>
+</odoo>

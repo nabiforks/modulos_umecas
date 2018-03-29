@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+	<data>
+		<!--Aqui se cargar todos los menus-->
+		<!--Crear menus-->
+		<menuitem id="main_pp_menu" name="Policía procesal"/>
+
+		<!--Agregar vista imputados desde UMECAS-->
+		<menuitem id="umc_imputados_menu" name="Imputados" parent="main_pp_menu" action="UMECAS.umc_list_action" groups="UMECAS.umc_jefe_depto" sequence="1"/>
+
+		<!--Crear menu traslados-->
+		<menuitem id="traslados_menu" name="Traslados" parent="main_pp_menu" sequence="2"/>
+
+		<menuitem id="ingreso_traslados_menu" name="Traslados" parent="traslados_menu" action="traslados_action_list" sequence="1"/>
+
+		<menuitem id="retiro_traslados_menu" name="Retiro de traslados" parent="traslados_menu" action="retiro_traslado_action_list" sequence="2"/>
+		
+		<!--Crear menu custodia provicional-->
+		<menuitem id="cp_manu" name="Custodia provicional" parent="main_pp_menu" action="custodia_action_list" sequence="3"/>
+
+		<!--Crear menu Controlde audiencias-->
+		<menuitem id="ca_manu" name="Audiencias" parent="main_pp_menu" action="audiencia_action_list" sequence="4"/>
+
+
+		<!--Crear Menu Registro-->
+		<menuitem id="reg_menu" name="Registros" parent="main_pp_menu" sequence="5"/>
+		<!--Crear menu Resguardo de pertenencias-->
+		<menuitem id="pertenencias_menu" name="Resguardo de pertenencias" parent="reg_menu" action="pertenencias_action_list"/>
+
+		<!--Crear menu Suministro de alimentos-->
+		<menuitem id="suministro_menu" name="Suministro de alimentos" parent="reg_menu" action="suministro_alimentos_action_list"/>
+
+		<!--Crear menu Configuracion-->
+		<menuitem id="pp_menu" name="Configuración" parent="main_pp_menu" sequence="6"/>
+
+		<!--Crear menu autoridades-->
+		<menuitem id="autoridades_menu" name="Autoridades" parent="pp_menu" action="autoridades_action_list"/>
+
+		<!--Crear menu medicos-->
+		<menuitem id="medico_menu" name="Medicos" parent="pp_menu" action="medicos_action_list"/>
+
+		<!--Crear menu vehiculos-->
+		<menuitem id="vehiculos_manu" name="Vehículos oficiales" parent="pp_menu" action="vehiculos_action_list"/>
+
+	</data>
+</odoo>
