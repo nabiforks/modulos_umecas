@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
     <data>
+        <act_window id="act_umc_domicilio_map" name="Map" res_model="umc_domicilio" target="new" view_type="map" view_mode="map" />
         <record model="ir.ui.view" id="umc_direccion_form_view">
             <field name="name">direcciones.form.view</field>
             <field name="model">umc_domicilio</field>
@@ -8,8 +9,13 @@
                 <form>
                     <header></header>
                     <sheet>
+                        <field name="x_name" />
+                        <div class="oe_button_box" name="button_box">
+                            <button name="UMECAS.act_umc_domicilio_map" type="action" class="oe_stat_button"  context="{'search_default_x_name': x_name}" icon="fa-map-marker" string="Mapa" attrs="{'invisible': ['|',('latitud', '=', 0.0), ('longitud', '=', 0.0)]}"/>
+                        </div>
                         <group>
-                            <group>
+                            <group >
+                                <field name="x_tipo_domicilio" widget="radio" options="{'horizontal': true}" />
                                 <label for="street" string="Dirección"/>
                                 <div class="o_address_format">
                                     <!--div class="oe_edit_only"><button name="open_parent" type="object" string="(edit)" class="oe_link" attrs="{'invisible': ['|', ('parent_id', '=', False), ('type', '!=', 'contact')]}"/></div-->
@@ -17,13 +23,12 @@
                                     <field name="x_colonia" placeholder="Colonia..." class="o_address_street" />
                                     <field name="x_municipio" placeholder="Municipio.." class="o_address_city" />
                                     <field name="x_estado_id" class="o_address_state" placeholder="Estado" options="{&quot;no_open&quot;: True}" domain="[('country_id', '=', 157)]" />
-                                    <!--field name="zip" placeholder="ZIP" class="o_address_zip" attrs="{'readonly': [('type', '=', 'contact'),('parent_id', '!=', False)]}"/-->
-                                    <!--field name="x_pais_id" placeholder="Country" class="o_address_country" options="{&quot;no_open&quot;: True, &quot;no_create&quot;: True}" /-->
+                                    <field name="x_cp" placeholder="C.P." class="o_address_zip" />
+                                    <field name="x_pais_id" placeholder="Country" class="o_address_country" options="{&quot;no_open&quot;: True, &quot;no_create&quot;: True}" />
                                 </div>
-                                <field name="x_tipo_domicilio" />
                                 <field name="x_motivo_mudanza" attrs="{ 'invisible':[('x_tipo_domicilio','not in','anterior')] }" />
                             </group>
-                            <group>
+                            <group >
                                 <field name="x_vivienda" />
                                 <field name="x_vivienda_name" invisible="1" />
                                 <field name="x_porquien" attrs="{ 'invisible':[('x_vivienda_name','!=','Prestada')] }" />
@@ -34,9 +39,22 @@
                                 <field name="x_caracteristicas_ref" />
                             </group>
                         </group>
-                        <!--group-->
-                        <field name="x_croquis" widget="map" />
-                        <!--/group-->
+                        <notebook colspan="2">
+                            <page string="Geolocalizar" name="geo_location">
+                                <!-- something to do here -->
+                                <group colspan="2" col="2">
+                                    <separator string="Geolocalización" colspan="2"/>
+                                    <button string="Geolocalizar" name="geo_localiza" colspan="2" icon="fa-check" type="object"/>
+                                    <div>
+                                        <span> ( Lat : </span>
+                                        <field name="latitud" nolabel="1" class="oe_inline"/>
+                                        <span> ;  Long:  </span>
+                                        <field name="longitud" nolabel="1" class="oe_inline"/>
+                                        <span>) </span>
+                                    </div>
+                                </group>
+                            </page>
+                        </notebook>
                     </sheet>
                 </form>
             </field>
@@ -51,19 +69,63 @@
                     <field name="x_colonia" />
                     <field name="x_municipio" />
                     <field name="x_vivienda" />
-                    <field name="x_croquis" />
                 </tree>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="umc_domicilio_map_view">
+            <field name="name">umc_domicilio_map_view</field>
+            <field name="model">umc_domicilio</field>
+            <field name="arch" type="xml">
+                <map string="Map" lat="latitud" lng="longitud">
+                    <!--field name="name"/><field name="street"/><field name="street2"/><field name="city"/><field name="zip"/><field name="email"/><field name="state_id"/><field name="country_id"/-->
+                    <field name="id" />
+                    <field name="x_tipo_domicilio" />
+                    <field name="x_calle" />
+                    <field name="x_colonia" />
+                    <field name="x_municipio" />
+                    <field name="x_cp" />
+                    <field name="x_estado_id" />
+                    <field name="x_pais_id" />
+                    <field name="latitud"/>
+                    <field name="longitud"/>
+                    <templates>
+                        <t t-name="map-marker-iw">
+                            <div class="gm-iw-container o_map_global_click">
+                                <div class="gm-iw-title">
+                                    <span>
+                                        <t t-esc="record.x_tipo_domicilio.value"/>
+                                    </span>
+                                </div>
+                                <div class="gm-iw-content">
+                                    <p>
+                                        <span t-esc="record.x_calle.value"/>,                                                                                
+                                        <span t-esc="record.x_colonia.value"/>
+                                    </p>
+                                    <p>
+                                        <span t-esc="record.x_municipio.value" />,                                                                                
+                                        <span t-esc="record.x_cp.value"/>
+                                    </p>
+                                    <p>
+                                        <span t-esc="record.x_estado_id.value"/>,                                                                                                                                                                                                                                                                                                                                 
+                                        <span t-esc="record.x_pais_id.value"/>
+                                    </p>
+                                </div>
+                            </div>
+                        </t>
+                    </templates>
+                </map>
             </field>
         </record>
         <record model="ir.actions.act_window" id="umc_direccion_list_action">
             <field name="name">Direccion</field>
             <field name="res_model">umc_domicilio</field>
             <field name="view_type">form</field>
-            <field name="view_mode">form,tree</field>
+            <field name="view_mode">tree,form,map</field>
             <field name="help" type="html">
                 <p class="oe_view_nocontent_create">Agregar primer registro                </p>
             </field>
         </record>
+        <menuitem id="registros_domicilio" name="Domicilio" parent="main_umc_menu" action="umc_direccion_list_action" />
         <!--- //////////////////////////UBICACION INTRAMURIS/////////////-->
         <!--- //////////////////////////UBICACION INTRAMURIS/////////////-->
         <!--- //////////////////////////UBICACION INTRAMURIS/////////////-->

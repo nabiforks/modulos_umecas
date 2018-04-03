@@ -22,5 +22,12 @@
             <field name="padding">5</field>
             <field eval="1" name="number_increment"/>
         </record>
+        <record id="seq_names_domicilio" model="ir.sequence">
+            <field name="name">Names_automatics_domicilio</field>
+            <field name="code">umc_domicilio</field>
+            <field name="prefix">DOM</field>
+            <field name="padding">5</field>
+            <field eval="1" name="number_increment"/>
+        </record>
     </data>
 </odoo>
