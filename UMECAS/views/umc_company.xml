@@ -26,7 +26,11 @@
                 </xpath>
                 <field name="partner_id" position="after">
                     <field name="x_abreviatura" />
-                    <field name="x_region" /></field>
+                    <field name="x_region" />
+                </field>
+                <field name="website" position="before">
+                    <field name="x_logo_actual" widget="image" class="oe_avatar" />
+                </field>
             </field>
         </record>
         <record id="view_company_inherit_tree" model="ir.ui.view">
@@ -84,7 +88,6 @@
                 </xpath>
             </field>
         </record>
-        
         <record model="ir.ui.menu" id="mail.mail_channel_menu_root_chat">
             <field name="name">Comunicación</field>
         </record>

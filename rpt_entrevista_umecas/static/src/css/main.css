@@ -2,6 +2,18 @@
     font-family: "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-size: 12px;
 }
+td, th , tr{
+    text-align: center;
+    vertical-align: middle;
+    padding: 0;
+}
+table{
+    width: 100%;
+}
+th{
+    font-size: 13px; 
+    font-weight: bold; 
+}
 
 .custom_css {
 
@@ -67,3 +79,11 @@ table.cuadrado > td {
 .fondo{
     background-color: #cdcfd7;
 }
+.fondo-seccion{
+    background-color: #BDEFCF;
+    font-weight: 700;
+}
+.text-bold{
+    font-weight: bold;
+}
+

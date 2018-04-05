@@ -15,5 +15,9 @@ class umc_casa_justicia(models.Model):
         string=u'Abreviatura',        
         help='Esta abreviatura aparecerá en la nomenclatura del expediente',        
     )
+    x_logo_actual = fields.Binary(
+        string=u'Logo Administración actual',
+    )
+    
     
     

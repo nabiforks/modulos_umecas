@@ -44,7 +44,7 @@
                             </div>
                             <field name="x_motivo" attrs="{ 'invisible':[('x_actual_anterior','not in','anterior')] }" />
                         </group>
-                        <field name="x_domicilio_ids" mode="tree" context="{'default_x_estado_id': 504, }">
+                        <field name="x_domicilio_ids" mode="tree" attrs="{ 'invisible':[('x_actual_anterior','in','actual2')] }" context="{'default_x_estado_id': 504, }">
                             <tree editable="top">
                                 <field name="x_calle" />
                                 <field name="x_colonia" />

@@ -21,8 +21,8 @@
     'data': [
         'report/reportes_entrevista.xml',
         'report/reportes_entrevista_escala_riesgo.xml',
-        'views/entrevista_inherit.xml'
-
+        'views/entrevista_inherit.xml',
+        'report/external_layout_inherit.xml'
         # 'security/accesos.csv',
     ],
 
