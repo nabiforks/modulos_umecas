@@ -22,8 +22,10 @@ class Expedientes(models.Model):
         required=True,
     )
     x_cdi_nic = fields.Char(
-        string=u'CDI/NIC',
-        required=True,
+        string=u'CDI/NIC',        
+    )
+    x_causa_penal = fields.Char(
+        string=u'Causa Penal',        
     )
     x_numero_oficio = fields.Char(
         string=u'Oficio Número',
