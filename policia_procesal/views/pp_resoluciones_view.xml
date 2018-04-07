@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+	<data>
+		<!--Form-->
+		<record model="ir.ui.view" id="control_audiencias_form">
+			<field name="name">pp.control_audiencias.form</field>
+			<field name="model">pp.control_audiencia</field>
+			<field name="arch" type="xml">
+				<form>
+					<sheet>
+						<div class="oe_button_box" name="button_box">
+							<button 
+								string="Egreso" 
+								name="policia_procesal.egreso_action_list" 
+								type="action" 
+								class="oe_stat_button o_res_partner_tip_opp" 
+								icon="fa-share-square-o" 
+								context="{
+									'search_default_partner_id': partner_id,
+									'default_delito_ids': delito_ids,
+									'default_nic_cdi_nuc': causa_penal,
+									'default_autoridad_que_solicita_id': juez_concat,
+									'default_cargo_autoridad_solicita': juez_cargo,
+									'default_fecha_inicio_audiencia': fecha_hora,
+									'default_hora_inicio_audiencia': hora_inicio,
+									'default_hora_termino_audiencia': hora_termino,
+									'default_tipo_audiencia': tipo_audiencia
+								}"/>
+						</div>
+
+						<h2>
+							<div class="row">
+								<div class="col-xs-4">
+									<field name="name" placeholder="Folio"/>
+								</div>
+							</div>
+						</h2>
+						<group>
+							<group>
+								<field name="lugar"/>
+							</group>
+							<group>
+								<field name="juez_concat" invisible="1"/>
+								<field name="juez_cargo" invisible="1"/>
+							</group>
+						</group>
+						<div class="row">
+							<div class="col-xs-5">
+								<group>
+									<field name="tipo_audiencia"/>
+								</group>
+							</div>
+							<div class="col-xs-4">
+								<group>
+									<field name="causa_penal"/>
+								</group>
+							</div>
+							<div class="col-xs-3">
+								<group>
+									<field name="numero_sala"/>
+								</group>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-xs-5">
+								<group>
+									<field name="tipo_ingreso" widget="radio" options="{'horizontal': true}"/>
+								</group>
+							</div>
+							<div class="col-xs-4">
+								<group>
+									<field name="fecha_hora"/>
+								</group>
+							</div>
+						</div>
+						
+						<div class="row">
+							<div class="col-xs-5">
+								<group>
+									<field name="partner_id" domain="[('x_imputado','=',True)]" context="{'default_x_imputado':True}"/>
+								</group>
+							</div>
+							<div class="col-xs-4">
+								<group>
+									<field name="delito_ids" widget="many2many_tags"/>
+								</group>
+							</div>
+							<div class="col-xs-3">
+								<group>
+									<field name="edad"/>
+								</group>
+							</div>
+						</div>
+
+						<div class="row">
+							<div class="col-xs-5">
+								<group>
+									<field name="hora_inicio" widget="float_time"/>
+								</group>
+							</div>
+							<div class="col-xs-4">
+								<group>
+									<field name="hora_termino" widget="float_time"/>
+								</group>
+							</div>
+						</div>
+						<group>
+							<field name="juez_id"/>
+							<field name="resolucion"/>
+							<field name="tipo_egreso" widget="radio" options="{'horizontal': true}"/>
+							<field name="observaciones"/>
+						</group>
+						<label string="Jefe de grupo de la Policía Procesal"/>
+						<div class="row">
+							<div class="col-xs-5">
+								<group>
+									<field name="nombre_jefe_grupo_pp"/>
+								</group>
+							</div>
+							<div class="col-xs-4">
+								<group>
+									<field name="pp_cargo"/>
+								</group>
+							</div>
+							<div class="col-xs-3">
+								<group>
+									<field name="pp_grupo"/>
+								</group>
+							</div>
+						</div>
+						<group>
+							<group>
+								<field name="recibe"/>
+							</group>
+							<group>
+								<field name="hora_recibe"/>
+							</group>
+						</group>
+					</sheet>
+				</form>
+			</field>
+		</record>
+		<!--TREE-->
+		<record model='ir.ui.view' id='control_audiencias_tree'>
+			<field name='name'>control_audiencia.tree</field>
+			<field name='model'>pp.control_audiencia</field>
+			<field name='arch' type='xml'>
+				<tree>
+					<field name='name'/>
+					<field name='partner_id'/>
+					<field name='tipo_audiencia'/>
+					<field name='causa_penal'/>
+					<field name='fecha_hora'/>
+					<field name='hora_termino'/>
+					<field name='tipo_egreso'/>
+				</tree>
+			</field>
+		</record>
+		<!--Search-->
+		<record id="control_audiencias_search" model="ir.ui.view">
+		    <field name="name">pp.control_audiencias.search</field>
+		    <field name="model">pp.control_audiencia</field>
+		    <field name="arch" type="xml">
+		        <search>
+		        	<field name="partner_id"/>
+		        	<field name="name"/>
+		        </search>
+		    </field>
+		</record>
+		<!--Action-->
+		<record id="control_audiencia_action" model="ir.actions.act_window">
+			<field name="name">Control de audiencias</field>
+			<field name="res_model">pp.control_audiencia</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+		</record>
+	</data>
+</odoo>

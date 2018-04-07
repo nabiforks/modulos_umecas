@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+	<data>
+		<record model="ir.ui.view" id="recepcion_form_view">
+			<field name="name">pp_recepcion.form</field>
+			<field name="model">pp.recepcion</field>
+			<field name="arch" type="xml">
+				<form>
+					<sheet>
+						<div class="oe_button_box" name="button_box">
+							<button name="policia_procesal.custodia_action_list" type="action" class="oe_stat_button o_res_partner_tip_opp" icon="fa-edit" context="{'search_default_partner_id': partner_id,'default_delito_ids': delito_ids}">
+								<field string="Custodias" name="custodias" widget="statinfo"/>
+							</button>
+						</div>
+						<h2>
+							<field name="consecutivo"/>
+						</h2>
+						<group>
+							<group>
+								<field name="fecha_hora"/>
+							</group>
+						</group>
+						<group>
+							<group>
+								<field name="partner_id" domain="[('x_imputado','=',True)]" context="{'default_x_imputado':True}"/>
+							</group>
+							<group></group>
+						</group>
+						<group>
+							<group>
+								<field name="delito_ids" widget="many2many_tags"/>
+							</group>
+							<group>
+								<field name="nic_cdi_nuc"/>
+							</group>
+						</group>
+						<group>
+							<group>
+								<field name="autoridad_que_solicita_id"/>
+							</group>
+							<group>
+								<field name="cargo_autoridad_solicita"/>
+							</group>
+						</group>
+
+						<group>
+							<group>
+								<field name="numero_oficio"/>
+							</group>
+							<group>
+								<field name="lugar_id" />
+							</group>
+						</group>
+						<group>
+							<group>
+								<field name="autoridad_que_realiza_id"/>
+							</group>
+							<group>
+								<field name="cargo_autoridad_realiza"/>
+							</group>
+						</group>
+						<group>
+							<group>
+								<field name="dependencia"/>
+							</group>
+							<group></group>
+						</group>
+						<div class="row">
+							<div class="col-xs-4">
+								<group>
+									<field name="vehiculo_id"/>
+								</group>
+							</div>
+							<div class="col-xs-4">
+								<group>
+									<field name="no_economico"/>
+								</group>
+							</div>
+							<div class="col-xs-4">
+								<group>
+									<field name="placas"/>
+								</group>
+							</div>
+						</div>
+
+						<notebook>
+							<page string="Traslado de ingreso">
+								<div class="row">
+									<div class="col-xs-4">
+										<group>
+											<field name="elementos_apoyo"/>
+										</group>
+									</div>
+									<div class="col-xs-4">
+										<group>
+											<field name="vehiculos_apoyo"/>
+										</group>
+									</div>
+								</div>
+								
+								<div class="row">
+									<div class="col-xs-4">
+										<group>
+											<field name="hora_arribo"  widget="float_time"/>
+										</group>
+									</div>
+									<div class="col-xs-4">
+										<group>
+											<field name="hora_ingreso" widget="float_time"/>
+										</group>
+									</div>
+									<div class="col-xs-4">
+										<group>
+											<field name="hora_regreso" widget="float_time"/>
+										</group>
+									</div>
+								</div>
+								<group>
+									<field name="descripcion_imputado"/>
+								</group>
+								<label string="Cuenta con dictamen médico: Nombre del doctor y número de cédula"/>
+								<group>
+									<group>
+										<field name="medico_id" placeholder="Seleccione..."/>
+									</group>
+									<group>
+										<field name="no_cedula"/>
+									</group>
+								</group>
+							</page>
+
+						</notebook>
+					</sheet>
+				</form>
+			</field>
+		</record>
+
+		<!--Vista tree-->
+		<record model='ir.ui.view' id='recepcion_tree_view'>
+			<field name='name'>pp.recepcion.tree</field>
+			<field name='model'>pp.recepcion</field>
+			<field name='arch' type='xml'>
+				<tree>
+					<field name='consecutivo'/>
+					<field name='numero_oficio'/>
+					<field name='name'/>
+					<field name='nic_cdi_nuc'/>
+					<field name='delito_ids'/>
+					<field name='fecha_hora'/>
+				</tree>
+			</field>
+		</record>
+
+		<!--Action-->
+		<record id="recepcion_view_action" model="ir.actions.act_window">
+			<field name="name">Recepción</field>
+			<field name="res_model">pp.recepcion</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+		</record>
+	</data>
+</odoo>

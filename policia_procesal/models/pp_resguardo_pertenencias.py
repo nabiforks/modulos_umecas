@@ -44,18 +44,3 @@ class Pertenencias(models.Model):
         ondelete='set null',
     )
 
-class PertenenciasLista(models.Model):
-    _name = 'pp.pertenencia_list'
-    
-    detalle = fields.Char(
-        string='Detalles'
-    )
-    pertenencia = fields.Char(
-        string='Pertenencia',
-    )
-    resguardo_id = fields.Many2one(
-        'pp.pertenencias',
-        string='Resguardo de pertenencias',
-        readonly=True, 
-    )
-    

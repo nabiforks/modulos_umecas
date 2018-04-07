@@ -7,21 +7,99 @@ class CustodiaProvicional(models.Model):
     _name = 'pp.custodia'
 
     name = fields.Char(
-        'Custodia provicional',
+        'Custodia',
         required=True,
         readonly=True,
         default=lambda self: 'Nuevo'
     )
-    fecha_recepcion = fields.Date(
+    partner_id = fields.Many2one(
+        'res.partner',
+        required=True,
+        default=lambda self: self.env.context.get('partner_id'),
+        ondelete='set null',
+        string='Nombre del imputado',
+    )
+    causa_penal = fields.Char(
+        string='Causa penal',
+    )
+    fecha_hora_registro = fields.Datetime(
+        string='Fecha y hora de registro',
+        default=lambda self: fields.datetime.now()
+    )
+    conducta = fields.Text(
+        string='Conducta del imputado',
+    )
+    fecha_hora_egreso = fields.Datetime(
+        string='Egreso del centro de justicia',
+    )
+    nombre_completo = fields.Char(
+        related='partner_id.display_name',
+        string='Nombre del imputado/detenido',
+    )
+    audiencias = fields.Integer(
+        string='Pertenencias',
+        compute='compute_audiencia_count'
+    )
+    delito_ids = fields.Many2many(
+        'umc_delitos',
+        string='Delito(s)',
+        readonly=True, 
+    )
+
+    #==========Pertenencias y suministro de alimentos==========
+    fecha_hora_devolucion = fields.Datetime(
+        string='Fecha y hora de devolución',
+    )
+    pertenencias_list_ids = fields.One2many(
+        'pp.pertenencia_list',
+        'custodia_id',
+        string='Lista de pertenencias',
+    )
+    alimentos_list = fields.One2many(
+        'pp.suministro_list',
+        'custodia_id',
+        string='Lista',
+    )
+
+    #==========Actuacion de PP con el imputado==========
+    city = fields.Char(
+        string='Ciudad, Municipio, Delegación',
+    )
+    numero_estancia = fields.Integer(
+        string='Número de estancia',
+    )
+    sabe_leer_escribir = fields.Selection(
+        [('si', 'Si'),('no', 'No')],
+    )
+    entidad_id = fields.Many2one(
+        'res.country.state',
+        string='Entidad federativa',
+    )
+    nacionalidad_id = fields.Many2one(
+        'umc_nacionalidad',
+        string='Nacionalidad',
+    )
+    idioma_id = fields.Many2one(
+        'umc_lengua',
+        string='Idioma o lengua',
+    )
+    hora_actuacion = fields.Float(
+        string='Hora',
+    )
+
+
+
+
+
+
+
+    """fecha_recepcion = fields.Date(
         string='Fecha de recepción'
     )
     fecha_hora_entrega = fields.Datetime(
         string='Fecha y hora de entrega',
     )
-    pertenencias = fields.Integer(
-        string='Pertenencias',
-        compute='compute_pertenencias_count'
-    )
+    
     alimentos = fields.Integer(
         string='Alimentos',
         compute='compute_suministro_count',
@@ -52,10 +130,7 @@ class CustodiaProvicional(models.Model):
         'umc_expedientes',
         string='Imputado(s)',
     )
-    """name = fields.Many2one(
-        'res.partner',
-        string='Nombre del imputado',
-    )"""
+    
     traslado_id = fields.Many2one(
         'pp.traslado',
         string='No. Oficio de traslado',
@@ -96,7 +171,7 @@ class CustodiaProvicional(models.Model):
         string='Placas',
         readonly=True, 
     )
-    """nombre_completo = fields.Char(
+    nombre_completo = fields.Char(
         related='traslado_id.expediente_ids.x_imputado_name',
         string='Nombre del imputado',
     )"""
@@ -109,6 +184,13 @@ class CustodiaProvicional(models.Model):
                 'pp.custodia') or 'Nuevo'
         result = super(CustodiaProvicional, self).create(vals)
         return result
+
+    @api.multi
+    def compute_audiencia_count(self):
+        for partner in self:
+            partner.audiencias = self.env['pp.audiencia'].search_count(
+                [('partner_id', '=', partner.partner_id.id)])
+        """
 
     @api.multi
     def reg_custodia_realizado(self):
@@ -124,39 +206,52 @@ class CustodiaProvicional(models.Model):
                 record.desc_reg_imputados="Expedientes encontrados"
 
     #///Botones 
-    @api.multi
-    def compute_pertenencias_count(self):
-        for partner in self:
-            partner.pertenencias = self.env['pp.pertenencias'].search_count(
-                [('partner_id', '=', partner.name.id)])
+    
     
     @api.multi
     def compute_suministro_count(self):
         for partner in self:
             partner.alimentos = self.env['pp.suministro'].search_count(
                 [('partner_id', '=', partner.name.id)])
+"""
 
-
-#======================================================New Class
-class TrasladoImputado(models.Model):
-    _name = 'pp.traslado_custodia'
-
-    traslado_id = fields.Many2one(
-        'pp.traslado',
-         string='Traslado'
+#===============MODELO PARA LA LISTA DE PERTENENCIAS===============
+class PertenenciasLista(models.Model):
+    _name = 'pp.pertenencia_list'
+    
+    pertenencia = fields.Char(
+        string='Pertenencia',
+        required=True,
     )
-    expediente_ids = fields.Many2one(
-        'umc_expedientes', 
-        string='Expedientes'
+    detalle = fields.Char(
+        string='Detalles',
     )
-    imputado = fields.Char(
-        related='expediente_ids.x_imputado_name',
-        readonly=True,
-        string='Imputado'
-    )
-
     custodia_id = fields.Many2one(
-        string=u'Custodia',
-        comodel_name='pp.custodia',
-        ondelete='cascade',
+        'pp.custodia',
+        string='Resguardo de pertenencias',
+        readonly=True, 
+    )
+
+#===============MODELO PARA LA LISTA DE SUMINISTRO DE ALIMENTO===============
+class AlimentosList(models.Model):
+    _name = 'pp.suministro_list'
+
+    fecha = fields.Date(
+        string='Fecha',
+        required=True,
+    )
+    tercio = fields.Selection(
+        [('primero', '1er. TERCIO'),
+        ('segundo', '2do. TERCIO'),
+        ('tercero','3er. TERCIO'),
+        ('adicional','ADICIONAL')],
+        required=True,
+    )
+    descripcion = fields.Text(
+        string='Descripción',
+    )
+    custodia_id = fields.Many2one(
+        'pp.custodia',
+        string='Alimentos',
+        readonly=True, 
     )

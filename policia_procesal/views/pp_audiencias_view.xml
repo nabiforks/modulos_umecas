@@ -7,67 +7,123 @@
 			<field name="arch" type="xml">
 				<form>
 					<sheet>
+						<div class="oe_button_box" name="button_box">
+							<button 
+								string="Resolución" 
+								name="policia_procesal.control_audiencia_action" 
+								type="action" 
+								class="oe_stat_button" 
+								icon="fa-file-text-o" 
+								context="{
+									'search_default_partner_id':partner_id,
+									'default_tipo_audiencia':tipo_audiencia,
+									'default_causa_penal':causa_penal,
+									'default_numero_sala':numero_sala,
+									'default_fecha_hora':fecha_hora,
+									'default_hora_inicio':hora_inicio,
+									'default_hora_termino':hora_termino,
+									'default_juez_id':juez_id,
+									'default_resolucion':resolucion,
+									'default_delito_ids':delito_ids
+								}"/>
+						</div>
+
 						<group>
-							<group>
-								<field name="name"/>
-							</group>
-							<group>
-								<field name="lugar"/>
-							</group>
+							<field name="juez_id"/>
 						</group>
 						<div class="row">
-							<div class="col-xs-3">
-								<label for="tipo_audiencia"/>
-								<field name="tipo_audiencia"/>
+							<div class="col-xs-4">
+								<group>
+									<field name="fecha_hora"/>
+								</group>
 							</div>
 							<div class="col-xs-3">
-								<label for="causa_penal"/>
-								<field name="causa_penal"/>
+								<group>
+									<field name="numero_sala"/>
+								</group>
 							</div>
-							<div class="col-xs-3">
-								<label for="no_sala"/>
-								<field name="no_sala"/>
-							</div>
-							<div class="col-xs-3">
-								<label for="fecha_hora"/>
-								<field name="fecha_hora"/>
+							<div class="col-xs-5">
+								<group>
+									<field name="partner_id" domain="[('x_imputado','=',True)]" context="{'default_x_imputado':True}"/>
+								</group>
 							</div>
 						</div>
-						<br/>
-						<div class="row">
-							<div class="col-xs-12">
-								<label for="expediente_ids"/>
-								<field name="expediente_ids">
-									<tree>
-										<field name="x_imputado_name"/>
-										<field name="x_delito"/>
-										<field name="x_delito_descripcion"/>
-									</tree>
-								</field>
-							</div>
-						</div>
-						<group>
-							<group>
-								<field name="hora_inicio" widget="float_time"/>
-								<field name="juez_nombre"/>
-								<field name="juez_cargo"/>
-								<field name="juez_region"/>
-							</group>
-							<group>
-								<field name="hora_termino" widget="float_time"/>
-								<field name="resolucion"/>
-								<field name="observaciones"/>
-							</group>
-						</group>
-						<group>
-							<label string="Responsable de la Policía Procesal en turno"/>
-							<group>
-								<field name="employee_id"/>
-							</group>
-							<group>
-								<field name="pp_cargo"/>
-							</group>
-						</group>
+						
+						<notebook>
+							<page string="Control de acceso a la sala de audiencia">
+								<div class="row">
+									<div class="col-xs-10">
+										<label for="acceso_ids"/>
+										<field name="acceso_ids">
+											<tree editable="bottom">
+												<field name="tipo"/>
+												<field name="nombre"/>
+											</tree>
+										</field>
+									</div>
+								</div>
+							</page>
+
+							<page string="Datos de audiencia">
+								<div class="row">
+									<div class="col-xs-3">
+										<group>
+											<field name="hora_ingreso" widget="float_time"/>
+										</group>
+									</div>
+									<div class="col-xs-3">
+										<group>
+											<field name="hora_inicio" widget="float_time"/>
+										</group>
+									</div>
+									<div class="col-xs-3">
+										<group>
+											<field name="hora_termino" widget="float_time"/>
+										</group>
+									</div>
+									<div class="col-xs-3">
+										<group>
+											<field name="hora_salida" widget="float_time"/>
+										</group>
+									</div>
+								</div>
+								<group>
+									<group>
+										<field name="tipo_audiencia"/>
+									</group>
+									<group></group>
+								</group>
+								<group>
+									<group>
+										<field name="rci"/>
+									</group>
+									<group>
+										<field name="rsa"/>
+									</group>
+								</group>
+								<group>
+									<group>
+										<field name="delito_ids" widget="many2many_tags"/>
+									</group>
+									<group>
+										<field name="custodia_id" invisible="1"/>
+										<field name="causa_penal"/>
+									</group>
+								</group>
+								<group>
+									<group>
+										<field name="tipo_arribo"/>
+									</group>
+									<group></group>
+								</group>
+								<group>
+									<field name="resolucion"/>
+								</group>
+								<group>
+									<field name="observaciones"/>
+								</group>
+							</page>
+						</notebook>
 					</sheet>
 				</form>
 			</field>
@@ -79,15 +135,31 @@
 			<field name='model'>pp.audiencia</field>
 			<field name='arch' type='xml'>
 				<tree>
-					<field name='name'/>
+					<field name='partner_id'/>
 					<field name='fecha_hora'/>
+					<field name='numero_sala'/>
+					<field name='tipo_audiencia'/>
+					<field name='juez_id'/>
+					<field name='rsa'/>
 				</tree>
 			</field>
 		</record>
 
+		<!--Search-->
+		<record id="audiencias_search" model="ir.ui.view">
+		    <field name="name">pp.audiencia.search</field>
+		    <field name="model">pp.audiencia</field>
+		    <field name="arch" type="xml">
+		        <search>
+		        	<field name="partner_id"/>
+		        	<field name="custodia_id"/>
+		        </search>
+		    </field>
+		</record>
+
 		<!--Action-->
 		<record id="audiencia_action_list" model="ir.actions.act_window">
-			<field name="name">Control de audiencias</field>
+			<field name="name">Sala de audiencias</field>
 			<field name="res_model">pp.audiencia</field>
 			<field name="view_type">form</field>
 			<field name="view_mode">tree,form</field>
