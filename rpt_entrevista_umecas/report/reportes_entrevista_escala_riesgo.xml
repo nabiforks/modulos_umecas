@@ -9,12 +9,9 @@
                 file="rpt_entrevista_umecas.rpt_entrevista_umecas_detalles_entrevista_escala_riesgo"
                 report_type="qweb-pdf"
         />
-
-        <record id="rpt_entrevista_umecas_detalles_entrevista_escala_riesgo_paper" model="report.paperformat">
-            <field name="name">LEGAL</field>
-            <field name="format">Legal</field>
-            <field name="orientation">Landscape</field>
-
+        
+        <record id="rpt_entrevista_umecas.rpt_entrevista_umecas_detalles_entrevista_escala_riesgo" model="ir.actions.report.xml">
+            <field name="paperformat_id" ref="rpt_entrevista_umecas.rpt_entrevista_umecas_detalles_entrevista_escala_riesgo_paper" />
         </record>
         <template id="assets_common" name="rpt_entrevista_umecas assets" inherit_id="report.assets_common">
             <xpath expr="." position="inside">

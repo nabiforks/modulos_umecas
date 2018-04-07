@@ -44,9 +44,7 @@ class umc_detenidos_con(models.Model):
     _inherit = 'umc_amistades'
 
     
-    test = fields.Boolean(
-        string=u'Test',
-    )
+    
     x_entrevista_id2 = fields.Many2one(
         string=u'Entrevista _ID',
         comodel_name='umc_entrevistas',

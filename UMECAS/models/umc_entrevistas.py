@@ -13,9 +13,9 @@ class Entrevistas(models.Model):
         string=u'Lugar',
         comodel_name='umc_lugares',
         ondelete='restrict',
-    )    
+    )   
     x_causa_penal = fields.Char(
-        string=u'Causa Penal',
+        string=u'CDI/Causa Penal',
     )        
     x_fecha_entrevista = fields.Date(
         string=u'Fecha y hora',        
@@ -339,7 +339,7 @@ class Entrevistas(models.Model):
         string=u'Nombre de la víctima',
     )
     x_victima_edad = fields.Integer(
-        string=u'Edad',
+        string=u'Edad de la víctima',
     )
     x_victima_anios = fields.Selection(
         string=u'Meses/años',

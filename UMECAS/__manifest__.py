@@ -5,7 +5,7 @@
     'summary': """Módulo para UMECAS""",
 
     'description': """
-        Administración expedientes para incautados, procesados y adolescentes
+        Administración expedientes para imputados(retenidos,  y adolescentes
         control de entrevistas y seguimiento  
     """,
 

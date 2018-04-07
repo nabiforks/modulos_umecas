@@ -20,7 +20,7 @@
                         <group>
                             <field name="x_tipo" />
                             <field name="x_lugar_entrevista" options="{ 'no_open': True}" />
-                            <field name="x_causa_penal" attrs="{ 'invisible':[('x_tipo','not in','interno')] }" />
+                            <field name="x_causa_penal" />
                             <field name="x_fecha_entrevista" />
                             <field name="x_hora_inicio" widget="float_time" />
                             <field name="x_hora_fin" widget="float_time" />
@@ -92,7 +92,7 @@
                                     <label for='x_contacto_ids'></label>
                                 </h3>
                                 <field name="x_contacto_ids" mode="tree" context="{'default_parent_id': x_imputado_id}">
-                                    <tree editable="top">
+                                    <tree editable="bottom">
                                         <field name="x_nucleo" />
                                         <field name="name" />
                                         <field name="fecha_nacimiento" />
@@ -187,7 +187,7 @@
                             <page string="XI.-Información del proceso actual">
                                 <label for="x_delitos_ids"></label>
                                 <field name="x_delitos_ids" mode="tree">
-                                    <tree editable="top">
+                                    <tree editable="bottom">
                                         <field name="x_name" options="{ 'no_open': True}" />
                                         <field name="x_fundamento" />
                                         <field name="x_gravedad" />
@@ -207,11 +207,12 @@
                                 <group>
                                     <field name="x_otras_personas" widget="radio" options="{'horizontal': true}" />
                                     <field name="x_otras_personas_ids" mode="tree" attrs="{ 'invisible':[('x_otras_personas','not in','si')] }">
-                                        <tree editable="top">
+                                        <tree editable="bottom">
                                             <field name="x_name" />
                                             <field name="x_relacion" />
                                         </tree>
                                     </field>
+                                    <field name="x_victima_nombre" />
                                     <label for="x_victima_edad"></label>
                                     <div class="address_format">
                                         <field name="x_victima_edad" style="width: 40%"/>

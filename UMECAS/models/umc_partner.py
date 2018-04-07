@@ -10,6 +10,16 @@ class Partner(models.Model):
 
     _inherit = 'res.partner'
 
+    @api.multi 
+    def name_get(self): 
+        result = super(Partner, self).name_get() 
+        res = [] 
+        for element in self: 
+            name = '' 
+            name += element.display_name or '' 
+            res.append((element.id, name)) 
+        return res
+
     fecha_nacimiento = fields.Date(string=u'Fecha_Nac')
     fecha_actual = fields.Date(default=fields.Date.today)
     # edad = fields.Integer(string="Edad")
