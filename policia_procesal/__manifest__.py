@@ -22,15 +22,16 @@
 
     # always loaded
     'data': [
+       'views/pp_catalogos_view.xml',
+       'views/pp_recepcion_view.xml',
        'views/pp_traslados_view.xml',
        'views/pp_retiro_traslados_view.xml',
-       'views/pp_autoridades_view.xml',
-       'views/pp_resguardo_pertenencias_view.xml',
-       'views/pp_medicos_view.xml',
-       'views/pp_vehiculos_view.xml',
        'views/pp_custodia_provicional_view.xml',
        'views/pp_audiencias_view.xml',
-       'views/pp_suministro_alimentos_view.xml',
+       'views/pp_resoluciones_view.xml',
+       'views/pp_egresos_view.xml',
+       #'views/pp_suministro_alimentos_view.xml',
+       #'views/pp_resguardo_pertenencias_view.xml',
        'views/pp_menus_view.xml',
        'data/sequence_names.xml'
     ],

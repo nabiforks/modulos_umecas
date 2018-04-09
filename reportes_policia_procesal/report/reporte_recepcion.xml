@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+	<data>
+		<report
+			id="recepcion_pp_report"
+			model="pp.recepcion"
+			string="Recibo de custodia provicional"
+			name="reportes_policia_procesal.recibo_custodia"
+			file="reportes_policia_procesal.recepcion_pp_report"
+			report_type="qweb-pdf"			
+		/>
+		<template id="recibo_custodia">
+			<t t-call="report.html_container">
+				<t t-foreach="docs" t-as="recepcion">
+					<t t-call="report.external_layout">
+						<div class="page" style="font-size:12px;">
+							<div class="row">
+								<div class="col-xs-12 text-center">
+									<strong>RECIBO DE CUSTODIA PROVISIONAL DEL DETENIDO Y/O IMPUTADO</strong>
+								</div>
+							</div>
+							<br/>
+							<div class="row">
+								<div class="col-xs-6"></div>
+								<div class="col-xs-6 text-center text-uppercase borde-bottom" style="min-height: 20px;">
+									<strong>
+										<span t-field="recepcion.fecha_hora" t-options="{'format': 'd'}"/> de 
+										<span t-field="recepcion.fecha_hora" t-options="{'format': 'MMMM'}"/> de 
+										<span t-field="recepcion.fecha_hora" t-options="{'format': 'y'}"/> a las 
+										<span t-field="recepcion.fecha_hora" t-options="{&quot;format&quot;: &quot;HH:mm &quot;}"/> 
+										horas
+									</strong>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-xs-4">
+									Nombre del detenido y/o imputado(s): 
+								</div>
+								<div class="col-xs-8 text-center text-uppercase borde-bottom" style="min-height: 20px;">
+									<strong><span t-field="recepcion.name" /></strong>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-xs-2">
+									Delitos(s): 
+								</div>
+								<div class="col-xs-4 text-center text-uppercase borde-bottom" style="min-height: 20px;">
+									<strong>
+										<t t-foreach="recepcion.delito_ids" t-as="i">
+											<t t-if="i">
+												<span t-field="i.x_name"/>,
+											</t>
+										</t>
+									</strong>
+								</div>
+								<div class="col-xs-2">
+									NIC/CDI/NUC: 
+								</div>
+								<div class="col-xs-4 text-center text-uppercase borde-bottom" style="min-height: 20px;">
+									<strong><span t-field="recepcion.nic_cdi_nuc" /></strong>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-xs-4">
+									Audoridad que solicita el traslado: 
+								</div>
+								<div class="col-xs-8 text-center text-uppercase borde-bottom" style="min-height: 20px;">
+									<strong>
+										<span t-field="recepcion.autoridad_que_solicita_id" />, 
+										<span t-field="recepcion.cargo_autoridad_solicita" />
+									</strong>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-xs-3">
+									No. de Oficio de traslado:
+								</div>
+								<div class="col-xs-3 text-center text-uppercase borde-bottom" style="min-height: 20px;">
+									<strong><span t-field="recepcion.numero_oficio" /></strong>
+								</div>
+								<div class="col-xs-2">
+									Procedencia:
+								</div>
+								<div class="col-xs-4 text-center text-uppercase borde-bottom" style="min-height: 20px;">
+									<strong><span t-field="recepcion.lugar_id" /></strong>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-xs-4">
+									Autoridad que realiza el traslado: 
+								</div>
+								<div class="col-xs-8 text-center text-uppercase borde-bottom" style="min-height: 20px;">
+									<strong>
+										<span t-field="recepcion.autoridad_que_realiza_id" />, 
+										<span t-field="recepcion.cargo_autoridad_realiza" />
+									</strong>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-xs-2">
+									Vehículo: 
+								</div>
+								<div class="col-xs-2 text-center text-uppercase borde-bottom" style="min-height: 20px;">
+									<strong><span t-field="recepcion.vehiculo_id.name" /></strong>
+								</div>
+								<div class="col-xs-2">
+									No. Económico: 
+								</div>
+								<div class="col-xs-2 text-center text-uppercase borde-bottom" style="min-height: 20px;">
+									<strong><span t-field="recepcion.no_economico" /></strong>
+								</div>
+								<div class="col-xs-2">
+									Placas:
+								</div>
+								<div class="col-xs-2 text-center text-uppercase borde-bottom" style="min-height: 20px;">
+									<strong><span t-field="recepcion.placas" /></strong>
+								</div>
+							</div>
+							<br/>
+							<br/>
+							<br/>
+							<div class="row" style="font-size:10px;">
+								<div class="col-xs-1"></div>
+								<div class="col-xs-4 text-center text-uppercase">
+									<strong>
+										<p>Responsable</p>
+										<br/>
+										<div class="borde-bottom"></div>
+										<center>
+											<div style="width:90%;">
+												Cargo, nombre y firma del responsable de la custodia 
+												provicional del detenido y/o imputado.
+												<p>En centro de justicia.</p>
+											</div>
+										</center>
+									</strong>
+								</div>
+								<div class="col-xs-2"></div>
+								<div class="col-xs-4 text-center text-uppercase">
+									<strong>
+										<p>Agente ministerial</p>
+										<span t-field="recepcion.autoridad_que_realiza_id" />
+										<div class="borde-bottom"></div>
+										<center>
+											<div style="width:90%;">
+												Cargo, nombre y firma del responsable del traslado
+												 al cereso en mención del detenido y/o imputado
+											</div>
+										</center>
+									</strong>
+								</div>
+								<div class="col-xs-1"></div>
+							</div>
+
+						</div><!--end div page-->
+					</t>
+				</t>
+			</t>
+		</template>
+	</data>
+</odoo>

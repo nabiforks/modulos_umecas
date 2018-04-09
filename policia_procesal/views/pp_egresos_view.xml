@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+	<data>
+		<record model="ir.ui.view" id="egreso_form_view">
+			<field name="name">pp.egreso.form</field>
+			<field name="model">pp.egreso</field>
+			<field name="arch" type="xml">
+				<form>
+					<sheet>
+						<div class="row">
+							<div class="col-xs-6">
+								<group>
+									<field name="fecha_hora"/>
+								</group>
+							</div>
+						</div>
+						<group>
+							<group>
+								<field name="partner_id" domain="[('x_imputado','=',True)]" context="{'default_x_imputado':True}"/>
+							</group>
+							<group></group>
+						</group>
+						<div class="row">
+							<div class="col-xs-6">
+								<group>
+									<field name="delito_ids" widget="many2many_tags"/>
+								</group>
+							</div>
+							<div class="col-xs-6">
+								<group>
+									<field name="nic_cdi_nuc"/>
+								</group>
+							</div>
+						</div>
+						<group>
+							<group>
+								<field name="autoridad_que_solicita_id"/>
+							</group>
+							<group>
+								<field name="cargo_autoridad_solicita"/>
+							</group>
+						</group>
+
+						<group>
+							<group>
+								<field name="numero_oficio"/>
+							</group>
+							<group>
+								<field name="lugar_id" />
+							</group>
+						</group>
+						<group>
+							<group>
+								<field name="autoridad_que_realiza_id"/>
+							</group>
+							<group>
+								<field name="cargo_autoridad_realiza"/>
+							</group>
+						</group>
+						<group>
+							<group>
+								<field name="numero_elementos"/>
+							</group>
+							<group>
+								<field name="dependencia"/>
+							</group>
+						</group>
+						<div class="row">
+							<div class="col-xs-4">
+								<group>
+									<field name="vehiculo_id"/>
+								</group>
+							</div>
+							<div class="col-xs-4">
+								<group>
+									<field name="no_economico"/>
+								</group>
+							</div>
+							<div class="col-xs-4">
+								<group>
+									<field name="placas"/>
+								</group>
+							</div>
+						</div>
+						<group>
+							<label string="Fecha y hora de inicio de la audiencia"/>
+						</group>
+						<div class="row">
+							<div class="col-xs-4">
+								<group>
+									<field name="fecha_inicio_audiencia"/>
+								</group>
+							</div>
+							<div class="col-xs-4">
+								<group>
+									<field name="hora_inicio_audiencia" widget="float_time"/>
+								</group>
+							</div>
+							<div class="col-xs-4">
+								<group>
+									<field name="hora_termino_audiencia" widget="float_time"/>
+								</group>
+							</div>
+						</div>
+						<group>
+							<group>
+								<field name="tipo_audiencia"/>
+							</group>
+							<group>
+								<field name="fecha_hora_entrega_responsable"/>
+							</group>
+						</group>
+						<group>
+							<field name="observaciones"/>
+						</group>
+
+						<notebook>
+							<page string="Retiro de traslado">
+								<group>
+									<field name="observaciones_traslado"/>
+								</group>
+							</page>
+						</notebook>
+					</sheet>
+				</form>
+			</field>
+		</record>
+
+		<!--TREE-->
+		<record model='ir.ui.view' id='egreso_tree_view'>
+			<field name='name'>pp.egreso.tree</field>
+			<field name='model'>pp.egreso</field>
+			<field name='arch' type='xml'>
+				<tree>
+					<field name='numero_oficio'/>
+					<field name='partner_id'/>
+					<field name='delito_ids'/>
+					<field name='nic_cdi_nuc'/>
+					<field name='fecha_hora'/>
+					<field name='autoridad_que_solicita_id'/>
+					<field name='fecha_inicio_audiencia' string="Inicio de audiencia"/>
+				</tree>
+			</field>
+		</record>
+
+		<!--Search-->
+		<record id="egreso_search" model="ir.ui.view">
+		    <field name="name">pp.egreso.search</field>
+		    <field name="model">pp.egreso</field>
+		    <field name="arch" type="xml">
+		        <search>
+		        	<field name="partner_id"/>
+		        </search>
+		    </field>
+		</record>
+
+		<!--Action-->
+		<record id="egreso_action_list" model="ir.actions.act_window">
+			<field name="name">Egreso</field>
+			<field name="res_model">pp.egreso</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+		</record>
+	</data>
+</odoo>

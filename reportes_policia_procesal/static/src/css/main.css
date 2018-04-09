@@ -1,0 +1,22 @@
+.borde {
+    border: solid 1px black;
+}
+
+.borde-right {
+    border-right: solid 1px black;
+}
+
+.borde-left {
+    border-left: solid 1px black;
+}
+
+.borde-bottom {
+    border-bottom: solid 1px black;
+}
+
+.borde-top {
+    border-top: solid 1px black;
+}
+table.table-bordered > tbody > tr > td{
+      border:1px solid black;
+}

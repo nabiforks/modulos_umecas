@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+	<data>
+		<report
+			id="lectura_derechos_pp_report"
+			model="pp.custodia"
+			string="Lectura de derechos"
+			name="reportes_policia_procesal.reporte_lectura_de_derechos"
+			file="reportes_policia_procesal.lectura_derechos_pp_report"
+			report_type="qweb-pdf"			
+			/>
+		<template id="reporte_lectura_de_derechos">
+			<t t-call="report.html_container">
+				<t t-foreach="docs" t-as="custodia">
+					<t t-call="report.external_layout">
+						<div class="page">
+							<div class="row">
+								<div class="col-xs-12 text-center">
+									<strong>
+										<p>CENTRO DE JUSTICIA PENAL DE PUEBLA</p>
+										<p>POILICÍA PROCESAL REGIÓN-CENTRO</p>
+									</strong>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-xs-9"></div>
+								<div class="col-xs-3 text-center">
+									<table class="borde">
+										<tbody>
+											<tr>
+												<td class="borde-bottom">
+													CAUSA PENAL
+												</td>
+											</tr>
+											<tr>
+												<td></td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-xs-12 text-left">
+									<strong>
+										Actuación de la Policía Procesal con el imputado
+									</strong>
+								</div>
+							</div>
+							<br/>
+							<div class="row">
+								<div class="col-xs-1"></div>
+								<div class="col-xs-10 text-center text-uppercase">
+									<table class="borde">
+										<tbody>
+											<tr>
+												<td colspan="2" class="borde-bottom">
+													Centro de justicia puebla
+												</td>
+											</tr>
+											<tr>
+												<td class="borde-bottom">
+													Imputado
+												</td>
+												<td class="borde-bottom"></td>
+											</tr>
+											<tr>
+												<td class="borde-bottom">
+													Entidad federativa
+												</td>
+												<td class="borde-bottom"></td>
+											</tr>
+											<tr>
+												<td class="borde-bottom">
+													Ciudad, municipio, Delegación
+												</td>
+												<td class="borde-bottom"></td>
+											</tr>
+											<tr>
+												<td class="borde-bottom">
+													Nacionalidad
+												</td>
+												<td class="borde-bottom"></td>
+											</tr>
+											<tr>
+												<td class="borde-bottom">
+													Idioma o lengua
+												</td>
+												<td class="borde-bottom"></td>
+											</tr>
+											<tr>
+												<td class="borde-bottom">
+													Sabe leer y escribir
+												</td>
+												<td class="borde-bottom"></td>
+											</tr>
+											<tr>
+												<td class="borde-bottom">
+													Número de estancia
+												</td>
+												<td class="borde-bottom"></td>
+											</tr>
+											<tr>
+												<td class="borde-bottom">
+													Fecha
+												</td>
+												<td class="borde-bottom"></td>
+											</tr>
+											<tr>
+												<td class="borde-bottom">
+													Hora
+												</td>
+												<td class="borde-bottom"></td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+								<div class="col-xs-1"></div>
+							</div>
+							<br/>
+							<div class="row">
+								<div class="col-xs-12">
+									<p>
+										ARTÍCULO .4- párrafo III - CONSTITUCIÓN POLÍTICA DE LOS ESTADOS UNIDOS MEXICANOS.
+									</p>
+									<p>
+										ARTÍCULO .13- CÓDIGO NACIONAL DE PROCEDIMIENTOS PENALES.
+									</p>
+									<p>
+										ARTÍCULOS .113- FRACC. I Y VI - CÓDIGO NACIONAL DE PROCEDIMIENTOS PENALES.
+									</p>
+									<p>
+										ARTÍCULOS .152 FRACC. IV Y VII - CÓDIGO NACIONAL DE PROCEDIMIENTOS PENALES.
+									</p>
+									<p>
+										<strong>
+											CONSTANCIA DE DERECHOS SALVAGUARDADOS AL MOMENTO DE INGRESAR AL CENTRO DE JUSTICIA PENAL, REGIÓN CENTRO.
+										</strong>
+									</p>
+									<p>
+										1.-Tiene derecho a guardar silencio
+									</p>
+									<p>
+										2.-Se le asignó una estancia limpia para su custodia provisional en la institución.
+									</p>
+									<p>
+										3.-Se le proporcionaron los alimentos necesarios durante su estancia en la institución.
+									</p>
+									<p>
+										4.-Se le proporcionaron los artículos para su permanencia en la estancia.
+									</p>
+									<p>
+										5.-El personal de la policía procesal se ha dirigido respetando en todo momento en apego a sus garantías individuales.
+									</p>
+									<p>
+										6.-Usted fue guiado por un elemento de la policía procesal en todo momento para salvaguardar su seguridad y la de terceros (Transfer-estancia, Estancia-Sala de audiencia).
+									</p>
+									<br/>
+									<p>
+										¿Está de acuerdo en lo plasmado en esta constancia?
+										<div class="borde" style="width:12px;height:12px;"></div>
+										<div class="borde" style="width:12px;height:12px;"></div>
+									</p>
+								</div>
+							</div>
+							<div class="row text-center">
+								<div class="col-xs-3 borde">
+									<br/>
+									<br/>
+									<p>Nombre y firma del imputado</p>
+									<br/>
+								</div>
+								<div class="col-xs-1"></div>
+								<div class="col-xs-3 borde">
+									<br/>
+									<br/>
+									<p>Nombre y firma de policía procesal</p>
+									<p>(actuante)</p>
+								</div>
+								<div class="col-xs-1"></div>
+								<div class="col-xs-3 borde">
+									<br/>
+									<br/>
+									<p>Nombre y firma de policía procesal</p>
+									<p>testigo</p>
+								</div>
+							</div>
+						<!--End div page-->
+						</div>
+					</t>
+				</t>
+			</t>
+		</template>
+	</data>
+</odoo>

@@ -1,0 +1,354 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+	<data>
+		<report
+			id="traslado_ing_pp_report"
+			model="pp.recepcion"
+			string="Reporte de traslado de ingreso"
+			name="reportes_policia_procesal.reporte_traslado"
+			file="reportes_policia_procesal.traslado_ing_pp_report"
+			report_type="qweb-pdf"			
+			/>
+		<template id="reporte_traslado">
+			<t t-call="report.html_container">
+				<t t-foreach="docs" t-as="traslado">
+					<t t-call="report.external_layout">
+						<div class="page text-uppercase" style="font-size:12px;">
+							<!--
+							<div class="row">
+								<div class="col-xs-4"></div>
+								<div class="col-xs-4 text-center">
+									<strong>Dirección de medidas cautelares y policia procesal</strong>
+									<br/>
+									<p>Subdirección de la policia procesal</p>
+									<p> centro de justicia penal puebla</p>
+								</div>
+								<div class="col-xs-4"></div>
+							</div>
+							<br/>
+
+							<div class="row borde">
+								<div class="row borde-bottom">
+									<div class="col-xs-12 text-center">
+										<strong>Personal qie realiza el traslado del (los) imputado(s)</strong>
+									</div>
+								</div>
+								<div class="row borde-bottom">
+									<div class="col-xs-2 borde-right" style="min-height: 30px;">
+										Num. de
+										oficio:
+									</div>
+									<div class="col-xs-4 borde-right" style="min-height: 30px;">
+										
+									</div>
+									<div class="col-xs-2 borde-right" style="min-height: 30px;">
+										Fecha de
+										traslado:
+									</div>
+									<div class="col-xs-4" style="min-height: 30px;">
+										
+									</div>
+								</div>
+								<div class="row borde-bottom">
+									<div class="col-xs-3 borde-right" style="min-height: 30px;">
+										Autoridad que
+										ordena el traslado:
+									</div>
+									<div class="col-xs-9" style="min-height: 30px;">
+										
+									</div>
+								</div>
+								<div class="row borde-bottom">
+									<div class="col-xs-3 borde-right" style="min-height: 30px;">
+										Autoridad que
+										realiza el traslado:
+									</div>
+									<div class="col-xs-9" style="min-height: 30px;"></div>
+								</div>
+								<div class="row borde-bottom">
+									<div class="col-xs-3 borde-right" style="min-height: 30px;">
+										Dependencia a la
+										que pertenecen:
+									</div>
+									<div class="col-xs-5 borde-right" style="min-height: 30px;"></div>
+									<div class="col-xs-1 borde-right" style="min-height: 30px;">
+										Firma:
+									</div>
+									<div class="col-xs-3" style="min-height: 30px;"></div>
+								</div>
+								<div class="row borde-bottom">
+									<div class="col-xs-3 borde-right" style="min-height: 30px;">
+										Elementos de apoyo:
+									</div>
+									<div class="col-xs-2 borde-right" style="min-height: 30px;"></div>
+									<div class="col-xs-3 borde-right" style="min-height: 30px;">
+										Procedencia del
+										imputado:
+									</div>
+									<div class="col-xs-4" style="min-height: 30px;"></div>
+								</div>
+								<div class="row borde-bottom">
+									<div class="col-xs-2 borde-right" style="min-height: 30px;">
+										Vehículo
+										oficial:
+									</div>
+									<div class="col-xs-2 borde-right" style="min-height: 30px;"></div>
+									<div class="col-xs-2 borde-right" style="min-height: 30px;">
+										Num. Económico:
+									</div>
+									<div class="col-xs-1 borde-right" style="min-height: 30px;"></div>
+									<div class="col-xs-1 borde-right" style="min-height: 30px;">
+										Placas:
+									</div>
+									<div class="col-xs-1 borde-right" style="min-height: 30px;"></div>
+									<div class="col-xs-2 borde-right" style="min-height: 30px;">
+										Vehiculos de apoyo:
+									</div>
+									<div class="col-xs-1" style="min-height: 30px;"></div>
+								</div>
+								<div class="row borde-bottom">
+									<div class="col-xs-2 borde-right" style="min-height: 30px;">
+										Hora de
+										arribo:
+									</div>
+									<div class="col-xs-2 borde-right" style="min-height: 30px;"></div>
+									<div class="col-xs-2 borde-right" style="min-height: 30px;">
+										Hora de ingreso a sala:
+									</div>
+									<div class="col-xs-2 borde-right" style="min-height: 30px;"></div>
+									<div class="col-xs-3 borde-right" style="min-height: 30px;">
+										Hora al regresal la custodia a la coorporación:
+									</div>
+									<div class="col-xs-1" style="min-height: 30px;"></div>
+								</div>
+								<div class="row borde-bottom">
+									<div class="col-xs-3 borde-right" style="min-height: 30px;">
+										Estado físico y
+										Vestimenta completa
+										del imputado:
+									</div>
+									<div class="col-xs-9" style="min-height: 30px;"></div>
+								</div>
+								<div class="row">
+									<div class="col-xs-3 borde-right" style="min-height: 30px;">
+										Cuenta con dictamen
+										médico; Nombre del 
+										doctor y número de
+										Cédula
+									</div>
+									<div class="col-xs-9" style="min-height: 30px;"></div>
+								</div>
+							</div>
+						-->
+
+
+
+
+
+							
+							<table class="table table-bordered text-center" style="border:1px solid black;">
+								<tbody>
+									<tr>
+										<td colspan="8" style="border:1px solid black;">
+											<strong>
+												Personal qie realiza el traslado del (los) imputado(s)
+											</strong>
+										</td>
+									</tr>
+									<tr>
+										<td colspan="1" style="border:1px solid black;">
+											Num. de
+											oficio:
+										</td>
+										<td colspan="4" style="border:1px solid black;">
+											<strong>
+												<span t-field="traslado.numero_oficio"/>
+											</strong>
+										</td>
+										<td style="border:1px solid black;">
+											Fecha de
+											traslado:
+										</td>
+										<td colspan="3" style="border:1px solid black;width:450px;">
+											<strong>
+												<span t-field="traslado.fecha_hora" t-options ='{"format": "dd/MM/yyyy"}'/>
+											</strong>
+										</td>
+									</tr>
+									<tr>
+										<td colspan="2" style="border:1px solid black;">
+											Autoridad que
+											ordena el traslado:
+										</td>
+										<td colspan="3" style="border:1px solid black; padding:0;">
+											<div class="borde-bottom">
+												Nombre
+											</div>
+											<strong>
+												<span t-field="traslado.autoridad_que_solicita_id"/>
+											</strong>
+										</td>
+										<td colspan="3" style="border:1px solid black; padding:0;width:450px;">
+											<div class="borde-bottom">
+												Cargo
+											</div>
+											<strong>
+												<span t-field="traslado.cargo_autoridad_solicita"/>
+											</strong>
+										</td>
+									</tr>
+									<tr>
+										<td colspan="2" style="border:1px solid black;">
+											Autoridad que
+											realiza el traslado:
+										</td>
+										<td colspan="3" style="border:1px solid black; padding:0;">
+											<div class="borde-bottom">
+												Nombre
+											</div>
+											<strong>
+												<span t-field="traslado.autoridad_que_realiza_id"/>
+											</strong>
+										</td>
+										<td colspan="3" style="border:1px solid black; padding:0;width:450px;">
+											<div class="borde-bottom">
+												Cargo
+											</div>
+											<strong>
+												<span t-field="traslado.cargo_autoridad_realiza"/>
+											</strong>
+										</td>
+									</tr>
+									<tr>
+										<td colspan="2" style="border:1px solid black;">
+											Dependencia a la
+											que pertenecen:
+										</td>
+										<td colspan="3" style="border:1px solid black;">
+											<strong>
+												<span t-field="traslado.dependencia.name"/>
+											</strong>
+										</td>
+										<td style="border:1px solid black;">
+											Firma:
+										</td>
+										<td colspan="3" style="border:1px solid black;width:450px;">
+										</td>
+									</tr>
+									<tr>
+										<td colspan="2" style="border:1px solid black;">
+											Elementos de apoyo:
+										</td>
+										<td colspan="2" style="border:1px solid black;">
+											<strong>
+												<span t-field="traslado.elementos_apoyo"/>
+											</strong>
+										</td>
+										<td colspan="2" style="border:1px solid black;">
+											Procedencia del
+											imputado:
+										</td>
+										<td colspan="2" style="border:1px solid black;">
+											<strong>
+												<span t-field="traslado.lugar_id.x_name"/>
+											</strong>
+										</td>
+									</tr>
+									<tr>
+										<td style="border:1px solid black;">
+											Vehículo
+											oficial:
+										</td>
+										<td style="border:1px solid black;">
+											<strong>
+												<span t-field="traslado.vehiculo_id.name"/>
+											</strong>
+										</td>
+										<td style="border:1px solid black;">
+											Num. Económico:
+										</td>
+										<td style="border:1px solid black;">
+											<strong>
+												<span t-field="traslado.no_economico"/>
+											</strong>
+										</td>
+										<td style="border:1px solid black;">
+											Placas:
+										</td>
+										<td style="border:1px solid black;">
+											<strong>
+												<span t-field="traslado.placas"/>
+											</strong>
+										</td>
+										<td style="border:1px solid black;">
+											Vehiculos de apoyo:
+										</td>
+										<td colspan="2" style="border:1px solid black;width:200px;">
+											<strong>
+												<span t-field="traslado.vehiculos_apoyo"/>
+											</strong>
+										</td>
+									</tr>
+									<tr>
+										<td style="border:1px solid black;width:10%;">
+											Hora de
+											arribo:
+										</td>
+										<td style="border:1px solid black;width:10%;">
+											<strong>
+												<span t-field="traslado.hora_arribo"/>
+											</strong>
+										</td>
+										<td style="border:1px solid black;width:10%;">
+											Hora de ingreso a sala:
+										</td>
+										<td style="border:1px solid black;width:10%;">
+											<strong>
+												<span t-field="traslado.hora_ingreso"/>
+											</strong>
+										</td>
+										<td colspan="2" style="border:1px solid black;width:10%;">
+											Hora al regresal la custodia a la coorporación:
+										</td>
+										<td colspan="2" style="border:1px solid black;width:10%;">
+											<strong>
+												<span t-field="traslado.hora_regreso"/>
+											</strong>
+										</td>
+									</tr>
+									<tr>
+										<td colspan="2" style="border:1px solid black;">
+											Estado físico y
+											Vestimenta completa
+											del imputado:
+										</td>
+										<td colspan="6" style="border:1px solid black;">
+											<strong>
+												<span t-field="traslado.descripcion_imputado"/>
+											</strong>
+										</td>
+									</tr>
+									<tr>
+										<td colspan="2" style="border:1px solid black;">
+											Cuenta con dictamen
+											médico; Nombre del 
+											doctor y número de
+											Cédula
+										</td>
+										<td colspan="6" style="border:1px solid black;">
+											<strong>
+												<p><span t-field="traslado.medico_id.name"/></p>
+												<p>Cédula. prof. <span t-field="traslado.no_cedula"/></p>
+											</strong>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						<!--end div page-->
+						</div>
+					</t>
+				</t>
+			</t>
+		</template>
+	</data>
+</odoo>

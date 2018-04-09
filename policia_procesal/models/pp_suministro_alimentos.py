@@ -43,22 +43,3 @@ class SuministroAlimentos(models.Model):
     #Agrgar campo de 'conducta'
 
 
-class AlimentosList(models.Model):
-    _name = 'pp.suministro_list'
-
-    fecha = fields.Date(
-        string='Fecha'
-    )
-    tercio = fields.Selection(
-        [('primero', 'Primero'),('segundo', 'Segundo'),('tercero','Tercero')]
-    )
-    descripcion = fields.Text(
-        string='Descripción',
-    )
-
-    #==========RELATIONSHIP FIELDS==========
-    suministro_id = fields.Many2one(
-        'pp.suministro',
-        string='Suministro',
-        readonly=True, 
-    )

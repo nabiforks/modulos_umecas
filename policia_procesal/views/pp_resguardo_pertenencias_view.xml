@@ -91,23 +91,9 @@
 	        <field name="arch" type="xml">
 	            <search>
 	                <field name="name"/>
-	                <!--filter name="my_courses" string="My Courses" domain="[('responsible_id', '=', uid)]"/-->
-	                <!--group string="Group By"><filter name="by_responsible" string="Responsible" context="{'group_by': 'responsible_id'}"/></group-->
 	            </search>
 	        </field>
 	    </record>
-
-		<!--Vista arbol lista de pertenencias
-		<record id="pertenencia_list_tree_view" model="ir.ui.view">
-			<field name="name">pertenencia_list.tree.view</field>
-			<field name="model">pp.pertenencia_list</field>
-			<field name="arch" type="xml">
-				<tree>
-					<field name="numero" />
-					<field name="detalle" />
-				</tree>
-			</field>
-		</record>-->
 
 	</data>
 </odoo>

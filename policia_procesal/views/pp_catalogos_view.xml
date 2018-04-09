@@ -1,0 +1,252 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+	<data>
+		<!--*************************************-->
+		<!--*     MODELO CATALOGO DE JUECES     *-->
+		<!--*************************************-->
+		<!--Form-->
+		<record model="ir.ui.view" id="jueces_form_view">
+			<field name="name">pp.jueces.form</field>
+			<field name="model">pp.jueces</field>
+			<field name="arch" type="xml">
+				<form>
+					<sheet>
+						<group>
+							<field name="name"/>
+							<field name="titulo"/>
+							<field name="cargo"/>
+						</group>
+					</sheet>
+				</form>
+			</field>
+		</record>
+		<!--Tree-->
+		<record model='ir.ui.view' id='jueces_tree'>
+			<field name='name'>pp.jueces.tree</field>
+			<field name='model'>pp.jueces</field>
+			<field name='arch' type='xml'>
+				<tree>
+					<field name='titulo'/>
+					<field name='name'/>
+					<field name='cargo'/>
+				</tree>
+			</field>
+		</record>
+
+		<!--*************************************-->
+		<!--*     MODELO CATALOGO AUTORIDADES   *-->
+		<!--*************************************-->
+		<!--Form-->
+		<record id="autoridades_form_view" model="ir.ui.view">
+			<field name="name">pp.form.view</field>
+			<field name="model">pp.autoridad</field>
+			<field name="arch" type="xml">
+				<form>
+					<sheet>
+						<group>
+							<field name="name"/>
+							<field name="titulo" placeholder="Ej. Abogado"/>
+							<field name="cargo"/>
+						</group>
+					</sheet>
+				</form>
+			</field>
+		</record>
+
+		<!--Tree-->
+		<record id="autoridades_tree_view" model="ir.ui.view">
+			<field name="name">pp.autoridad.tree.view</field>
+			<field name="model">pp.autoridad</field>
+			<field name="arch" type="xml">
+				<tree>
+					<field name="name"/>
+					<field name="titulo"/>
+					<field name="cargo"/>
+				</tree>
+			</field>
+		</record>
+		<!--Action-->
+		<record id="autoridades_action_list" model="ir.actions.act_window">
+			<field name="name">Autoridades</field>
+			<field name="res_model">pp.autoridad</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,kanban,form</field>
+			<field name="help" type="html">
+	            <p class="oe_view_nocontent_create">Agregar primer registro</p>
+	        </field>
+		</record>
+
+
+
+		<!--*********************************-->
+		<!--*     MODELO CATALOGO MEDICOS   *-->
+		<!--*********************************-->
+		<!--Form-->
+		<record id="medico_view_form" model="ir.ui.view">
+			<field name="name">pp.medico.form.view</field>
+			<field name="model">pp.medico</field>
+			<field name="arch" type="xml">
+				<form>
+					<sheet>
+						<group>
+							<field name="name"/>
+							<field name="cedula"/>
+						</group>
+					</sheet>
+				</form>
+			</field>
+		</record>
+
+		<record id="medicos_action_list" model="ir.actions.act_window">
+			<field name="name">Medicos</field>
+			<field name="res_model">pp.medico</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,kanban,form</field>
+			<field name="help" type="html">
+	            <p class="oe_view_nocontent_create">Agregar primer registro</p>
+	        </field>
+		</record>
+
+
+		<!--***********************************-->
+		<!--*     MODELO CATALOGO VEHICULOS   *-->
+		<!--***********************************-->
+		<!--Form-->
+		<record id="vehiculos_form_view" model="ir.ui.view">
+			<field name="name">vehiculos.form.view</field>
+			<field name="model">pp.vehiculos</field>
+			<field name="arch" type="xml">
+				<form>
+					<sheet>
+						<group>
+							<group>
+								<field name="name"/>
+							</group>
+							<group>
+								<field name="no_economico" />
+								<field name="placas" />
+							</group>
+						</group>
+					</sheet>
+				</form>
+			</field>
+		</record>
+
+		<!--Vista Tree-->
+		<record model='ir.ui.view' id='vehiculos_tree_view'>
+			<field name='name'>vehiculos.tree.view</field>
+			<field name='model'>pp.vehiculos</field>
+			<field name='arch' type='xml'>
+				<tree>
+					<field name='name'/>
+					<field name='no_economico'/>
+					<field name='placas'/>
+				</tree>
+			</field>
+		</record>
+		<!--Action-->
+		<record id="vehiculos_action_list" model="ir.actions.act_window">
+			<field name="name">Vehiculos</field>
+			<field name="res_model">pp.vehiculos</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+			<field name="help" type="html">
+	            <p class="oe_view_nocontent_create">Agregar primer registro</p>
+	        </field>
+		</record>
+
+
+		<!--***********************************-->
+		<!--*  MODELO CATALOGO DEPENDENCIAS   *-->
+		<!--***********************************-->
+		<!--Form-->
+		<record model="ir.ui.view" id="dependencias_form_view">
+			<field name="name">pp.dependencias.form</field>
+			<field name="model">pp.dependencias</field>
+			<field name="arch" type="xml">
+				<form>
+					<sheet>
+						<group>
+							<group>
+								<field name="codigo"/>
+								<field name="name"/>
+							</group>
+							<group></group>
+						</group>
+					</sheet>
+				</form>
+			</field>
+		</record>
+
+		<!--Tree-->
+		<record model='ir.ui.view' id='dependencias_tree_view'>
+			<field name='name'>dependencias.tree</field>
+			<field name='model'>pp.dependencias</field>
+			<field name='arch' type='xml'>
+				<tree>
+					<field name='codigo'/>
+					<field name='name'/>
+				</tree>
+			</field>
+		</record>
+
+		<!--Action-->
+		<record id="dependencias_action_list" model="ir.actions.act_window">
+			<field name="name">Dependencias</field>
+			<field name="res_model">pp.dependencias</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+		</record>
+
+		<!--***********************************-->
+		<!--*  MODELO CATALOGO RCI/RSA        *-->
+		<!--***********************************-->
+		<!--Form-->
+		<record model="ir.ui.view" id="responsable_form_view">
+			<field name="name">pp.responsable.form</field>
+			<field name="model">pp.responsable</field>
+			<field name="arch" type="xml">
+				<form>
+					<sheet>
+						<group>
+							<group>
+								<field name="name"/>
+							</group>
+							<group></group>
+						</group>
+					</sheet>
+				</form>
+			</field>
+		</record>
+
+
+		<!--***********************************-->
+		<!--*  MODELO CATALOGO JEFE PP        *-->
+		<!--***********************************-->
+		<!--Form-->
+		<record model="ir.ui.view" id="jefe_pp_form_view">
+			<field name="name">pp.jefe_pp.form</field>
+			<field name="model">pp.jefe_pp</field>
+			<field name="arch" type="xml">
+				<form>
+					<sheet>
+						<group>
+							<group>
+								<field name="name"/>
+							</group>
+							<group></group>
+						</group>
+						<group>
+							<group>
+								<field name="cargo"/>
+								<field name="grupo"/>
+							</group>
+							<group></group>
+						</group>
+					</sheet>
+				</form>
+			</field>
+		</record>
+
+	</data>
+</odoo>
