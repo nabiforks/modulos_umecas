@@ -17,5 +17,6 @@ from . import umc_evaluacion_riesgos
 from . import umc_validar_email
 from . import umc_casa_justicia
 from . import  umc_casas_justicia_anio_fiscal
+from . import umc_mapa_estatico
 #from . import  umc_evalaucion_riesgos_inherit
 
