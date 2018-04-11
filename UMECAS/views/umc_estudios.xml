@@ -14,11 +14,12 @@
                     </div>
                     <group>
                         <group>
+                            <field name="x_status" />
+                            <field name="x_grado" />
                             <field name="x_institucion"/>
                             <field name="x_desercion" />
                         </group>
-                        <group>                            
-                        </group>
+                        <group></group>
                         <field name="x_domicilio_ids" mode="tree" context="{'default_x_estado_id': 504, }">
                             <tree editable="top">
                                 <field name="x_calle" />
@@ -38,6 +39,8 @@
         <field name="arch" type="xml">
             <tree>
                 <field name="x_name" />
+                <field name="x_status" />
+                <field name="x_grado" />
                 <field name="x_institucion" />
                 <field name="x_domicilio_ids" />
             </tree>

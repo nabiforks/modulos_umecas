@@ -24,6 +24,7 @@ class Partner(models.Model):
 
     @api.multi
     def imprimir_reporte_entrevistas(self):
+        print "*********************** ",self.obtener_mapa()
         # self.filtered(lambda s: s.state == 'draft').write({'state': 'sent'})
         if self.state == 'terminado':
             return self.env['report'].get_action(self, 'rpt_entrevista_umecas.detalles_entrevista')

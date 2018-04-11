@@ -41,9 +41,16 @@ class actividades_participa(models.Model):
     )
     x_tipo = fields.Selection(
         string=u'Tipo',
-        selection=[('normal', 'Normal'), ('intramuro', 'Intramuro'),('3', 'Extramuro')]
+        selection=[('normal', 'Normal'), ('intramuros', 'INTRAMUROS'),('extramuros', 'EXTRAMUROS')]
     )            
     x_descripcion = fields.Text(
+        string=u'¿Cuales?',
+    )
+    x_tiempo_libre = fields.Selection(
+        string=u'¿Realiza otra(s) actividad en su tiempo libre?',
+        selection=[('si', 'Si'), ('no', 'No')]
+    )
+    x_tiempo_libre_cuales = fields.Text(
         string=u'¿Cuales?',
     )
     x_entrevista2_id = fields.Many2one(

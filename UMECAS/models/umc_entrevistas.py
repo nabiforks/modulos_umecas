@@ -2,7 +2,6 @@
 
 from odoo import api, fields, models
 
-
 class Entrevistas(models.Model):
     _name = 'umc_entrevistas'
 
@@ -79,6 +78,7 @@ class Entrevistas(models.Model):
     @api.multi
     def entrevista_realizada(self):
         self.state = 'terminado'
+    
 
     #///////////////////////////////////////Campos de las entrevistas////////////////
     #///////////////////////////////////////Campos de las entrevistas////////////////
@@ -178,6 +178,12 @@ class Entrevistas(models.Model):
         comodel_name='umc_domicilio',
         inverse_name='x_evaluacion_id',
     )
+    @api.multi
+    def obtener_mapa(self):
+        if self.x_domicilio_actual and self.x_domicilio_actual[0].latitud != 0:
+            datos = {"lat":self.x_domicilio_actual[0].latitud, "lon": self.x_domicilio_actual[0].longitud, "nombre": (self.x_name)}
+            self.sudo().save_imagen(datos)
+            #mapa_event_pool.save_imagen(datos)
 
     #//////////////////////////////////III.- Lazos con la comunidad////////////////
     x_actividades_ids = fields.One2many(
@@ -185,13 +191,7 @@ class Entrevistas(models.Model):
         comodel_name='umc_actividades',
         inverse_name='x_entrevista2_id',
     )
-    x_tiempo_libre = fields.Selection(
-        string=u'¿Realiza otra(s) actividad en su tiempo libre?',
-        selection=[('si', 'Si'), ('no', 'No')]
-    )
-    x_tiempo_libre_cuales = fields.Text(
-        string=u'¿Cuales?',
-    )
+    
     
     
     #//////////////////////////////////IV.-Relaciones familiares/////////////////
@@ -353,6 +353,14 @@ class Entrevistas(models.Model):
         comodel_name='umc_parentesco',
         ondelete='set null',
     )
+    x_victima_trabajo = fields.Char(
+        string=u'Centro de trabajo de la víctima',
+    )
+    x_victima_telefono = fields.Char(
+        string=u'Número de contacto',
+    )
+    
+    
     
     x_cumplio_medidas = fields.Selection(
         string=u'Cumplió con medidas cautelares',
