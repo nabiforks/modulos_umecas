@@ -11,8 +11,15 @@ class umc_estudios(models.Model):
         comodel_name='umc_escolaridad',
         ondelete='set null', 
         required=True,        
-    )     
-      
+    )
+    x_status = fields.Selection(
+        string=u'Estatus',
+        selection=[('1', 'Concluida'), ('2', 'Cursando '),('3','Trunca')]
+    )
+    x_grado = fields.Char(
+        string=u'Grado alcanzado',
+    )        
+
     x_institucion = fields.Char(
         string=u'Nombre de la Institución',
     )    

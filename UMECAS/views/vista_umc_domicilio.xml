@@ -125,7 +125,7 @@
                 <p class="oe_view_nocontent_create">Agregar primer registro                </p>
             </field>
         </record>
-        <menuitem id="registros_domicilio" name="Domicilio" parent="main_umc_menu" action="umc_direccion_list_action" />
+        
         <!--- //////////////////////////UBICACION INTRAMURIS/////////////-->
         <!--- //////////////////////////UBICACION INTRAMURIS/////////////-->
         <!--- //////////////////////////UBICACION INTRAMURIS/////////////-->

@@ -191,13 +191,7 @@ class Entrevistas(models.Model):
         comodel_name='umc_actividades',
         inverse_name='x_entrevista2_id',
     )
-    x_tiempo_libre = fields.Selection(
-        string=u'¿Realiza otra(s) actividad en su tiempo libre?',
-        selection=[('si', 'Si'), ('no', 'No')]
-    )
-    x_tiempo_libre_cuales = fields.Text(
-        string=u'¿Cuales?',
-    )
+    
     
     
     #//////////////////////////////////IV.-Relaciones familiares/////////////////
@@ -359,6 +353,14 @@ class Entrevistas(models.Model):
         comodel_name='umc_parentesco',
         ondelete='set null',
     )
+    x_victima_trabajo = fields.Char(
+        string=u'Centro de trabajo de la víctima',
+    )
+    x_victima_telefono = fields.Char(
+        string=u'Número de contacto',
+    )
+    
+    
     
     x_cumplio_medidas = fields.Selection(
         string=u'Cumplió con medidas cautelares',

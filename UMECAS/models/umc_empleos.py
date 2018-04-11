@@ -13,8 +13,8 @@ class umc_empleos(models.Model):
     )
     x_actual_anterior = fields.Selection(
         string=u'Actual/Anterior',
-        selection=[('actual', 'Actual'), ('actual2',
-                                          'Actual Intramuros'), ('anterior', 'Anterior')],
+        selection=[('actual', 'ACTUAL'), ('actual2',
+                                          'ACTUAL INTRAMUROS'), ('anterior', 'ANTERIOR')],
         default='actual',
     )
     x_tipo_empleo = fields.Selection(
