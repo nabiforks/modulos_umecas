@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+	<data>
+		<report
+			id="datos_resolucion_pp_report"
+			model="pp.audiencia"
+			string="Datos de audiencia - resolución"
+			name="reportes_policia_procesal.datos_audiencia"
+			file="reportes_policia_procesal.datos_resolucion_pp_report"
+			report_type="qweb-pdf"			
+			/>
+		<template id="datos_audiencia">
+			<t t-call="report.html_container">
+				<t t-foreach="docs" t-as="audiencia">
+					<t t-call="report.external_layout">
+						<div class="page" style="font-size:12px;">
+							<div class="row">
+								<div class="col-xs-12">
+									<table style="width:100%;">
+										<tbody>
+											<tr>
+												<td colspan="8" class="borde" style="padding:5;">DATOS DE AUDIENCIA</td>
+											</tr>
+											<tr>
+												<td class="text-left borde" style="width:15%;padding:3;">HORA DE INGRESO:</td>
+												<td class="text-left borde" style="width:10%;padding:3;">
+													<strong>
+														<span t-esc="'%02d:%02d' % (int(audiencia.hora_ingreso), audiencia.hora_ingreso % 1 * 60)"/>
+													</strong>
+												</td>
+												<td class="text-left borde" style="width:15%;padding:3;">HORA DE INICIO:</td>
+												<td class="text-left borde" style="width:10%;padding:3;">
+													<strong>
+														<span t-esc="'%02d:%02d' % (int(audiencia.hora_inicio), audiencia.hora_inicio % 1 * 60)"/>
+													</strong>
+												</td>
+												<td class="text-left borde" style="width:15%;padding:3;">HORA DE TERMINO:</td>
+												<td class="text-left borde" style="width:10%;padding:3;">
+													<strong>
+														<span t-esc="'%02d:%02d' % (int(audiencia.hora_termino), audiencia.hora_termino % 1 * 60)"/>
+													</strong>
+												</td>
+												<td class="text-left borde" style="width:15%;padding:3;">HORA DE SALIDA:</td>
+												<td class="text-left borde" style="width:10%;padding:3;">
+													<strong>
+														<span t-esc="'%02d:%02d' % (int(audiencia.hora_salida), audiencia.hora_salida % 1 * 60)"/>
+													</strong>
+												</td>
+											</tr>
+											<tr>
+												<td class="text-left borde" style="padding:3;">SALA:</td>
+												<td class="text-left borde" style="padding:3;">
+													<strong>
+														<span t-field="audiencia.numero_sala"/>
+													</strong>
+												</td>
+												<td class="text-left borde" style="padding:3;">TIPO AUDIENCIA:</td>
+												<td colspan="5" class="text-left borde" style="padding:3;">
+													<strong>
+														<span t-field="audiencia.tipo_audiencia"/>
+													</strong>
+												</td>
+											</tr>
+											<tr>
+												<td colspan="1" class="text-left borde" style="padding:3;">RCI:</td>
+												<td colspan="7" class="text-left borde" style="padding:3;">
+													<strong>
+														<span t-field="audiencia.rci.name"/>
+													</strong>
+												</td>
+											</tr>
+											<tr>
+												<td colspan="1" class="text-left borde" style="padding:3;">RSA:</td>
+												<td colspan="7" class="text-left borde" style="padding:3;">
+													<strong>
+														<span t-field="audiencia.rsa.name"/>
+													</strong>
+												</td>
+											</tr>
+											<tr>
+												<td colspan="1" class="text-left borde" style="padding:3;">DETENIDO Y/O IMPUTADOS:</td>
+												<td colspan="7" class="text-left borde" style="padding:3;">
+													<strong>
+														<span t-field="audiencia.partner_id.display_name"/>
+													</strong>
+												</td>
+											</tr>
+											<tr>
+												<td colspan="1" class="text-left borde" style="padding:3;">SOLICITANTE(S):</td>
+												<td colspan="7" class="text-left borde" style="padding:3;"></td>
+											</tr>
+											<tr>
+												<td colspan="1" class="text-left borde" style="padding:3;">DELITO(S) Y/O ABUSO(S):</td>
+												<td colspan="7" class="text-left borde" style="padding:3;">
+													<t t-foreach="audiencia.delito_ids" t-as="i">
+														<t t-if="i">
+															<strong>
+																<span t-field="i.x_name"/>
+															</strong>
+														</t>
+													</t>
+												</td>
+											</tr>
+											<tr>
+												<td colspan="1" class="text-left borde" style="padding:3;">CAUSA PENAL:</td>
+												<td colspan="7" class="text-left borde" style="padding:3;">
+													<strong>
+														<span t-field="audiencia.causa_penal"/>
+													</strong>
+												</td>
+											</tr>
+											<tr>
+												<td colspan="1" class="text-left borde" style="padding:3;">TIPO DE ARRIBO:</td>
+												<td colspan="7" class="text-left borde" style="padding:3;">
+													<strong>
+														<span t-field="audiencia.tipo_arribo"/>
+													</strong>
+												</td>
+											</tr>
+											<tr>
+												<td colspan="1" class="text-left borde" style="padding:3;">DECRETA:</td>
+												<td colspan="7" class="text-left borde" style="padding:3;">
+													<strong>
+														<span t-field="audiencia.juez_id.titulo"/> 
+														<span t-field="audiencia.juez_id.name"/>, 
+														<span t-field="audiencia.juez_id.cargo"/>
+													</strong>
+												</td>
+											</tr>
+											<tr>
+												<td colspan="1" class="text-left borde" style="padding:3;">RESOLUCÓN:</td>
+												<td colspan="7" class="text-left borde" style="padding:3;">
+													<strong>
+														<span t-field="audiencia.resolucion"/>
+													</strong>
+												</td>
+											</tr>
+											<tr>
+												<td colspan="3" class="text-left borde" style="padding:3;">OBSERVACIONES (PRÓXIMA FECHA DE AUDIENCIA):</td>
+												<td colspan="5" class="text-left borde" style="padding:3;">
+													<strong>
+														<span t-field="audiencia.observaciones"/>
+													</strong>
+												</td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+							</div>
+						</div>
+					</t>
+				</t>
+			</t>
+		</template>
+	</data>
+</odoo>

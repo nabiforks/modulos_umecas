@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+	<data>
+		<report
+			id="acceso_audiencia_pp_report"
+			model="pp.audiencia"
+			string="Acceso a sala de audiencia"
+			name="reportes_policia_procesal.acceso_audiencia"
+			file="reportes_policia_procesal.acceso_audiencia_pp_report"
+			report_type="qweb-pdf"			
+		/>
+		<template id="acceso_audiencia">
+			<t t-call="report.html_container">
+				<t t-foreach="docs" t-as="audiencia">
+					<t t-call="report.external_layout">
+						<div class="page text-uppercase" style="font-size:12px;">
+							<div class="row text-center">
+								<div class="col-xs-12">
+									<strong>
+										POLICÍA PROCESAL
+										<div style="font-size:10px;">
+											CONTROL DE ACCESO A LA SALA DE AUDIENCIA
+										</div>
+									</strong>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-xs-2"></div>
+								<div class="col-xs-8">
+									<table class="borde">
+										<tbody>
+											<tr class="borde-bottom" style="background-color:#d6d6d6;">
+												<td>JUECES</td>
+											</tr>
+											<tr>
+												<td>
+													<div style="min-height:25px;">
+														<b>
+															<span t-field="audiencia.juez_id.titulo"/>, 
+															<span t-field="audiencia.juez_id.name"/>, 
+															<span t-field="audiencia.juez_id.cargo"/>
+														</b>
+													</div>
+												</td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+								<div class="col-xs-2"></div>
+							</div>
+							<br/>
+							<div class="row">
+								<div class="col-xs-12 text-right">
+									FECHA: 
+									<b><span t-field="audiencia.fecha_hora" t-options='{"format": "dd/MM/yyyy"}'/></b>
+									HORA: <b><span t-field="audiencia.fecha_hora" t-options="{&quot;format&quot;: &quot;HH:mm &quot;}"/></b>
+								</div>
+							</div>
+							<div class="borde text-center" style="background-color:#d6d6d6;width:100%;">
+								<b>SALA DE AUDIENCIA NO. <span t-field="audiencia.numero_sala"/></b>
+							</div>
+							<div class="row">
+								<div class="col-xs-12">
+									<table class="table borde">
+										<tbody>
+											<tr style="background-color:#d6d6d6;">
+												<td class="borde" style="width:50%;">
+													IMPUTADO(S) SOLICITANTE(S)
+												</td>
+												<td class="borde" style="width:50%;">
+													VICTIMA(S) OFENDIDO(S)
+												</td>
+											</tr>
+											<tr>
+												<td class="borde text-left" style="width:50%;">
+													<b><span t-field="audiencia.partner_id.display_name"/></b>
+												</td>
+												<td class="borde text-left" style="width:50%;">
+													<!--Enumerar-->
+													<t t-set="n" t-value="1"/>
+													<t t-foreach="audiencia.acceso_ids" t-as="i">
+														<t t-if="i.tipo=='victima' or i.tipo=='ofendido'">
+															<b>
+																<span t-esc="n"/>.- 
+																<span t-field="i.name"/>(<span t-field="i.tipo"/>)
+															</b>
+															<br/>
+															<t t-set="n" t-value="n+1"/>
+														</t>
+													</t>
+												</td>
+											</tr>
+											<tr style="background-color:#d6d6d6;">
+												<td class="borde" style="width:50%;">
+													DEFENSA
+												</td>
+												<td class="borde" style="width:50%;">
+													FISCALÍA
+												</td>
+											</tr>
+											<tr>
+												<td class="borde text-left" style="width:50%;">
+													<!--Enumerar-->
+													<t t-set="n" t-value="1"/>
+													<t t-foreach="audiencia.acceso_ids" t-as="i">
+														<t t-if="i.tipo=='defensa'">
+															<b>
+																<span t-esc="n"/>.- 
+																<span t-field="i.name"/>
+															</b>
+															<br/>
+															<t t-set="n" t-value="n+1"/>
+														</t>
+													</t>
+												</td>
+												<td class="borde text-left" style="width:50%;">
+													<!--Enumerar-->
+													<t t-set="n" t-value="1"/>
+													<t t-foreach="audiencia.acceso_ids" t-as="i">
+														<t t-if="i.tipo=='fiscalia'">
+															<b>
+																<span t-esc="n"/>.- 
+																<span t-field="i.name"/>
+															</b>
+															<br/>
+															<t t-set="n" t-value="n+1"/>
+														</t>
+													</t>
+												</td>
+											</tr>
+											<tr style="background-color:#d6d6d6;">
+												<td class="borde" style="width:50%;">
+													FAMILIAR IMPUTADO(S)
+												</td>
+												<td class="borde" style="width:50%;">
+													FAMILIAR VÍCTIMA(S) U OFENDIDO(S)
+												</td>
+											</tr>
+											<tr>
+												<td class="borde text-left" style="width:50%;">
+													<!--Enumerar-->
+													<t t-set="n" t-value="1"/>
+													<t t-foreach="audiencia.acceso_ids" t-as="i">
+														<t t-if="i.tipo=='familiar'">
+															<b>
+																<span t-esc="n"/>.- 
+																<span t-field="i.name"/>
+															</b>
+															<br/>
+															<t t-set="n" t-value="n+1"/>
+														</t>
+													</t>
+												</td>
+												<td class="borde text-left" style="width:50%;">
+													<!--Enumerar-->
+													<t t-set="n" t-value="1"/>
+													<t t-foreach="audiencia.acceso_ids" t-as="i">
+														<t t-if="i.tipo=='familiar_v_o'">
+															<b>
+																<span t-esc="n"/>.- 
+																<span t-field="i.name"/>
+															</b>
+															<br/>
+															<t t-set="n" t-value="n+1"/>
+														</t>
+													</t>
+												</td>
+											</tr>
+											<tr style="background-color:#d6d6d6;">
+												<td class="borde" style="width:50%;">
+													PÚBLICO GENERAL
+												</td>
+												<td class="borde" style="width:50%;">
+													MEDIOS DE COMUNICACIÓN
+												</td>
+											</tr>
+											<tr>
+												<td class="borde text-left" style="width:50%;">
+													<!--Enumerar-->
+													<t t-set="n" t-value="1"/>
+													<t t-foreach="audiencia.acceso_ids" t-as="i">
+														<t t-if="i.tipo=='publico'">
+															<b>
+																<span t-esc="n"/>.- 
+																<span t-field="i.name"/>
+															</b>
+															<br/>
+															<t t-set="n" t-value="n+1"/>
+														</t>
+													</t>
+												</td>
+												<td class="borde text-left" style="width:50%;">
+													<!--Enumerar-->
+													<t t-set="n" t-value="1"/>
+													<t t-foreach="audiencia.acceso_ids" t-as="i">
+														<t t-if="i.tipo=='medios'">
+															<b>
+																<span t-esc="n"/>.- 
+																<span t-field="i.name"/>
+															</b>
+															<br/>
+															<t t-set="n" t-value="n+1"/>
+														</t>
+													</t>
+												</td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+							</div>
+
+						</div><!--end div page-->
+					</t>
+				</t>
+			</t>
+		</template>
+	</data>
+</odoo>

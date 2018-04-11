@@ -2,20 +2,188 @@
 <odoo>
 	<data>
 		<report
-			id="recepcion_pp_report"
-			model="pp.recepcion"
-			string="Recibo de custodia provicional"
-			name="reportes_policia_procesal.recibo_custodia"
-			file="reportes_policia_procesal.recepcion_pp_report"
+			id="pertenencias_alimentos _pp_report"
+			model="pp.custodia"
+			string="Formato resguardo de pertenencias y suministro de alimentos"
+			name="reportes_policia_procesal.rpt_pertenencias_alimentos"
+			file="reportes_policia_procesal.pertenencias_alimentos _pp_report"
 			report_type="qweb-pdf"			
 			/>
-		<template id="recibo_custodia">
+		<template id="rpt_pertenencias_alimentos">
 			<t t-call="report.html_container">
-				<t t-foreach="docs" t-as="recepcion">
+				<t t-foreach="docs" t-as="custodia">
 					<t t-call="report.external_layout">
-						<div class="page">
-							<p>My Report</p>
-						</div>
+						<div class="page text-uppercase" style="font-size:12px;">
+							<div class="row">
+								<div class="col-xs-12 text-center">
+									<strong>
+										<p>CENTRO DE JUSTICIA PENAL DE PUEBLA</p>
+										<p>POLICÍA PROCESAL REGIÓN-CENTRO</p>
+										<br/>
+										<p>Formato de resguardo de pertenencias y suministro de alimentos</p>
+									</strong>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-xs-4">
+									Fecha: 
+									<strong>
+										<span t-field="custodia.fecha_hora_registro" t-options='{"format": "dd/MM/yyyy"}'/>
+									</strong>
+								</div>
+								<div class="col-xs-4">
+									Horario registro: 
+									<strong>
+										<span t-field="custodia.fecha_hora_registro" t-options="{&quot;format&quot;: &quot;HH:mm &quot;}"/>
+									</strong>
+									horas
+								</div>
+								<div class="col-xs-4">
+									Causa penal: 
+									<strong>
+										<span t-field="custodia.causa_penal"/>
+									</strong>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-xs-5">
+									Nombre del imputado y/o detenido:
+								</div>
+								<div class="col-xs-7 borde-bottom" style="min-height: 25px;">
+									<b>
+										<span t-field="custodia.partner_id.display_name"/>
+									</b>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-xs-5">
+									Detalle de pertenencias a resguardo:
+								</div>
+							</div>
+							<div class="row text-left">
+								<div class="col-xs-12" style="min-height: 25px;">
+									<t t-set="n" t-value="1"/><!--Enumerar-->
+									<t t-foreach="custodia.pertenencias_list_ids" t-as="i">
+										<strong><span t-esc="n"/>.-</strong> 
+										<span t-field="i.pertenencia"/>, 
+										<span t-field="i.detalle"/>
+										<t t-set="n" t-value="n+1"/>
+										<br/>
+									</t>
+								</div>
+							</div>
+							<br/>
+							<div class="row">
+								<div class="col-xs-4">
+									Fecha: 
+									<b>
+										<span t-field="custodia.fecha_hora_devolucion" t-options='{"format": "dd/MM/yyyy"}'/>
+									</b>
+								</div>
+								<div class="col-xs-8">
+									Horario de devolución de pertenencias: 
+									<b>
+										<span t-field="custodia.fecha_hora_devolucion" t-options="{&quot;format&quot;: &quot;HH:mm &quot;}"/> 
+									</b> Horas.
+								</div>
+							</div>
+							<br/>
+							<div class="row text-center">
+								<div class="col-xs-4 borde" style="min-height:100px;">
+									<br/>
+									<br/>
+									<br/>
+									<br/>
+									<br/>
+									<div class="borde-bottom"></div>
+									Firma de policía procesal que realiza el resguardo
+								</div>
+								<div class="col-xs-1"></div>
+								<div class="col-xs-7 borde" style="min-height:100px;">
+									<div class="row text-center borde-bottom">
+										<div class="col-xs-6 borde-right">
+											Deposita
+											<br/>
+											<br/>
+											<br/>
+											<br/>
+											<br/>
+										</div>
+										<div class="col-xs-6 ">Recibe</div>
+									</div>
+									Firmas de conformidad del imputado y/o detenido poseedor de las pertenencias
+								</div>
+							</div>
+
+							<br/>
+							<br/>
+							<br/>
+							<div class="row">
+								<div class="col-xs-12">
+									<table>
+										<tbody t-foreach="custodia.alimentos_list" t-as="i">
+											<tr>
+												<td>
+													<span t-field="i.fecha"/>
+													<br/>
+													<br/>
+												</td>
+												<td>
+													<span t-field="i.tercio"/>
+													<br/>
+													<br/>
+												</td>
+												<td>
+													<div>
+														<div class="borde-bottom"></div>
+														<div>Firma de recibo</div>
+														<br/>
+														<br/>
+													</div>
+												</td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+							</div>
+							<br/>
+							<br/>
+							<div class="row text-center">
+								<div class="col-xs-3"></div>
+								<div class="col-xs-6 borde">
+									<br/>
+									<br/>
+									<br/>
+									Nombre y firma del policía procesal que realiza el suministro de alimentos
+								</div>
+								<div class="col-xs-3"></div>
+							</div>
+							<br/>
+							<br/>
+							<div class="row">
+								<div class="col-xs-12">
+									Conducta del imputado durante su estancia o incidencia ocurrida: <br/>
+									<span t-field="custodia.conducta"/>
+								</div>
+							</div>
+							<br/>
+							<br/>
+							<div class="row text-left">
+								<div class="col-xs-3">
+									Fecha
+									<b>
+										<span t-field="custodia.fecha_hora_egreso" t-options='{"format": "dd/MM/yyyy"}'/>
+									</b> 
+								</div>
+								<div class="col-xs-9">
+									Horario de egreso del centro de justicia: 
+									<b>
+										<span t-field="custodia.fecha_hora_egreso" t-options="{&quot;format&quot;: &quot;HH:mm &quot;}"/>
+									</b> horas.
+								</div>
+							</div>
+
+						</div><!--End div page-->
 					</t>
 				</t>
 			</t>

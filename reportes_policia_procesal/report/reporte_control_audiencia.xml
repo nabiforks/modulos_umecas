@@ -1,0 +1,313 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+	<data>
+		<report
+			id="control_audiencia_pp_report"
+			model="pp.control_audiencia"
+			string="Formato control de audiencia"
+			name="reportes_policia_procesal.control_audiencia"
+			file="reportes_policia_procesal.control_audiencia_pp_report"
+			report_type="qweb-pdf"			
+		/>
+		<template id="control_audiencia">
+			<t t-call="report.html_container">
+				<t t-foreach="docs" t-as="control">
+					<t t-call="report.external_layout">
+						<div class="page text-uppercase">
+							<div class="row">
+								<div class="col-xs-4"></div>
+								<div class="col-xs-4 text-center">
+									<strong>Dirección de medidas cautelares y policia procesal</strong>
+									<br/>
+									<p>Subdirección de la policia procesal</p>
+									<p> centro de justicia penal puebla</p>
+								</div>
+								<div class="col-xs-4"></div>
+							</div>
+							<div class="row">
+								<div class="col-xs-12 text-right">
+									<strong>
+										FOLIO: <span t-field="control.name"/>
+									</strong>
+								</div>
+							</div>
+							<h4 class="text-center">
+								<strong>
+									CONTROL DE AUDIENCIAS
+								</strong>
+							</h4>
+
+							<div class="row" style="font-size:12px;">
+								<div class="col-xs-12">
+									<table width="100%">
+										<tbody>
+											<tr>
+												<td class="borde" colspan="2" style="padding:5;">
+													LUGAR PROGRAMADO PARA LA AUDIENCIA:
+												</td>
+												<td class="borde" colspan="6" style="padding:5;">
+													<strong>
+														<span t-field="control.lugar"/>
+													</strong>
+												</td>
+											</tr>
+											<tr>
+												<td class="borde" colspan="4" style="padding:5;">TIPO  DE AUDIENCIA</td>
+												<td class="borde" colspan="2" style="padding:5;">CAUSA PENAL</td>
+												<td class="borde" colspan="2" style="padding:5;">NÚMERO DE SALA</td>
+											</tr>
+											<tr>
+												<td class="borde" colspan="4" style="padding:5;">
+													<strong>
+														<span t-field="control.tipo_audiencia"/>
+													</strong>
+												</td>
+												<td class="borde" colspan="2" style="padding:5;">
+													<strong>
+														<span t-field="control.causa_penal"/>
+													</strong>
+												</td>
+												<td class="borde" colspan="2" style="padding:5;">
+													<strong>
+														<span t-field="control.numero_sala"/>
+													</strong>
+												</td>
+											</tr>
+											<tr>
+												<td class="borde" colspan="4">
+													<div class="row">
+														<div class="col-xs-8 borde-right" style="padding:5;">TIPO DE INGRESO DEL IMPUTADO</div>
+														<div class="col-xs-4" style="padding:5;">EN TRASLADO</div>
+													</div>
+												</td>
+												<td class="borde" colspan="4">
+													<div class="row">
+														<div class="col-xs-2" style="font-size:15px;">
+															<t t-if="control.tipo_ingreso=='traslado'">
+																<strong>
+																	X
+																</strong>
+															</t>
+														</div>
+														<div class="col-xs-8 borde-left borde-right" style="padding:5;">PRESENTACIÓN VOLUNTARIA</div>
+														<div class="col-xs-2" style="font-size:15px;">
+															<t t-if="control.tipo_ingreso=='voluntaria'">
+																<strong>
+																	X
+																</strong>
+															</t>
+														</div>
+													</div>
+												</td>
+											</tr>
+											<tr>
+												<td class="borde" style="width:12%;padding:5;">
+													HORA:
+												</td>
+												<td class="borde" colspan="3">
+													<div class="row">
+														<div class="col-xs-6 borde-right" style="padding-right:0;">
+															<div class="borde-bottom">
+																DÍA
+															</div>
+															<strong style="padding:5;">
+																xxxxxx
+															</strong>
+														</div>
+														<div class="col-xs-6" style="padding-left:0;">
+															<div class="borde-bottom">
+																NÚMERO
+															</div>
+															<strong style="padding:5;">
+																<span t-field="control.fecha_hora" t-options ='{"format": "dd"}'/>
+															</strong>
+														</div>
+													</div>
+												</td>
+												<td class="borde" colspan="4">
+													<div class="row">
+														<div class="col-xs-8 borde-right" style="padding-right:0;">
+															<div class="borde-bottom">
+																MES Y AÑO
+															</div>
+															<strong style="padding:5;">
+																<span t-field="control.fecha_hora" t-options ='{"format": "MMMM"}'/> - 
+																<span t-field="control.fecha_hora" t-options ='{"format": "yyyy"}'/>
+															</strong>
+														</div>
+														<div class="col-xs-4" style="padding-left:0;">
+															<div class="borde-bottom">
+																HORA
+															</div>
+															<strong style="padding:5;">
+																<span t-field="control.fecha_hora" t-options="{format:'HH:mm'}"/> 
+															</strong>
+														</div>
+													</div>
+												</td>
+											</tr>
+											<tr>
+												<td class="borde" colspan="2" style="padding:5;">
+													NOMBRE(S) DEL (LOS) IMPUTADO(S)
+												</td>
+												<td class="borde" colspan="4" style="padding:5;">
+													<strong>
+														<span t-field="control.partner_id.display_name"/>
+													</strong>
+												</td>
+												<td class="borde" colspan="2">
+													<div class="borde-bottom">
+														EDAD(ES)
+													</div>
+													<div style="min-height:30px;">
+														<strong>
+															<span t-field="control.edad"/>
+														</strong>
+													</div>
+												</td>
+											</tr>
+											<tr>
+												<td class="borde" colspan="2" style="padding:5;">DELITO(S)</td>
+												<td class="borde" colspan="6" style="padding:5;">
+													<t t-foreach="control.delito_ids" t-as="i">
+														<t t-if="i">
+															<strong>
+																<span t-field="i.x_name"/>
+															</strong>
+														</t>
+													</t>
+												</td>
+											</tr>
+											<tr>
+												<td class="borde" colspan="2" style="width:25%;padding:5;">HORA INICIO:</td>
+												<td class="borde" colspan="2" style="width:25%;padding:5;">
+													<strong>
+														<span t-esc="'%02d:%02d' % (int(control.hora_inicio), control.hora_inicio % 1 * 60)"/>
+													</strong>
+												</td>
+												<td class="borde" colspan="2" style="width:25%;padding:5;">HORA TERMINO:</td>
+												<td class="borde" colspan="2" style="width:25%;padding:5;">
+													<strong>
+														<span t-esc="'%02d:%02d' % (int(control.hora_termino), control.hora_termino % 1 * 60)"/>
+													</strong>
+												</td>
+											</tr>
+											<tr>
+												<td class="borde" colspan="2" style="padding:5;">RECIDE JUEZ(CES) (CARGO Y REGIÓN)</td>
+												<td class="borde" colspan="6" style="padding:5;">
+													<strong>
+														<span t-field="control.juez_id.titulo"/>, 
+														<span t-field="control.juez_id.name"/>, 
+														<span t-field="control.juez_id.cargo"/> 
+													</strong>
+												</td>
+											</tr>
+											<tr>
+												<td class="borde" colspan="2" style="padding:5;">
+													RESOLUCIÓN DE LA AUDIENCIA
+												</td>
+												<td class="borde" colspan="6">
+													<div class="borde-bottom" style="min-height:30px;">
+														<strong>
+															<span t-field="control.resolucion"/>
+														</strong>
+													</div>
+													<div class="row">
+														<div class="col-xs-4 borde-right" style="padding:5;">TIPO DE EGRESO</div>
+														<div class="col-xs-3 borde-right" style="padding:5;">LIBERTAD</div>
+														<div class="col-xs-1" style="font-size:15px;">
+															<t t-if="control.tipo_egreso=='libertad'">
+																<strong>
+																	X
+																</strong>
+															</t>
+														</div>
+														<div class="col-xs-3 borde-right borde-left" style="padding:5;">EN TRASLADO</div>
+														<div class="col-xs-1" style="font-size:15px;">
+															<t t-if="control.tipo_egreso=='traslado'">
+																<strong>
+																	X
+																</strong>
+															</t>
+														</div>
+													</div>
+												</td>
+											</tr>
+											<tr>
+												<td class="borde" colspan="2" style="padding:5;">
+													OBSERVACIONES:
+												</td>
+												<td class="borde" colspan="6" style="padding:5;">
+													<strong>
+														<span t-field="control.observaciones"/>
+													</strong>
+												</td>
+											</tr>
+										</tbody>
+									</table>
+									<br/>
+									<table>
+										<tbody>
+											<tr>
+												<td class="borde" colspan="4" style="padding:5;">
+													<strong>
+														JEFE DE GRUPO DE LA POLICÍA PROCESAL
+													</strong>
+												</td>
+												<td class="borde" style="padding:5;">FIRMA:</td>
+												<td class="borde" style="padding:5;"></td>
+											</tr>
+											<tr>
+												<td class="borde" style="padding:5;">NOMBRE:</td>
+												<td class="borde" style="width:40%;padding:5;">
+													<strong>
+														<span t-field="control.nombre_jefe_grupo_pp.name"/>
+													</strong>
+												</td>
+												<td class="borde" style="padding:5;">CARGO:</td>
+												<td class="borde" style="width:20%;padding:5;">
+													<strong>
+														<span t-field="control.pp_cargo"/>
+													</strong>
+												</td>
+												<td class="borde" style="padding:5;">GRUPO:</td>
+												<td class="borde" style="width:20%;padding:5;">
+													<strong>
+														<span t-field="control.pp_grupo"/>
+													</strong>
+												</td>
+											</tr>
+										</tbody>
+									</table>
+									<br/>
+									<table>
+										<tbody>
+											<tr>
+												<td class="borde" colspan="2" style="padding:5;"></td>
+												<td class="borde" colspan="1" style="width:15%;padding:5;">HORA:</td>
+												<td class="borde" colspan="1" style="width:15%;padding:5;">
+													<strong>
+														<span t-esc="'%02d:%02d' % (int(control.hora_recibe), control.hora_recibe % 1 * 60)"/>
+													</strong>
+												</td>
+											</tr>
+											<tr>
+												<td class="borde" colspan="1" style="width:15%;padding:5;">RECIBE:</td>
+												<td class="borde" colspan="3" style="padding:5;">
+													<strong>
+														<span t-field="control.recibe"/>
+													</strong>
+												</td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+							</div>
+
+						</div><!--end div page-->
+					</t>
+				</t>
+			</t>
+		</template>
+	</data>
+</odoo>

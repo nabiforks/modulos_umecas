@@ -73,7 +73,7 @@
 						<br/>
 						<div class="row">
 							<div class="col-xs-7">
-								<label string="Conducta del imputado durante su estancia o incidencia concurrida"/>
+								<label string="Conducta del imputado durante su estancia o incidencia oncurrida"/>
 								<field name="conducta"/>
 							</div>
 							<div class="col-xs-5">

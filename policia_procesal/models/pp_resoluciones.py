@@ -105,6 +105,7 @@ class ControlAudiencia(models.Model):
     juez_cargo = fields.Char(
         related='juez_id.cargo',
         string='Cargo',
+        readonly=True, 
     )
 
     #==========METHODS=========
@@ -112,4 +113,10 @@ class ControlAudiencia(models.Model):
     @api.depends('juez_nombre','juez_titulo')
     def concat_name_juez(self):
         for record in self:
-            record.juez_concat = record.juez_titulo +', '+record.juez_nombre
+            if record.juez_titulo and record.juez_nombre:
+                record.juez_concat = record.juez_titulo +', '+record.juez_nombre
+
+    @api.multi
+    def methot_date(self):
+        print "************************************Ejecutando metodo DATE*****************"
+        print "************************************Ejecutando metodo DATE*****************"

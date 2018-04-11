@@ -4,7 +4,7 @@
 		<report
 			id="traslado_ing_pp_report"
 			model="pp.recepcion"
-			string="Reporte de traslado de ingreso"
+			string="Formato de traslado de ingreso"
 			name="reportes_policia_procesal.reporte_traslado"
 			file="reportes_policia_procesal.traslado_ing_pp_report"
 			report_type="qweb-pdf"			
@@ -14,7 +14,7 @@
 				<t t-foreach="docs" t-as="traslado">
 					<t t-call="report.external_layout">
 						<div class="page text-uppercase" style="font-size:12px;">
-							<!--
+							
 							<div class="row">
 								<div class="col-xs-4"></div>
 								<div class="col-xs-4 text-center">
@@ -26,125 +26,6 @@
 								<div class="col-xs-4"></div>
 							</div>
 							<br/>
-
-							<div class="row borde">
-								<div class="row borde-bottom">
-									<div class="col-xs-12 text-center">
-										<strong>Personal qie realiza el traslado del (los) imputado(s)</strong>
-									</div>
-								</div>
-								<div class="row borde-bottom">
-									<div class="col-xs-2 borde-right" style="min-height: 30px;">
-										Num. de
-										oficio:
-									</div>
-									<div class="col-xs-4 borde-right" style="min-height: 30px;">
-										
-									</div>
-									<div class="col-xs-2 borde-right" style="min-height: 30px;">
-										Fecha de
-										traslado:
-									</div>
-									<div class="col-xs-4" style="min-height: 30px;">
-										
-									</div>
-								</div>
-								<div class="row borde-bottom">
-									<div class="col-xs-3 borde-right" style="min-height: 30px;">
-										Autoridad que
-										ordena el traslado:
-									</div>
-									<div class="col-xs-9" style="min-height: 30px;">
-										
-									</div>
-								</div>
-								<div class="row borde-bottom">
-									<div class="col-xs-3 borde-right" style="min-height: 30px;">
-										Autoridad que
-										realiza el traslado:
-									</div>
-									<div class="col-xs-9" style="min-height: 30px;"></div>
-								</div>
-								<div class="row borde-bottom">
-									<div class="col-xs-3 borde-right" style="min-height: 30px;">
-										Dependencia a la
-										que pertenecen:
-									</div>
-									<div class="col-xs-5 borde-right" style="min-height: 30px;"></div>
-									<div class="col-xs-1 borde-right" style="min-height: 30px;">
-										Firma:
-									</div>
-									<div class="col-xs-3" style="min-height: 30px;"></div>
-								</div>
-								<div class="row borde-bottom">
-									<div class="col-xs-3 borde-right" style="min-height: 30px;">
-										Elementos de apoyo:
-									</div>
-									<div class="col-xs-2 borde-right" style="min-height: 30px;"></div>
-									<div class="col-xs-3 borde-right" style="min-height: 30px;">
-										Procedencia del
-										imputado:
-									</div>
-									<div class="col-xs-4" style="min-height: 30px;"></div>
-								</div>
-								<div class="row borde-bottom">
-									<div class="col-xs-2 borde-right" style="min-height: 30px;">
-										Vehículo
-										oficial:
-									</div>
-									<div class="col-xs-2 borde-right" style="min-height: 30px;"></div>
-									<div class="col-xs-2 borde-right" style="min-height: 30px;">
-										Num. Económico:
-									</div>
-									<div class="col-xs-1 borde-right" style="min-height: 30px;"></div>
-									<div class="col-xs-1 borde-right" style="min-height: 30px;">
-										Placas:
-									</div>
-									<div class="col-xs-1 borde-right" style="min-height: 30px;"></div>
-									<div class="col-xs-2 borde-right" style="min-height: 30px;">
-										Vehiculos de apoyo:
-									</div>
-									<div class="col-xs-1" style="min-height: 30px;"></div>
-								</div>
-								<div class="row borde-bottom">
-									<div class="col-xs-2 borde-right" style="min-height: 30px;">
-										Hora de
-										arribo:
-									</div>
-									<div class="col-xs-2 borde-right" style="min-height: 30px;"></div>
-									<div class="col-xs-2 borde-right" style="min-height: 30px;">
-										Hora de ingreso a sala:
-									</div>
-									<div class="col-xs-2 borde-right" style="min-height: 30px;"></div>
-									<div class="col-xs-3 borde-right" style="min-height: 30px;">
-										Hora al regresal la custodia a la coorporación:
-									</div>
-									<div class="col-xs-1" style="min-height: 30px;"></div>
-								</div>
-								<div class="row borde-bottom">
-									<div class="col-xs-3 borde-right" style="min-height: 30px;">
-										Estado físico y
-										Vestimenta completa
-										del imputado:
-									</div>
-									<div class="col-xs-9" style="min-height: 30px;"></div>
-								</div>
-								<div class="row">
-									<div class="col-xs-3 borde-right" style="min-height: 30px;">
-										Cuenta con dictamen
-										médico; Nombre del 
-										doctor y número de
-										Cédula
-									</div>
-									<div class="col-xs-9" style="min-height: 30px;"></div>
-								</div>
-							</div>
-						-->
-
-
-
-
-
 							
 							<table class="table table-bordered text-center" style="border:1px solid black;">
 								<tbody>
@@ -296,7 +177,7 @@
 										</td>
 										<td style="border:1px solid black;width:10%;">
 											<strong>
-												<span t-field="traslado.hora_arribo"/>
+												<span t-esc="'%02d:%02d' % (int(traslado.hora_arribo),traslado.hora_arribo % 1 * 60)" />
 											</strong>
 										</td>
 										<td style="border:1px solid black;width:10%;">
@@ -304,7 +185,7 @@
 										</td>
 										<td style="border:1px solid black;width:10%;">
 											<strong>
-												<span t-field="traslado.hora_ingreso"/>
+												<span t-esc="'%02d:%02d' % (int(traslado.hora_ingreso),traslado.hora_ingreso % 1 * 60)" />
 											</strong>
 										</td>
 										<td colspan="2" style="border:1px solid black;width:10%;">
@@ -312,7 +193,7 @@
 										</td>
 										<td colspan="2" style="border:1px solid black;width:10%;">
 											<strong>
-												<span t-field="traslado.hora_regreso"/>
+												<span t-esc="'%02d:%02d' % (int(traslado.hora_regreso),traslado.hora_regreso % 1 * 60)" />
 											</strong>
 										</td>
 									</tr>

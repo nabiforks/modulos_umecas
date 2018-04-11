@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+	<data>
+		<report
+			id="recepcion_pp_report"
+			model="pp.recepcion"
+			string="Recibo de custodia provicional"
+			name="reportes_policia_procesal.recibo_custodia"
+			file="reportes_policia_procesal.recepcion_pp_report"
+			report_type="qweb-pdf"			
+			/>
+		<template id="recibo_custodia">
+			<t t-call="report.html_container">
+				<t t-foreach="docs" t-as="recepcion">
+					<t t-call="report.external_layout">
+						<div class="page">
+							<p>My Report</p>
+						</div>
+					</t>
+				</t>
+			</t>
+		</template>
+	</data>
+</odoo>
