@@ -19,6 +19,11 @@
         'report/reporte_recepcion.xml',
         'report/reporte_traslado.xml',
         'report/reporte_lectura_derechos.xml',
+        'report/reporte_pertenencias_alimentos.xml',
+        'report/reporte_acceso_audiencia.xml',
+        'report/reporte_datos_resolucion.xml',
+        'report/reporte_control_audiencia.xml',
+        'report/reporte_egreso.xml',
     ],
 
     'installable':True,

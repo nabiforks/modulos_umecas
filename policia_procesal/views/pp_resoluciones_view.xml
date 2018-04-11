@@ -105,7 +105,14 @@
 							</div>
 						</div>
 						<group>
-							<field name="juez_id"/>
+							<group>
+								<field name="juez_id"/>
+							</group>
+							<group>
+								<field name="juez_cargo"/>
+							</group>
+						</group>
+						<group>
 							<field name="resolucion"/>
 							<field name="tipo_egreso" widget="radio" options="{'horizontal': true}"/>
 							<field name="observaciones"/>
@@ -133,7 +140,7 @@
 								<field name="recibe"/>
 							</group>
 							<group>
-								<field name="hora_recibe"/>
+								<field name="hora_recibe" widget="float_time"/>
 							</group>
 						</group>
 					</sheet>

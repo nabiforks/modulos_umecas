@@ -65,6 +65,11 @@ class Audiencias(models.Model):
     pp_grupo = fields.Char(
         string='Grupo',
     )
+    juez_cargo = fields.Char(
+        related='juez_id.cargo',
+        string='Cargo',
+        readonly=True, 
+    )
 
     #==========RELATIONSHIPS=========
     partner_id = fields.Many2one(
@@ -124,7 +129,7 @@ class AccesoAudiencia(models.Model):
         ('medios','Medios de comunicación')],
         required=True,
     )
-    nombre = fields.Char(
+    name = fields.Char(
         string='Nombre',
     )
     audiencia_id = fields.Many2one(
