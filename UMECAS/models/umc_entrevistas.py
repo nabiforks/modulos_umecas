@@ -98,7 +98,7 @@ class Entrevistas(models.Model):
             'x_imputado_tipo': self.x_tipo,
             'x_apodo': self.x_apodo,
             'fecha_nacimiento': self.x_fecha_nacimiento,
-            'x_nacionalidad': self.x_nacionalidad,
+            'x_nacionalidad': self.x_nacionalidad,id,
             'street': calle,
             'street2':colonia,
             'city':municipio,
