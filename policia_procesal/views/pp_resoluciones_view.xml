@@ -35,40 +35,40 @@
 								</div>
 							</div>
 						</h2>
-						<group>
-							<group>
+						<group style="margin:0;">
+							<group style="margin:0;">
 								<field name="lugar"/>
 							</group>
-							<group>
+							<group style="margin:0;">
 								<field name="juez_concat" invisible="1"/>
 								<field name="juez_cargo" invisible="1"/>
 							</group>
 						</group>
 						<div class="row">
 							<div class="col-xs-5">
-								<group>
+								<group style="margin:0;">
 									<field name="tipo_audiencia"/>
 								</group>
 							</div>
 							<div class="col-xs-4">
-								<group>
+								<group style="margin:0;">
 									<field name="causa_penal"/>
 								</group>
 							</div>
 							<div class="col-xs-3">
-								<group>
+								<group style="margin:0;">
 									<field name="numero_sala"/>
 								</group>
 							</div>
 						</div>
 						<div class="row">
 							<div class="col-xs-5">
-								<group>
+								<group style="margin:0;">
 									<field name="tipo_ingreso" widget="radio" options="{'horizontal': true}"/>
 								</group>
 							</div>
 							<div class="col-xs-4">
-								<group>
+								<group style="margin:0;">
 									<field name="fecha_hora"/>
 								</group>
 							</div>
@@ -76,17 +76,17 @@
 						
 						<div class="row">
 							<div class="col-xs-5">
-								<group>
+								<group style="margin:0;">
 									<field name="partner_id" domain="[('x_imputado','=',True)]" context="{'default_x_imputado':True}"/>
 								</group>
 							</div>
 							<div class="col-xs-4">
-								<group>
+								<group style="margin:0;">
 									<field name="delito_ids" widget="many2many_tags"/>
 								</group>
 							</div>
 							<div class="col-xs-3">
-								<group>
+								<group style="margin:0;">
 									<field name="edad"/>
 								</group>
 							</div>
@@ -94,25 +94,25 @@
 
 						<div class="row">
 							<div class="col-xs-5">
-								<group>
+								<group style="margin:0;">
 									<field name="hora_inicio" widget="float_time"/>
 								</group>
 							</div>
 							<div class="col-xs-4">
-								<group>
+								<group style="margin:0;">
 									<field name="hora_termino" widget="float_time"/>
 								</group>
 							</div>
 						</div>
-						<group>
-							<group>
+						<group style="margin:0;">
+							<group style="margin:0;">
 								<field name="juez_id"/>
 							</group>
-							<group>
+							<group style="margin:0;">
 								<field name="juez_cargo"/>
 							</group>
 						</group>
-						<group>
+						<group style="margin:0;">
 							<field name="resolucion"/>
 							<field name="tipo_egreso" widget="radio" options="{'horizontal': true}"/>
 							<field name="observaciones"/>
@@ -120,26 +120,26 @@
 						<label string="Jefe de grupo de la Policía Procesal"/>
 						<div class="row">
 							<div class="col-xs-5">
-								<group>
+								<group style="margin:0;">
 									<field name="nombre_jefe_grupo_pp"/>
 								</group>
 							</div>
 							<div class="col-xs-4">
-								<group>
+								<group style="margin:0;">
 									<field name="pp_cargo"/>
 								</group>
 							</div>
 							<div class="col-xs-3">
-								<group>
+								<group style="margin:0;">
 									<field name="pp_grupo"/>
 								</group>
 							</div>
 						</div>
-						<group>
-							<group>
+						<group style="margin:0;">
+							<group style="margin:0;">
 								<field name="recibe"/>
 							</group>
-							<group>
+							<group style="margin:0;">
 								<field name="hora_recibe" widget="float_time"/>
 							</group>
 						</group>

@@ -16,12 +16,12 @@
 							<field name="name"/>
 						</h2>
 
-						<group>
-							<group>
+						<group style="margin:0;">
+							<group style="margin:0;">
 								<field name="partner_id" domain="[('x_imputado','=',True)]" context="{'default_x_imputado':True}"/>
 								<field name="fecha_hora_registro"/>
 							</group>
-							<group>
+							<group style="margin:0;">
 								<field name="causa_penal"/>
 								<field name="delito_ids" widget="many2many_tags" invisible="1"/>
 							</group>
@@ -29,14 +29,14 @@
 
 						<notebook>
 							<page string="Actuación de la Policía Procesal con el imputado">
-								<group>
-									<group>
+								<group style="margin:0;">
+									<group style="margin:0;">
 										<field name="entidad_id" domain="[('country_id', '=', 157)]"/>
 										<field name="city"/>
 										<field name="nacionalidad_id"/>
 										<field name="idioma_id"/>
 									</group>
-									<group>
+									<group style="margin:0;">
 										<field name="sabe_leer_escribir" widget="selection"/>
 										<field name="numero_estancia"/>
 										<field name="hora_actuacion" widget="float_time"/>
@@ -51,11 +51,11 @@
 										<field name="detalle" />
 									</tree>
 								</field>
-								<group>
-									<group>
+								<group style="margin:0;">
+									<group style="margin:0;">
 										<field name="fecha_hora_devolucion"/>
 									</group>
-									<group></group>
+									<group style="margin:0;"></group>
 								</group>
 							</page>
 
@@ -77,7 +77,7 @@
 								<field name="conducta"/>
 							</div>
 							<div class="col-xs-5">
-								<group>
+								<group style="margin:0;">
 									<field name="fecha_hora_egreso"/>
 								</group>
 							</div>

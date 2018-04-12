@@ -9,114 +9,114 @@
 					<sheet>
 						<div class="row">
 							<div class="col-xs-6">
-								<group>
+								<group style="margin:0;">
 									<field name="fecha_hora"/>
 								</group>
 							</div>
 						</div>
-						<group>
-							<group>
+						<group style="margin:0;">
+							<group style="margin:0;">
 								<field name="partner_id" domain="[('x_imputado','=',True)]" context="{'default_x_imputado':True}"/>
 							</group>
-							<group></group>
+							<group style="margin:0;"></group>
 						</group>
 						<div class="row">
 							<div class="col-xs-6">
-								<group>
+								<group style="margin:0;">
 									<field name="delito_ids" widget="many2many_tags"/>
 								</group>
 							</div>
 							<div class="col-xs-6">
-								<group>
+								<group style="margin:0;">
 									<field name="nic_cdi_nuc"/>
 								</group>
 							</div>
 						</div>
-						<group>
-							<group>
+						<group style="margin:0;">
+							<group style="margin:0;">
 								<field name="autoridad_que_solicita_id"/>
 							</group>
-							<group>
+							<group style="margin:0;">
 								<field name="cargo_autoridad_solicita"/>
 							</group>
 						</group>
 
-						<group>
-							<group>
+						<group style="margin:0;">
+							<group style="margin:0;">
 								<field name="numero_oficio"/>
 							</group>
-							<group>
+							<group style="margin:0;">
 								<field name="lugar_id" />
 							</group>
 						</group>
-						<group>
-							<group>
+						<group style="margin:0;">
+							<group style="margin:0;">
 								<field name="autoridad_que_realiza_id"/>
 							</group>
-							<group>
+							<group style="margin:0;">
 								<field name="cargo_autoridad_realiza"/>
 							</group>
 						</group>
-						<group>
-							<group>
+						<group style="margin:0;">
+							<group style="margin:0;">
 								<field name="numero_elementos"/>
 							</group>
-							<group>
+							<group style="margin:0;">
 								<field name="dependencia"/>
 							</group>
 						</group>
 						<div class="row">
 							<div class="col-xs-4">
-								<group>
+								<group style="margin:0;">
 									<field name="vehiculo_id"/>
 								</group>
 							</div>
 							<div class="col-xs-4">
-								<group>
+								<group style="margin:0;">
 									<field name="no_economico"/>
 								</group>
 							</div>
 							<div class="col-xs-4">
-								<group>
+								<group style="margin:0;">
 									<field name="placas"/>
 								</group>
 							</div>
 						</div>
-						<group>
+						<group style="margin:0;">
 							<label string="Fecha y hora de inicio de la audiencia"/>
 						</group>
 						<div class="row">
 							<div class="col-xs-4">
-								<group>
+								<group style="margin:0;">
 									<field name="fecha_inicio_audiencia"/>
 								</group>
 							</div>
 							<div class="col-xs-4">
-								<group>
+								<group style="margin:0;">
 									<field name="hora_inicio_audiencia" widget="float_time"/>
 								</group>
 							</div>
 							<div class="col-xs-4">
-								<group>
+								<group style="margin:0;">
 									<field name="hora_termino_audiencia" widget="float_time"/>
 								</group>
 							</div>
 						</div>
-						<group>
-							<group>
+						<group style="margin:0;">
+							<group style="margin:0;">
 								<field name="tipo_audiencia"/>
 							</group>
-							<group>
+							<group style="margin:0;">
 								<field name="fecha_hora_entrega_responsable"/>
 							</group>
 						</group>
-						<group>
+						<group style="margin:0;">
 							<field name="observaciones"/>
 						</group>
 
 						<notebook>
 							<page string="Retiro de traslado">
-								<group>
+								<group style="margin:0;">
 									<field name="observaciones_traslado"/>
 								</group>
 							</page>

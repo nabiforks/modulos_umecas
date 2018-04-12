@@ -28,27 +28,27 @@
 								}"/>
 						</div>
 
-						<group>
-							<group>
+						<group style="margin:0;">
+							<group style="margin:0;">
 								<field name="juez_id"/>
 							</group>
-							<group>
+							<group style="margin:0;">
 								<field name="juez_cargo"/>
 							</group>
 						</group>
 						<div class="row">
 							<div class="col-xs-4">
-								<group>
+								<group style="margin:0;">
 									<field name="fecha_hora"/>
 								</group>
 							</div>
 							<div class="col-xs-3">
-								<group>
+								<group style="margin:0;">
 									<field name="numero_sala"/>
 								</group>
 							</div>
 							<div class="col-xs-5">
-								<group>
+								<group style="margin:0;">
 									<field name="partner_id" domain="[('x_imputado','=',True)]" context="{'default_x_imputado':True}"/>
 								</group>
 							</div>
@@ -72,59 +72,59 @@
 							<page string="Datos de audiencia">
 								<div class="row">
 									<div class="col-xs-3">
-										<group>
+										<group style="margin:0;">
 											<field name="hora_ingreso" widget="float_time"/>
 										</group>
 									</div>
 									<div class="col-xs-3">
-										<group>
+										<group style="margin:0;">
 											<field name="hora_inicio" widget="float_time"/>
 										</group>
 									</div>
 									<div class="col-xs-3">
-										<group>
+										<group style="margin:0;">
 											<field name="hora_termino" widget="float_time"/>
 										</group>
 									</div>
 									<div class="col-xs-3">
-										<group>
+										<group style="margin:0;">
 											<field name="hora_salida" widget="float_time"/>
 										</group>
 									</div>
 								</div>
-								<group>
-									<group>
+								<group style="margin:0;">
+									<group style="margin:0;">
 										<field name="tipo_audiencia"/>
 									</group>
-									<group></group>
+									<group style="margin:0;"></group>
 								</group>
-								<group>
-									<group>
+								<group style="margin:0;">
+									<group style="margin:0;">
 										<field name="rci"/>
 									</group>
-									<group>
+									<group style="margin:0;">
 										<field name="rsa"/>
 									</group>
 								</group>
-								<group>
-									<group>
+								<group style="margin:0;">
+									<group style="margin:0;">
 										<field name="delito_ids" widget="many2many_tags"/>
 									</group>
-									<group>
+									<group style="margin:0;">
 										<field name="custodia_id" invisible="1"/>
 										<field name="causa_penal"/>
 									</group>
 								</group>
-								<group>
-									<group>
+								<group style="margin:0;">
+									<group style="margin:0;">
 										<field name="tipo_arribo"/>
 									</group>
-									<group></group>
+									<group style="margin:0;"></group>
 								</group>
-								<group>
+								<group style="margin:0;">
 									<field name="resolucion"/>
 								</group>
-								<group>
+								<group style="margin:0;">
 									<field name="observaciones"/>
 								</group>
 							</page>
