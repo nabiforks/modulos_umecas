@@ -15,69 +15,67 @@
 						<h2>
 							<field name="consecutivo"/>
 						</h2>
-						<group>
-							<group>
+						<group style="margin:0;">
+							<group style="margin:0;">
 								<field name="fecha_hora"/>
 							</group>
-						</group>
-						<group>
-							<group>
+							<group style="margin:0;">
 								<field name="partner_id" domain="[('x_imputado','=',True)]" context="{'default_x_imputado':True}"/>
 							</group>
-							<group></group>
 						</group>
-						<group>
-							<group>
+						<group style="margin:0;">
+							<group style="margin:0;">
 								<field name="delito_ids" widget="many2many_tags"/>
 							</group>
-							<group>
+							<group style="margin:0;">
 								<field name="nic_cdi_nuc"/>
 							</group>
 						</group>
-						<group>
-							<group>
+						<group style="margin:0;">
+							<group style="margin:0;">
 								<field name="autoridad_que_solicita_id"/>
 							</group>
-							<group>
+							<group style="margin:0;">
 								<field name="cargo_autoridad_solicita"/>
 							</group>
 						</group>
 
-						<group>
-							<group>
+						<group style="margin:0;">
+							<group style="margin:0;">
 								<field name="numero_oficio"/>
 							</group>
-							<group>
+							<group style="margin:0;">
 								<field name="lugar_id" />
 							</group>
 						</group>
-						<group>
-							<group>
+						<group style="margin:0;">
+							<group style="margin:0;">
 								<field name="autoridad_que_realiza_id"/>
 							</group>
-							<group>
+							<group style="margin:0;">
 								<field name="cargo_autoridad_realiza"/>
 							</group>
 						</group>
-						<group>
-							<group>
+						<group style="margin:0;">
+							<group style="margin:0;">
 								<field name="dependencia"/>
 							</group>
 							<group></group>
 						</group>
+
 						<div class="row">
 							<div class="col-xs-4">
-								<group>
+								<group style="margin:0;">
 									<field name="vehiculo_id"/>
 								</group>
 							</div>
 							<div class="col-xs-4">
-								<group>
+								<group style="margin:0;">
 									<field name="no_economico"/>
 								</group>
 							</div>
 							<div class="col-xs-4">
-								<group>
+								<group style="margin:0;">
 									<field name="placas"/>
 								</group>
 							</div>
@@ -87,12 +85,12 @@
 							<page string="Traslado de ingreso">
 								<div class="row">
 									<div class="col-xs-4">
-										<group>
+										<group style="margin:0;">
 											<field name="elementos_apoyo"/>
 										</group>
 									</div>
 									<div class="col-xs-4">
-										<group>
+										<group style="margin:0;">
 											<field name="vehiculos_apoyo"/>
 										</group>
 									</div>
@@ -100,30 +98,30 @@
 								
 								<div class="row">
 									<div class="col-xs-4">
-										<group>
+										<group style="margin:0;">
 											<field name="hora_arribo"  widget="float_time"/>
 										</group>
 									</div>
 									<div class="col-xs-4">
-										<group>
+										<group style="margin:0;">
 											<field name="hora_ingreso" widget="float_time"/>
 										</group>
 									</div>
 									<div class="col-xs-4">
-										<group>
+										<group style="margin:0;">
 											<field name="hora_regreso" widget="float_time"/>
 										</group>
 									</div>
 								</div>
-								<group>
+								<group style="margin:0;">
 									<field name="descripcion_imputado"/>
 								</group>
 								<label string="Cuenta con dictamen médico: Nombre del doctor y número de cédula"/>
-								<group>
-									<group>
+								<group style="margin:0;">
+									<group style="margin:0;">
 										<field name="medico_id" placeholder="Seleccione..."/>
 									</group>
-									<group>
+									<group style="margin:0;">
 										<field name="no_cedula"/>
 									</group>
 								</group>
