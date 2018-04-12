@@ -2,22 +2,23 @@
 
 from odoo import api, fields, models
 
+
 class Entrevistas(models.Model):
     _name = 'umc_entrevistas'
 
     x_name = fields.Char('Entrevista', required=True, readonly=True,
                          default=lambda self: 'Nuevo'
-                         )        
+                         )
     x_lugar_entrevista = fields.Many2one(
         string=u'Lugar',
         comodel_name='umc_lugares',
         ondelete='restrict',
-    )   
+    )
     x_causa_penal = fields.Char(
         string=u'CDI/Causa Penal',
-    )        
+    )
     x_fecha_entrevista = fields.Date(
-        string=u'Fecha y hora',        
+        string=u'Fecha y hora',
     )
     x_fecha_entrevista = fields.Date(
         string=u'Fecha',
@@ -78,7 +79,34 @@ class Entrevistas(models.Model):
     @api.multi
     def entrevista_realizada(self):
         self.state = 'terminado'
-    
+        partner = self.env['res.partner'].search(
+            [('id', '=', self.x_imputado_id)])
+        calle=''
+        colonia=''
+        municipio=''
+        estado=''
+        if self.x_domicilio_actual:
+            calle = self.x_domicilio_actual[0].x_calle
+            colonia = self.x_domicilio_actual[0].x_colonia
+            municipio = self.x_domicilio_actual[0].x_municipio
+            estado = self.x_domicilio_actual[0].x_estado_id.id
+        datos = {
+            'name': self.x_nombre_entrevistado,
+            'ap_paterno': self.x_apellido_pat,
+            'ap_materno': self.x_apellido_mat,
+            'x_sexo': self.x_sexo,
+            'x_imputado_tipo': self.x_tipo,
+            'x_apodo': self.x_apodo,
+            'fecha_nacimiento': self.x_fecha_nacimiento,
+            'x_nacionalidad': self.x_nacionalidad,
+            'street': calle,
+            'street2':colonia,
+            'city':municipio,
+            'state_id':estado
+        }
+        partner.write(datos)
+        print "////////////////////////partner", partner
+        #self.env['ucm.escalavalores.evaluacion'].create({'seccion': seccion, 'x_evaluacion_id': self.id})
 
     #///////////////////////////////////////Campos de las entrevistas////////////////
     #///////////////////////////////////////Campos de las entrevistas////////////////
@@ -87,42 +115,43 @@ class Entrevistas(models.Model):
     #/////////////////////Datos personales//////////////
     x_apellido_pat = fields.Char(
         string=u'Apellido Paterno',
-        related='x_evaluacion_id.partner_id.ap_paterno',
+        # related='x_evaluacion_id.partner_id.ap_paterno',
     )
     x_apellido_mat = fields.Char(
         string=u'Apellido Materno',
-        related='x_evaluacion_id.partner_id.ap_materno',
+        # related='x_evaluacion_id.partner_id.ap_materno',
     )
     x_nombre_entrevistado = fields.Char(
         string=u'Nombre(s)',
-        related='x_evaluacion_id.partner_id.name',
+        # related='x_evaluacion_id.partner_id.name',
     )
     x_otronombre = fields.Char(
         string=u'Otro nombre',
     )
     x_apodo = fields.Char(
         string=u'Apodo',
-        related='x_evaluacion_id.partner_id.x_apodo',
+        # related='x_evaluacion_id.partner_id.x_apodo',
     )
     x_lugar_nacimiento = fields.Char(
         string=u'Lugar de Nacimiento',
     )
     x_fecha_nacimiento = fields.Date(
         string=u'Fecha de nacimiento',
-        related='x_evaluacion_id.partner_id.fecha_nacimiento',
+        # related='x_evaluacion_id.partner_id.fecha_nacimiento',
     )
     x_edad = fields.Integer(
         string=u'Edad',
-        related='x_evaluacion_id.partner_id.edad',
+        # related='x_evaluacion_id.partner_id.edad',
     )
     x_sexo = fields.Selection(
         string=u'Sexo',
-        selection=[('m', 'Masculino'), ('f', 'Femenino'),('o', 'Otro')]
+        selection=[('m', 'Masculino'), ('f', 'Femenino'), ('o', 'Otro')]
     )
     x_estado_civil = fields.Selection(
         string=u'Estado civil',
-        selection=[('soltero', 'Soltero'), ('casado', 'Casado'),('cuncubinato','Cuncubinato'),('otro','Otro')]
-    )    
+        selection=[('soltero', 'Soltero'), ('casado', 'Casado'),
+                   ('cuncubinato', 'Cuncubinato'), ('otro', 'Otro')]
+    )
     x_estado_civil_otro = fields.Char(
         string=u'Otro',
     )
@@ -131,7 +160,8 @@ class Entrevistas(models.Model):
     )
     x_tiempo_unidad = fields.Selection(
         string=u'Días/Semanas/Meses/Años',
-        selection=[('dias', 'Días'), ('semanas', 'Semanas'),('meses', 'Meses'),('anios', 'Años')]
+        selection=[('dias', 'Días'), ('semanas', 'Semanas'),
+                   ('meses', 'Meses'), ('anios', 'Años')]
     )
     x_lengua = fields.Many2one(
         string=u'Lengua',
@@ -163,27 +193,28 @@ class Entrevistas(models.Model):
     x_telefono_otro = fields.Char(
         string=u'Teléfono Otros',
     )
-    
+
     #///////////////////////// II.-Domicilio/////////////////
 
-    
     x_ubicacion_intramuros = fields.Many2one(
         string=u'Ubicación Intramuros',
         comodel_name='umc_ubicacion_intramuros',
         ondelete='set null',
     )
-    
+
     x_domicilio_actual = fields.One2many(
         string=u'Domicilio(s)',
         comodel_name='umc_domicilio',
         inverse_name='x_evaluacion_id',
     )
+
     @api.multi
     def obtener_mapa(self):
         if self.x_domicilio_actual and self.x_domicilio_actual[0].latitud != 0:
-            datos = {"lat":self.x_domicilio_actual[0].latitud, "lon": self.x_domicilio_actual[0].longitud, "nombre": (self.x_name)}
+            datos = {"lat": self.x_domicilio_actual[0].latitud,
+                     "lon": self.x_domicilio_actual[0].longitud, "nombre": (self.x_name)}
             self.sudo().save_imagen(datos)
-            #mapa_event_pool.save_imagen(datos)
+            # mapa_event_pool.save_imagen(datos)
 
     #//////////////////////////////////III.- Lazos con la comunidad////////////////
     x_actividades_ids = fields.One2many(
@@ -191,9 +222,7 @@ class Entrevistas(models.Model):
         comodel_name='umc_actividades',
         inverse_name='x_entrevista2_id',
     )
-    
-    
-    
+
     #//////////////////////////////////IV.-Relaciones familiares/////////////////
     x_contacto_ids = fields.One2many(
         string=u'Familiares',
@@ -206,7 +235,7 @@ class Entrevistas(models.Model):
     x_intrafamiliares_secundario = fields.Char(
         string=u'¿Tipo de relaciones intrafamiliares?(Secundario)',
     )
-    
+
     x_imputado_id = fields.Integer(
         string=u'Inputado',
         related='x_evaluacion_id.partner_id.id',
@@ -226,7 +255,7 @@ class Entrevistas(models.Model):
         inverse_name='x_entrevista_id',
     )
     #//////////////////////////////////VII.-Estudios/////////////////
-    
+
     x_escolaridad_intramuros = fields.Selection(
         string=u'¿Se ha incorporado a algun sistema educativo?',
         selection=[('si', 'Si'), ('no', 'No')]
@@ -265,10 +294,9 @@ class Entrevistas(models.Model):
     )
     x_temporalidad_unidad = fields.Selection(
         string=u'Días/Semanas/Meses/Años',
-        selection=[('dias', 'Días'), ('semanas', 'Semanas'),('meses', 'Meses'),('anios', 'Años')]
-    ) 
-    
-    
+        selection=[('dias', 'Días'), ('semanas', 'Semanas'),
+                   ('meses', 'Meses'), ('anios', 'Años')]
+    )
 
     #//////////////////////////////////IX.-Enfermedades/////////////////
     x_enfermedades_ids = fields.One2many(
@@ -285,7 +313,6 @@ class Entrevistas(models.Model):
         string=u'¿Padece alguna discapacidad?',
         selection=[('si', 'Si'), ('no', 'No')]
     )
-     
 
     #//////////////////////////////////X.- Consumo de sustancias/////////////////
     x_sustancias_ids = fields.One2many(
@@ -299,7 +326,7 @@ class Entrevistas(models.Model):
     )
 
     #/////////////////////////////////// XI.- Información del proceso actual///////////////
-    
+
     x_delitos_ids = fields.One2many(
         string=u'Delitos',
         comodel_name='umc_delitos_proceso',
@@ -314,7 +341,7 @@ class Entrevistas(models.Model):
     x_autoridad_id = fields.Many2one(
         string=u'Autoridad que realizó la detención',
         comodel_name='umc_autoridad',
-        ondelete='set null',        
+        ondelete='set null',
     )
     x_fecha_disposicion = fields.Datetime(
         string=u'Puesta a disposición',
@@ -325,7 +352,7 @@ class Entrevistas(models.Model):
     x_comportamiento = fields.Text(
         string=u'Comportamiento ante la detención: (Resistencia, persecución, violencia, etc.',
     )
-    
+
     x_otras_personas = fields.Selection(
         string=u'¿Detuvieron a otras personas junto con el entrevistado?',
         selection=[('si', 'Si'), ('no', 'No')]
@@ -347,7 +374,7 @@ class Entrevistas(models.Model):
     )
     x_victima_domicilio = fields.Char(
         string=u'Domicilio de la víctima',
-    )    
+    )
     x_victima_relacion = fields.Many2one(
         string=u'Relación con la víctima',
         comodel_name='umc_parentesco',
@@ -359,35 +386,19 @@ class Entrevistas(models.Model):
     x_victima_telefono = fields.Char(
         string=u'Número de contacto',
     )
-    
-    
-    
+
     x_cumplio_medidas = fields.Selection(
         string=u'Cumplió con medidas cautelares',
-        selection=[('si', 'Si'),( 'no','No')]
+        selection=[('si', 'Si'), ('no', 'No')]
     )
     x_cumplio_scp = fields.Selection(
         string=u'Cumplió con SCP',
-        selection=[('si', 'Si'),( 'no','No')]
+        selection=[('si', 'Si'), ('no', 'No')]
     )
     x_colaboro_anteriores = fields.Selection(
         string=u'Permitió o Colaboró con procesos anteriores',
-        selection=[('si', 'Si'),( 'no','No')]
+        selection=[('si', 'Si'), ('no', 'No')]
     )
     x_observaciones_actitud = fields.Text(
         string=u'Observaciones (Actitud ante la entrevista)',
     )
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    

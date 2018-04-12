@@ -31,9 +31,7 @@
             <field name="parent_id" position="attributes">
                 <attribute name="invisible">1</attribute>
             </field>
-            <!--field name="country_id" position="attributes">
-                <attribute name="deafult">get_default_country</attribute>
-            </field-->
+            <!--field name="country_id" position="attributes"><attribute name="deafult">get_default_country</attribute></field-->
             <!--field name="type" position="attributes"><attribute name="invisible">1</attribute></field-->
             <xpath expr="//page[@name='sales_purchases']" position="attributes">
                 <attribute name="invisible">1</attribute>
@@ -48,6 +46,7 @@
             <xpath expr="//field[@name='type']" position="after">
                 <field name="x_apodo" />
                 <field name="x_imputado" invisible="1" />
+                <field name="x_sexo" />
                 <field name="x_imputado_tipo" attrs="{'invisible': [('x_imputado','=',False)]}"/>
                 <field name="x_nacionalidad" />
                 <field name="x_originario" />

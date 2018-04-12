@@ -27,8 +27,13 @@ class Partner(models.Model):
     x_imputado = fields.Boolean(
         string=u'Imputado',
     )
+    x_sexo = fields.Selection(
+        string=u'Sexo',
+        selection=[('m', 'Masculino'), ('f', 'Femenino'),('o', 'Otro')]
+    )    
+    
     x_imputado_tipo = fields.Selection(
-        [('1', 'Retenido'), ('2', 'Adolescente'), ('3', 'Interno')], default='1', required=True, string=u'Tipo de imputado')
+        [('retenido', 'Retenido'), ('adolescente', 'Adolescente'), ('interno', 'Interno')],  string=u'Tipo de imputado')
 
     x_apodo = fields.Char(
         string=u'Apodo / Sobrenombre',
