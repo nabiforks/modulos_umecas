@@ -243,6 +243,41 @@
 									</table>
 								</div>
 							</div>
+							<br/>
+							<br/>
+							<br/>
+							<div class="row">
+								<div class="col-xs-8"></div>
+								<div class="col-xs-4">
+									<table class="table table-bordered text-center" style="font-size:9px;">
+										<thead>
+											<tr>
+												<th colspan="4" style="padding: 0;font-size:9px;">
+													<center>CLASIFICACIÓN ARCHIVISTICA</center>
+												</th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr style="background-color:#f2f2f2;">
+												<td style="padding: 0;">SECCIÓN</td>
+												<td style="padding: 0;">SERIE</td>
+												<td style="padding: 0;">SUBSERIE</td>
+											</tr>
+											<tr>
+												<td style="padding: 0;">
+													<span t-field="custodia.seccion"/>
+												</td>
+												<td style="padding: 0;">
+													<span t-field="custodia.serie"/>
+												</td>
+												<td style="padding: 0;">
+													<span t-field="custodia.sub_serie"/>
+												</td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+							</div>
 						<!--End div page-->
 						</div>
 					</t>

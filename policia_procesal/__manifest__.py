@@ -9,7 +9,7 @@
         Modulo funcional para policia procesal
     """,
 
-    'author': "AHC",
+    'author': "S4G",
     'website': "http://www.soluciones4g.com",
 
     # Categories can be used to filter modules in modules listing
@@ -22,16 +22,14 @@
 
     # always loaded
     'data': [
+       'security/security.xml',
+       'security/ir.model.access.csv',
        'views/pp_catalogos_view.xml',
        'views/pp_recepcion_view.xml',
-       'views/pp_traslados_view.xml',
-       'views/pp_retiro_traslados_view.xml',
        'views/pp_custodia_provicional_view.xml',
        'views/pp_audiencias_view.xml',
        'views/pp_resoluciones_view.xml',
        'views/pp_egresos_view.xml',
-       #'views/pp_suministro_alimentos_view.xml',
-       #'views/pp_resguardo_pertenencias_view.xml',
        'views/pp_menus_view.xml',
        'data/sequence_names.xml'
     ],

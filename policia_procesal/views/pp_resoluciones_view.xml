@@ -42,6 +42,7 @@
 							<group style="margin:0;">
 								<field name="juez_concat" invisible="1"/>
 								<field name="juez_cargo" invisible="1"/>
+								<field name="audiencia_id" invisible="1"/>
 							</group>
 						</group>
 						<div class="row">
@@ -143,6 +144,31 @@
 								<field name="hora_recibe" widget="float_time"/>
 							</group>
 						</group>
+						<notebook>
+							<page string="Datos de reporte">
+								<div class="row">
+									<div class="col-xs-4">
+										<table class="table table-bordered text-center">
+		                                    <tbody>
+		                                        <tr>
+		                                            <th colspan="4"><center>Clasificación archivista</center></th>
+		                                        </tr>
+		                                        <tr>
+		                                            <td>Sección</td>
+		                                            <td>Serie</td>
+		                                            <td>Subserie</td>
+		                                        </tr>
+		                                        <tr>
+		                                            <td><field name="seccion"/></td>
+		                                            <td><field name="serie"/></td>
+		                                            <td><field name="sub_serie"/></td>
+		                                        </tr>
+		                                    </tbody>
+		                                </table>
+									</div>
+								</div>
+							</page>
+						</notebook>
 					</sheet>
 				</form>
 			</field>
@@ -171,6 +197,12 @@
 		        <search>
 		        	<field name="partner_id"/>
 		        	<field name="name"/>
+		        	<field name="audiencia_id"/>
+		        	<field name='tipo_audiencia'/>
+					<field name='causa_penal'/>
+					<field name='fecha_hora'/>
+					<field name='hora_termino'/>
+					<field name='tipo_egreso'/>
 		        </search>
 		    </field>
 		</record>
@@ -179,7 +211,10 @@
 			<field name="name">Control de audiencias</field>
 			<field name="res_model">pp.control_audiencia</field>
 			<field name="view_type">form</field>
-			<field name="view_mode">tree,form</field>
+			<field name="view_mode">tree,graph,form</field>
+			<field name="help" type="html">
+	            <p class="oe_view_nocontent_create">Agregar primer registro</p>
+	        </field>
 		</record>
 	</data>
 </odoo>

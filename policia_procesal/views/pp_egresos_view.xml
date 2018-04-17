@@ -119,6 +119,30 @@
 								<group style="margin:0;">
 									<field name="observaciones_traslado"/>
 								</group>
+								<br/>
+								<br/>
+								<div class="row">
+									<div class="col-xs-4">
+										<p>Datos del reporte</p>
+										<table class="table table-bordered text-center">
+		                                    <tbody>
+		                                        <tr>
+		                                            <th colspan="4"><center>Clasificación archivista</center></th>
+		                                        </tr>
+		                                        <tr>
+		                                            <td>Sección</td>
+		                                            <td>Serie</td>
+		                                            <td>Subserie</td>
+		                                        </tr>
+		                                        <tr>
+		                                            <td><field name="seccion"/></td>
+		                                            <td><field name="serie"/></td>
+		                                            <td><field name="sub_serie"/></td>
+		                                        </tr>
+		                                    </tbody>
+		                                </table>
+									</div>
+								</div>
 							</page>
 						</notebook>
 					</sheet>
@@ -150,6 +174,10 @@
 		    <field name="arch" type="xml">
 		        <search>
 		        	<field name="partner_id"/>
+		        	<field name='delito_ids'/>
+					<field name='nic_cdi_nuc'/>
+					<field name='fecha_hora'/>
+					<field name='autoridad_que_solicita_id'/>
 		        </search>
 		    </field>
 		</record>
@@ -159,7 +187,10 @@
 			<field name="name">Egreso</field>
 			<field name="res_model">pp.egreso</field>
 			<field name="view_type">form</field>
-			<field name="view_mode">tree,form</field>
+			<field name="view_mode">tree,graph,form</field>
+			<field name="help" type="html">
+	            <p class="oe_view_nocontent_create">Agregar primer registro</p>
+	        </field>
 		</record>
 	</data>
 </odoo>

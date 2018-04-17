@@ -2,19 +2,18 @@
 <odoo>
 	<data>
 		<report
-			id="traslado_ing_pp_report"
-			model="pp.recepcion"
-			string="Formato de traslado de ingreso"
-			name="reportes_policia_procesal.reporte_traslado"
-			file="reportes_policia_procesal.traslado_ing_pp_report"
+			id="retiro_traslado_pp_report"
+			model="pp.egreso"
+			string="Formato de retiro de traslado"
+			name="reportes_policia_procesal.retiro_traslado"
+			file="reportes_policia_procesal.retiro_traslado_pp_report"
 			report_type="qweb-pdf"			
-			/>
-		<template id="reporte_traslado">
+		/>
+		<template id="retiro_traslado">
 			<t t-call="report.html_container">
 				<t t-foreach="docs" t-as="traslado">
 					<t t-call="report.external_layout">
-						<div class="page text-uppercase" style="font-size:12px;">
-							
+						<div class="page">
 							<div class="row">
 								<div class="col-xs-4"></div>
 								<div class="col-xs-4 text-center">
@@ -37,20 +36,20 @@
 										</td>
 									</tr>
 									<tr>
-										<td colspan="1" style="border:1px solid black;">
+										<td colspan="2" style="border:1px solid black;">
 											Num. de
 											oficio:
 										</td>
-										<td colspan="4" style="border:1px solid black;">
+										<td colspan="2" style="border:1px solid black;">
 											<strong>
 												<span t-field="traslado.numero_oficio"/>
 											</strong>
 										</td>
-										<td style="border:1px solid black;">
+										<td colspan="2" style="border:1px solid black;">
 											Fecha de
 											traslado:
 										</td>
-										<td colspan="3" style="border:1px solid black;width:450px;">
+										<td colspan="2" style="border:1px solid black;width:400px;">
 											<strong>
 												<span t-field="traslado.fecha_hora" t-options ='{"format": "dd/MM/yyyy"}'/>
 											</strong>
@@ -69,7 +68,7 @@
 												<span t-field="traslado.autoridad_que_solicita_id"/>
 											</strong>
 										</td>
-										<td colspan="3" style="border:1px solid black; padding:0;width:450px;">
+										<td colspan="3" style="border:1px solid black; padding:0;width:400px;">
 											<div class="borde-bottom">
 												Cargo
 											</div>
@@ -91,7 +90,7 @@
 												<span t-field="traslado.autoridad_que_realiza_id"/>
 											</strong>
 										</td>
-										<td colspan="3" style="border:1px solid black; padding:0;width:450px;">
+										<td colspan="3" style="border:1px solid black; padding:0;width:400px;">
 											<div class="borde-bottom">
 												Cargo
 											</div>
@@ -113,7 +112,7 @@
 										<td style="border:1px solid black;">
 											Firma:
 										</td>
-										<td colspan="3" style="border:1px solid black;width:450px;">
+										<td colspan="3" style="border:1px solid black;width:400px;">
 										</td>
 									</tr>
 									<tr>
@@ -122,7 +121,7 @@
 										</td>
 										<td colspan="1" style="border:1px solid black;">
 											<strong>
-												<span t-field="traslado.elementos_apoyo"/>
+												<span t-field="traslado.numero_elementos"/>
 											</strong>
 										</td>
 										<td colspan="2" style="border:1px solid black;">
@@ -136,16 +135,16 @@
 										</td>
 									</tr>
 									<tr>
-										<td style="border:1px solid black;">
+										<td colspan="2" style="border:1px solid black;">
 											Vehículo
 											oficial:
 										</td>
-										<td style="border:1px solid black;">
+										<td style="border:1px solid black;width:150px;">
 											<strong>
 												<span t-field="traslado.vehiculo_id.name"/>
 											</strong>
 										</td>
-										<td style="border:1px solid black;">
+										<td colspan="2" style="border:1px solid black;">
 											Num. Económico:
 										</td>
 										<td style="border:1px solid black;">
@@ -161,72 +160,28 @@
 												<span t-field="traslado.placas"/>
 											</strong>
 										</td>
-										<td style="border:1px solid black;">
-											Vehiculos de apoyo:
-										</td>
-										<td colspan="2" style="border:1px solid black;width:200px;">
-											<strong>
-												<span t-field="traslado.vehiculos_apoyo"/>
-											</strong>
-										</td>
-									</tr>
-									<tr>
-										<td style="border:1px solid black;width:10%;">
-											Hora de
-											arribo:
-										</td>
-										<td style="border:1px solid black;width:10%;">
-											<strong>
-												<span t-esc="'%02d:%02d' % (int(traslado.hora_arribo),traslado.hora_arribo % 1 * 60)" />
-											</strong>
-										</td>
-										<td style="border:1px solid black;width:10%;">
-											Hora de ingreso a sala:
-										</td>
-										<td style="border:1px solid black;width:10%;">
-											<strong>
-												<span t-esc="'%02d:%02d' % (int(traslado.hora_ingreso),traslado.hora_ingreso % 1 * 60)" />
-											</strong>
-										</td>
-										<td colspan="2" style="border:1px solid black;width:10%;">
-											Hora al regresal la custodia a la coorporación:
-										</td>
-										<td colspan="2" style="border:1px solid black;width:10%;">
-											<strong>
-												<span t-esc="'%02d:%02d' % (int(traslado.hora_regreso),traslado.hora_regreso % 1 * 60)" />
-											</strong>
-										</td>
 									</tr>
 									<tr>
 										<td colspan="2" style="border:1px solid black;">
-											Estado físico y
-											Vestimenta completa
-											del imputado:
+											Observaciones:
 										</td>
-										<td colspan="6" style="border:1px solid black;">
+										<td colspan="4" style="border:1px solid black;">
 											<strong>
-												<span t-field="traslado.descripcion_imputado"/>
+												<span t-field="traslado.observaciones_traslado"/>
 											</strong>
 										</td>
-									</tr>
-									<tr>
-										<td colspan="2" style="border:1px solid black;">
-											Cuenta con dictamen
-											médico; Nombre del 
-											doctor y número de
-											Cédula
+										<td colspan="1" style="border:1px solid black;">
+											Hora:
 										</td>
-										<td colspan="6" style="border:1px solid black;">
+										<td colspan="1" style="border:1px solid black;">
 											<strong>
-												<p><span t-field="traslado.medico_id.name"/></p>
-												<t t-if="traslado.no_cedula">
-													<p>Cédula. prof. <span t-field="traslado.no_cedula"/></p>
-												</t>
+												<span t-field="traslado.fecha_hora_entrega_responsable" t-options="{&quot;format&quot;: &quot;HH:mm &quot;}"/>
 											</strong>
 										</td>
 									</tr>
 								</tbody>
 							</table>
+
 							<br/>
 							<br/>
 							<br/>
@@ -262,7 +217,6 @@
 									</table>
 								</div>
 							</div>
-						<!--end div page-->
 						</div>
 					</t>
 				</t>

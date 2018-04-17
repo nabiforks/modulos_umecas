@@ -1,13 +1,15 @@
 # -*- coding: utf-8 -*-
 
-from odoo import fields, models
+from odoo import api, fields, models
 
 class Audiencias(models.Model):
     _name = 'pp.audiencia'
 
     name = fields.Char(
-        string='Datos',
-        default='Acceso'
+        'Acceso',
+        required=True,
+        readonly=True,
+        default=lambda self: 'Nuevo'
     )
     numero_sala = fields.Integer(
         string='Sala de audiencia No.',
@@ -22,7 +24,7 @@ class Audiencias(models.Model):
         string='Hora de inico',
     )
     hora_termino = fields.Float(
-        string='Hora de termino',
+        string='Hora de término',
     )
     hora_salida = fields.Float(
         string='Hora de salida',
@@ -110,6 +112,27 @@ class Audiencias(models.Model):
          'pp.responsable',
         string='RSA',
     )
+    #==========Datos para reporte==========
+    seccion = fields.Char(
+        string='Sección',
+        default='11S',
+    )
+    serie = fields.Char(
+        string='Serie',
+        default='11S.3',
+    )
+    sub_serie = fields.Char(
+        string='Subserie',
+    )
+
+    #==========METHODS============
+    @api.model
+    def create(self, vals):
+        if vals.get('name', 'Nuevo') == 'Nuevo':
+            vals['name'] = self.env['ir.sequence'].next_by_code(
+                'pp.audiencia') or 'Nuevo'
+        result = super(Audiencias, self).create(vals)
+        return result
     
 
 #=====================================

@@ -90,3 +90,15 @@ class Egreso(models.Model):
         string='Número económico',
         readonly=True
     )
+    #==========Datos para reporte==========
+    seccion = fields.Char(
+        string='Sección',
+        default='11S',
+    )
+    serie = fields.Char(
+        string='Serie',
+        default='11S.3',
+    )
+    sub_serie = fields.Char(
+        string='Subserie',
+    )

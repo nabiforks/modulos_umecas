@@ -24,6 +24,7 @@
         'report/reporte_datos_resolucion.xml',
         'report/reporte_control_audiencia.xml',
         'report/reporte_egreso.xml',
+        'report/reporte_retiro_traslado.xml',
     ],
 
     'installable':True,
