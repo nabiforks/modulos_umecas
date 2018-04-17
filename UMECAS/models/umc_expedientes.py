@@ -75,6 +75,17 @@ class Expedientes(models.Model):
         return folio
 
 
+    #//////////////////////////////////////////one2many evaluacion////////////
+    #//////////////////////////////////////////one2many evaluacion////////////
+    #//////////////////////////////////////////one2many evaluacion/////////////////
+    #//////////////////////////////////////////one2many evaluacion///////////////////
+    
+    
+    x_evaluacion_ids = fields.One2many(
+        string=u'Solicitudes',
+        comodel_name='umc_evaluacion',
+        inverse_name='x_expediente_id',
+    )
 """
   folio = self.env['core_generador_folio'].getFolio(
                 self.env['umc_casas_justicia_anio_fiscal'].getPrefijoCasaById(

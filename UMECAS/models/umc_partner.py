@@ -50,17 +50,17 @@ class Partner(models.Model):
         string=u'Originario de: ',
     )
     x_estado_civil = fields.Selection(
-        string=u'Estado Civil',
-        selection=[('1', 'Soltero'), ('2', 'Casado'),
-                   ('3', 'Unión Libre'), ('4', 'Divorciado'), ('5', 'Viudo')]
+        string=u'Estado civil',
+        selection=[('soltero', 'Soltero'), ('casado', 'Casado'),
+                   ('cuncubinato', 'Cuncubinato'), ('otro', 'Otro')]
     )
     x_identificacion = fields.Many2one(
         string=u'Identificación',
         comodel_name='umc_identificacion',
         ondelete='cascade',
     )
-    x_ingreso_economico = fields.Float(
-        string=u'Ingreso económico (MXN) diarios',
+    x_ingreso_economico = fields.Char(
+        string=u'Ingreso económico',
     )
 
     """
@@ -130,5 +130,15 @@ class Partner(models.Model):
         string=u'Núcleo',
         selection=[('primario', 'Primario'),('secundario','Secundario')]
     )
+    #//////////////////////////////////////////one2many Expedientes////////////
+    #//////////////////////////////////////////one2many Expedientes////////////
+    #//////////////////////////////////////////one2many Expedientes/////////////////
+    #//////////////////////////////////////////one2many Expedientes///////////////////
     
+    
+    x_expedientes_ids = fields.One2many(
+        string=u'Expedientes',
+        comodel_name='umc_expedientes',
+        inverse_name='partner_id',
+    )
     

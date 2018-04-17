@@ -20,6 +20,7 @@
                         <group>
                             <field name="x_tipo" />
                             <field name="x_lugar_entrevista" options="{ 'no_open': True}" />
+                            <field name="x_cdi" />
                             <field name="x_causa_penal" />
                             <field name="x_fecha_entrevista" />
                             <field name="x_hora_inicio" widget="float_time" />

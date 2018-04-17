@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+
 from datetime import timedelta, datetime
 from odoo import api, fields, models
 from odoo.exceptions import ValidationError
@@ -41,6 +42,19 @@ class umc_evaluacion(models.Model):
     )
     x_tipo_entrevista = fields.Selection(
         [('retenido', 'Retenido'), ('adolescente', 'Adolescente'), ('interno', 'Interno')], default='1', required=True, string=u'Tipo de Entrevista')
+    
+    x_fecha_inicio = fields.Datetime(
+        string=u'Fecha/Hora Inicio',
+    )
+    x_fecha_final = fields.Datetime(
+        string=u'Fecha/Hora Final',
+    )
+    x_tiempo_transcurrido = fields.Float(
+        string=u'Tiempo transcurrido',        
+        readonly=True,        
+    )
+    
+    
 
     state = fields.Selection([
         ('solicitud', 'Solicitud'),
@@ -76,7 +90,12 @@ class umc_evaluacion(models.Model):
             valores_entrevista = {'x_evaluacion_id': self.id,
                                   'x_evaluador_id': self.x_evaluador_id,
                                   'x_imputado_id': self.partner_id,
-                                  'x_casa_justicia': self.x_casa_justicia.id}
+                                  'x_casa_justicia': self.x_casa_justicia.id,
+                                  'x_cdi':self.x_expediente_id.x_cdi_nic,
+                                  'x_causa_penal':self.x_expediente_id.x_causa_penal,
+                                  'x_apellido_pat':self.partner_id.ap_paterno,
+                                  'x_apellido_mat':self.partner_id.ap_materno,
+                                  'x_nombre_entrevistado':self.partner_id.name}
             res = self.env['umc_entrevistas'].create(valores_entrevista)
             self.x_entrevista_id = res
             return res
@@ -116,7 +135,21 @@ class umc_evaluacion(models.Model):
             return
         else:
             self.folio_evalucion = self.getFolioEvaluacion()
+            self.calcular_tiempo()
             self.state='evaluacion_terminada'
+    @api.multi
+    def calcular_tiempo(self):
+        if not self.x_fecha_final:
+            self.x_fecha_final = datetime.now()
+        if self.x_fecha_inicio and self.x_fecha_final:
+            start_date = fields.Datetime.from_string(self.x_fecha_inicio)
+            end_date = fields.Datetime.from_string(self.x_fecha_final)
+            dias = float((end_date - start_date).days*24)
+            horas = float((end_date - start_date).seconds/3600)
+            minutos = float((((end_date - start_date).seconds%3600)/60))
+            self.x_tiempo_transcurrido=dias + horas+(minutos/60)
+        
+        
 
 
     # ///////////////////////////////////////Campos de las entrevistas////////////////
@@ -127,7 +160,7 @@ class umc_evaluacion(models.Model):
         string=u'Entrevista',
         comodel_name='umc_entrevistas',
         readonly=True,
-        ondelete='set null',
+        ondelete='restrict',
     )
     x_entrevista_status = fields.Selection(
         string=u'Estatus de Entrevista',
@@ -271,7 +304,7 @@ class umc_evaluacion(models.Model):
         string='Proximidad',
     )
     x_nombre_elav = fields.Char(
-        string='Elavoró',
+        string='Elaboró',
     )
     x_puesto_elav = fields.Char(
         string='Puesto',
