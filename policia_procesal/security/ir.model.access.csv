@@ -1,0 +1,31 @@
+id,name,model_id/id,group_id/id,perm_read,perm_write,perm_create,perm_unlink
+access_recepcion_pp,pp recepcion,policia_procesal.model_pp_recepcion,policia_procesal.pp_admin,1,1,1,1
+access_recepcion_all,pp recepcion all,policia_procesal.model_pp_recepcion,,1,0,0,0
+access_custodia_pp,pp custodia,policia_procesal.model_pp_custodia,policia_procesal.pp_admin,1,1,1,1
+access_custodia_all,pp custodia all,policia_procesal.model_pp_custodia,,1,0,0,0
+access_pertenencia_list_pp,pp pertenencia_list,policia_procesal.model_pp_pertenencia_list,policia_procesal.pp_admin,1,1,1,1
+access_pertenencia_list_all,pp pertenencia_list all,policia_procesal.model_pp_pertenencia_list,,1,0,0,0
+access_suministro_list_pp,pp suministro_list,policia_procesal.model_pp_suministro_list,policia_procesal.pp_admin,1,1,1,1
+access_suministro_list_all,pp suministro_list all,policia_procesal.model_pp_suministro_list,,1,0,0,0
+access_audiencia_pp,pp audiencia,policia_procesal.model_pp_audiencia,policia_procesal.pp_admin,1,1,1,1
+access_audiencia_all,pp audiencia all,policia_procesal.model_pp_audiencia,,1,0,0,0
+access_acceso_audiencia_pp,pp acceso_audiencia,policia_procesal.model_pp_acceso_audiencia,policia_procesal.pp_admin,1,1,1,1
+access_acceso_audiencia_all,pp acceso_audiencia all,policia_procesal.model_pp_acceso_audiencia,,1,0,0,0
+access_audiencia_pp,pp audiencia,policia_procesal.model_pp_audiencia,policia_procesal.pp_admin,1,1,1,1
+access_audiencia_all,pp audiencia all,policia_procesal.model_pp_audiencia,,1,0,0,0
+access_control_audiencia_pp,pp control_audiencia,policia_procesal.model_pp_control_audiencia,policia_procesal.pp_admin,1,1,1,1
+access_control_audiencia_all,pp control_audiencia all,policia_procesal.model_pp_control_audiencia,,1,0,0,0
+access_egreso_pp,pp egreso,policia_procesal.model_pp_egreso,policia_procesal.pp_admin,1,1,1,1
+access_egreso_all,pp egreso all,policia_procesal.model_pp_egreso,,1,0,0,0
+access_dependencias_pp,pp dependencias,policia_procesal.model_pp_dependencias,policia_procesal.pp_admin,1,1,1,1
+access_dependencias_all,pp dependencias all,policia_procesal.model_pp_dependencias,,1,0,0,0
+access_vehiculos_pp,pp vehiculos,policia_procesal.model_pp_vehiculos,policia_procesal.pp_admin,1,1,1,1
+access_vehiculos_all,pp vehiculos all,policia_procesal.model_pp_vehiculos,,1,0,0,0
+access_medico_pp,pp medico,policia_procesal.model_pp_medico,policia_procesal.pp_admin,1,1,1,1
+access_medico_all,pp medico all,policia_procesal.model_pp_medico,,1,0,0,0
+access_jueces_pp,pp jueces,policia_procesal.model_pp_jueces,policia_procesal.pp_admin,1,1,1,1
+access_jueces_all,pp jueces all,policia_procesal.model_pp_jueces,,1,0,0,0
+access_responsable_pp,pp responsable,policia_procesal.model_pp_responsable,policia_procesal.pp_admin,1,1,1,1
+access_responsable_all,pp responsable all,policia_procesal.model_pp_responsable,,1,0,0,0
+access_jefe_pp_pp,pp jefe_pp,policia_procesal.model_pp_jefe_pp,policia_procesal.pp_admin,1,1,1,1
+access_jefe_pp_all,pp jefe_pp all,policia_procesal.model_pp_jefe_pp,,1,0,0,0

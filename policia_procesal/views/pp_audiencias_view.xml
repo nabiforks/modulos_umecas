@@ -15,7 +15,8 @@
 								class="oe_stat_button" 
 								icon="fa-file-text-o" 
 								context="{
-									'search_default_partner_id':partner_id,
+									'search_default_audiencia_id':active_id,
+									'default_partner_id':partner_id,
 									'default_tipo_audiencia':tipo_audiencia,
 									'default_causa_penal':causa_penal,
 									'default_numero_sala':numero_sala,
@@ -27,7 +28,9 @@
 									'default_delito_ids':delito_ids
 								}"/>
 						</div>
-
+						<h2>
+							<field name="name"/>
+						</h2>
 						<group style="margin:0;">
 							<group style="margin:0;">
 								<field name="juez_id"/>
@@ -128,6 +131,29 @@
 									<field name="observaciones"/>
 								</group>
 							</page>
+							<page string="Datos del reporte">
+								<div class="row">
+									<div class="col-xs-4">
+										<table class="table table-bordered text-center">
+		                                    <tbody>
+		                                        <tr>
+		                                            <th colspan="4"><center>Clasificación archivista</center></th>
+		                                        </tr>
+		                                        <tr>
+		                                            <td>Sección</td>
+		                                            <td>Serie</td>
+		                                            <td>Subserie</td>
+		                                        </tr>
+		                                        <tr>
+		                                            <td><field name="seccion"/></td>
+		                                            <td><field name="serie"/></td>
+		                                            <td><field name="sub_serie"/></td>
+		                                        </tr>
+		                                    </tbody>
+		                                </table>
+									</div>
+								</div>
+							</page>
 						</notebook>
 					</sheet>
 				</form>
@@ -158,6 +184,11 @@
 		        <search>
 		        	<field name="partner_id"/>
 		        	<field name="custodia_id"/>
+		        	<field name='fecha_hora'/>
+					<field name='numero_sala'/>
+					<field name='tipo_audiencia'/>
+					<field name='juez_id'/>
+					<field name='rsa'/>
 		        </search>
 		    </field>
 		</record>
@@ -167,7 +198,10 @@
 			<field name="name">Sala de audiencias</field>
 			<field name="res_model">pp.audiencia</field>
 			<field name="view_type">form</field>
-			<field name="view_mode">tree,form</field>
+			<field name="view_mode">tree,graph,form</field>
+			<field name="help" type="html">
+	            <p class="oe_view_nocontent_create">Agregar primer registro</p>
+	        </field>
 		</record>
 	</data>
 </odoo>

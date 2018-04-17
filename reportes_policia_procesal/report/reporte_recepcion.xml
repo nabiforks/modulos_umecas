@@ -37,7 +37,7 @@
 									Nombre del detenido y/o imputado(s): 
 								</div>
 								<div class="col-xs-8 text-center text-uppercase borde-bottom" style="min-height: 25px;">
-									<strong><span t-field="recepcion.name" /></strong>
+									<strong><span t-field="recepcion.partner_id.display_name"/></strong>
 								</div>
 							</div>
 							<div class="row">
@@ -57,7 +57,7 @@
 									NIC/CDI/NUC: 
 								</div>
 								<div class="col-xs-4 text-center text-uppercase borde-bottom" style="min-height: 25px;">
-									<strong><span t-field="recepcion.nic_cdi_nuc" /></strong>
+									<strong><span t-field="recepcion.nic_cdi_nuc"/></strong>
 								</div>
 							</div>
 							<div class="row">
@@ -66,8 +66,10 @@
 								</div>
 								<div class="col-xs-8 text-center text-uppercase borde-bottom" style="min-height: 25px;">
 									<strong>
-										<span t-field="recepcion.autoridad_que_solicita_id" />, 
-										<span t-field="recepcion.cargo_autoridad_solicita" />
+										<span t-field="recepcion.autoridad_que_solicita_id"/>
+										<t t-if="recepcion.cargo_autoridad_solicita">
+											, <span t-field="recepcion.cargo_autoridad_solicita"/>
+										</t>
 									</strong>
 								</div>
 							</div>
@@ -76,13 +78,13 @@
 									No. de Oficio de traslado:
 								</div>
 								<div class="col-xs-3 text-center text-uppercase borde-bottom" style="min-height: 25px;">
-									<strong><span t-field="recepcion.numero_oficio" /></strong>
+									<strong><span t-field="recepcion.numero_oficio"/></strong>
 								</div>
 								<div class="col-xs-2">
 									Procedencia:
 								</div>
 								<div class="col-xs-4 text-center text-uppercase borde-bottom" style="min-height: 25px;">
-									<strong><span t-field="recepcion.lugar_id" /></strong>
+									<strong><span t-field="recepcion.lugar_id"/></strong>
 								</div>
 							</div>
 							<div class="row">
@@ -91,8 +93,10 @@
 								</div>
 								<div class="col-xs-8 text-center text-uppercase borde-bottom" style="min-height: 25px;">
 									<strong>
-										<span t-field="recepcion.autoridad_que_realiza_id" />, 
-										<span t-field="recepcion.cargo_autoridad_realiza" />
+										<span t-field="recepcion.autoridad_que_realiza_id"/>
+										<t t-if="recepcion.cargo_autoridad_realiza">
+											, <span t-field="recepcion.cargo_autoridad_realiza"/>	
+										</t>
 									</strong>
 								</div>
 							</div>
@@ -101,19 +105,19 @@
 									Vehículo: 
 								</div>
 								<div class="col-xs-2 text-center text-uppercase borde-bottom" style="min-height: 25px;">
-									<strong><span t-field="recepcion.vehiculo_id.name" /></strong>
+									<strong><span t-field="recepcion.vehiculo_id.name"/></strong>
 								</div>
 								<div class="col-xs-2">
 									No. Económico: 
 								</div>
 								<div class="col-xs-2 text-center text-uppercase borde-bottom" style="min-height: 25px;">
-									<strong><span t-field="recepcion.no_economico" /></strong>
+									<strong><span t-field="recepcion.no_economico"/></strong>
 								</div>
 								<div class="col-xs-2">
 									Placas:
 								</div>
 								<div class="col-xs-2 text-center text-uppercase borde-bottom" style="min-height: 25px;">
-									<strong><span t-field="recepcion.placas" /></strong>
+									<strong><span t-field="recepcion.placas"/></strong>
 								</div>
 							</div>
 							<div class="row">
@@ -124,7 +128,7 @@
 									<strong>**********</strong>
 								</div>
 								<div class="col-xs-3">
-									Hora de termino de Audiencia:
+									Hora de término de Audiencia:
 								</div>
 								<div class="col-xs-3 text-center borde-bottom" style="min-height: 25px;">
 									<strong>**********</strong>
@@ -162,7 +166,7 @@
 								<div class="col-xs-4 text-center text-uppercase">
 									<strong>
 										<p>Responsable</p>
-										<br/>
+										<span t-field="recepcion.responsable"/>
 										<div class="borde-bottom"></div>
 										<center>
 											<div style="width:90%;">
@@ -177,7 +181,7 @@
 								<div class="col-xs-4 text-center text-uppercase">
 									<strong>
 										<p>Agente ministerial</p>
-										<span t-field="recepcion.autoridad_que_realiza_id" />
+										<span t-field="recepcion.autoridad_que_realiza_id"/>
 										<div class="borde-bottom"></div>
 										<center>
 											<div style="width:90%;">

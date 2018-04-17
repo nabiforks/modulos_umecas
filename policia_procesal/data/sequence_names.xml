@@ -13,12 +13,23 @@
         </record>
 
 		<!--*************************-->
-		<!--*      CUSTODIA 		*-->
-		<!--*************************-->
+        <!--*      CUSTODIA         *-->
+        <!--*************************-->
         <record id="seq_names_custodias" model="ir.sequence">
             <field name="name">Names_automatics_custodias</field>
             <field name="code">pp.custodia</field>
             <field name="prefix">C</field>
+            <field name="padding">5</field>
+            <field eval="1" name="number_increment"/>
+        </record>
+
+        <!--*************************-->
+		<!--*      AUDIENCIA 		*-->
+		<!--*************************-->
+        <record id="seq_names_audiencias" model="ir.sequence">
+            <field name="name">Names_automatics_audiencias</field>
+            <field name="code">pp.audiencia</field>
+            <field name="prefix">AUD</field>
             <field name="padding">5</field>
             <field eval="1" name="number_increment"/>
         </record>

@@ -5,7 +5,7 @@ from odoo import api, fields, models
 class Recepcion(models.Model):
     _name = 'pp.recepcion'
 
-    consecutivo = fields.Char(
+    name = fields.Char(
         'Recepción',
         required=True,
         readonly=True,
@@ -63,10 +63,10 @@ class Recepcion(models.Model):
     )
     
     #==========RELATED==========
-    name = fields.Char(
-    	related='partner_id.display_name',
-        string='Nombre del imputado/detenido',
-    )
+    #name = fields.Char(
+    #	related='partner_id.display_name',
+    #    string='Nombre del imputado/detenido',
+    #)
     placas = fields.Char(
         related='vehiculo_id.placas',
         string='Placas',
@@ -104,7 +104,7 @@ class Recepcion(models.Model):
     )
     no_cedula =  fields.Char(
         related='medico_id.cedula', 
-        string="Número de cedula",
+        string="Número de cédula",
         readonly=True
     )
 
@@ -114,11 +114,27 @@ class Recepcion(models.Model):
         string='Nombre',
     )
 
+    #==========Datos para reporte==========
+    responsable = fields.Char(
+        string='Nombre de responsable de la custodia',
+    )
+    seccion = fields.Char(
+        string='Sección',
+        default='11S',
+    )
+    serie = fields.Char(
+        string='Serie',
+        default='11S.3',
+    )
+    sub_serie = fields.Char(
+        string='Subserie',
+    )
+
     #==========METHODS==========
     @api.model
     def create(self, vals):
-        if vals.get('consecutivo', 'Nuevo') == 'Nuevo':
-            vals['consecutivo'] = self.env['ir.sequence'].next_by_code(
+        if vals.get('name', 'Nuevo') == 'Nuevo':
+            vals['name'] = self.env['ir.sequence'].next_by_code(
                 'pp.recepcion') or 'Nuevo'
         result = super(Recepcion, self).create(vals)
         return result
@@ -127,4 +143,4 @@ class Recepcion(models.Model):
     def compute_custodia_count(self):
         for partner in self:
             partner.custodias = self.env['pp.custodia'].search_count(
-                [('partner_id', '=', partner.partner_id.id)])
+                [('recepcion_id', '=', partner.id)])

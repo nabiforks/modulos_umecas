@@ -30,7 +30,7 @@ class ControlAudiencia(models.Model):
         string='Hora de inico',
     )
     hora_termino = fields.Float(
-        string='Hora de termino',
+        string='Hora de término',
     )
     resolucion = fields.Text(
         string='Resolución de la audiencia',
@@ -60,6 +60,11 @@ class ControlAudiencia(models.Model):
         string='Imputado',
         required=True,
         default=lambda self: self.env.context.get('partner_id'),
+        ondelete='set null',
+    )
+    audiencia_id = fields.Many2one(
+        'pp.audiencia',
+        string='Audiencia',
         ondelete='set null',
     )
     juez_id = fields.Many2one(
@@ -107,6 +112,18 @@ class ControlAudiencia(models.Model):
         string='Cargo',
         readonly=True, 
     )
+    #==========Datos para reporte==========
+    seccion = fields.Char(
+        string='Sección',
+        default='11S',
+    )
+    serie = fields.Char(
+        string='Serie',
+        default='11S.3',
+    )
+    sub_serie = fields.Char(
+        string='Subserie',
+    )
 
     #==========METHODS=========
     @api.multi
@@ -115,8 +132,3 @@ class ControlAudiencia(models.Model):
         for record in self:
             if record.juez_titulo and record.juez_nombre:
                 record.juez_concat = record.juez_titulo +', '+record.juez_nombre
-
-    @api.multi
-    def methot_date(self):
-        print "************************************Ejecutando metodo DATE*****************"
-        print "************************************Ejecutando metodo DATE*****************"

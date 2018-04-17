@@ -8,7 +8,17 @@
 				<form>
 					<sheet>
 						<div class="oe_button_box" name="button_box">
-							<button name="policia_procesal.audiencia_action_list" type="action" class="oe_stat_button" icon="fa-gavel" context="{'search_default_partner_id':partner_id,'default_custodia_id': active_id,'default_delito_ids': delito_ids,'default_causa_penal': causa_penal}">
+							<button 
+								name="policia_procesal.audiencia_action_list" 
+								type="action" 
+								class="oe_stat_button" 
+								icon="fa-gavel" 
+								context="{
+									'search_default_custodia_id': active_id,
+									'default_partner_id':partner_id,
+									'default_delito_ids': delito_ids,
+									'default_causa_penal': causa_penal
+								}">
 								<field string="Audiencias" name="audiencias" widget="statinfo"/>
 							</button>
 						</div>
@@ -24,6 +34,7 @@
 							<group style="margin:0;">
 								<field name="causa_penal"/>
 								<field name="delito_ids" widget="many2many_tags" invisible="1"/>
+								<field name="recepcion_id" invisible="1"/>
 							</group>
 						</group>
 
@@ -73,13 +84,37 @@
 						<br/>
 						<div class="row">
 							<div class="col-xs-7">
-								<label string="Conducta del imputado durante su estancia o incidencia oncurrida"/>
+								<label string="Conducta del imputado durante su estancia o incidencia ocurrida"/>
 								<field name="conducta"/>
 							</div>
 							<div class="col-xs-5">
 								<group style="margin:0;">
 									<field name="fecha_hora_egreso"/>
 								</group>
+							</div>
+						</div>
+						<br/>
+						<br/>
+						<div class="row">
+							<div class="col-xs-4">
+								<p>Datos del reporte</p>
+								<table class="table table-bordered text-center">
+                                    <tbody>
+                                        <tr>
+                                            <th colspan="4"><center>Clasificación archivista</center></th>
+                                        </tr>
+                                        <tr>
+                                            <td>Sección</td>
+                                            <td>Serie</td>
+                                            <td>Subserie</td>
+                                        </tr>
+                                        <tr>
+                                            <td><field name="seccion"/></td>
+                                            <td><field name="serie"/></td>
+                                            <td><field name="sub_serie"/></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
 							</div>
 						</div>
 					</sheet>
@@ -110,6 +145,11 @@
 		    <field name="arch" type="xml">
 		        <search>
 		        	<field name="partner_id"/>
+		        	<field name="recepcion_id"/>
+		        	<field name='causa_penal'/>
+					<field name='fecha_hora_registro'/>
+					<field name='fecha_hora_egreso'/>
+					<field name='numero_estancia'/>
 		        </search>
 		    </field>
 		</record>
@@ -119,7 +159,10 @@
 			<field name="name">Custodia</field>
 			<field name="res_model">pp.custodia</field>
 			<field name="view_type">form</field>
-			<field name="view_mode">tree,form</field>
+			<field name="view_mode">tree,graph,form</field>
+			<field name="help" type="html">
+	            <p class="oe_view_nocontent_create">Agregar primer registro</p>
+	        </field>
 		</record>
 
 
