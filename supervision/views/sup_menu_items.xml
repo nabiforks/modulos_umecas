@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data >
+        <menuitem id="sup_menu_principal" name="Supervisión" web_icon="supervision,static/description/icon.png" />
+        <menuitem id="sup_imputados" sequence="10" name="Imputados" parent="sup_menu_principal" action="UMECAS.umc_list_action"/>
+        <menuitem id="sup_expedientes" sequence="11" name="Expedientes" parent="sup_menu_principal" action="UMECAS.umc_expedientes_list_action"/>
+        <menuitem id="sup_configuracion" sequence="15" name="Configuracion" parent="sup_menu_principal"/>
+    </data>
+</odoo>

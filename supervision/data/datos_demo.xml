@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data >
+        
+        <!--record id="umc_escalas_demo" model="umc_escalas">
+            <field name="x_name">Escalas 1</field>
+            <field name="x_bajo">4</field>
+            <field name="x_alto">-7</field>
+        </record-->
+        
+    </data>
+</odoo>
