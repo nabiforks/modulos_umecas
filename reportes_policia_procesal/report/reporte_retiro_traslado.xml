@@ -9,6 +9,9 @@
 			file="reportes_policia_procesal.retiro_traslado_pp_report"
 			report_type="qweb-pdf"			
 		/>
+		<record id="reportes_policia_procesal.retiro_traslado_pp_report" model="ir.actions.report.xml">
+            <field name="paperformat_id" ref="reportes_policia_procesal.rpt_policia_procesal" />
+        </record>
 		<template id="retiro_traslado">
 			<t t-call="report.html_container">
 				<t t-foreach="docs" t-as="traslado">
