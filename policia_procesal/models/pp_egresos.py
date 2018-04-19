@@ -91,6 +91,9 @@ class Egreso(models.Model):
         readonly=True
     )
     #==========Datos para reporte==========
+    responsable = fields.Char(
+        string='Nombre de responsable de la custodia',
+    )
     seccion = fields.Char(
         string='Sección',
         default='11S',

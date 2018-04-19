@@ -111,7 +111,7 @@
 																DÍA
 															</div>
 															<strong style="padding:5;">
-																xxxxxx
+																
 															</strong>
 														</div>
 														<div class="col-xs-6" style="padding-left:0;">
@@ -140,7 +140,7 @@
 																HORA
 															</div>
 															<strong style="padding:5;">
-																<span t-field="control.fecha_hora" t-options="{format:'HH:mm'}"/> 
+																<span t-field="control.fecha_hora" t-options="{&quot;format&quot;: &quot;HH:mm &quot;}"/>
 															</strong>
 														</div>
 													</div>
