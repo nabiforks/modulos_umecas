@@ -22,9 +22,16 @@
                     </div>
                     <group>
                         <group>
-                            <field name="x_evaluador_id"  attrs="{'readonly': [('state','not in',('solicitud'))]}" options="{'no_create': True, 'no_open': True}"/>
+                            <field name="x_evaluador_id" attrs="{'readonly': [('state','not in',('solicitud'))]}" options="{'no_create': True, 'no_open': True}"/>
                             <field name="x_tipo_entrevista" widget="radio" options="{'horizontal': true}"/>
                             <field name="folio_evalucion"/>
+                            <field name="x_fecha_inicio" />
+                            <field name="x_fecha_final" />
+                            <label for="1234"></label>
+                            <div id="1234">
+                                <button name="calcular_tiempo" type="object" string="Calcular tiempo" class="oe_highlight" attrs="{ 'invisible':[('state','in','evaluacion_terminada')] }" />
+                            </div>
+                            <field name="x_tiempo_transcurrido" widget="float_time" />
                         </group>
                         <group>
                             <field name="x_imputado_name"/>
@@ -60,7 +67,7 @@
                                 <group>
                                     <field name="x_escalas_ids">
                                         <tree string="Escala de valores" create="0" delete="0" edit="1" editable="top">
-                                            <field name="seccion" options="{'no_create': True, 'no_open': True}"/>
+                                            <field name="seccion" readonly="1" options="{'no_create': True, 'no_open': True}"/>
                                             <field name="valor_ids" options="{'no_create': True, 'no_open': True}" domain="[('seccion_id', '=', seccion)]"/>
                                             <field name="num_valor"/>
                                         </tree>
@@ -206,23 +213,30 @@
                                         <table class="table table-bordered text-center">
                                             <tbody>
                                                 <tr>
-                                                    <th><center>Elaboró</center></th>
+                                                    <th>
+                                                        <center>Elaboró</center>
+                                                    </th>
                                                 </tr>
                                                 <tr>
-                                                    <td><field name="x_nombre_elav"/></td>
+                                                    <td>
+                                                        <field name="x_nombre_elav"/>
+                                                    </td>
                                                 </tr>
                                                 <tr>
-                                                    <td><field name="x_puesto_elav"/></td>
+                                                    <td>
+                                                        <field name="x_puesto_elav"/>
+                                                    </td>
                                                 </tr>
                                             </tbody>
                                         </table>
                                     </div>
-                                    
                                     <div class="col-xs-6">
                                         <table class="table table-bordered text-center">
                                             <tbody>
                                                 <tr>
-                                                    <th colspan="4"><center>Clasificación archivista</center></th>
+                                                    <th colspan="4">
+                                                        <center>Clasificación archivista</center>
+                                                    </th>
                                                 </tr>
                                                 <tr>
                                                     <td>Sección</td>
@@ -230,15 +244,20 @@
                                                     <td>Subserie</td>
                                                 </tr>
                                                 <tr>
-                                                    <td><field name="x_seccion"/></td>
-                                                    <td><field name="x_serie"/></td>
-                                                    <td><field name="x_sub_serie"/></td>
+                                                    <td>
+                                                        <field name="x_seccion"/>
+                                                    </td>
+                                                    <td>
+                                                        <field name="x_serie"/>
+                                                    </td>
+                                                    <td>
+                                                        <field name="x_sub_serie"/>
+                                                    </td>
                                                 </tr>
                                             </tbody>
                                         </table>
                                     </div>
                                 </div>
-
                             </page>
                         </notebook>
                     </group>
@@ -258,6 +277,7 @@
                 <field name="partner_id" invisible="1"/>
                 <field name="folio_evalucion"/>
                 <field name="x_evaluador_id"/>
+                <field name="x_tiempo_transcurrido" widget="float_time" />
                 <field name="x_expediente_id"/>
                 <field name="state"/>
             </tree>
@@ -274,7 +294,22 @@
                 <field name="x_imputado_name"/>
                 <field name="x_tipo_entrevista"/>
                 <field name="state"/>
+                <group string="Group By">
+                    <filter name="group_by_state" string="Estatus" context="{'group_by':'state'} "/>
+                </group>
             </search>
+        </field>
+    </record>
+    <!--  graph view /////////////////////////////////////////////////////-->
+    <record model="ir.ui.view" id="umc_solicitudes_graph_view">
+        <field name="name">solicitudess.graph.view</field>
+        <field name="model">umc_evaluacion</field>
+        <field name="arch" type="xml">
+            <graph string="Solicitudes">
+                <field name="state" type="row" />
+                <field name="x_tiempo_transcurrido" type="measure" />
+                <!--field name="x_imputado" type="measure" /-->
+            </graph>
         </field>
     </record>
     <!-- window action ///////////////////////////////////////////////////////////////////////////////-->
@@ -282,7 +317,7 @@
         <field name="name">Solicitud</field>
         <field name="res_model">umc_evaluacion</field>
         <field name="view_type">form</field>
-        <field name="view_mode">tree,kanban,form</field>
+        <field name="view_mode">tree,kanban,form,graph</field>
         <!--field name="context" eval="{'search_default_customer': 1}"/-->
         <field name="help" type="html">
             <p class="oe_view_nocontent_create">Agregar primer registro</p>

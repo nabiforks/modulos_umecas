@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-
+from datetime import timedelta, datetime,date
 from odoo import api, fields, models
 
 
@@ -14,12 +14,12 @@ class Entrevistas(models.Model):
         comodel_name='umc_lugares',
         ondelete='restrict',
     )
+    x_cdi = fields.Char(
+        string=u'CDI',
+    )
     x_causa_penal = fields.Char(
-        string=u'CDI/Causa Penal',
-    )
-    x_fecha_entrevista = fields.Date(
-        string=u'Fecha y hora',
-    )
+        string=u'Causa Penal',
+    )    
     x_fecha_entrevista = fields.Date(
         string=u'Fecha',
         default=fields.Date.context_today,
@@ -85,11 +85,16 @@ class Entrevistas(models.Model):
         colonia=''
         municipio=''
         estado=''
+        empleo=''
+        salario=''
         if self.x_domicilio_actual:
             calle = self.x_domicilio_actual[0].x_calle
             colonia = self.x_domicilio_actual[0].x_colonia
             municipio = self.x_domicilio_actual[0].x_municipio
             estado = self.x_domicilio_actual[0].x_estado_id.id
+        if self.x_empleos_ids:
+            empleo = self.x_empleos_ids[0].x_name.id
+            salario = str(self.x_empleos_ids[0].x_salario)+" "+str(self.x_empleos_ids[0].x_moneda)
         datos = {
             'name': self.x_nombre_entrevistado,
             'ap_paterno': self.x_apellido_pat,
@@ -98,15 +103,21 @@ class Entrevistas(models.Model):
             'x_imputado_tipo': self.x_tipo,
             'x_apodo': self.x_apodo,
             'fecha_nacimiento': self.x_fecha_nacimiento,
-            'x_nacionalidad': self.x_nacionalidad,
+            'x_nacionalidad': self.x_nacionalidad.id,
             'street': calle,
             'street2':colonia,
             'city':municipio,
-            'state_id':estado
+            'state_id':estado,
+            'phone': self.x_telefono,
+            'mobile': self.x_telefono_otro,
+            'x_estado_civil': self.x_estado_civil,
+            'x_ocupacion':empleo,
+            
+            'x_ingreso_economico':salario
+
         }
         partner.write(datos)
-        print "////////////////////////partner", partner
-        #self.env['ucm.escalavalores.evaluacion'].create({'seccion': seccion, 'x_evaluacion_id': self.id})
+        
 
     #///////////////////////////////////////Campos de las entrevistas////////////////
     #///////////////////////////////////////Campos de las entrevistas////////////////
@@ -140,8 +151,9 @@ class Entrevistas(models.Model):
         # related='x_evaluacion_id.partner_id.fecha_nacimiento',
     )
     x_edad = fields.Integer(
-        string=u'Edad',
-        # related='x_evaluacion_id.partner_id.edad',
+        string=u'Edad',        
+        readonly=True,         
+        compute='calcular_edad'               
     )
     x_sexo = fields.Selection(
         string=u'Sexo',
@@ -193,7 +205,24 @@ class Entrevistas(models.Model):
     x_telefono_otro = fields.Char(
         string=u'Teléfono Otros',
     )
-
+    
+    x_fecha_today = fields.Date(
+        string=u'Fecha actual',
+    )
+    
+    @api.depends('x_fecha_nacimiento','x_fecha_today')
+    def calcular_edad(self):
+        self.x_fecha_today = date.today()
+        print "////////////////////////////",self.x_fecha_today
+        if self.x_fecha_nacimiento:
+            start_date = fields.Datetime.from_string(self.x_fecha_nacimiento)
+            end_date = fields.Datetime.from_string(self.x_fecha_today)
+            dias = int((end_date - start_date).days)
+            bisiesto = (dias/365)/4
+            anios =(dias+bisiesto)/365
+            self.x_edad=anios
+            
+            
     #///////////////////////// II.-Domicilio/////////////////
 
     x_ubicacion_intramuros = fields.Many2one(

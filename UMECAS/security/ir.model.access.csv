@@ -104,3 +104,4 @@ umecas_delitos_proceso_evaluador,UMC delitos_proceso_evaluador,UMECAS.model_umc_
 umecas_autoridad_evaluador,UMC autoridad_evaluador,UMECAS.model_umc_autoridad,UMECAS.umc_evaluador,1,1,1,0
 umecas_lugares_evaluador,UMC lugares_evaluador,UMECAS.model_umc_lugares,UMECAS.umc_evaluador,1,1,1,0
 umecas_detenidos_con_evaluador,UMC detenidos_con_evaluador,UMECAS.model_umc_detenidos_con,UMECAS.umc_evaluador,1,1,1,0
+umecas_tipo_vivienda_evaluador,UMC tipo vivienda_evaluador,UMECAS.model_umc_tipo_vivienda,UMECAS.umc_evaluador,1,1,1,0

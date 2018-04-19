@@ -41,11 +41,11 @@
                 <field name="x_estado_civil" />
                 <field name="x_ocupacion" />
                 <field name="x_identificacion" />
-                <field name="x_ingreso_economico" widget="monetary" />
+                <field name="x_ingreso_economico"  />
             </xpath>
             <xpath expr="//field[@name='type']" position="after">
                 <field name="x_apodo" />
-                <field name="x_imputado" invisible="1" />
+                
                 <field name="x_sexo" />
                 <field name="x_imputado_tipo" attrs="{'invisible': [('x_imputado','=',False)]}"/>
                 <field name="x_nacionalidad" />
@@ -55,7 +55,10 @@
                 <field name="fecha_nacimiento" string="Fecha de nacimiento" />
                 <field name="edad" string="Edad" />
             </xpath>
-            <!--xpath expr="//notebook" position="inside"><page string="Croquis de localización" name="partner_geo_map"><group><group ><field name="google_map_partner_test" widget="map" nolabel="1"/></group><group ></group></group></page></xpath-->
+            <xpath expr="//field[@name='image']" position="before">
+                <field name="x_imputado"  />
+            </xpath>
+            
         </field>
     </record>
     <!--search view ///////////////////////////// -->
