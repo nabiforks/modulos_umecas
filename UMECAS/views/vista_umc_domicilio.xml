@@ -126,10 +126,10 @@
             </field>
         </record>
         
-        <!--- //////////////////////////UBICACION INTRAMURIS/////////////-->
-        <!--- //////////////////////////UBICACION INTRAMURIS/////////////-->
-        <!--- //////////////////////////UBICACION INTRAMURIS/////////////-->
-        <!--- //////////////////////////UBICACION INTRAMURIS/////////////-->
+        <!--- //////////////////////////UBICACION INTRAMUROS/////////////-->
+        <!--- //////////////////////////UBICACION INTRAMUROS/////////////-->
+        <!--- //////////////////////////UBICACION INTRAMUROS/////////////-->
+        <!--- //////////////////////////UBICACION INTRAMUROS/////////////-->
         <record model="ir.ui.view" id="umc_ubicacion_form_view">
             <field name="name">ubicacion.form.view</field>
             <field name="model">umc_ubicacion_intramuros</field>
