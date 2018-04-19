@@ -121,9 +121,14 @@
 								</group>
 								<br/>
 								<br/>
+								<p>Datos del reporte</p>
 								<div class="row">
-									<div class="col-xs-4">
-										<p>Datos del reporte</p>
+									<div class="col-xs-6">
+										<group>
+											<field name="responsable"/>
+										</group>
+									</div>
+									<div class="col-xs-6">
 										<table class="table table-bordered text-center">
 		                                    <tbody>
 		                                        <tr>
@@ -179,6 +184,18 @@
 					<field name='fecha_hora'/>
 					<field name='autoridad_que_solicita_id'/>
 		        </search>
+		    </field>
+		</record>
+
+		<!--Graph view-->
+		<record model="ir.ui.view" id="egreso_graph">
+		   <field name="name">pp.egreso.graph</field>
+		   <field name="model">pp.egreso</field>
+		   <field name="type">graph</field>
+		   <field name="arch" type="xml">
+		        <graph>
+					<field name='fecha_hora' type="row"/>
+		        </graph>
 		    </field>
 		</record>
 

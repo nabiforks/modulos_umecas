@@ -29,3 +29,4 @@ access_responsable_pp,pp responsable,policia_procesal.model_pp_responsable,polic
 access_responsable_all,pp responsable all,policia_procesal.model_pp_responsable,,1,0,0,0
 access_jefe_pp_pp,pp jefe_pp,policia_procesal.model_pp_jefe_pp,policia_procesal.pp_admin,1,1,1,1
 access_jefe_pp_all,pp jefe_pp all,policia_procesal.model_pp_jefe_pp,,1,0,0,0
+access_delitos_pp,pp umec_delito,UMECAS.model_umc_delitos,pp_admin,1,1,1,0

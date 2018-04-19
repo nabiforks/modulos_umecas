@@ -9,6 +9,9 @@
 			file="reportes_policia_procesal.control_audiencia_pp_report"
 			report_type="qweb-pdf"			
 		/>
+		<record id="reportes_policia_procesal.control_audiencia_pp_report" model="ir.actions.report.xml">
+            <field name="paperformat_id" ref="reportes_policia_procesal.rpt_policia_procesal" />
+        </record>
 		<template id="control_audiencia">
 			<t t-call="report.html_container">
 				<t t-foreach="docs" t-as="control">
@@ -111,7 +114,7 @@
 																DÍA
 															</div>
 															<strong style="padding:5;">
-																xxxxxx
+																
 															</strong>
 														</div>
 														<div class="col-xs-6" style="padding-left:0;">
@@ -140,7 +143,7 @@
 																HORA
 															</div>
 															<strong style="padding:5;">
-																<span t-field="control.fecha_hora" t-options="{format:'HH:mm'}"/> 
+																<span t-field="control.fecha_hora" t-options="{&quot;format&quot;: &quot;HH:mm &quot;}"/>
 															</strong>
 														</div>
 													</div>

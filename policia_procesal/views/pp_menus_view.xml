@@ -3,7 +3,7 @@
 	<data>
 		<!--Aqui se cargar todos los menus-->
 		<!--Crear menus-->
-		<menuitem id="main_pp_menu" name="Policía procesal"/>
+		<menuitem id="main_pp_menu" name="Policía procesal" web_icon="policia_procesal,static/description/icon.png"/>
 
 		<!--=================Recepcion================-->
 		<menuitem id="recepcion_menu" name="Recepción" parent="main_pp_menu" action="recepcion_view_action" sequence="1"/>

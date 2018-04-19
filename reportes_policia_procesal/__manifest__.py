@@ -16,6 +16,7 @@
     'depends': ['base','policia_procesal'],
 
     'data': [
+        'data/report_format.xml',
         'report/reporte_recepcion.xml',
         'report/reporte_traslado.xml',
         'report/reporte_lectura_derechos.xml',

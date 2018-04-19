@@ -18,7 +18,7 @@
     'version': '0.1',
 
     # any module necessary for this one to work correctly
-    'depends': ['hr','UMECAS','base'],
+    'depends': ['UMECAS','base'],
 
     # always loaded
     'data': [

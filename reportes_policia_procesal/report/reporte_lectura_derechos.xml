@@ -9,6 +9,10 @@
 			file="reportes_policia_procesal.lectura_derechos_pp_report"
 			report_type="qweb-pdf"			
 			/>
+		<record id="reportes_policia_procesal.lectura_derechos_pp_report" model="ir.actions.report.xml">
+            <field name="paperformat_id" ref="reportes_policia_procesal.rpt_policia_procesal" />
+        </record>
+        
 		<template id="reporte_lectura_de_derechos">
 			<t t-call="report.html_container">
 				<t t-foreach="docs" t-as="custodia">
