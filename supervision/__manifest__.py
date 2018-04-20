@@ -18,6 +18,8 @@
         'data/sequence_names.xml',
         'views/sup_mc_scp.xml',
         'views/sup_expedientes_inherit.xml',
+        'data/datos_demo.xml',
+        'views/sup_catalogos.xml',
     ],
     'intallable': True,
     'auto_install': False,
