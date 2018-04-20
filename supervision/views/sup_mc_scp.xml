@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <!--  session form view /////////////////////////////////////////////////////-->
+    <record model="ir.ui.view" id="sup_mc_scp_form_view">
+        <field name="name">sup_mc_scp.form.view</field>
+        <field name="model">sup_mc_scp</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <!--field name="state" widget="statusbar" /-->
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box"></div>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="x_name" />
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="x_resolucion" widget="radio" options="{'horizontal': true}" />
+                            <field name="x_numero_oficio" />
+                            <field name="x_inicia" />
+                            <field name="x_finaliza" />
+                            <field name="x_tiempo" />
+                        </group>
+                        <group>
+                            <field name="x_foja" />
+                            <field name="x_libro" />
+                            <field name="x_imputado_id"/>
+                            <field name="x_expediente_id"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Medidas Cautelares"></page>
+                        <page string="SCP"></page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <!--  tree view /////////////////////////////////////////////////////-->
+    <record model="ir.ui.view" id="sup_mc_scp_tree_view">
+        <field name="name">sup_mc_scp.tree.view</field>
+        <field name="model">sup_mc_scp</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="x_name" />
+                <field name="x_imputado_id"/>
+                <field name="x_expediente_id"/>
+            </tree>
+        </field>
+    </record>
+    <!--  graph view /////////////////////////////////////////////////////-->
+    <record model="ir.ui.view" id="sup_mc_scp_graph_view">
+        <field name="name">sup_mc_scp.graph.view</field>
+        <field name="model">sup_mc_scp</field>
+        <field name="arch" type="xml">
+            <graph string="Registros">
+                <field name="x_inicia" type="row" />
+            </graph>
+        </field>
+    </record>
+    <!--Agrgar filtros de busqueda -->
+    <record model="ir.ui.view" id="sup_mc_scp_search_view">
+        <field name="name">sup_mc_scp.search.view</field>
+        <field name="model">sup_mc_scp</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="x_name" />
+                <field name="x_imputado_id"/>
+                <field name="x_expediente_id"/>
+            </search>
+        </field>
+    </record>
+    <!-- window action ///////////////////////////////////////////////////////////////////////////////-->
+    <record model="ir.actions.act_window" id="sup_mc_scp_list_action">
+        <field name="name">Registros</field>
+        <field name="res_model">sup_mc_scp</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,graph,kanban,form</field>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">Agregar primer registro</p>
+        </field>
+    </record>
+    <menuitem id="sup_mc_scpexpedientes_menu" sequence="12" name="Registros" parent="sup_menu_principal" action="sup_mc_scp_list_action" />
+</odoo>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <record id="add_smart_button_expedientes" model="ir.ui.view">
+            <field name="name">expedientes_inherited_button</field>
+            <field name="model">umc_expedientes</field>
+            <field name="inherit_id" ref="UMECAS.umc_expediente_form_view"></field>
+            <field name="arch" type="xml">
+                <xpath expr="//div[@name='button_box']" position="inside">
+                    <button class="oe_stat_button" name="supervision.sup_mc_scp_list_action" icon="fa-gavel" type="action" context="{'search_default_x_expediente_id': active_id}">
+                        <field string="MC / SCP" name="x_registros" widget="statinfo"/>
+                    </button>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>
