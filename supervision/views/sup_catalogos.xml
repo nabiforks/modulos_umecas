@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+	<data>
+		<!--*************************************-->
+		<!--*  CATALOGO DE MEDIDAS CAUTELARES   *-->
+		<!--*************************************-->
+		<record model="ir.ui.view" id="catalogo_mc_form_view">
+			<field name="name">sup_mc.form</field>
+			<field name="model">sup_mc</field>
+			<field name="arch" type="xml">
+				<form>
+					<sheet>
+						<group>
+							<field name="codigo"/>
+							<field name="name"/>
+						</group>
+					</sheet>
+				</form>
+			</field>
+		</record>
+
+		<!--Tree view-->
+		<record model='ir.ui.view' id='catalogo_mc_tree'>
+			<field name='name'>sup_mc.tree</field>
+			<field name='model'>sup_mc</field>
+			<field name='arch' type='xml'>
+				<tree>
+					<field name='codigo'/>
+					<field name='name'/>
+				</tree>
+			</field>
+		</record>
+
+		<!--Action-->
+		<record id="catalogo_mc_action" model="ir.actions.act_window">
+			<field name="name">Medidas Cautelares</field>
+			<field name="res_model">sup_mc</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+		</record>
+		<menuitem id="sup_catalogo_mc_menu" name="Medidas Cautelares" parent="sup_configuracion" action="catalogo_mc_action"/>
+
+
+
+		<!--**************************************************-->
+		<!--* CATALOGO DE SUSPENCION CONDICIONAL DEL PROCESO *-->
+		<!--**************************************************-->
+		<record model="ir.ui.view" id="catalogo_scp_form_view">
+			<field name="name">sup_scp.form</field>
+			<field name="model">sup_scp</field>
+			<field name="arch" type="xml">
+				<form>
+					<sheet>
+						<group>
+							<field name="codigo"/>
+							<field name="name"/>
+						</group>
+					</sheet>
+				</form>
+			</field>
+		</record>
+
+		<!--Tree view-->
+		<record model='ir.ui.view' id='catalogo_scp_tree'>
+			<field name='name'>sup_scp.tree</field>
+			<field name='model'>sup_scp</field>
+			<field name='arch' type='xml'>
+				<tree>
+					<field name='codigo'/>
+					<field name='name'/>
+				</tree>
+			</field>
+		</record>
+
+		<!--Action-->
+		<record id="catalogo_scp_action" model="ir.actions.act_window">
+			<field name="name">Suspensión Condicional del Proceso</field>
+			<field name="res_model">sup_scp</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+		</record>
+		<menuitem id="sup_catalogo_scp_menu" name="SCP" parent="sup_configuracion" action="catalogo_scp_action"/>
+	</data>
+</odoo>

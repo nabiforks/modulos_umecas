@@ -1,12 +1,125 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
     <data >
-        
-        <!--record id="umc_escalas_demo" model="umc_escalas">
-            <field name="x_name">Escalas 1</field>
-            <field name="x_bajo">4</field>
-            <field name="x_alto">-7</field>
-        </record-->
-        
+        <!--*************************************-->
+		<!--*        Medidas cautelares         *-->
+		<!--*************************************-->
+        <record id="sup_catalogo_mc_1" model="sup_mc">
+            <field name="codigo">155-I</field>
+            <field name="name">I. La presentación periódica ante el juez o ante autoridad distinta que aquél designe</field>
+        </record>
+        <record id="sup_catalogo_mc_2" model="sup_mc">
+            <field name="codigo">155-II</field>
+            <field name="name">II. La exhibición de una garantía económica</field>
+        </record>
+        <record id="sup_catalogo_mc_3" model="sup_mc">
+            <field name="codigo">155-III</field>
+            <field name="name">III. El embargo de bienes</field>
+        </record>
+        <record id="sup_catalogo_mc_4" model="sup_mc">
+            <field name="codigo">155-IV</field>
+            <field name="name">IV. La inmovilización de cuentas y demás valores que se encuentren dentro del sistema financiero</field>
+        </record>
+        <record id="sup_catalogo_mc_5" model="sup_mc">
+            <field name="codigo">155-V</field>
+            <field name="name">V. La prohibición de salir sin autorización del país, de la localidad en la cual reside o del ámbito territorial que fije el juez</field>
+        </record>
+        <record id="sup_catalogo_mc_6" model="sup_mc">
+            <field name="codigo">155-VI</field>
+            <field name="name">VI. El sometimiento al cuidado o vigilancia de una persona o institución determinada o internamiento a institución determinada</field>
+        </record>
+        <record id="sup_catalogo_mc_7" model="sup_mc">
+            <field name="codigo">155-VII</field>
+            <field name="name">VII. La prohibición de concurrir a determinadas reuniones o acercarse o ciertos lugares</field>
+        </record>
+        <record id="sup_catalogo_mc_8" model="sup_mc">
+            <field name="codigo">155-VIII</field>
+            <field name="name">VIII. La prohibición de convivir, acercarse o comunicarse con determinadas personas, con las víctimas u ofendidos o testigos, siempre que no se afecte el derecho de defensa</field>
+        </record>
+        <record id="sup_catalogo_mc_9" model="sup_mc">
+            <field name="codigo">155-IX</field>
+            <field name="name">IX. La separación inmediata del domicilio</field>
+        </record>
+        <record id="sup_catalogo_mc_10" model="sup_mc">
+            <field name="codigo">155-X</field>
+            <field name="name">X. La suspensión temporal en el ejercicio del cargo cuando se le atribuye un delito cometido por servidores públicos</field>
+        </record>
+        <record id="sup_catalogo_mc_11" model="sup_mc">
+            <field name="codigo">155-XI</field>
+            <field name="name">XI. La suspensión temporal en el ejercicio de una determinada actividad profesional o laboral</field>
+        </record>
+        <record id="sup_catalogo_mc_12" model="sup_mc">
+            <field name="codigo">155-XII</field>
+            <field name="name">XII. La colocación de localizadores electrónicos</field>
+        </record>
+        <record id="sup_catalogo_mc_13" model="sup_mc">
+            <field name="codigo">155-XIII</field>
+            <field name="name">XIII. El resguardo en su propio domicilio con las modalidades que el juez disponga</field>
+        </record>
+        <record id="sup_catalogo_mc_14" model="sup_mc">
+            <field name="codigo">155-XIV</field>
+            <field name="name">XIV. La prisión preventiva.</field>
+        </record>
+
+        <!--*************************************-->
+		<!--*Sustension condicional del proceso *-->
+		<!--*************************************-->
+        <record id="sup_catalogo_scp_1" model="sup_scp">
+            <field name="codigo">195-I</field>
+            <field name="name">I. Residir en un lugar determinado</field>
+        </record>
+        <record id="sup_catalogo_scp_2" model="sup_scp">
+            <field name="codigo">195-II</field>
+            <field name="name">II. Frecuentar o dejar de frecuentar determinados lugares o personas </field>
+        </record>
+        <record id="sup_catalogo_scp_3" model="sup_scp">
+            <field name="codigo">195-III</field>
+            <field name="name">III. Abstenerse de consumir drogas o estupefacientes o de abusar de las bebidas alcohólicas</field>
+        </record>
+        <record id="sup_catalogo_scp_4" model="sup_scp">
+            <field name="codigo">195-IV</field>
+            <field name="name">IV. Participar en programas especiales para la prevención y el tratamiento de adicciones</field>
+        </record>
+        <record id="sup_catalogo_scp_5" model="sup_scp">
+            <field name="codigo">195-V</field>
+            <field name="name">V. Aprender una profesión u oficio o seguir cursos de capacitación en el lugar o la institución que determine el Juez de control</field>
+        </record>
+        <record id="sup_catalogo_scp_6" model="sup_scp">
+            <field name="codigo">195-VI</field>
+            <field name="name">VI. Prestar servicio social a favor del Estado o de instituciones de beneficencia pública</field>
+        </record>
+        <record id="sup_catalogo_scp_7" model="sup_scp">
+            <field name="codigo">195-VII</field>
+            <field name="name">VII. Someterse a tratamiento médico o psicológico, de preferencia en instituciones públicas</field>
+        </record>
+        <record id="sup_catalogo_scp_8" model="sup_scp">
+            <field name="codigo">195-VIII</field>
+            <field name="name">VIII. Tener un trabajo o empleo, o adquirir, en el plazo que el Juez de control determine, un oficio arte, industria o profesión, si no tiene medios propios de subsistencia</field>
+        </record>
+        <record id="sup_catalogo_scp_9" model="sup_scp">
+            <field name="codigo">195-IX</field>
+            <field name="name">IX. Someterse a la vigilancia que determine el Juez de control</field>
+        </record>
+        <record id="sup_catalogo_scp_10" model="sup_scp">
+            <field name="codigo">195-X</field>
+            <field name="name">X. No poseer ni portar armas</field>
+        </record>
+        <record id="sup_catalogo_scp_11" model="sup_scp">
+            <field name="codigo">195-XI</field>
+            <field name="name">XI. No conducir vehículos</field>
+        </record>
+        <record id="sup_catalogo_scp_12" model="sup_scp">
+            <field name="codigo">195-XII</field>
+            <field name="name">XII. Abstenerse de viajar al extranjero</field>
+        </record>
+        <record id="sup_catalogo_scp_13" model="sup_scp">
+            <field name="codigo">195-XIII</field>
+            <field name="name">XIII. Cumplir con los deberes de deudor alimentario</field>
+        </record>
+        <record id="sup_catalogo_scp_14" model="sup_scp">
+            <field name="codigo">195-XIV</field>
+            <field name="name">XIV. Cualquier otra condición que, a juicio del Juez de control, logre una efectiva tutela de los derechos de la víctima</field>
+        </record>
+
     </data>
 </odoo>

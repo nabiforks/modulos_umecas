@@ -15,6 +15,8 @@
     'depends': ['base','mail','UMECAS'],
     'data': [
         'views/sup_menu_items.xml',
+        'data/datos_demo.xml',
+        'views/sup_catalogos.xml',
     ],
     'intallable': True,
     'auto_install': False,
