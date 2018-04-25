@@ -4,7 +4,14 @@
         <record id="seq_names_mc_scp" model="ir.sequence">
             <field name="name">Names_automatics_mc_scp</field>
             <field name="code">sup_mc_scp</field>
-            <field name="prefix">Reg</field>
+            <field name="prefix">SUP</field>
+            <field name="padding">5</field>
+            <field eval="1" name="number_increment"/>
+        </record>
+        <record id="seq_names_sup_entrevista_encuadre" model="ir.sequence">
+            <field name="name">Names_automatics_sup_entrevista_encuadre</field>
+            <field name="code">sup_entrevista_encuadre</field>
+            <field name="prefix">ENC</field>
             <field name="padding">5</field>
             <field eval="1" name="number_increment"/>
         </record>

@@ -7,6 +7,7 @@
         <field name="arch" type="xml">
             <form>
                 <header>
+                    <button name="regresar_borrador" type="object" string="Regresar a borrador" states="terminado"/>
                     <button name="entrevista_realizada" type="object" string="Entrevista Realizada" class="oe_highlight" states="borrador"/>
                     <field name="state" widget="statusbar" />
                 </header>

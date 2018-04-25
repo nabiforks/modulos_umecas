@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data >
+        <!--  form view /////////////////////////////////////////////////////-->
+        <record model="ir.ui.view" id="encuadre_form_view">
+            <field name="name">sup_entrevista_encuadre.form.view</field>
+            <field name="model">sup_entrevista_encuadre</field>
+            <field name="arch" type="xml">
+                <form>
+                    <header>
+                        <button name="regresar_borrador" type="object" string="Regresar a borrador" states="terminado"/>
+                        <button name="entrevista_realizada" type="object" string="Entrevista Terminada" class="oe_highlight" states="borrador"/>
+                        <field name="state" widget="statusbar"/>
+                    </header>
+                    <sheet>
+                        <div class="oe_button_box" name="button_box"></div>
+                        <div class="oe_title">
+                            <h1>
+                                <field name="x_name" />
+                            </h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="x_supervisor_id" />
+                                <field name="fecha_hora_inicio" />
+                                <field name="actividades_evaluacion" widget="radio"/>
+                                <field name="x_otra_actividad" attrs="{ 'invisible':[('actividades_evaluacion','not in','4')] }" />
+                            </group>
+                            <group>
+                                <field name="x_imputado_id" invisible="1" />
+                                <field name="x_imputado"/>
+                                <field name="x_orden_id" />
+                                <field name="x_resolucion" widget="radio" options="{'horizontal': true}" />
+                                <field name="x_numero_causa" />
+                            </group>
+                        </group>
+                        <group>
+                            <field name="x_delitos_id" widget="many2many_tags" />
+                            <field name="x_reclasificado" widget="radio" options="{'horizontal': True}" />
+                        </group>
+                        <notebook>
+                            <page string="Datos generales">
+                                <group>
+                                    <group>
+                                        <field name="x_apellido_pat" />
+                                        <field name="x_apellido_mat" />
+                                        <field name="x_nombre_entrevistado" />
+                                        <field name="x_lugar_nacimiento" placeholder='Localidad/Municipio/Estado'/>
+                                        <field name="x_fecha_nacimiento" />
+                                        <field name="x_edad"/>
+                                        <field name="x_sexo" widget="radio" options="{'horizontal': true}"/>
+                                    </group>
+                                    <group>
+                                        <field name="x_estado_civil" />
+                                        <field name="x_estado_civil_otro" attrs="{ 'invisible':[('x_estado_civil','not in','otro')] }" />
+                                        <field name="x_telefono" widget="phone"/>
+                                        <field name="x_celular" widget="phone"/>
+                                        <field name="x_telefono_otro" widget="phone"/>
+                                    </group>
+                                </group>
+                                <group>
+                                    <group>
+                                        <field name="x_domicilio_actual" />
+                                        <field name="x_enfermedades_ids" mode="tree">
+                                            <tree editable="bottom">
+                                                <field name="x_name" />
+                                                <field name="x_tiempo_padece" />
+                                                <field name="x_tiempo_unidad"/>
+                                                <field name="x_tratamiento" />
+                                            </tree>
+                                        </field>
+                                        <field name="x_discapacidad_padece" />
+                                        <field name="x_discapacidad_id" />
+                                    </group>
+                                    <group>
+                                        <field name="x_empleos_ids"/>
+                                    </group>
+                                </group>
+                            </page>
+                            <page string="Personas con las que vive">
+                                <label for="1234"/>
+                                <p class="text-muted" id="1234">
+                                    <h4> PERSONAS CON LAS QUE VIVE EL IMPUTADO (Corroborar que los datos proporcionados en la entrevista de evaluación so los más actualizados)</h4>
+                                    <field name="x_contacto_ids" mode="tree" context="{'default_parent_id': x_imputado}">
+                                        <tree editable="bottom">
+                                            <field name="x_nucleo" />
+                                            <field name="name" />
+                                            <field name="fecha_nacimiento" />
+                                            <field name="edad" widget="integer"/>
+                                            <field name="x_domicilio" />
+                                            <field name="x_parentesco" />
+                                            <field name="x_ocupacion" />
+                                            <field name="x_habita_domicilio" />
+                                            <field name="x_dependiente_economico" />
+                                            <field name="parent_id" invisible="1"/>
+                                        </tree>
+                                    </field>
+                                </p>
+                            </page>
+                            <page string="Referencias personales">
+                                <group>
+                                    <field name="x_amistades_ids" mode="tree"/>
+                                </group>
+                            </page>
+                            <page string="Actividades que realiza">
+                                <label for="1234"/>
+                                <p class="text-muted" id="1234">
+                                    <h4> ACTIVIDADES QUE REALIZA EL IMPUTADO ()</h4>
+                                </p>
+                                <group>
+                                    <field name="x_actividades_ids" mode="tree">
+                                        <tree editable="bottom">
+                                            <field name="x_name" widget="selection" />
+                                            <field name="x_tipo" />
+                                            <field name="x_descripcion" />
+                                            <field name="x_tiempo_libre" />
+                                            <field name="x_tiempo_libre_cuales" />
+                                        </tree>
+                                    </field>
+                                </group>
+                            </page>
+                            <page string="Consumo de sustancias">
+                                <group>
+                                    <field name="x_consume_sustancias" widget="radio" options="{'horizontal': true}" />
+                                    <field name="x_sustancias_ids" mode="tree" attrs="{ 'invisible': [('x_consume_sustancias','not in','si')] }">
+                                        <tree editable="bottom">
+                                            <field name="x_intra_extra" />
+                                            <field name="x_name" />
+                                            <field name="x_frecuencia" />
+                                            <field name="x_cantidad" />
+                                            <field name="x_ultimo_consumo" />
+                                        </tree>
+                                    </field>
+                                </group>
+                            </page>
+                            <page string="Observaciones">
+                                <group>
+                                    <field name="x_observaciones_actitud" />
+                                </group>
+                            </page>
+                            <page string="Analisis del supervisor">
+                                <group>
+                                    <field name="x_factores_riesgos" />
+                                    <field name="x_factores_estabilidad" />
+                                </group>
+                                <div class="row">
+                                    <div class="col-xs-4">
+                                        <table class="table table-bordered text-center">
+                                            <tbody>
+                                                <tr>
+                                                    <th colspan="4">
+                                                        <center>Clasificación archivística</center>
+                                                    </th>
+                                                </tr>
+                                                <tr>
+                                                    <td>Sección</td>
+                                                    <td>Serie</td>
+                                                    <td>Subserie</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <field name="seccion"/>
+                                                    </td>
+                                                    <td>
+                                                        <field name="serie"/>
+                                                    </td>
+                                                    <td>
+                                                        <field name="sub_serie"/>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <!--  tree view /////////////////////////////////////////////////////-->
+        <record model="ir.ui.view" id="sup_entrevista_encuadre_tree_view">
+            <field name="name">sup_entrevista_encuadre.tree.view</field>
+            <field name="model">sup_entrevista_encuadre</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="x_name" />
+                    <!--field name="x_imputado"/><field name="x_resolucion" /><field name="x_inicia" /><field name="x_finaliza" /><field name="x_expediente_id"/-->
+                </tree>
+            </field>
+        </record>
+        <!--  graph view /////////////////////////////////////////////////////-->
+        <record model="ir.ui.view" id="sup_entrevista_encuadre_graph_view">
+            <field name="name">sup_entrevista_encuadre.graph.view</field>
+            <field name="model">sup_entrevista_encuadre</field>
+            <field name="arch" type="xml">
+                <graph string="Registros">
+                    <field name="x_name" />
+                    <!--field name="x_inicia" type="row" /><field name="x_resolucion" type="row"/-->
+                </graph>
+            </field>
+        </record>
+        <!--Agrgar filtros de busqueda -->
+        <record model="ir.ui.view" id="sup_entrevista_encuadre_search_view">
+            <field name="name">sup_entrevista_encuadre.search.view</field>
+            <field name="model">sup_entrevista_encuadre</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="x_name" />
+                    <!--field name="x_imputado"/><field name="x_expediente_id"/-->
+                </search>
+            </field>
+        </record>
+        <!-- window action ///////////////////////////////////////////////////////////////////////////////-->
+        <record model="ir.actions.act_window" id="sup_entrevista_encuadre_list_action">
+            <field name="name">Entrevistas de encuadre</field>
+            <field name="res_model">sup_entrevista_encuadre</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,graph,kanban,form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">Agregar primer registro</p>
+            </field>
+        </record>
+        <menuitem id="sup_entrevista_encuadre" sequence="13" name="Entrevista Encuadre" parent="sup_menu_principal" action="sup_entrevista_encuadre_list_action" />
+    </data>
+</odoo>

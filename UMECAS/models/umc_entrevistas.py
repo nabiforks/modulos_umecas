@@ -77,6 +77,9 @@ class Entrevistas(models.Model):
     ], default='borrador', string='Estatus', readonly=True)
 
     @api.multi
+    def regresar_borrador(self):
+        self.state = 'borrador'
+    @api.multi
     def entrevista_realizada(self):
         self.state = 'terminado'
         partner = self.env['res.partner'].search(

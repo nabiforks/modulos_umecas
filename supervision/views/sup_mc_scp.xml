@@ -1,87 +1,123 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
-    <!--  session form view /////////////////////////////////////////////////////-->
-    <record model="ir.ui.view" id="sup_mc_scp_form_view">
-        <field name="name">sup_mc_scp.form.view</field>
-        <field name="model">sup_mc_scp</field>
-        <field name="arch" type="xml">
-            <form>
-                <header>
-                    <!--field name="state" widget="statusbar" /-->
-                </header>
-                <sheet>
-                    <div class="oe_button_box" name="button_box"></div>
-                    <div class="oe_title">
-                        <h1>
-                            <field name="x_name" />
-                        </h1>
-                    </div>
-                    <group>
+    <data>
+        <!--  form view /////////////////////////////////////////////////////-->
+        <record model="ir.ui.view" id="sup_mc_scp_form_view">
+            <field name="name">sup_mc_scp.form.view</field>
+            <field name="model">sup_mc_scp</field>
+            <field name="arch" type="xml">
+                <form>
+                    <header>
+                        <button name="capturar_medidas" type="object" string="Capturar MC-SCP" class="oe_highlight" states="orden"/>
+                        <button name="generar_entrevista" type="object" string="Entrevista Encuadre" class="oe_highlight" states="mc-scp"/>
+                        <button name="regresar_capturar_medidas" type="object" string="Regresar a MC-SCP" states="encuadre"/>
+                        <field name="state" widget="statusbar"/>
+                    </header>
+                    <sheet>
+                        <div class="oe_button_box" name="button_box"></div>
+                        <div class="oe_title">
+                            <h1>
+                                <field name="x_name" />
+                            </h1>
+                        </div>
                         <group>
-                            <field name="x_resolucion" widget="radio" options="{'horizontal': true}" />
-                            <field name="x_numero_oficio" />
-                            <field name="x_inicia" />
-                            <field name="x_finaliza" />
-                            <field name="x_tiempo" />
+                            <group>
+                                <field name="x_imputado_id"/>
+                                <field name="x_tipo_imputado" />
+                                <field name="x_resolucion" widget="radio" options="{'horizontal': true}" />
+                                <field name="x_causa_penal" />
+                                <field name="x_numero_oficio" />
+                                <field name="x_inicia" />
+                                <field name="x_finaliza" />
+                                <field name="x_tiempo" />
+                            </group>
+                            <group>
+                                <field name="x_supervisor_id" />
+                                <field name="x_foja" />
+                                <field name="x_libro" />
+                                <field name="x_expediente_id"/>
+                                <field name="x_casa_justicia" options="{ 'no_open': True}" />
+                            </group>
                         </group>
-                        <group>
-                            <field name="x_foja" />
-                            <field name="x_libro" />
-                            <field name="x_imputado_id"/>
-                            <field name="x_expediente_id"/>
-                        </group>
-                    </group>
-                    <notebook>
-                        <page string="Medidas Cautelares"></page>
-                        <page string="SCP"></page>
-                    </notebook>
-                </sheet>
-            </form>
-        </field>
-    </record>
-    <!--  tree view /////////////////////////////////////////////////////-->
-    <record model="ir.ui.view" id="sup_mc_scp_tree_view">
-        <field name="name">sup_mc_scp.tree.view</field>
-        <field name="model">sup_mc_scp</field>
-        <field name="arch" type="xml">
-            <tree>
-                <field name="x_name" />
-                <field name="x_imputado_id"/>
-                <field name="x_expediente_id"/>
-            </tree>
-        </field>
-    </record>
-    <!--  graph view /////////////////////////////////////////////////////-->
-    <record model="ir.ui.view" id="sup_mc_scp_graph_view">
-        <field name="name">sup_mc_scp.graph.view</field>
-        <field name="model">sup_mc_scp</field>
-        <field name="arch" type="xml">
-            <graph string="Registros">
-                <field name="x_inicia" type="row" />
-            </graph>
-        </field>
-    </record>
-    <!--Agrgar filtros de busqueda -->
-    <record model="ir.ui.view" id="sup_mc_scp_search_view">
-        <field name="name">sup_mc_scp.search.view</field>
-        <field name="model">sup_mc_scp</field>
-        <field name="arch" type="xml">
-            <search>
-                <field name="x_name" />
-                <field name="x_imputado_id"/>
-                <field name="x_expediente_id"/>
-            </search>
-        </field>
-    </record>
-    <!-- window action ///////////////////////////////////////////////////////////////////////////////-->
-    <record model="ir.actions.act_window" id="sup_mc_scp_list_action">
-        <field name="name">Registros</field>
-        <field name="res_model">sup_mc_scp</field>
-        <field name="view_type">form</field>
-        <field name="view_mode">tree,graph,kanban,form</field>
-        <field name="help" type="html">
-            <p class="oe_view_nocontent_create">Agregar primer registro</p>
-        </field>
-    </record>
-    <menuitem id="sup_mc_scpexpedientes_menu" sequence="12" name="Registros" parent="sup_menu_principal" action="sup_mc_scp_list_action" />
+                        <notebook>
+                            <page string="Medidas Cautelares" attrs="{ 'invisible':['|',('x_resolucion','not in','mc'),('state','in','orden')] }">
+                                <field name="x_mc_ids" mode="tree">
+                                    <tree string="Medidas Cautelares" create="1" delete="1" edit="1" editable="bottom">
+                                        <field name="name" options="{'no_create': True, 'no_open': True}"/>
+                                        <field name="descripcion" />
+                                    </tree>
+                                </field>
+                            </page>
+                            <page string="SCP" attrs="{ 'invisible':['|',('x_resolucion','not in','scp'),('state','in','orden')] }">
+                                <field name="x_scp_ids" mode="tree">
+                                    <tree string="Medidas Cautelares" create="1" delete="1" edit="1" editable="bottom">
+                                        <field name="name" options="{'no_create': True, 'no_open': True}"/>
+                                        <field name="descripcion" />
+                                    </tree>
+                                </field>
+                            </page>
+                            <page string="Entrevista Encuadre" attrs="{'invisible': [('state','in',('orden','mc-scp'))]}">
+                                <group>
+                                    <field name="x_encuadre_id"/>
+                                    <field name="x_encuadre_status"/>
+                                </group>
+                            </page>
+                            <page string="Carta compromiso y A. moral"></page>
+                            <page string="Presentación periódica"></page>
+                            <page string="Informe"></page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <!--  tree view /////////////////////////////////////////////////////-->
+        <record model="ir.ui.view" id="sup_mc_scp_tree_view">
+            <field name="name">sup_mc_scp.tree.view</field>
+            <field name="model">sup_mc_scp</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="x_name" />
+                    <field name="x_imputado_id"/>
+                    <field name="x_resolucion" />
+                    <field name="x_inicia" />
+                    <field name="x_finaliza" />
+                    <field name="x_expediente_id"/>
+                </tree>
+            </field>
+        </record>
+        <!--  graph view /////////////////////////////////////////////////////-->
+        <record model="ir.ui.view" id="sup_mc_scp_graph_view">
+            <field name="name">sup_mc_scp.graph.view</field>
+            <field name="model">sup_mc_scp</field>
+            <field name="arch" type="xml">
+                <graph string="Registros">
+                    <field name="x_inicia" type="row" />
+                    <field name="x_resolucion" type="row"/>
+                </graph>
+            </field>
+        </record>
+        <!--Agrgar filtros de busqueda -->
+        <record model="ir.ui.view" id="sup_mc_scp_search_view">
+            <field name="name">sup_mc_scp.search.view</field>
+            <field name="model">sup_mc_scp</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="x_name" />
+                    <field name="x_imputado_id"/>
+                    <field name="x_expediente_id"/>
+                </search>
+            </field>
+        </record>
+        <!-- window action ///////////////////////////////////////////////////////////////////////////////-->
+        <record model="ir.actions.act_window" id="sup_mc_scp_list_action">
+            <field name="name">Ordenes de Supervisión</field>
+            <field name="res_model">sup_mc_scp</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,graph,kanban,form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">Agregar primer registro</p>
+            </field>
+        </record>
+        <menuitem id="sup_mc_scp_menu" sequence="12" name="Orden Supervisión" parent="sup_menu_principal" action="sup_mc_scp_list_action" />
+    </data>
 </odoo>
