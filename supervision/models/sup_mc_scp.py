@@ -89,6 +89,35 @@ class sup_mc_scp(models.Model):
         default='orden',
         readonly=True, string=u'Estatus',
     )
+    @api.multi
+    def get_ultima_entrevista(self):
+        entrevistas=self.env['umc_entrevistas'].search([('x_imputado_id', '=', self.x_imputado_id.id)])
+        if entrevistas:
+            entrevista = entrevistas[-1]
+            datos={
+                'x_sexo':entrevista.x_sexo,
+                'x_lugar_nacimiento':entrevista.x_lugar_nacimiento,
+                'x_fecha_nacimiento':entrevista.x_fecha_nacimiento,
+                'x_estado_civil':entrevista.x_estado_civil,
+                'x_estado_civil_otro':entrevista.x_estado_civil_otro,
+                'x_telefono':entrevista.x_telefono,
+                'x_telefono_otro':entrevista.x_telefono_otro,
+                'x_domicilio_actual':[(6,0,entrevista.x_domicilio_actual.ids)],
+                'x_enfermedades_ids':[(6,0,entrevista.x_enfermedades_ids.ids)],
+                'x_discapacidad_padece':entrevista.x_discapacidad_padece,
+                'x_discapacidad_id':entrevista.x_discapacidad_id.id,
+                'x_empleos_ids':[(6,0,entrevista.x_empleos_ids.ids)],
+                'x_contacto_ids':[(6,0,entrevista.x_contacto_ids.ids)],
+                'x_amistades_ids':[(6,0,entrevista.x_amistades_ids.ids)],
+                'x_actividades_ids':[(6,0,entrevista.x_actividades_ids.ids)],
+                'x_consume_sustancias':entrevista.x_consume_sustancias,
+                'x_sustancias_ids':[(6,0,entrevista.x_sustancias_ids.ids)],
+                'x_observaciones_actitud':entrevista.x_observaciones_actitud
+
+            }
+            partner = self.env['sup_entrevista_encuadre'].search([('id', '=', self.x_encuadre_id.id)])
+            partner.write(datos)
+            
 
     @api.multi
     def capturar_medidas(self):
@@ -106,15 +135,35 @@ class sup_mc_scp(models.Model):
                                   'x_numero_causa': self.x_causa_penal,
                                   'x_apellido_pat': self.x_imputado_id.ap_paterno,
                                   'x_apellido_mat': self.x_imputado_id.ap_materno,
-                                  'x_nombre_entrevistado': self.x_imputado_id.name}
+                                  'x_nombre_entrevistado': self.x_imputado_id.name,
+                                  'x_resolucion':self.x_resolucion,
+                                  'x_delitos_id':(4,0,self.x_expediente_id.x_delito)}
             res = self.env['sup_entrevista_encuadre'].create(valores_entrevista)
             self.x_encuadre_id = res
+            self.get_ultima_entrevista()
             return res
         else:
-            self.state = 'encuadre'
+            if self.x_supervisor_id and self.x_encuadre_id:
+                self.state = 'encuadre'
+                partner = self.env['sup_entrevista_encuadre'].search([('id', '=', self.x_encuadre_id.id)])
+                valores_entrevista = {'x_orden_id': self.id,
+                                    'x_supervisor_id': self.x_supervisor_id.id,
+                                    'x_imputado': self.x_imputado_id.id,
+                                    #'x_casa_justicia': self.x_casa_justicia.id,
+                                    #'x_cdi': self.x_expediente_id.x_cdi_nic,
+                                    'x_numero_causa': self.x_causa_penal,
+                                    'x_apellido_pat': self.x_imputado_id.ap_paterno,
+                                    'x_apellido_mat': self.x_imputado_id.ap_materno,
+                                    'x_nombre_entrevistado': self.x_imputado_id.name,
+                                    'x_resolucion':self.x_resolucion,
+                                    'x_delitos_id':[(6,0,self.x_expediente_id.x_delito.ids)]}
+                partner.write(valores_entrevista)
+            
     @api.multi
     def regresar_capturar_medidas(self):
         self.state = 'mc-scp'
+        print "////////////////////delitos",self.x_expediente_id.x_delito.ids
+        #self.get_ultima_entrevista()
     #///////////////////////////////// Medidas Cautelares
     #///////////////////////////////// Medidas Cautelares
     #///////////////////////////////// Medidas Cautelares
@@ -150,10 +199,26 @@ class sup_mc_scp(models.Model):
         readonly=True,
         related='x_encuadre_id.state',
     )
+    #/////////////////////////////////Informe Supervisor
+    #/////////////////////////////////Informe Supervisor
+    #/////////////////////////////////Informe Supervisor
+    #/////////////////////////////////Informe Supervisor
+    
+    x_informe_html = fields.Html(
+        string=u'Informe',
+        
+        default=lambda self: self.html_default(),
+        
+    )
+    def html_default(self):
+        codigo='<p> Estimado  texto de prueba </p> '
+        codigo+='<p>Línea 2</p><br>'
+        return codigo
+    
 
-    #/////////////////////////////////////////////
-    #/////////////////////////////////////////////
-    #/////////////////////////////////////////////
+    #///////////////////////////////////////////// campo relacional con expedientes
+    #///////////////////////////////////////////// campo relacional con expedientes
+    #///////////////////////////////////////////// campo relacional con expedientes
 
     x_expediente_id = fields.Many2one(
         string=u'Expediente ID',

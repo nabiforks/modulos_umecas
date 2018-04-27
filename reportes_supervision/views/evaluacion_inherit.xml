@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <!--  form view /////////////////////////////////////////////////////-->
+    <record model="ir.ui.view" id="evaluacion_inherit_view">
+        <field name="name">evaluacion_inherit_form.view</field>
+        <field name="model">umc_evaluacion</field>
+        <field name="inherit_id" ref="UMECAS.umc_eval_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//button[@name='terminar_analisis']" position="after">
+                <button name="imprimir_reporte_evaluacion" type="object" string="Imprimir Evaluación" class="oe_highlight" states="evaluacion_terminada"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

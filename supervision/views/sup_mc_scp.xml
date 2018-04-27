@@ -64,7 +64,9 @@
                             </page>
                             <page string="Carta compromiso y A. moral"></page>
                             <page string="Presentación periódica"></page>
-                            <page string="Informe"></page>
+                            <page string="Informe">
+                                <field name="x_informe_html" widget="html" options="{'style-inline': true}"/>
+                            </page>
                         </notebook>
                     </sheet>
                 </form>
@@ -82,6 +84,7 @@
                     <field name="x_inicia" />
                     <field name="x_finaliza" />
                     <field name="x_expediente_id"/>
+                    <field name="state" />
                 </tree>
             </field>
         </record>

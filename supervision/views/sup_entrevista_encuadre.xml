@@ -45,10 +45,10 @@
                                         <field name="x_apellido_pat" />
                                         <field name="x_apellido_mat" />
                                         <field name="x_nombre_entrevistado" />
+                                        <field name="x_sexo" widget="radio" options="{'horizontal': true}"/>
                                         <field name="x_lugar_nacimiento" placeholder='Localidad/Municipio/Estado'/>
                                         <field name="x_fecha_nacimiento" />
                                         <field name="x_edad"/>
-                                        <field name="x_sexo" widget="radio" options="{'horizontal': true}"/>
                                     </group>
                                     <group>
                                         <field name="x_estado_civil" />
