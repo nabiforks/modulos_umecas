@@ -16,47 +16,63 @@
 								icon="fa-file-text-o" 
 								context="{
 									'search_default_audiencia_id':active_id,
-									'default_partner_id':partner_id,
+									'default_partner_ids':partner_ids,
 									'default_tipo_audiencia':tipo_audiencia,
 									'default_causa_penal':causa_penal,
 									'default_numero_sala':numero_sala,
 									'default_fecha_hora':fecha_hora,
 									'default_hora_inicio':hora_inicio,
 									'default_hora_termino':hora_termino,
-									'default_juez_id':juez_id,
+									'default_juez_ids':juez_ids,
 									'default_resolucion':resolucion,
 									'default_delito_ids':delito_ids
 								}"/>
 						</div>
-						<h2>
-							<field name="name"/>
-						</h2>
-						<group style="margin:0;">
-							<group style="margin:0;">
-								<field name="juez_id"/>
-							</group>
-							<group style="margin:0;">
-								<field name="juez_cargo"/>
-							</group>
-						</group>
 						<div class="row">
-							<div class="col-xs-4">
+							<div class="col-xs-6">
+								<h2>
+									<field name="name"/>
+								</h2>
+							</div>
+							<div class="col-xs-6">
 								<group style="margin:0;">
 									<field name="fecha_hora"/>
 								</group>
 							</div>
-							<div class="col-xs-3">
+						</div>
+						<div class="row">
+							<div class="col-xs-6">
 								<group style="margin:0;">
 									<field name="numero_sala"/>
 								</group>
 							</div>
-							<div class="col-xs-5">
+							<div class="col-xs-6">
 								<group style="margin:0;">
-									<field name="partner_id" domain="[('x_imputado','=',True)]" context="{'default_x_imputado':True}"/>
+									<field name="solicitante"/>
 								</group>
 							</div>
 						</div>
-						
+						<div class="row">
+							<div class="col-xs-6">
+								<label for="juez_ids"/>
+								<field name="juez_ids">
+									<tree>
+										<field name="titulo"/>
+										<field name="name"/>
+										<field name="cargo"/>
+									</tree>
+								</field>
+							</div>
+							<div class="col-xs-6">
+								<label for="partner_ids"/>
+								<field name="partner_ids" domain="[('x_imputado','=',True)]" context="{'default_x_imputado':True}">
+									<tree>
+										<field name="display_name"/>
+										<field name="x_imputado_tipo"/>
+									</tree>
+								</field>
+							</div>
+						</div>
 						<notebook>
 							<page string="Control de acceso a la sala de audiencia">
 								<div class="row">
@@ -114,7 +130,7 @@
 										<field name="delito_ids" widget="many2many_tags"/>
 									</group>
 									<group style="margin:0;">
-										<field name="custodia_id" invisible="1"/>
+										<field name="recepcion_id" invisible="1"/>
 										<field name="causa_penal"/>
 									</group>
 								</group>
@@ -166,11 +182,11 @@
 			<field name='model'>pp.audiencia</field>
 			<field name='arch' type='xml'>
 				<tree>
-					<field name='partner_id'/>
+					<field name='partner_ids'/>
 					<field name='fecha_hora'/>
 					<field name='numero_sala'/>
 					<field name='tipo_audiencia'/>
-					<field name='juez_id'/>
+					<field name='juez_ids'/>
 					<field name='rsa'/>
 				</tree>
 			</field>
@@ -182,12 +198,12 @@
 		    <field name="model">pp.audiencia</field>
 		    <field name="arch" type="xml">
 		        <search>
-		        	<field name="partner_id"/>
-		        	<field name="custodia_id"/>
+		        	<field name="partner_ids"/>
+		        	<field name="recepcion_id"/>
 		        	<field name='fecha_hora'/>
 					<field name='numero_sala'/>
 					<field name='tipo_audiencia'/>
-					<field name='juez_id'/>
+					<field name='juez_ids'/>
 					<field name='rsa'/>
 		        </search>
 		    </field>

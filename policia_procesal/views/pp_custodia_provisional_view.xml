@@ -7,21 +7,6 @@
 			<field name="arch" type="xml">
 				<form>
 					<sheet>
-						<div class="oe_button_box" name="button_box">
-							<button 
-								name="policia_procesal.audiencia_action_list" 
-								type="action" 
-								class="oe_stat_button" 
-								icon="fa-gavel" 
-								context="{
-									'search_default_custodia_id': active_id,
-									'default_partner_id':partner_id,
-									'default_delito_ids': delito_ids,
-									'default_causa_penal': causa_penal
-								}">
-								<field string="Audiencias" name="audiencias" widget="statinfo"/>
-							</button>
-						</div>
 						<h2>
 							<field name="name"/>
 						</h2>
@@ -70,7 +55,7 @@
 								</group>
 							</page>
 
-							<page string="Suministro de alimentos">
+							<page string="Suministro de alimentos y/o medicamentos">
 								<field name="alimentos_list">
 									<tree editable="bottom">
 										<field name="fecha"/>
@@ -78,6 +63,9 @@
 										<field name="descripcion"/>
 									</tree>
 								</field>
+								<group>
+									<field name="observaciones"/>
+								</group>
 							</page>
 						</notebook>
 						<br/>

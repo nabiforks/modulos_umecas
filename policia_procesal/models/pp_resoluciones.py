@@ -55,11 +55,11 @@ class ControlAudiencia(models.Model):
     )
 
     #==========RELATIONSHIPS=========
-    partner_id = fields.Many2one(
+    partner_ids = fields.Many2many(
         'res.partner',
-        string='Imputado',
+        string='Imputado(s)',
         required=True,
-        default=lambda self: self.env.context.get('partner_id'),
+        default=lambda self: self.env.context.get('partner_ids'),
         ondelete='set null',
     )
     audiencia_id = fields.Many2one(
@@ -67,7 +67,7 @@ class ControlAudiencia(models.Model):
         string='Audiencia',
         ondelete='set null',
     )
-    juez_id = fields.Many2one(
+    juez_ids = fields.Many2many(
         'pp.jueces',
         string='Recide Juez(es) (Cargo y región)',
     )
@@ -86,7 +86,7 @@ class ControlAudiencia(models.Model):
 
     #==========RELATED=========
     edad = fields.Integer(
-        related="partner_id.edad",
+       # related="partner_id.edad",
         string='Edad',
     )
     pp_cargo = fields.Char(
@@ -97,19 +97,6 @@ class ControlAudiencia(models.Model):
     pp_grupo = fields.Char(
         related='nombre_jefe_grupo_pp.grupo',
         string='Grupo',
-        readonly=True, 
-    )
-    juez_nombre = fields.Char(
-        related='juez_id.name',
-        string='Nombre',
-    )
-    juez_titulo = fields.Char(
-        related='juez_id.titulo',
-        string='Título',
-    )
-    juez_cargo = fields.Char(
-        related='juez_id.cargo',
-        string='Cargo',
         readonly=True, 
     )
     #==========Datos para reporte==========
@@ -124,11 +111,3 @@ class ControlAudiencia(models.Model):
     sub_serie = fields.Char(
         string='Subserie',
     )
-
-    #==========METHODS=========
-    @api.multi
-    @api.depends('juez_nombre','juez_titulo')
-    def concat_name_juez(self):
-        for record in self:
-            if record.juez_titulo and record.juez_nombre:
-                record.juez_concat = record.juez_titulo +', '+record.juez_nombre

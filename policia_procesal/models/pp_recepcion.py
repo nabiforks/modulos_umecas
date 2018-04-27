@@ -34,22 +34,40 @@ class Recepcion(models.Model):
     cargo_autoridad_realiza =  fields.Char(
         string="Cargo",
     )
-    custodias = fields.Integer(
-        string='Pertenencias',
-        compute='compute_custodia_count'
+    audiencias = fields.Integer(
+        string='Audiencias',
+        compute='compute_audiencia_count'
+    )
+    tipo_audiencia = fields.Char(
+        string='Tipo de audiencia',
+    )
+    fecha_inicio_audiencia = fields.Date(
+        string='Fecha',
+    )
+    hora_inicio_audiencia = fields.Float(
+        string='Hora',
+    )
+    hora_termino_audiencia = fields.Float(
+        string="Hora de termino de Audiencia",
+    )
+    fecha_hora_entrega_responsable = fields.Datetime(
+        string='Fecha y hora de entrega al responsable del traslado',
+    )
+    observaciones = fields.Text(
+        string='Observaciones',
     )
 
     #==========RELATIONSHIP==========
-    partner_id = fields.Many2one(
+    partner_ids = fields.Many2many(
         'res.partner',
-        string='Imputado/detenido',
+        string='Detenido y/o imputado(s)',
         required=True,
     )
     delito_ids = fields.Many2many(
         'umc_delitos',
         string='Delito(s)',
     )
-    vehiculo_id = fields.Many2one(
+    vehiculo_ids = fields.Many2many(
         'pp.vehiculos',
         string='Vehículo',
     )
@@ -63,17 +81,14 @@ class Recepcion(models.Model):
     )
     
     #==========RELATED==========
-    #name = fields.Char(
-    #	related='partner_id.display_name',
-    #    string='Nombre del imputado/detenido',
-    #)
+    
     placas = fields.Char(
-        related='vehiculo_id.placas',
+        #related='vehiculo_id.placas',
         string='Placas',
         readonly=True
     )
     no_economico = fields.Char(
-        related='vehiculo_id.no_economico',
+        #related='vehiculo_id.no_economico',
         string='Número económico',
         readonly=True
     )
@@ -116,7 +131,7 @@ class Recepcion(models.Model):
 
     #==========Datos para reporte==========
     responsable = fields.Char(
-        string='Nombre de responsable de la custodia',
+        string='Nombre del responsable que recibe la custodia',
     )
     seccion = fields.Char(
         string='Sección',
@@ -140,7 +155,7 @@ class Recepcion(models.Model):
         return result
 
     @api.multi
-    def compute_custodia_count(self):
+    def compute_audiencia_count(self):
         for partner in self:
-            partner.custodias = self.env['pp.custodia'].search_count(
+            partner.audiencias = self.env['pp.audiencia'].search_count(
                 [('recepcion_id', '=', partner.id)])

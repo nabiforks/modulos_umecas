@@ -26,7 +26,7 @@
        'security/ir.model.access.csv',
        'views/pp_catalogos_view.xml',
        'views/pp_recepcion_view.xml',
-       'views/pp_custodia_provicional_view.xml',
+       'views/pp_custodia_provisional_view.xml',
        'views/pp_audiencias_view.xml',
        'views/pp_resoluciones_view.xml',
        'views/pp_egresos_view.xml',

@@ -9,16 +9,16 @@
 					<sheet>
 						<div class="oe_button_box" name="button_box">
 							<button 
-								name="policia_procesal.custodia_action_list" 
+								name="policia_procesal.audiencia_action_list" 
 								type="action" 
-								class="oe_stat_button o_res_partner_tip_opp" 
-								icon="fa-edit" 
+								class="oe_stat_button" 
+								icon="fa-gavel" 
 								context="{
 									'search_default_recepcion_id': active_id,
-									'default_partner_id': partner_id,
-									'default_delito_ids': delito_ids}">
-
-								<field string="Custodias" name="custodias" widget="statinfo"/>
+									'default_partner_ids':partner_ids,
+									'default_delito_ids': delito_ids,
+								}">
+								<field string="Audiencias" name="audiencias" widget="statinfo"/>
 							</button>
 						</div>
 						<h2>
@@ -29,9 +29,18 @@
 								<field name="fecha_hora"/>
 							</group>
 							<group style="margin:0;">
-								<field name="partner_id" domain="[('x_imputado','=',True)]" context="{'default_x_imputado':True}"/>
+								
 							</group>
 						</group>
+						<group>
+							<field name="partner_ids" domain="[('x_imputado','=',True)]" context="{'default_x_imputado':True}">
+								<tree>
+									<field name="display_name"/>
+									<field name="x_imputado_tipo"/>
+								</tree>
+							</field>
+						</group>
+
 						<group style="margin:0;">
 							<group style="margin:0;">
 								<field name="delito_ids" widget="many2many_tags"/>
@@ -72,23 +81,45 @@
 							<group></group>
 						</group>
 
+						<group>
+							<field name="vehiculo_ids">
+								<field name="name"/>
+								<field name="no_economico"/>
+								<field name="placas"/>
+							</field>
+						</group>
+
+						<group style="margin:0;">
+							<label string="Fecha y hora de inicio de la audiencia"/>
+						</group>
 						<div class="row">
 							<div class="col-xs-4">
 								<group style="margin:0;">
-									<field name="vehiculo_id"/>
+									<field name="fecha_inicio_audiencia"/>
 								</group>
 							</div>
 							<div class="col-xs-4">
 								<group style="margin:0;">
-									<field name="no_economico"/>
+									<field name="hora_inicio_audiencia" widget="float_time"/>
 								</group>
 							</div>
 							<div class="col-xs-4">
 								<group style="margin:0;">
-									<field name="placas"/>
+									<field name="hora_termino_audiencia" widget="float_time"/>
 								</group>
 							</div>
 						</div>
+						<group style="margin:0;">
+							<group style="margin:0;">
+								<field name="tipo_audiencia"/>
+							</group>
+							<group style="margin:0;">
+								<field name="fecha_hora_entrega_responsable"/>
+							</group>
+						</group>
+						<group style="margin:0;">
+							<field name="observaciones"/>
+						</group>
 
 						<notebook>
 							<page string="Traslado de ingreso">
@@ -178,7 +209,7 @@
 				<tree>
 					<field name='name'/>
 					<field name='numero_oficio'/>
-					<field name='partner_id'/>
+					<field name='partner_ids'/>
 					<field name='nic_cdi_nuc'/>
 					<field name='delito_ids'/>
 					<field name='fecha_hora'/>
@@ -193,7 +224,7 @@
 		        <search>
 		            <field name='name'/>
 					<field name='numero_oficio'/>
-					<field name='partner_id'/>
+					<field name='partner_ids'/>
 					<field name='nic_cdi_nuc'/>
 					<field name='delito_ids'/>
 					<field name='fecha_hora'/>

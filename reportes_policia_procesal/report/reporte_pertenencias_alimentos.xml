@@ -20,7 +20,7 @@
 							<div class="row">
 								<div class="col-xs-12 text-center">
 									<strong>
-										<p>CENTRO DE JUSTICIA PENAL DE PUEBLA</p>
+										<p><span t-esc="user.company_id.name"/></p>
 										<p>POLICÍA PROCESAL REGIÓN-CENTRO</p>
 										<br/>
 										<p>Formato de resguardo de pertenencias y suministro de alimentos</p>

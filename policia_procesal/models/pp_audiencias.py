@@ -11,6 +11,9 @@ class Audiencias(models.Model):
         readonly=True,
         default=lambda self: 'Nuevo'
     )
+    solicitante = fields.Char(
+        string='Solicitante',
+    )
     numero_sala = fields.Integer(
         string='Sala de audiencia No.',
     )
@@ -67,21 +70,15 @@ class Audiencias(models.Model):
     pp_grupo = fields.Char(
         string='Grupo',
     )
-    juez_cargo = fields.Char(
-        related='juez_id.cargo',
-        string='Cargo',
-        readonly=True, 
-    )
 
     #==========RELATIONSHIPS=========
-    partner_id = fields.Many2one(
+    partner_ids = fields.Many2many(
         'res.partner',
-        string='Imputado',
-        required=True,
-        default=lambda self: self.env.context.get('partner_id'),
+        string='Imputado(s)',
+        default=lambda self: self.env.context.get('partner_ids'),
         ondelete='set null',
     )
-    juez_id = fields.Many2one(
+    juez_ids = fields.Many2many(
         'pp.jueces',
         string='Jueces',
     )
@@ -90,12 +87,13 @@ class Audiencias(models.Model):
         'audiencia_id',
         string='Lista de acceso',
     )
-    custodia_id = fields.Many2one(
-        'pp.custodia',
-        string=u'Custodia',
+    recepcion_id = fields.Many2one(
+        'pp.recepcion',
+        string=u'Recepción',
         readonly=True,
         ondelete='set null',
     )
+
     delito_ids = fields.Many2many(
         'umc_delitos',
         string='Delito(s)',
@@ -142,6 +140,7 @@ class AccesoAudiencia(models.Model):
     _name = 'pp.acceso_audiencia'
 
     tipo = fields.Selection([
+        ('solicitante', 'Solicitante'),
         ('victima', 'Víctima'),
         ('ofendido', 'Ofendido'),
         ('defensa','Defensa'),

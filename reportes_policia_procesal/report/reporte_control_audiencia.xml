@@ -23,7 +23,7 @@
 									<strong>Dirección de medidas cautelares y policia procesal</strong>
 									<br/>
 									<p>Subdirección de la policia procesal</p>
-									<p> centro de justicia penal puebla</p>
+									<span t-esc="user.company_id.name"/>
 								</div>
 								<div class="col-xs-4"></div>
 							</div>
@@ -154,18 +154,25 @@
 													NOMBRE(S) DEL (LOS) IMPUTADO(S)
 												</td>
 												<td class="borde" colspan="4" style="padding:5;">
-													<strong>
-														<span t-field="control.partner_id.display_name"/>
-													</strong>
+													<t t-foreach="control.partner_ids" t-as="i">
+														<t t-if="i">
+															<strong><span t-field="i.display_name"/>, </strong>
+														</t>
+													</t>
 												</td>
 												<td class="borde" colspan="2">
 													<div class="borde-bottom">
 														EDAD(ES)
 													</div>
 													<div style="min-height:30px;">
-														<strong>
-															<span t-field="control.edad"/>
-														</strong>
+														<t t-foreach="control.partner_ids" t-as="i">
+															<t t-if="i">
+																<strong>
+																	<span t-field="i.edad"/>, 
+																</strong>
+															</t>
+														</t>
+														 Años
 													</div>
 												</td>
 											</tr>
@@ -198,11 +205,16 @@
 											<tr>
 												<td class="borde" colspan="2" style="padding:5;">RECIDE JUEZ(CES) (CARGO Y REGIÓN)</td>
 												<td class="borde" colspan="6" style="padding:5;">
-													<strong>
-														<span t-field="control.juez_id.titulo"/>, 
-														<span t-field="control.juez_id.name"/>, 
-														<span t-field="control.juez_id.cargo"/> 
-													</strong>
+													<t t-foreach="control.juez_ids" t-as="i">
+														<t t-if="i">
+															<strong>
+																<span t-field="i.titulo"/> 
+																<span t-field="i.name"/>, 
+																<span t-field="i.cargo"/>
+															</strong>
+															<br/>
+														</t>
+													</t>
 												</td>
 											</tr>
 											<tr>
