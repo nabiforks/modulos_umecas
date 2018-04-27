@@ -14,24 +14,22 @@
 								</group>
 							</div>
 						</div>
-						<group style="margin:0;">
-							<group style="margin:0;">
-								<field name="partner_id" domain="[('x_imputado','=',True)]" context="{'default_x_imputado':True}"/>
-							</group>
-							<group style="margin:0;"></group>
+						<group>
+							<field name="partner_ids" domain="[('x_imputado','=',True)]" context="{'default_x_imputado':True}">
+								<tree>
+									<field name="display_name"/>
+									<field name="x_imputado_tipo"/>
+								</tree>
+							</field>
 						</group>
-						<div class="row">
-							<div class="col-xs-6">
-								<group style="margin:0;">
-									<field name="delito_ids" widget="many2many_tags"/>
-								</group>
-							</div>
-							<div class="col-xs-6">
-								<group style="margin:0;">
-									<field name="nic_cdi_nuc"/>
-								</group>
-							</div>
-						</div>
+						<group>
+							<group>
+								<field name="delito_ids" widget="many2many_tags"/>
+							</group>
+							<group>
+								<field name="nic_cdi_nuc"/>
+							</group>
+						</group>
 						<group style="margin:0;">
 							<group style="margin:0;">
 								<field name="autoridad_que_solicita_id"/>
@@ -43,7 +41,7 @@
 
 						<group style="margin:0;">
 							<group style="margin:0;">
-								<field name="numero_oficio"/>
+								<field name="name"/>
 							</group>
 							<group style="margin:0;">
 								<field name="lugar_id" />
@@ -65,23 +63,15 @@
 								<field name="dependencia"/>
 							</group>
 						</group>
-						<div class="row">
-							<div class="col-xs-4">
-								<group style="margin:0;">
-									<field name="vehiculo_id"/>
-								</group>
-							</div>
-							<div class="col-xs-4">
-								<group style="margin:0;">
+						<group>
+							<field  name="vehiculo_ids">
+								<tree>
+									<field name="name"/>
 									<field name="no_economico"/>
-								</group>
-							</div>
-							<div class="col-xs-4">
-								<group style="margin:0;">
 									<field name="placas"/>
-								</group>
-							</div>
-						</div>
+								</tree>
+							</field>
+						</group>
 						<group style="margin:0;">
 							<label string="Fecha y hora de inicio de la audiencia"/>
 						</group>
@@ -161,8 +151,8 @@
 			<field name='model'>pp.egreso</field>
 			<field name='arch' type='xml'>
 				<tree>
-					<field name='numero_oficio'/>
-					<field name='partner_id'/>
+					<field name='name'/>
+					<field name='partner_ids'/>
 					<field name='delito_ids'/>
 					<field name='nic_cdi_nuc'/>
 					<field name='fecha_hora'/>
@@ -178,7 +168,8 @@
 		    <field name="model">pp.egreso</field>
 		    <field name="arch" type="xml">
 		        <search>
-		        	<field name="partner_id"/>
+		        	<field name='name'/>
+		        	<field name="partner_ids"/>
 		        	<field name='delito_ids'/>
 					<field name='nic_cdi_nuc'/>
 					<field name='fecha_hora'/>

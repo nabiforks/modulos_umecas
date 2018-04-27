@@ -35,11 +35,16 @@
 											<tr>
 												<td>
 													<div style="min-height:25px;">
-														<b>
-															<span t-field="audiencia.juez_id.titulo"/>, 
-															<span t-field="audiencia.juez_id.name"/>, 
-															<span t-field="audiencia.juez_id.cargo"/>
-														</b>
+														<t t-foreach="audiencia.juez_ids" t-as="i">
+															<t t-if="i">
+																<strong>
+																	<span t-field="i.titulo"/> 
+																	<span t-field="i.name"/>, 
+																	<span t-field="i.cargo"/>
+																</strong>
+																<br/>
+															</t>
+														</t>
 													</div>
 												</td>
 											</tr>
@@ -73,7 +78,27 @@
 											</tr>
 											<tr>
 												<td class="borde text-left" style="width:50%;">
-													<b><span t-field="audiencia.partner_id.display_name"/></b>
+													<t t-set="n" t-value="1"/>
+													<t t-foreach="audiencia.partner_ids" t-as="i">
+														<t t-if="i">
+															<strong>
+																<span t-esc="n"/>.- 
+																<span t-field="i.display_name"/>
+															</strong>
+															<br/>
+															<t t-set="n" t-value="n+1"/>
+														</t>
+													</t>
+													<t t-foreach="audiencia.acceso_ids" t-as="i">
+														<t t-if="i.tipo=='solicitante'">
+															<b>
+																<span t-esc="n"/>.- 
+																<span t-field="i.name"/> (Solicitante)
+															</b>
+															<br/>
+															<t t-set="n" t-value="n+1"/>
+														</t>
+													</t>
 												</td>
 												<td class="borde text-left" style="width:50%;">
 													<!--Enumerar-->

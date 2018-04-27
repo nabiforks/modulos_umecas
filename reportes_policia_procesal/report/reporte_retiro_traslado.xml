@@ -9,219 +9,217 @@
 			file="reportes_policia_procesal.retiro_traslado_pp_report"
 			report_type="qweb-pdf"			
 		/>
+		<record id="rpt_space" model="report.paperformat">
+            <field name="name">Reporte en media hoja</field>
+            <field name="format">Letter</field>
+            <field name="margin_top">160</field>
+            <field name="header_spacing">0</field>
+            <field name="orientation">Portrait</field>
+        </record>
 		<record id="reportes_policia_procesal.retiro_traslado_pp_report" model="ir.actions.report.xml">
-            <field name="paperformat_id" ref="reportes_policia_procesal.rpt_policia_procesal" />
+            <field name="paperformat_id" ref="reportes_policia_procesal.rpt_space" />
         </record>
 		<template id="retiro_traslado">
 			<t t-call="report.html_container">
 				<t t-foreach="docs" t-as="traslado">
-					<t t-call="report.external_layout">
-						<div class="page text-uppercase" style="font-size:12px;">
-							<div class="row">
-								<div class="col-xs-4"></div>
-								<div class="col-xs-4 text-center">
-									<strong>Dirección de medidas cautelares y policia procesal</strong>
-									<br/>
-									<p>Subdirección de la policia procesal</p>
-									<p> centro de justicia penal puebla</p>
-								</div>
-								<div class="col-xs-4"></div>
-							</div>
-							<br/>
-							
-							<table class="table table-bordered text-center" style="border:1px solid black;">
-								<tbody>
-									<tr>
-										<td colspan="8" style="border:1px solid black;">
-											<strong>
-												Personal que retira el traslado del (los) imputado(s)
-											</strong>
-										</td>
-									</tr>
-									<tr>
-										<td colspan="2" style="border:1px solid black;">
-											Num. de
-											oficio:
-										</td>
-										<td colspan="2" style="border:1px solid black;">
-											<strong>
-												<span t-field="traslado.numero_oficio"/>
-											</strong>
-										</td>
-										<td colspan="2" style="border:1px solid black;">
-											Fecha de
-											traslado:
-										</td>
-										<td colspan="2" style="border:1px solid black;width:400px;">
-											<strong>
-												<span t-field="traslado.fecha_hora" t-options ='{"format": "dd/MM/yyyy"}'/>
-											</strong>
-										</td>
-									</tr>
-									<tr>
-										<td colspan="2" style="border:1px solid black;">
-											Autoridad que
-											ordena el traslado:
-										</td>
-										<td colspan="3" style="border:1px solid black; padding:0;">
-											<div class="borde-bottom">
-												Nombre
-											</div>
-											<strong>
-												<span t-field="traslado.autoridad_que_solicita_id"/>
-											</strong>
-										</td>
-										<td colspan="3" style="border:1px solid black; padding:0;width:400px;">
-											<div class="borde-bottom">
-												Cargo
-											</div>
-											<strong>
-												<span t-field="traslado.cargo_autoridad_solicita"/>
-											</strong>
-										</td>
-									</tr>
-									<tr>
-										<td colspan="2" style="border:1px solid black;">
-											Autoridad que
-											realiza el traslado:
-										</td>
-										<td colspan="3" style="border:1px solid black; padding:0;">
-											<div class="borde-bottom">
-												Nombre
-											</div>
-											<strong>
-												<span t-field="traslado.autoridad_que_realiza_id"/>
-											</strong>
-										</td>
-										<td colspan="3" style="border:1px solid black; padding:0;width:400px;">
-											<div class="borde-bottom">
-												Cargo
-											</div>
-											<strong>
-												<span t-field="traslado.cargo_autoridad_realiza"/>
-											</strong>
-										</td>
-									</tr>
-									<tr>
-										<td colspan="2" style="border:1px solid black;">
-											Dependencia a la
-											que pertenecen:
-										</td>
-										<td colspan="3" style="border:1px solid black;">
-											<strong>
-												<span t-field="traslado.dependencia.name"/>
-											</strong>
-										</td>
-										<td style="border:1px solid black;">
-											Firma:
-										</td>
-										<td colspan="3" style="border:1px solid black;width:400px;">
-										</td>
-									</tr>
-									<tr>
-										<td colspan="2" style="border:1px solid black;">
-											Elementos de apoyo:
-										</td>
-										<td colspan="1" style="border:1px solid black;">
-											<strong>
-												<span t-field="traslado.numero_elementos"/>
-											</strong>
-										</td>
-										<td colspan="2" style="border:1px solid black;">
-											Procedencia del
-											imputado:
-										</td>
-										<td colspan="3" style="border:1px solid black;">
-											<strong>
-												<span t-field="traslado.lugar_id.x_name"/>
-											</strong>
-										</td>
-									</tr>
-									<tr>
-										<td colspan="2" style="border:1px solid black;">
-											Vehículo
-											oficial:
-										</td>
-										<td style="border:1px solid black;width:150px;">
-											<strong>
-												<span t-field="traslado.vehiculo_id.name"/>
-											</strong>
-										</td>
-										<td colspan="2" style="border:1px solid black;">
-											Num. Económico:
-										</td>
-										<td style="border:1px solid black;">
-											<strong>
-												<span t-field="traslado.no_economico"/>
-											</strong>
-										</td>
-										<td style="border:1px solid black;">
-											Placas:
-										</td>
-										<td style="border:1px solid black;">
-											<strong>
-												<span t-field="traslado.placas"/>
-											</strong>
-										</td>
-									</tr>
-									<tr>
-										<td colspan="2" style="border:1px solid black;">
-											Observaciones:
-										</td>
-										<td colspan="4" style="border:1px solid black;">
-											<strong>
-												<span t-field="traslado.observaciones_traslado"/>
-											</strong>
-										</td>
-										<td colspan="1" style="border:1px solid black;">
-											Hora:
-										</td>
-										<td colspan="1" style="border:1px solid black;">
-											<strong>
-												<span t-field="traslado.fecha_hora_entrega_responsable" t-options="{&quot;format&quot;: &quot;HH:mm &quot;}"/>
-											</strong>
-										</td>
-									</tr>
-								</tbody>
-							</table>
+					<div class="page text-uppercase" style="font-size:12px;">
 
-							<br/>
-							<br/>
-							<br/>
-							<div class="row">
-								<div class="col-xs-8"></div>
-								<div class="col-xs-4">
-									<table class="table table-bordered text-center" style="font-size:9px;">
-										<thead>
-											<tr>
-												<th colspan="4" style="padding: 0;font-size:9px;">
-													<center>CLASIFICACIÓN ARCHIVISTICA</center>
-												</th>
-											</tr>
-										</thead>
-										<tbody>
-											<tr style="background-color:#f2f2f2;">
-												<td style="padding: 0;">SECCIÓN</td>
-												<td style="padding: 0;">SERIE</td>
-												<td style="padding: 0;">SUBSERIE</td>
-											</tr>
-											<tr>
-												<td style="padding: 0;">
-													<span t-field="traslado.seccion"/>
-												</td>
-												<td style="padding: 0;">
-													<span t-field="traslado.serie"/>
-												</td>
-												<td style="padding: 0;">
-													<span t-field="traslado.sub_serie"/>
-												</td>
-											</tr>
-										</tbody>
-									</table>
-								</div>
+						<table class="table table-bordered text-center" style="border:1px solid black;">
+							<tbody>
+								<tr>
+									<td colspan="8" style="border:1px solid black;">
+										<strong>
+											Personal que retira el traslado del (los) imputado(s)
+										</strong>
+									</td>
+								</tr>
+								<tr>
+									<td colspan="2" style="border:1px solid black;">
+										Num. de
+										oficio:
+									</td>
+									<td colspan="2" style="border:1px solid black;">
+										<strong>
+											<span t-field="traslado.name"/>
+										</strong>
+									</td>
+									<td colspan="2" style="border:1px solid black;">
+										Fecha de
+										traslado:
+									</td>
+									<td colspan="2" style="border:1px solid black;width:400px;">
+										<strong>
+											<span t-field="traslado.fecha_hora" t-options ='{"format": "dd/MM/yyyy"}'/>
+										</strong>
+									</td>
+								</tr>
+								<tr>
+									<td colspan="2" style="border:1px solid black;">
+										Autoridad que
+										ordena el traslado:
+									</td>
+									<td colspan="3" style="border:1px solid black; padding:0;">
+										<div class="borde-bottom">
+											Nombre
+										</div>
+										<strong>
+											<span t-field="traslado.autoridad_que_solicita_id"/>
+										</strong>
+									</td>
+									<td colspan="3" style="border:1px solid black; padding:0;width:400px;">
+										<div class="borde-bottom">
+											Cargo
+										</div>
+										<strong>
+											<span t-field="traslado.cargo_autoridad_solicita"/>
+										</strong>
+									</td>
+								</tr>
+								<tr>
+									<td colspan="2" style="border:1px solid black;">
+										Autoridad que
+										realiza el traslado:
+									</td>
+									<td colspan="3" style="border:1px solid black; padding:0;">
+										<div class="borde-bottom">
+											Nombre
+										</div>
+										<strong>
+											<span t-field="traslado.autoridad_que_realiza_id"/>
+										</strong>
+									</td>
+									<td colspan="3" style="border:1px solid black; padding:0;width:400px;">
+										<div class="borde-bottom">
+											Cargo
+										</div>
+										<strong>
+											<span t-field="traslado.cargo_autoridad_realiza"/>
+										</strong>
+									</td>
+								</tr>
+								<tr>
+									<td colspan="2" style="border:1px solid black;">
+										Dependencia a la
+										que pertenecen:
+									</td>
+									<td colspan="3" style="border:1px solid black;">
+										<strong>
+											<span t-field="traslado.dependencia.name"/>
+										</strong>
+									</td>
+									<td style="border:1px solid black;">
+										Firma:
+									</td>
+									<td colspan="3" style="border:1px solid black;width:400px;">
+									</td>
+								</tr>
+								<tr>
+									<td colspan="2" style="border:1px solid black;">
+										Elementos de apoyo:
+									</td>
+									<td colspan="1" style="border:1px solid black;">
+										<strong>
+											<span t-field="traslado.numero_elementos"/>
+										</strong>
+									</td>
+									<td colspan="2" style="border:1px solid black;">
+										Procedencia del
+										imputado:
+									</td>
+									<td colspan="3" style="border:1px solid black;">
+										<strong>
+											<span t-field="traslado.lugar_id.x_name"/>
+										</strong>
+									</td>
+								</tr>
+								<tr>
+									<td colspan="2" style="border:1px solid black;">
+										Vehículo
+										oficial:
+									</td>
+									<td style="border:1px solid black;width:150px;">
+										<t t-foreach="traslado.vehiculo_ids" t-as="i">
+											<t t-if="i">
+												<strong><span t-field="i.name"/>, </strong>
+											</t>
+										</t>
+									</td>
+									<td colspan="2" style="border:1px solid black;">
+										Num. Económico:
+									</td>
+									<td style="border:1px solid black;">
+										<t t-foreach="traslado.vehiculo_ids" t-as="i">
+											<t t-if="i">
+												<strong><span t-field="i.no_economico"/>, </strong>
+											</t>
+										</t>
+									</td>
+									<td style="border:1px solid black;">
+										Placas:
+									</td>
+									<td style="border:1px solid black;">
+										<t t-foreach="traslado.vehiculo_ids" t-as="i">
+											<t t-if="i">
+												<strong><span t-field="i.placas"/>, </strong>
+											</t>
+										</t>
+									</td>
+								</tr>
+								<tr>
+									<td colspan="2" style="border:1px solid black;">
+										Observaciones:
+									</td>
+									<td colspan="4" style="border:1px solid black;">
+										<strong>
+											<span t-field="traslado.observaciones_traslado"/>
+										</strong>
+									</td>
+									<td colspan="1" style="border:1px solid black;">
+										Hora:
+									</td>
+									<td colspan="1" style="border:1px solid black;">
+										<strong>
+											<span t-field="traslado.fecha_hora_entrega_responsable" t-options="{&quot;format&quot;: &quot;HH:mm &quot;}"/>
+										</strong>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+
+						<br/>
+						<div class="row">
+							<div class="col-xs-8"></div>
+							<div class="col-xs-4">
+								<table class="table table-bordered text-center" style="font-size:9px;">
+									<thead>
+										<tr>
+											<th colspan="4" style="padding: 0;font-size:9px;">
+												<center>CLASIFICACIÓN ARCHIVISTICA</center>
+											</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr style="background-color:#f2f2f2;">
+											<td style="padding: 0;">SECCIÓN</td>
+											<td style="padding: 0;">SERIE</td>
+											<td style="padding: 0;">SUBSERIE</td>
+										</tr>
+										<tr>
+											<td style="padding: 0;">
+												<span t-field="traslado.seccion"/>
+											</td>
+											<td style="padding: 0;">
+												<span t-field="traslado.serie"/>
+											</td>
+											<td style="padding: 0;">
+												<span t-field="traslado.sub_serie"/>
+											</td>
+										</tr>
+									</tbody>
+								</table>
 							</div>
 						</div>
-					</t>
+					</div>
 				</t>
 			</t>
 		</template>

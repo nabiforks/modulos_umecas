@@ -26,7 +26,7 @@
 									<strong>Dirección de medidas cautelares y policia procesal</strong>
 									<br/>
 									<p>Subdirección de la policia procesal</p>
-									<p> centro de justicia penal puebla</p>
+									<span t-esc="user.company_id.name"/>
 								</div>
 								<div class="col-xs-4"></div>
 							</div>
@@ -146,25 +146,31 @@
 											oficial:
 										</td>
 										<td style="border:1px solid black;">
-											<strong>
-												<span t-field="traslado.vehiculo_id.name"/>
-											</strong>
+											<t t-foreach="traslado.vehiculo_ids" t-as="i">
+												<t t-if="i">
+													<strong><span t-field="i.name"/>, </strong>
+												</t>
+											</t>
 										</td>
 										<td style="border:1px solid black;">
 											Num. Económico:
 										</td>
 										<td style="border:1px solid black;">
-											<strong>
-												<span t-field="traslado.no_economico"/>
-											</strong>
+											<t t-foreach="traslado.vehiculo_ids" t-as="i">
+												<t t-if="i">
+													<strong><span t-field="i.no_economico"/>, </strong>
+												</t>
+											</t>
 										</td>
 										<td style="border:1px solid black;">
 											Placas:
 										</td>
 										<td style="border:1px solid black;">
-											<strong>
-												<span t-field="traslado.placas"/>
-											</strong>
+											<t t-foreach="traslado.vehiculo_ids" t-as="i">
+												<t t-if="i">
+													<strong><span t-field="i.placas"/>, </strong>
+												</t>
+											</t>
 										</td>
 										<td style="border:1px solid black;">
 											Vehiculos de apoyo:
@@ -232,7 +238,7 @@
 									</tr>
 								</tbody>
 							</table>
-							<br/>
+							<!--s<br/>
 							<br/>
 							<br/>
 							<div class="row">
@@ -266,7 +272,7 @@
 										</tbody>
 									</table>
 								</div>
-							</div>
+							</div>-->
 						<!--end div page-->
 						</div>
 					</t>

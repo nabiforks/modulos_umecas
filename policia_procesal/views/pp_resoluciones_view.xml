@@ -16,11 +16,10 @@
 								class="oe_stat_button o_res_partner_tip_opp" 
 								icon="fa-share-square-o" 
 								context="{
-									'search_default_partner_id': partner_id,
+									'search_default_name': name,
+									'default_partner_ids': partner_ids,
 									'default_delito_ids': delito_ids,
 									'default_nic_cdi_nuc': causa_penal,
-									'default_autoridad_que_solicita_id': juez_concat,
-									'default_cargo_autoridad_solicita': juez_cargo,
 									'default_fecha_inicio_audiencia': fecha_hora,
 									'default_hora_inicio_audiencia': hora_inicio,
 									'default_hora_termino_audiencia': hora_termino,
@@ -40,9 +39,9 @@
 								<field name="lugar"/>
 							</group>
 							<group style="margin:0;">
-								<field name="juez_concat" invisible="1"/>
+								<!--<field name="juez_concat" invisible="1"/>
 								<field name="juez_cargo" invisible="1"/>
-								<field name="audiencia_id" invisible="1"/>
+								<field name="audiencia_id" invisible="1"/>-->
 							</group>
 						</group>
 						<div class="row">
@@ -76,22 +75,21 @@
 						</div>
 						
 						<div class="row">
-							<div class="col-xs-5">
+							<div class="col-xs-12">
 								<group style="margin:0;">
-									<field name="partner_id" domain="[('x_imputado','=',True)]" context="{'default_x_imputado':True}"/>
-								</group>
-							</div>
-							<div class="col-xs-4">
-								<group style="margin:0;">
-									<field name="delito_ids" widget="many2many_tags"/>
-								</group>
-							</div>
-							<div class="col-xs-3">
-								<group style="margin:0;">
-									<field name="edad"/>
+									<field name="partner_ids" domain="[('x_imputado','=',True)]" context="{'default_x_imputado':True}">
+										<tree>
+											<field name="display_name"/>
+											<field name="x_imputado_tipo"/>
+											<field name="edad"/>
+										</tree>
+									</field>
 								</group>
 							</div>
 						</div>
+						<group style="margin:0;">
+							<field name="delito_ids" widget="many2many_tags"/>
+						</group>
 
 						<div class="row">
 							<div class="col-xs-5">
@@ -106,12 +104,7 @@
 							</div>
 						</div>
 						<group style="margin:0;">
-							<group style="margin:0;">
-								<field name="juez_id"/>
-							</group>
-							<group style="margin:0;">
-								<field name="juez_cargo"/>
-							</group>
+							<field name="juez_ids"/>
 						</group>
 						<group style="margin:0;">
 							<field name="resolucion"/>
@@ -180,11 +173,11 @@
 			<field name='arch' type='xml'>
 				<tree>
 					<field name='name'/>
-					<field name='partner_id'/>
+					<field name='partner_ids'/>
 					<field name='tipo_audiencia'/>
 					<field name='causa_penal'/>
 					<field name='fecha_hora'/>
-					<field name='hora_termino'/>
+					<field name='hora_termino' widget="float_time"/>
 					<field name='tipo_egreso'/>
 				</tree>
 			</field>
@@ -195,7 +188,7 @@
 		    <field name="model">pp.control_audiencia</field>
 		    <field name="arch" type="xml">
 		        <search>
-		        	<field name="partner_id"/>
+		        	<field name="partner_ids"/>
 		        	<field name="name"/>
 		        	<field name="audiencia_id"/>
 		        	<field name='tipo_audiencia'/>

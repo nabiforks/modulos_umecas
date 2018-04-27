@@ -3,7 +3,7 @@
 from odoo import api, fields, models
 from odoo.exceptions import ValidationError
 
-class CustodiaProvicional(models.Model):
+class CustodiaProvisional(models.Model):
     _name = 'pp.custodia'
 
     name = fields.Char(
@@ -30,15 +30,14 @@ class CustodiaProvicional(models.Model):
         string='Conducta del imputado',
     )
     fecha_hora_egreso = fields.Datetime(
-        string='Egreso del centro de justicia',
+        string='Egreso del centro o casa de justicia',
     )
     nombre_completo = fields.Char(
         related='partner_id.display_name',
         string='Nombre del imputado/detenido',
     )
-    audiencias = fields.Integer(
-        string='Pertenencias',
-        compute='compute_audiencia_count'
+    observaciones = fields.Text(
+        string='Observaciones',
     )
     delito_ids = fields.Many2many(
         'umc_delitos',
@@ -110,29 +109,9 @@ class CustodiaProvicional(models.Model):
         if vals.get('name', 'Nuevo') == 'Nuevo':
             vals['name'] = self.env['ir.sequence'].next_by_code(
                 'pp.custodia') or 'Nuevo'
-        result = super(CustodiaProvicional, self).create(vals)
+        result = super(CustodiaProvisional, self).create(vals)
         return result
 
-    @api.multi
-    def compute_audiencia_count(self):
-        for partner in self:
-            partner.audiencias = self.env['pp.audiencia'].search_count(
-                [('custodia_id', '=', partner.id)])
-        """
-
-    @api.multi
-    def reg_custodia_realizado(self):
-        self.state = 'terminado'
-
-    @api.multi
-    @api.depends('no_registrado')
-    def compute_note(self):
-        for record in self:
-            if record.no_registrado==True:
-                record.desc_reg_imputados="No se encontraron expedientes"
-            else:
-                record.desc_reg_imputados="Expedientes encontrados"
-"""
 
 #===============MODELO PARA LA LISTA DE PERTENENCIAS===============
 class PertenenciasLista(models.Model):

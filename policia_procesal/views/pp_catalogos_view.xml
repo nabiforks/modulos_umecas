@@ -12,8 +12,8 @@
 				<form>
 					<sheet>
 						<group>
-							<field name="name"/>
 							<field name="titulo"/>
+							<field name="name"/>
 							<field name="cargo"/>
 						</group>
 					</sheet>
@@ -31,6 +31,12 @@
 					<field name='cargo'/>
 				</tree>
 			</field>
+		</record>
+		<record id="juez_action_list" model="ir.actions.act_window">
+			<field name="name">Jueces</field>
+			<field name="res_model">pp.jueces</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
 		</record>
 
 		<!--*************************************-->

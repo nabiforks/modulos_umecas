@@ -8,7 +8,7 @@
 		<!--=================Recepcion================-->
 		<menuitem id="recepcion_menu" name="Recepción" parent="main_pp_menu" action="recepcion_view_action" sequence="1"/>
 		
-		<!--Crear menu custodia provicional-->
+		<!--Crear menu custodia provisional-->
 		<menuitem id="custodia_manu" name="Custodia" parent="main_pp_menu" action="custodia_action_list" sequence="2"/>
 
 		<!--Crear menu Sala de  audiencias-->
@@ -34,7 +34,10 @@
 		<menuitem id="vehiculos_manu" name="Vehículos" parent="pp_menu" action="vehiculos_action_list"/>
 
 		<!--Crear menu dependencias-->
-		<menuitem id="dep_manu" name="Dependencias" parent="pp_menu" action="dependencias_action_list"/>
+		<menuitem id="dep_menu" name="Dependencias" parent="pp_menu" action="dependencias_action_list"/>
+
+		<!--Crear menu dependencias-->
+		<menuitem id="juez_menu" name="Jueces" parent="pp_menu" action="juez_action_list"/>
 
 	</data>
 </odoo>

@@ -5,7 +5,7 @@ from odoo import fields, models
 class Egreso(models.Model):
     _name = 'pp.egreso'
 
-    numero_oficio = fields.Char(
+    name = fields.Char(
         string='No. Oficio de traslado',
         required=True,
     )
@@ -57,16 +57,16 @@ class Egreso(models.Model):
     )
     
     #==========RELATIONSHIP==========
-    partner_id = fields.Many2one(
+    partner_ids = fields.Many2many(
         'res.partner',
-        string='Imputado/detenido',
+        string='Detenido y/o imputado(s)',
         required=True,
     )
     delito_ids = fields.Many2many(
         'umc_delitos',
         string='Delito(s)',
     )
-    vehiculo_id = fields.Many2one(
+    vehiculo_ids = fields.Many2many(
         'pp.vehiculos',
         string='Vehículo Oficial',
     )
@@ -76,23 +76,20 @@ class Egreso(models.Model):
     )
     
     #==========RELATED==========
-    name = fields.Char(
-    	related='partner_id.display_name',
-        string='Nombre del imputado/detenido',
-    )
+    
     placas = fields.Char(
-        related='vehiculo_id.placas',
+        #related='vehiculo_id.placas',
         string='Placas',
         readonly=True
     )
     no_economico = fields.Char(
-        related='vehiculo_id.no_economico',
+        #related='vehiculo_id.no_economico',
         string='Número económico',
         readonly=True
     )
     #==========Datos para reporte==========
     responsable = fields.Char(
-        string='Nombre de responsable de la custodia',
+        string='Nombre del responsable que recibe la custodia',
     )
     seccion = fields.Char(
         string='Sección',
