@@ -215,6 +215,68 @@ class sup_mc_scp(models.Model):
         codigo+='<p>Línea 2</p><br>'
         return codigo
     
+    #////////////////////////////////Carta de compromiso y apoyo moral
+    x_compromiso_apoyomoral_html = fields.Html(
+        string='Cartas',
+        default=lambda self: self.cartas_default(),
+    )
+    def cartas_default(self):
+        default_code="""
+            <h4>DIRECCIÓN DE MEDIDAS CAUTELARES Y POLICÍA PROCESAL ÁREA DE SUPERVISIÓN</h4>
+            <h4>CARTA-COMPROMISO DEL IMPUTADO</h4>
+            <br/>
+            <strong>Entiendo que:</strong>
+            <ul style="list-style-type: circle;">
+                <li>
+                    El(los) supervisor(es) de la Unidad de Medidas Cautelares estará(n) en comunicación constante conmigo y con mi familia
+                    , mediante llamadas telefónicas, visitas domiciliarias, entrevistas o cualquier otro medio electrónico contemplado en el
+                     plan de supervísión y/o atribuciones contemplada en el Artículo 177 del Código Penal Nacional de Procedimientos Penales
+                     mismas que se me han dado lectura y he comprendido para asegurar que estoy cumpliendo con las Medidas Cautelares o con 
+                     la Suspensión Condicional del Proceso impuestas por el Juez de Control en el número de causa .
+                </li>
+                <li>
+                    El(los) supervisor(es) de la Unidad de Medidas Cautelares intercambiará información con la institución desginada por el 
+                    Juez de Control para mi supervisión, con la finalidad de verificar que se cumplan las Medidas Cautelares o con la Supensión 
+                    Condicional del Proceso en el citado número de causa.
+                </li>
+                <li>
+                    Cualquier incumplimiento de las Medidas Cautelares o con la Suspensión Condicional del Proceso impuesta por el Juez de Control
+                    será informado al mismo, así como al Ministerio Público y a mi Defensor.
+                </li>
+                <li>
+                    En caso de incumplimiento de informará al Ministerio Público y a mi Defensor; y el Juez de Control decidirá sobre la modificación 
+                    de la(s) Medida(s) Cautelar(es) que me fueron impuestas por otras más restrictivas.
+                </li>
+            </ul>
+            <strong>Me comprometo a:</strong>
+            <ul>
+                <li>
+                    Presentarme en cada audiencia que se requiera durante mi Proceso Penal.
+                </li>
+                <li>
+                    Cumplir con las Medidas Cautelares o con las Condiciones impuestas por el Juez de Control, a partir de esta fecha.
+                </li>
+                <li>
+                    Entregar la documentación que me sea requerida por parte del (los) supervisor(es) en tiempo y forma, la cual acredite el cumplimiento 
+                    de las Medidas Cautelares o Condiciones que me comprometí a cumplir.
+                </li>
+                <li>
+                    Avisar a mi supervisor de cualquier cambioen mi entorno socio-ambiental (domicilio, número de teléfono celular y/o fijo, empleo  u otro)
+                </li>
+                <li>
+                    Mantener comunicación con mi supervisor asignado por los medios estipulados en esta entrevista (llamadas telefónicas, visitas a las oficinas 
+                    de Medidas Cautelares en caso de tener alguna duda en cuanto al cumplimiento, visitas domiciliarias o cualquier otra vía necesaria).
+                </li>
+                <li>
+                    Informar al personal de Supervisión 
+                </li>
+                <li>
+                    A proporcionar las realidades 
+                </li>
+            </ul>
+        """
+        return default_code   
+        
 
     #///////////////////////////////////////////// campo relacional con expedientes
     #///////////////////////////////////////////// campo relacional con expedientes
