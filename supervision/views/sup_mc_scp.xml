@@ -62,7 +62,9 @@
                                     <field name="x_encuadre_status"/>
                                 </group>
                             </page>
-                            <page string="Carta compromiso y A. moral"></page>
+                            <page string="Carta compromiso y A. moral">
+                                <field name="x_compromiso_apoyomoral_html" widget="html" options="{'style-inline': true}"/>
+                            </page>
                             <page string="Presentación periódica"></page>
                             <page string="Informe">
                                 <field name="x_informe_html" widget="html" options="{'style-inline': true}"/>
