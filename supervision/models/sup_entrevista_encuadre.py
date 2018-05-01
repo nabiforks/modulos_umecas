@@ -71,7 +71,16 @@ class sup_entrevista_encuadre(models.Model):
     )
     x_factores_estabilidad = fields.Text(
         string=u'Factores de Estabilidad',
-    )    
+    )
+    #=====Renombrar el campo para quitarle el attr required y no marque error    
+    x_evaluacion_id = fields.Many2one(
+        string=u'Evaluacion_id',
+        comodel_name='umc_evaluacion',        
+        required=False,        
+        ondelete='set null',
+    )
+    
+
     
     @api.depends('x_fecha_nacimiento','x_fecha_today')
     def calcular_edad(self):
