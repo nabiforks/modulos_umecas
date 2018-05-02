@@ -94,6 +94,9 @@ class sup_mc_scp(models.Model):
         entrevistas=self.env['umc_entrevistas'].search([('x_imputado_id', '=', self.x_imputado_id.id)])
         if entrevistas:
             entrevista = entrevistas[-1]
+            #domicilio_aux= ''
+            #self.copy(domicilio_aux : entrevista.x_domicilio_actual.ids)
+            #print "==============0--",domicilio_aux
             datos={
                 'x_sexo':entrevista.x_sexo,
                 'x_lugar_nacimiento':entrevista.x_lugar_nacimiento,
@@ -102,20 +105,21 @@ class sup_mc_scp(models.Model):
                 'x_estado_civil_otro':entrevista.x_estado_civil_otro,
                 'x_telefono':entrevista.x_telefono,
                 'x_telefono_otro':entrevista.x_telefono_otro,
-                'x_domicilio_actual':[(6,0,entrevista.x_domicilio_actual.ids)],
-                'x_enfermedades_ids':[(6,0,entrevista.x_enfermedades_ids.ids)],
+                #'x_domicilio_actual':[(6,0,entrevista.x_domicilio_actual.ids)],
+                #'x_enfermedades_ids':[(6,0,entrevista.x_enfermedades_ids.ids)],
                 'x_discapacidad_padece':entrevista.x_discapacidad_padece,
                 'x_discapacidad_id':entrevista.x_discapacidad_id.id,
-                'x_empleos_ids':[(6,0,entrevista.x_empleos_ids.ids)],
-                'x_contacto_ids':[(6,0,entrevista.x_contacto_ids.ids)],
-                'x_amistades_ids':[(6,0,entrevista.x_amistades_ids.ids)],
-                'x_actividades_ids':[(6,0,entrevista.x_actividades_ids.ids)],
+                #'x_empleos_ids':[(6,0,entrevista.x_empleos_ids.ids)],
+                #'x_contacto_ids':[(6,0,entrevista.x_contacto_ids.ids)],
+                #'x_amistades_ids':[(6,0,entrevista.x_amistades_ids.ids)],
+                #'x_actividades_ids':[(6,0,entrevista.x_actividades_ids.ids)],
                 'x_consume_sustancias':entrevista.x_consume_sustancias,
-                'x_sustancias_ids':[(6,0,entrevista.x_sustancias_ids.ids)],
+                #'x_sustancias_ids':[(6,0,entrevista.x_sustancias_ids.ids)],
                 'x_observaciones_actitud':entrevista.x_observaciones_actitud
 
             }
             partner = self.env['sup_entrevista_encuadre'].search([('id', '=', self.x_encuadre_id.id)])
+            #partner = self.copy(default={'x_domicilio_actual':entrevista.x_domicilio_actual.ids})
             partner.write(datos)
             
 
@@ -162,7 +166,7 @@ class sup_mc_scp(models.Model):
     @api.multi
     def regresar_capturar_medidas(self):
         self.state = 'mc-scp'
-        print "////////////////////delitos",self.x_expediente_id.x_delito.ids
+        #print "////////////////////delitos",self.x_expediente_id.x_delito.ids
         #self.get_ultima_entrevista()
     #///////////////////////////////// Medidas Cautelares
     #///////////////////////////////// Medidas Cautelares
