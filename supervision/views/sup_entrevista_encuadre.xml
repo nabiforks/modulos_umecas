@@ -185,7 +185,11 @@
             <field name="arch" type="xml">
                 <tree>
                     <field name="x_name" />
-                    <!--field name="x_imputado"/><field name="x_resolucion" /><field name="x_inicia" /><field name="x_finaliza" /><field name="x_expediente_id"/-->
+                    <field name="x_imputado"/>
+                    <field name="actividades_evaluacion" />
+                    <field name="x_resolucion" />
+                    <field name="x_reclasificado" />
+                    <field name="state" />
                 </tree>
             </field>
         </record>

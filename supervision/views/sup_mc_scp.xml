@@ -32,7 +32,7 @@
                                 <field name="x_tiempo" />
                             </group>
                             <group>
-                                <field name="x_supervisor_id" />
+                                <field name="x_supervisor_id" options="{'no_create_edit': True,'no_open': True}" />
                                 <field name="x_foja" />
                                 <field name="x_libro" />
                                 <field name="x_expediente_id"/>
