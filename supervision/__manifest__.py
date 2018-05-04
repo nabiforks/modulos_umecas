@@ -21,6 +21,7 @@
         'data/datos_demo.xml',
         'views/sup_catalogos.xml',
         'views/sup_entrevista_encuadre.xml',
+        'views/sup_eventos.xml'
     ],
     'intallable': True,
     'auto_install': False,

@@ -14,7 +14,11 @@
                         <field name="state" widget="statusbar"/>
                     </header>
                     <sheet>
-                        <div class="oe_button_box" name="button_box"></div>
+                        <div class="oe_button_box" name="button_box">
+                            <button class="oe_stat_button" name="calendar.action_calendar_event" icon="fa-calendar" type="action" context="{'search_default_x_supervision_id': active_id}">
+                                <field string="Visitas/Firmas" name="x_eventos" widget="statinfo"/>
+                            </button>
+                        </div>
                         <div class="oe_title">
                             <h1>
                                 <field name="x_name" />
@@ -66,7 +70,9 @@
                                 <field name="x_compromiso_html" widget="html" options="{'style-inline': true}"/>
                                 <field name="x_apoyo_moral_html" widget="html" options="{'style-inline': true}"/>
                             </page>
-                            <page string="Presentación periódica"></page>
+                            <page string="Presentación periódica">
+                                <field name="x_eventos_ids" />
+                            </page>
                             <page string="Informe">
                                 <field name="x_informe_html" widget="html" options="{'style-inline': true}"/>
                             </page>

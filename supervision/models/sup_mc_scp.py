@@ -203,6 +203,28 @@ class sup_mc_scp(models.Model):
         readonly=True,
         related='x_encuadre_id.state',
     )
+    #///////////////////////////////// Visita periodica
+    #///////////////////////////////// Visita periodica
+    #///////////////////////////////// Visita periodica
+    #///////////////////////////////// Visita periodica
+
+    x_eventos_ids = fields.One2many(
+        string=u'Eventos',
+        comodel_name='calendar.event',
+        inverse_name='x_supervision_id',
+    )
+    x_eventos = fields.Integer(
+        string=u'Eventos',        
+        compute='compute_registros_count',        
+        store=True,        
+    )
+    @api.multi
+    def compute_registros_count(self):
+        for contador in self:
+            contador.x_eventos = self.env['calendar.event'].search_count(
+                [('x_supervision_id', '=', contador.id)])
+    
+    
     #/////////////////////////////////Informe Supervisor
     #/////////////////////////////////Informe Supervisor
     #/////////////////////////////////Informe Supervisor

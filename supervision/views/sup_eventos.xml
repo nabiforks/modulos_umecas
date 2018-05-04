@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data >
+        <!--  form view /////////////////////////////////////////////////////-->
+        <record model="ir.ui.view" id="sup_eventos_form_view">
+            <field name="name">sup_eventos.form.view</field>
+            <field name="model">calendar.event</field>
+            <field name="inherit_id" ref="calendar.view_calendar_event_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//div[@class='oe_title']" position="after">
+                    <group>
+                        <group></group>
+                        <group>
+                            <field name="x_supervision_id" />
+                        </group>
+                    </group>
+                </xpath>
+            </field>
+        </record>
+        <!--  tree view /////////////////////////////////////////////////////-->
+        <!--record model="ir.ui.view" id="sup_eventos_tree_view"><field name="name">sup_eventos.tree.view</field><field name="model">sup_eventos</field><field name="arch" type="xml"><tree><field name="name" /></tree></field></record-->
+        <!--  graph view /////////////////////////////////////////////////////-->
+        <!--record model="ir.ui.view" id="sup_eventos_graph_view"><field name="name">sup_eventos.graph.view</field><field name="model">sup_eventos</field><field name="arch" type="xml"><graph string="Registros"><field name="name" /></graph></field></record-->
+        <!--Vista search-->
+        <record model="ir.ui.view" id="sup_eventos_search_view">
+            <field name="name">sup_eventos.search.view</field>
+            <field name="model">calendar.event</field>
+            <field name="inherit_id" ref="calendar.view_calendar_event_search"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='name']" position="before">
+                    <field name="x_supervision_id" />
+                </xpath>
+            </field>
+        </record>
+        <!--Vista calendar -->
+        <!--record model="ir.ui.view" id="sup_eventos_calendar_view"><field name="name">sup_eventos.calendar.view</field><field name="model">sup_eventos</field><field name="arch" type="xml"><calendar string="Meetings" date_start="start" date_stop="stop" date_delay="duration" all_day="allday" display="[name]" color="color_partner_id" attendee="partner_ids" avatar_model="res.partner" use_contacts="True" event_open_popup="1167"><field name="name"/><field name="user_id"/><field name="color_partner_id"/><field name="partner_ids"/></calendar></field></record-->
+        <!-- window action ///////////////////////////////////////////////////////////////////////////////-->
+        <!--record model="ir.actions.act_window" id="sup_eventos_list_action"><field name="name">Eventos</field><field name="res_model">sup_eventos</field><field name="view_type">form</field><field name="view_mode">calendar,tree,graph,kanban,form</field><field name="help" type="html"><p class="oe_view_nocontent_create">Agregar primer registro</p></field></record-->
+        <menuitem id="sup_eventos" sequence="13" name="Eventos" parent="sup_menu_principal" action="calendar.action_calendar_event" />
+    </data>
+</odoo>
