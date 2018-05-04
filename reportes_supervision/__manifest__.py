@@ -17,7 +17,9 @@
     'depends': ['base','UMECAS'],
 
     'data': [
+        'data/report_format.xml',
         'report/reporte_mc_scp.xml',
+        'report/reporte_entrevista.xml',
         #'views/evaluacion_inherit.xml',
         #'security/accesos.csv',
     ],
