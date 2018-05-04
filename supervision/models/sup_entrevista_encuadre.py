@@ -147,6 +147,15 @@ class sup_entrevista_encuadre(models.Model):
         related='x_imputado.id',
     )
     #==========Datos para reporte==========
+    x_dia_hora_firma = fields.Datetime(
+        string='Día y hora de firma',
+    )
+    x_hora_conclusion = fields.Float(
+        string='Hora de conclusión',
+    )
+    x_abogado = fields.Char(
+        string='Nombre del abogado',
+    )
     seccion = fields.Char(
         string='Sección',
         default='11S',

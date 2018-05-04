@@ -81,4 +81,6 @@ class umc_empleos(models.Model):
     x_motivo = fields.Char(
         string=u'Motivo de cambio',
     )
-    
+    x_telefono_empleo = fields.Char(
+        string=u'Teléfono',
+    )

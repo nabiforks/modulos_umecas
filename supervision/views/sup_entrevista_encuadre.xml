@@ -144,6 +144,13 @@
                                     <field name="x_factores_estabilidad" />
                                 </group>
                                 <div class="row">
+                                    <div class="col-xs-8">
+                                        <group>
+                                            <field name="x_dia_hora_firma"/>
+                                            <field name="x_abogado" />
+                                            <field name="x_hora_conclusion" widget="float_time"/>
+                                        </group>
+                                    </div>
                                     <div class="col-xs-4">
                                         <table class="table table-bordered text-center">
                                             <tbody>
