@@ -79,8 +79,45 @@ class sup_entrevista_encuadre(models.Model):
         required=False,        
         ondelete='set null',
     )
-    
-
+    #================================================================================
+    #=====Renombrar campos para o2m y m2o============================================
+    #================================================================================
+    x_domicilio_actual = fields.One2many(
+        string=u'Domicilio(s)',
+        comodel_name='umc_domicilio',
+        inverse_name='x_encuadre_id',
+    )
+    x_enfermedades_ids = fields.One2many(
+        string=u'Enfermedades',
+        comodel_name='umc_enfermedades_padece',
+        inverse_name='x_encuadre_id',
+    )
+    x_empleos_ids = fields.One2many(
+        string=u'Empleos',
+        comodel_name='umc_empleos',
+        inverse_name='x_encuadre_id',
+    )
+    x_contacto_ids = fields.One2many(
+        string=u'Familiares',
+        comodel_name='res.partner',
+        inverse_name='x_encuadre_id',
+    )
+    x_amistades_ids = fields.One2many(
+        string=u'Amistades (Referencias personales)',
+        comodel_name='umc_amistades',
+        inverse_name='x_encuadre_id',
+    )
+    x_actividades_ids = fields.One2many(
+        string=u'Actividades que realiza',
+        comodel_name='umc_actividades',
+        inverse_name='x_encuadre_id',
+    )
+    x_sustancias_ids = fields.One2many(
+        string=u'Consume sustancias',
+        comodel_name='umc_sustancias_consume',
+        inverse_name='x_encuadre_id',
+    )
+    #=============Termina renombramiento de campos relacionales
     
     @api.depends('x_fecha_nacimiento','x_fecha_today')
     def calcular_edad(self):

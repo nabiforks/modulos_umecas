@@ -88,6 +88,7 @@ class Entrevistas(models.Model):
         colonia=''
         municipio=''
         estado=''
+        cp=''
         empleo=''
         salario=''
         if self.x_domicilio_actual:
@@ -95,6 +96,7 @@ class Entrevistas(models.Model):
             colonia = self.x_domicilio_actual[0].x_colonia
             municipio = self.x_domicilio_actual[0].x_municipio
             estado = self.x_domicilio_actual[0].x_estado_id.id
+            cp = self.x_domicilio_actual[0].x_cp
         if self.x_empleos_ids:
             empleo = self.x_empleos_ids[0].x_name.id
             salario = str(self.x_empleos_ids[0].x_salario)+" "+str(self.x_empleos_ids[0].x_moneda)
@@ -111,6 +113,7 @@ class Entrevistas(models.Model):
             'street2':colonia,
             'city':municipio,
             'state_id':estado,
+            'zip':cp,
             'phone': self.x_telefono,
             'mobile': self.x_telefono_otro,
             'x_estado_civil': self.x_estado_civil,

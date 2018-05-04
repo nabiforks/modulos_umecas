@@ -9,7 +9,14 @@
 			file="reporte_evaluacion_umecas.evaluacion_umecas_report"
 			report_type="qweb-pdf"			
 			/>
-
+		<record id="reporte_evaluacion_papel" model="report.paperformat">
+            <field name="name">Reporte Evalaución UMECAS</field>
+            <field name="format">Legal</field>
+            <field name="orientation">Portrait</field>
+        </record>
+        <record id="reporte_evaluacion_umecas.evaluacion_umecas_report" model="ir.actions.report.xml">
+            <field name="paperformat_id" ref="reporte_evaluacion_umecas.reporte_evaluacion_papel" />
+        </record>
 		<template id="detalles_evaluacion">
 			<t t-call="report.html_container">
 				<t t-foreach="docs" t-as="entrevista">

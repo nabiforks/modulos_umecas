@@ -41,6 +41,7 @@
             <field name="arch" type="xml">
                 <map string="Map" lat="partner_latitude" lng="partner_longitude" colors="blue:company_type=='person';green:company_type=='company';">
                     <field name="name"/>
+                    <field name="display_name"/>
                     <field name="street"/>
                     <field name="street2"/>
                     <field name="city"/>
@@ -56,7 +57,7 @@
                             <div class="gm-iw-container o_map_global_click">
                                 <div class="gm-iw-title">
                                     <img t-att-src="map_image('res.partner', 'image_small', record.id.value)"/>
-                                    <span><t t-esc="record.name.value"/></span>
+                                    <span><t t-esc="record.display_name.value"/></span>
                                 </div>
                                 <div class="gm-iw-content">
                                     <p>
