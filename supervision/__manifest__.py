@@ -12,7 +12,7 @@
     'website': "http://www.soluciones4g.com",
     'category': 'Test',
     'version': '0.1',
-    'depends': ['base','mail','UMECAS'],
+    'depends': ['base','mail','UMECAS','calendar'],
     'data': [
         'views/sup_menu_items.xml',
         'data/sequence_names.xml',
