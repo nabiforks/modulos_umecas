@@ -34,6 +34,9 @@
             <field name="x_codigo">CENTRO</field>
         </record>
         <!--Datos Casas de justicia ////////////////////////////////-->
+        <!--Datos Casas de justicia ////////////////////////////////-->
+        <!--Datos Casas de justicia ////////////////////////////////-->
+        <!--Datos Casas de justicia ////////////////////////////////-->
         <record id="umc_casa_justicia_1" model="res.company">
             <field name="name">Casa de Justicia Tezuitlán</field>
             <field name="x_abreviatura">Tezuitlán</field>
@@ -55,9 +58,170 @@
             <field name="x_region" ref='umc_regiones_2'/>
         </record>
         <record id="umc_casa_justicia_5" model="res.company">
-            <field name="name">Casa de Justicia Zacatlán</field>
+            <field name="name">Casa de Justicia de Zacatlán</field>
             <field name="x_abreviatura">Zacatlán</field>
             <field name="x_region" ref='umc_regiones_2'/>
+        </record>
+        <record id="umc_casa_justicia_6" model="res.company">
+            <field name="name">Casa de Justicia de Izúcar de Matamoros</field>
+            <field name="x_abreviatura">I.Matamoros</field>
+            <field name="x_region" ref='umc_regiones_3'/>
+        </record>
+        <record id="umc_casa_justicia_7" model="res.company">
+            <field name="name">Casa de Justicia de Chiautla de Tapia</field>
+            <field name="x_abreviatura">Chiautla</field>
+            <field name="x_region" ref='umc_regiones_3'/>
+        </record>
+        <record id="umc_casa_justicia_8" model="res.company">
+            <field name="name">Casa de Justicia de Acatlán de Osorio</field>
+            <field name="x_abreviatura">Acatlán</field>
+            <field name="x_region" ref='umc_regiones_3'/>
+        </record>
+        <record id="umc_casa_justicia_9" model="res.company">
+            <field name="name">Casa de Justicia de Tehuacán</field>
+            <field name="x_abreviatura">Tehuacán</field>
+            <field name="x_region" ref='umc_regiones_4'/>
+        </record>
+        <record id="umc_casa_justicia_10" model="res.company">
+            <field name="name">Casa de Justicia de Tecamachalco</field>
+            <field name="x_abreviatura">Tecamachalco</field>
+            <field name="x_region" ref='umc_regiones_4'/>
+        </record>
+        <record id="umc_casa_justicia_11" model="res.company">
+            <field name="name">Casa de Justicia de San Andrés Cholula</field>
+            <field name="x_abreviatura">Cholula</field>
+            <field name="x_region" ref='umc_regiones_5'/>
+        </record>
+        <record id="umc_casa_justicia_12" model="res.company">
+            <field name="name">Casa de Justicia de Atlixco</field>
+            <field name="x_abreviatura">Atlixco</field>
+            <field name="x_region" ref='umc_regiones_5'/>
+        </record>
+        <record id="umc_casa_justicia_13" model="res.company">
+            <field name="name">Casa de Justicia de San Martín Texmelucan</field>
+            <field name="x_abreviatura">San Martín</field>
+            <field name="x_region" ref='umc_regiones_5'/>
+        </record>
+        <record id="base.main_company" model="res.company">
+            <field name="name">Centro de Justicia Penal de Puebla </field>
+            <field name="x_abreviatura">Puebla</field>
+            <field name="x_region" ref='umc_regiones_6'/>
+        </record>
+        <!--Datos demo para configuracion de casas de justicia ////////////////////////////////////////////////////-->
+        <!--Datos demo para configuracion de casas de justicia ////////////////////////////////////////////////////-->
+        <!--Datos demo para configuracion de casas de justicia ////////////////////////////////////////////////////-->
+        <!--Datos demo para configuracion de casas de justicia ////////////////////////////////////////////////////-->
+        <record id="folio_expediente_1" model="umc_casas_justicia_anio_fiscal">            
+            <field name="company_id" ref="umc_casa_justicia_1" />
+            <field name="tipo_configuracion">1</field>           
+        </record>
+        <record id="folio_evaluacion_1" model="umc_casas_justicia_anio_fiscal">            
+            <field name="company_id" ref="umc_casa_justicia_1" />
+            <field name="tipo_configuracion">2</field>
+        </record>
+        <record id="folio_expediente_2" model="umc_casas_justicia_anio_fiscal">            
+            <field name="company_id" ref="umc_casa_justicia_2" />
+            <field name="tipo_configuracion">1</field>           
+        </record>
+        <record id="folio_evaluacion_2" model="umc_casas_justicia_anio_fiscal">            
+            <field name="company_id" ref="umc_casa_justicia_2" />
+            <field name="tipo_configuracion">2</field>
+        </record>
+        <record id="folio_expediente_3" model="umc_casas_justicia_anio_fiscal">            
+            <field name="company_id" ref="umc_casa_justicia_3" />
+            <field name="tipo_configuracion">1</field>           
+        </record>
+        <record id="folio_evaluacion_3" model="umc_casas_justicia_anio_fiscal">            
+            <field name="company_id" ref="umc_casa_justicia_3" />
+            <field name="tipo_configuracion">2</field>
+        </record>
+        <record id="folio_expediente_4" model="umc_casas_justicia_anio_fiscal">            
+            <field name="company_id" ref="umc_casa_justicia_4" />
+            <field name="tipo_configuracion">1</field>           
+        </record>
+        <record id="folio_evaluacion_4" model="umc_casas_justicia_anio_fiscal">            
+            <field name="company_id" ref="umc_casa_justicia_4" />
+            <field name="tipo_configuracion">2</field>
+        </record>
+        <record id="folio_expediente_5" model="umc_casas_justicia_anio_fiscal">            
+            <field name="company_id" ref="umc_casa_justicia_5" />
+            <field name="tipo_configuracion">1</field>           
+        </record>
+        <record id="folio_evaluacion_5" model="umc_casas_justicia_anio_fiscal">            
+            <field name="company_id" ref="umc_casa_justicia_5" />
+            <field name="tipo_configuracion">2</field>
+        </record>
+        <record id="folio_expediente_6" model="umc_casas_justicia_anio_fiscal">            
+            <field name="company_id" ref="umc_casa_justicia_6" />
+            <field name="tipo_configuracion">1</field>           
+        </record>
+        <record id="folio_evaluacion_6" model="umc_casas_justicia_anio_fiscal">            
+            <field name="company_id" ref="umc_casa_justicia_6" />
+            <field name="tipo_configuracion">2</field>
+        </record>
+        <record id="folio_expediente_7" model="umc_casas_justicia_anio_fiscal">            
+            <field name="company_id" ref="umc_casa_justicia_7" />
+            <field name="tipo_configuracion">1</field>           
+        </record>
+        <record id="folio_evaluacion_7" model="umc_casas_justicia_anio_fiscal">            
+            <field name="company_id" ref="umc_casa_justicia_7" />
+            <field name="tipo_configuracion">2</field>
+        </record>
+        <record id="folio_expediente_8" model="umc_casas_justicia_anio_fiscal">            
+            <field name="company_id" ref="umc_casa_justicia_8" />
+            <field name="tipo_configuracion">1</field>           
+        </record>
+        <record id="folio_evaluacion_8" model="umc_casas_justicia_anio_fiscal">            
+            <field name="company_id" ref="umc_casa_justicia_8" />
+            <field name="tipo_configuracion">2</field>
+        </record>
+        <record id="folio_expediente_9" model="umc_casas_justicia_anio_fiscal">            
+            <field name="company_id" ref="umc_casa_justicia_9" />
+            <field name="tipo_configuracion">1</field>           
+        </record>
+        <record id="folio_evaluacion_9" model="umc_casas_justicia_anio_fiscal">            
+            <field name="company_id" ref="umc_casa_justicia_9" />
+            <field name="tipo_configuracion">2</field>
+        </record>
+        <record id="folio_expediente_10" model="umc_casas_justicia_anio_fiscal">            
+            <field name="company_id" ref="umc_casa_justicia_10" />
+            <field name="tipo_configuracion">1</field>           
+        </record>
+        <record id="folio_evaluacion_10" model="umc_casas_justicia_anio_fiscal">            
+            <field name="company_id" ref="umc_casa_justicia_10" />
+            <field name="tipo_configuracion">2</field>
+        </record>
+        <record id="folio_expediente_11" model="umc_casas_justicia_anio_fiscal">            
+            <field name="company_id" ref="umc_casa_justicia_11" />
+            <field name="tipo_configuracion">1</field>           
+        </record>
+        <record id="folio_evaluacion_11" model="umc_casas_justicia_anio_fiscal">            
+            <field name="company_id" ref="umc_casa_justicia_11" />
+            <field name="tipo_configuracion">2</field>
+        </record>
+        <record id="folio_expediente_12" model="umc_casas_justicia_anio_fiscal">            
+            <field name="company_id" ref="umc_casa_justicia_12" />
+            <field name="tipo_configuracion">1</field>           
+        </record>
+        <record id="folio_evaluacion_12" model="umc_casas_justicia_anio_fiscal">            
+            <field name="company_id" ref="umc_casa_justicia_12" />
+            <field name="tipo_configuracion">2</field>
+        </record>
+        <record id="folio_expediente_13" model="umc_casas_justicia_anio_fiscal">            
+            <field name="company_id" ref="umc_casa_justicia_13" />
+            <field name="tipo_configuracion">1</field>           
+        </record>
+        <record id="folio_evaluacion_13" model="umc_casas_justicia_anio_fiscal">            
+            <field name="company_id" ref="umc_casa_justicia_13" />
+            <field name="tipo_configuracion">2</field>
+        </record>
+        <record id="folio_expediente_14" model="umc_casas_justicia_anio_fiscal">            
+            <field name="company_id" ref="base.main_company" />
+            <field name="tipo_configuracion">1</field>           
+        </record>
+        <record id="folio_evaluacion_14" model="umc_casas_justicia_anio_fiscal">            
+            <field name="company_id" ref="base.main_company" />
+            <field name="tipo_configuracion">2</field>
         </record>
         <!--Datos demo para actividad ////////////////////////////////////////////////////-->
         <!--Datos demo para actividad ////////////////////////////////////////////////////-->

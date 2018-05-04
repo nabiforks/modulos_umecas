@@ -41,11 +41,10 @@
                 <field name="x_estado_civil" />
                 <field name="x_ocupacion" />
                 <field name="x_identificacion" />
-                <field name="x_ingreso_economico"  />
+                <field name="x_ingreso_economico" />
             </xpath>
             <xpath expr="//field[@name='type']" position="after">
                 <field name="x_apodo" />
-                
                 <field name="x_sexo" />
                 <field name="x_imputado_tipo" attrs="{'invisible': [('x_imputado','=',False)]}"/>
                 <field name="x_nacionalidad" />
@@ -55,10 +54,10 @@
                 <field name="fecha_nacimiento" string="Fecha de nacimiento" />
                 <field name="edad" string="Edad" />
             </xpath>
-            <xpath expr="//field[@name='image']" position="before">
-                <field name="x_imputado"  />
+            <xpath expr="//field[@name='company_type']" position="before">
+                <label for="x_imputado" class="oe_edit_only"></label>
+                <field name="x_imputado" class="oe_edit_only"/>
             </xpath>
-            
         </field>
     </record>
     <!--search view ///////////////////////////// -->
