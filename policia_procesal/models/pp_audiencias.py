@@ -11,9 +11,6 @@ class Audiencias(models.Model):
         readonly=True,
         default=lambda self: 'Nuevo'
     )
-    solicitante = fields.Char(
-        string='Solicitante',
-    )
     numero_sala = fields.Integer(
         string='Sala de audiencia No.',
     )

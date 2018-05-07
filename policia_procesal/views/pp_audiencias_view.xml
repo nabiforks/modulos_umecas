@@ -36,7 +36,7 @@
 							</div>
 							<div class="col-xs-6">
 								<group style="margin:0;">
-									<field name="fecha_hora"/>
+									
 								</group>
 							</div>
 						</div>
@@ -48,7 +48,7 @@
 							</div>
 							<div class="col-xs-6">
 								<group style="margin:0;">
-									<field name="solicitante"/>
+									<field name="fecha_hora"/>
 								</group>
 							</div>
 						</div>

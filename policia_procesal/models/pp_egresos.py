@@ -28,7 +28,7 @@ class Egreso(models.Model):
         string="Cargo",
     )
     numero_elementos = fields.Integer(
-        string='Número de elementos',
+        string='Número de elementos de apoyo',
     )
     dependencia = fields.Many2one(
         'pp.dependencias',

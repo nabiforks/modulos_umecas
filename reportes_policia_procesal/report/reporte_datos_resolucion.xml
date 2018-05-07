@@ -89,7 +89,13 @@
 											</tr>
 											<tr>
 												<td colspan="1" class="text-left borde" style="padding:3;">SOLICITANTE(S):</td>
-												<td colspan="7" class="text-left borde" style="padding:3;"></td>
+												<td colspan="7" class="text-left borde" style="padding:3;">
+													<t t-foreach="audiencia.acceso_ids" t-as="i">
+														<t t-if="i.tipo=='solicitante'">
+															<strong><span t-field="i.name"/>,</strong>
+														</t>
+													</t>
+												</td>
 											</tr>
 											<tr>
 												<td colspan="1" class="text-left borde" style="padding:3;">DELITO(S) Y/O ABUSO(S):</td>
