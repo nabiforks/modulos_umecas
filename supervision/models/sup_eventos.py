@@ -9,14 +9,19 @@ class sup_eventos(models.Model):
     
     #_inherits = {'calendar.event': 'id'}
     
-    x_mc_id = fields.Many2one(
+    """x_mc_id = fields.Many2one(
         string=u'Medida Cautelar',
         comodel_name='sup_mc_lines',
         ondelete='set null',
-    )
+    )"""
     x_supervision_id = fields.Many2one(
         string=u'Supervisión ID',
         comodel_name='sup_mc_scp',
         ondelete='set null',
     )
+    
+    x_cumplio = fields.Boolean(
+        string=u'Cumplió/Realizado',
+    )
+    
     

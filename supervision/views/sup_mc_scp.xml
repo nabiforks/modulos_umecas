@@ -117,6 +117,7 @@
                     <field name="x_name" />
                     <field name="x_imputado_id"/>
                     <field name="x_expediente_id"/>
+                    <filter string="ID" name="Filtrar id" domain="[('id','=',1)]" context="{}" help="" />
                 </search>
             </field>
         </record>

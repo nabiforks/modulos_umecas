@@ -15,5 +15,12 @@
             <field name="padding">5</field>
             <field eval="1" name="number_increment"/>
         </record>
+        <record id="seq_names_sup_planeacion_actividades" model="ir.sequence">
+            <field name="name">Names_automatics_sup_planeacion_actividades</field>
+            <field name="code">sup_planeacion_actividades</field>
+            <field name="prefix">ACT</field>
+            <field name="padding">5</field>
+            <field eval="1" name="number_increment"/>
+        </record>
     </data>
 </odoo>
