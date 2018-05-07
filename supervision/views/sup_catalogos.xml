@@ -38,7 +38,8 @@
 			<field name="view_type">form</field>
 			<field name="view_mode">tree,form</field>
 		</record>
-		<menuitem id="sup_catalogo_mc_menu" name="Medidas Cautelares" parent="sup_configuracion" action="catalogo_mc_action"/>
+		<menuitem id="sup_catalogo_resolucion" name="Catálogos" parent="sup_configuracion"/>
+		<menuitem id="sup_catalogo_mc_menu" name="Medidas Cautelares" parent="sup_catalogo_resolucion" action="catalogo_mc_action"/>
 
 
 
@@ -79,6 +80,42 @@
 			<field name="view_type">form</field>
 			<field name="view_mode">tree,form</field>
 		</record>
-		<menuitem id="sup_catalogo_scp_menu" name="SCP" parent="sup_configuracion" action="catalogo_scp_action"/>
+		<menuitem id="sup_catalogo_scp_menu" name="SCP" parent="sup_catalogo_resolucion" action="catalogo_scp_action"/>
+		<!--**************************************************-->
+		<!--* CATALOGO DE TIPO DE VISITA *-->
+		<!--**************************************************-->
+		<record model="ir.ui.view" id="sup_tipo_visita_form_view">
+			<field name="name">sup_tipo_visita.form</field>
+			<field name="model">sup_tipo_visita</field>
+			<field name="arch" type="xml">
+				<form>
+					<sheet>
+						<group>
+							<field name="name" placeholder="Visita no anunciada"/>
+						</group>
+					</sheet>
+				</form>
+			</field>
+		</record>
+
+		<!--Tree view-->
+		<record model='ir.ui.view' id='sup_tipo_visita_tree'>
+			<field name='name'>sup_tipo_visita.tree</field>
+			<field name='model'>sup_tipo_visita</field>
+			<field name='arch' type='xml'>
+				<tree>
+					<field name='name'/>
+				</tree>
+			</field>
+		</record>
+
+		<!--Action-->
+		<record id="sup_tipo_visita_action" model="ir.actions.act_window">
+			<field name="name">Tipo de visita</field>
+			<field name="res_model">sup_tipo_visita</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+		</record>
+		<menuitem id="sup_tipo_visita_menu" name="Tipo Visita" parent="sup_configuracion" action="sup_tipo_visita_action"/>
 	</data>
 </odoo>

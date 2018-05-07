@@ -168,6 +168,23 @@ class sup_mc_scp(models.Model):
         self.state = 'mc-scp'
         #print "////////////////////delitos",self.x_expediente_id.x_delito.ids
         #self.get_ultima_entrevista()
+    #///////////////////////////////// Supervisión
+    #///////////////////////////////// Supervisión
+    #///////////////////////////////// Supervisión
+    
+    x_supervisado = fields.Boolean(
+        string=u'Supervisado',
+    )
+    x_tipovisita_id = fields.Many2one(
+        string=u'Tipo Visita',
+        comodel_name='sup_tipo_visita',
+        ondelete='set null',
+    )
+    x_cumplio = fields.Boolean(
+        string=u'Cumplió',
+    )
+    
+    
     #///////////////////////////////// Medidas Cautelares
     #///////////////////////////////// Medidas Cautelares
     #///////////////////////////////// Medidas Cautelares
@@ -208,11 +225,17 @@ class sup_mc_scp(models.Model):
     #///////////////////////////////// Visita periodica
     #///////////////////////////////// Visita periodica
 
-    x_eventos_ids = fields.One2many(
+    """x_eventos_ids = fields.One2many(
         string=u'Eventos',
         comodel_name='calendar.event',
         inverse_name='x_supervision_id',
+    )"""
+    
+    x_eventos_ids = fields.Many2many(
+        string=u'Eventos Programados',
+        comodel_name='calendar.event',
     )
+    
     x_eventos = fields.Integer(
         string=u'Eventos',        
         compute='compute_registros_count',        

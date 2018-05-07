@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <!--  form view /////////////////////////////////////////////////////-->
+        <record model="ir.ui.view" id="sup_planeacion_actividades_form_view">
+            <field name="name">sup_planeacion_actividades.form.view</field>
+            <field name="model">sup_planeacion_actividades</field>
+            <field name="arch" type="xml">
+                <form>
+                    <header>
+                        <!--button name="capturar_medidas" type="object" string="Capturar MC-SCP" class="oe_highlight" states="orden"/><button name="generar_entrevista" type="object" string="Entrevista Encuadre" class="oe_highlight" states="mc-scp"/><button name="regresar_capturar_medidas" type="object" string="Regresar a MC-SCP" states="encuadre"/><field name="state" widget="statusbar"/-->
+                    </header>
+                    <sheet>
+                        <!--div class="oe_button_box" name="button_box"><button class="oe_stat_button" name="calendar.action_calendar_event" icon="fa-calendar" type="action" context="{'search_default_x_supervision_id': active_id}"><field string="Visitas/Firmas" name="x_eventos" widget="statinfo"/></button></div-->
+                        <div class="oe_title">
+                            <h1>
+                                <field name="x_name" />
+                            </h1>
+                        </div>
+                        <group>
+                            <group></group>
+                            <group>
+                                <field name="x_oficio" />
+                                <field name="x_asunto" />
+                            </group>
+                        </group>
+                        <div class="row">
+                            <field name="x_supervisados_ids" mode="tree">
+                                <tree string="Caption" options="{ 'no_open': True}" create="1" delete="1" edit="1" editable="bottom">
+                                    <field name="x_name" />
+                                    <field name="x_imputado_id" options="{ 'no_open': True}" />
+                                    <field name="x_resolucion" readonly="1" />
+                                    <field name="x_expediente_id" options="{ 'no_open': True}" />
+                                    <field name="x_mc_ids" attrs="{ 'invisible':[('x_resolucion','not in','mc')] }"/>
+                                    <field name="x_scp_ids" attrs="{ 'invisible':[('x_resolucion','not in','scp')] }"/>
+                                    <field name="x_tipovisita_id" />
+                                    <field name="x_cumplio" />
+                                    <field name="x_supervisado" />
+                                </tree>
+                            </field>
+                        </div>
+                        <notebook>
+                            <page string="Title"></page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <!--  tree view /////////////////////////////////////////////////////-->
+        <record model="ir.ui.view" id="sup_planeacion_actividades_tree_view">
+            <field name="name">sup_planeacion_actividades.tree.view</field>
+            <field name="model">sup_planeacion_actividades</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="x_name" />
+                </tree>
+            </field>
+        </record>
+        <!--  graph view /////////////////////////////////////////////////////-->
+        <record model="ir.ui.view" id="sup_planeacion_actividades_graph_view">
+            <field name="name">sup_planeacion_actividades.graph.view</field>
+            <field name="model">sup_planeacion_actividades</field>
+            <field name="arch" type="xml">
+                <graph string="Registros">
+                    <field name="x_name" type="row" />
+                </graph>
+            </field>
+        </record>
+        <!--Agrgar filtros de busqueda -->
+        <record model="ir.ui.view" id="sup_planeacion_actividades_search_view">
+            <field name="name">sup_planeacion_actividades.search.view</field>
+            <field name="model">sup_planeacion_actividades</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="x_name" />
+                </search>
+            </field>
+        </record>
+        <!-- window action ///////////////////////////////////////////////////////////////////////////////-->
+        <record model="ir.actions.act_window" id="sup_planeacion_actividades_list_action">
+            <field name="name">Planeación de Actividades</field>
+            <field name="res_model">sup_planeacion_actividades</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,graph,kanban,form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">Agregar primer registro</p>
+            </field>
+        </record>
+        <menuitem id="sup_planeacion_actividades_menu" sequence="13" name="Planeación Actividades" parent="supervision.sup_planeacion_menu" action="sup_planeacion_actividades_list_action" />
+    </data>
+</odoo>

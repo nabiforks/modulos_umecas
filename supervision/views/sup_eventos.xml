@@ -11,6 +11,7 @@
                     <group>
                         <group></group>
                         <group>
+                            <field name="x_cumplio" />
                             <field name="x_supervision_id" />
                         </group>
                     </group>
@@ -18,7 +19,27 @@
             </field>
         </record>
         <!--  tree view /////////////////////////////////////////////////////-->
-        <!--record model="ir.ui.view" id="sup_eventos_tree_view"><field name="name">sup_eventos.tree.view</field><field name="model">sup_eventos</field><field name="arch" type="xml"><tree><field name="name" /></tree></field></record-->
+        <record model="ir.ui.view" id="sup_eventos_tree_view">
+            <field name="name">sup_eventos.tree.view</field>
+            <field name="model">calendar.event</field>
+            <field name="inherit_id" ref="calendar.view_calendar_event_tree"/>
+            <field name="arch" type="xml">
+                <xpath expr="//tree" position="replace">
+                    <tree string="Meetings" decoration-bf="message_needaction==True">
+                        <field name="id" />
+                        <field name="name" string="Subject"/>
+                        <field name="allday" invisible="True"/>
+                        <field name="start" string="Start Date"/>
+                        <field name="stop" string="End Date"/>
+                        <field name="partner_ids"/>
+                        <field name="location"/>
+                        <field name="state" invisible="True"/>
+                        <field name="x_cumplio"/>
+                        <field name="message_needaction" invisible="1"/>
+                    </tree>
+                </xpath>
+            </field>
+        </record>
         <!--  graph view /////////////////////////////////////////////////////-->
         <!--record model="ir.ui.view" id="sup_eventos_graph_view"><field name="name">sup_eventos.graph.view</field><field name="model">sup_eventos</field><field name="arch" type="xml"><graph string="Registros"><field name="name" /></graph></field></record-->
         <!--Vista search-->
@@ -29,6 +50,7 @@
             <field name="arch" type="xml">
                 <xpath expr="//field[@name='name']" position="before">
                     <field name="x_supervision_id" />
+                    <field name="x_cumplio" />
                 </xpath>
             </field>
         </record>
@@ -36,6 +58,9 @@
         <!--record model="ir.ui.view" id="sup_eventos_calendar_view"><field name="name">sup_eventos.calendar.view</field><field name="model">sup_eventos</field><field name="arch" type="xml"><calendar string="Meetings" date_start="start" date_stop="stop" date_delay="duration" all_day="allday" display="[name]" color="color_partner_id" attendee="partner_ids" avatar_model="res.partner" use_contacts="True" event_open_popup="1167"><field name="name"/><field name="user_id"/><field name="color_partner_id"/><field name="partner_ids"/></calendar></field></record-->
         <!-- window action ///////////////////////////////////////////////////////////////////////////////-->
         <!--record model="ir.actions.act_window" id="sup_eventos_list_action"><field name="name">Eventos</field><field name="res_model">sup_eventos</field><field name="view_type">form</field><field name="view_mode">calendar,tree,graph,kanban,form</field><field name="help" type="html"><p class="oe_view_nocontent_create">Agregar primer registro</p></field></record-->
-        <menuitem id="sup_eventos" sequence="13" name="Eventos" parent="sup_menu_principal" action="calendar.action_calendar_event" />
+        <record id="calendar.action_calendar_event" model="ir.actions.act_window">
+            <field name="view_mode">tree,calendar,form,graph</field>
+        </record>
+        <menuitem id="sup_eventos" sequence="13" name="Eventos" parent="supervision.sup_planeacion_menu" action="calendar.action_calendar_event" />
     </data>
 </odoo>

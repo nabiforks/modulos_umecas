@@ -23,3 +23,11 @@ class CatalogoSCP(models.Model):
         string='Nombre',
         required=True,
     )
+class CatalogoTipoVisita(models.Model):
+    _name = 'sup_tipo_visita'
+
+    
+    name = fields.Char(
+        string='Tipo Visita',
+        required=True,
+    )
