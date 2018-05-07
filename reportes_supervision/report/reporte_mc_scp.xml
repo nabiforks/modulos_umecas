@@ -11,7 +11,7 @@
 			<t t-call="report.html_container">
 				<t t-foreach="docs" t-as="docs">
 					<t t-call="report.external_layout">
-						<div class="page" style="font-size:12px;">
+						<div class="page" style="font-size:13px;">
 							<div class="row">
 								<div class="col-xs-12 text-right">
 									<strong>										EVALUACIÓN:										
@@ -27,31 +27,62 @@
 				</t>
 			</t>
 		</template>
+
 		<report id="mc_scp_report_compromiso" 
 		model="sup_mc_scp" 
 		string="Carta-Compromiso del Imputado" 
 		name="reportes_supervision.cartacompromiso_mc_scp" 
 		file="reportes_supervision.mc_scp_report_compromiso" 
 		report_type="qweb-pdf" />
+
+		<record id="reportes_supervision.mc_scp_report_compromiso" model="ir.actions.report.xml">
+            <field name="paperformat_id" ref="reportes_supervision.rpt_supervision" />
+        </record>
+        
 		<template id="cartacompromiso_mc_scp">
 			<t t-call="report.html_container">
 				<t t-foreach="docs" t-as="docs">
 					<t t-call="report.external_layout">
-						<div class="page" style="font-size:12px;">
-							<div class="row">
-								<div class="col-xs-12 text-right">
-									<strong>Orden de Supervisión:
-										<span t-field="docs.x_name" />
-									</strong>
-								</div>
-							</div>
-							<div>
-								<p t-raw="docs.x_compromiso_apoyomoral_html"/>
+						<div class="page" style="font-size:13px;">
+							<div class="row" style="padding-left:20px;padding-right:20px;">
+								<div class="col-xs-12">
+									<span t-raw="docs.x_compromiso_html"/>
+								</div> 
 							</div>
 						</div>
 					</t>
 				</t>
 			</t>
 		</template>
+
+		<!---->
+		<!--Carta compromiso de apoyo moral-->
+		<!---->
+		<report id="mc_scp_report_a_moral" 
+			model="sup_mc_scp" 
+			string="Carta compromiso del apoyo moral" 
+			name="reportes_supervision.apoyo_moral_mc_scp" 
+			file="reportes_supervision.mc_scp_report_a_moral" 
+			report_type="qweb-pdf"
+		/>
+		<record id="reportes_supervision.mc_scp_report_a_moral" model="ir.actions.report.xml">
+			<field name="paperformat_id" ref="reportes_supervision.rpt_supervision"/>
+		</record>
+		<template id="apoyo_moral_mc_scp">
+			<t t-call="report.html_container">
+				<t t-foreach="docs" t-as="docs">
+					<t t-call="report.external_layout">
+						<div class="page" style="font-size:13px;">
+							<div class="row" style="padding-left:20px;padding-right:20px;">
+								<div class="col-xs-12">
+									<span t-raw="docs.x_apoyo_moral_html"/> 
+								</div> 
+							</div>
+						</div>
+					</t>
+				</t>
+			</t>
+		</template>
+
 	</data>
 </odoo>

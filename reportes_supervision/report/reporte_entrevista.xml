@@ -1,0 +1,538 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+	<data>
+		<report id="mc_scp_report_ent" 
+			model="sup_entrevista_encuadre" 
+			string="Entrevista" 
+			name="reportes_supervision.entrevista_mc_scp" 
+			file="reportes_supervision.mc_scp_report_ent" 
+			report_type="qweb-pdf"
+		/>
+
+		<record id="reportes_supervision.mc_scp_report_ent" model="ir.actions.report.xml">
+            <field name="paperformat_id" ref="reportes_supervision.rpt_supervision" />
+        </record>
+
+		<template id="entrevista_mc_scp">
+			<t t-call="report.html_container">
+				<t t-foreach="docs" t-as="o">
+					<t t-call="report.external_layout">
+						<div class="page" style="font-size:12px;">
+							<div class="row">
+								<div class="col-xs-2 "></div>
+								<div class="col-xs-8 text-center">
+									DIRECCIÓN GENERAL DE CENTROS DE REINSERCIÓN SOCIAL DEL ESTADO DE PUEBLA
+									DIRECCIÓN DE MEDIDAS CAUTELARES Y POLICÍA PROCESAL
+									<p>REGIÓN JUDICIAL CENTRO</p>
+									<br/>
+									<h4><strong>ENTREVISTA DE ENCUADRE</strong></h4>
+								</div>
+								<div class="col-xs-2"></div>
+							</div>
+							<div class="row borde-bottom">
+								<div class="col-xs-6 borde-right">
+									<br/>
+									<table class="borde">
+										<tbody>
+											<tr>
+												<th class="borde" style="padding:3px;" colspan="2"><strong>ENTREVISTA</strong></th>
+											</tr>
+											<tr>
+												<td class="borde" style="padding:3px;width:30%;">FECHA:</td>
+												<td class="borde" style="padding:3px;">
+													<span t-field="o.fecha_hora_inicio" t-options='{"format": "dd/MM/yyyy"}'/>
+												</td>
+											</tr>
+											<tr>
+												<td class="borde" style="padding:3px;width:30%;">HORA INICIO:</td>
+												<td class="borde" style="padding:3px;">
+													<t t-if="o.fecha_hora_inicio">
+														<span t-field="o.fecha_hora_inicio" t-options="{&quot;format&quot;: &quot;HH:mm &quot;}"/> Hrs
+													</t>
+												</td>
+											</tr>
+											<tr>
+												<td class="borde" style="padding:3px;width:30%;">SUPERVISOR:</td>
+												<td class="borde" style="padding:3px;">
+													<span t-field="o.x_supervisor_id"/>
+												</td>
+											</tr>
+										</tbody>
+									</table>
+									<br/>
+								</div>
+								<div class="col-xs-6">
+									<p class="text-right" style="font-size:10px;">Resultado de Audiencia de Control</p>
+									<table>
+										<tbody>
+											<tr>
+												<th colspan="2"><strong>Actividades de Evaluación</strong></th>
+											</tr>
+											<tr>
+												<td class="text-left">Entrevista de Evaluación</td>
+												<td class="text-left" style="width:50%;">
+													<div class="borde text-center" style="width:15px;height:15px;">
+														<t t-if="o.actividades_evaluacion=='1'">
+															<strong>X</strong>
+														</t>
+													</div>
+												</td>
+											</tr>
+											<tr>
+												<td class="text-left">Evaluación de riesgos</td>
+												<td class="text-left" style="width:50%;">
+													<div class="borde text-center" style="width:15px;height:15px;">
+														<t t-if="o.actividades_evaluacion=='2'">
+															<strong>X</strong>
+														</t>
+													</div>
+												</td>
+											</tr>
+											<tr>
+												<td class="text-left">Opinión Técnica</td>
+												<td class="text-left" style="width:50%;">
+													<div class="borde text-center" style="width:15px;height:15px;">
+														<t t-if="o.actividades_evaluacion=='3'">
+															<strong>X</strong>
+														</t>
+													</div>
+												</td>
+											</tr>
+											<tr>
+												<td class="text-left" colspan="2">
+													Otra: 
+													<t t-if="o.actividades_evaluacion=='4'">
+														<strong><span t-field="o.x_otra_actividad"/></strong>
+													</t>
+												</td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+							</div>
+							<br/>
+							<div class="row">
+								<div class="col-xs-2">
+									RESOLUCIÓN:
+								</div>
+								<div class="col-xs-1">
+									MC<div class="borde text-center" style="float:right;width:15px;height:15px;">
+										<t t-if="o.x_resolucion=='mc'">
+											<strong>X</strong>
+										</t>
+									</div>
+								</div>
+								<div class="col-xs-1">
+									SCP<div class="borde text-center" style="float:right;width:15px;height:15px;">
+										<t t-if="o.x_resolucion=='scp'">
+											<strong>X</strong>
+										</t>
+									</div>
+								</div>
+								<div class="col-xs-2"></div>
+								<div class="col-xs-6">
+									NÚMERO DE CAUSA: <span t-field="o.x_numero_causa"/>
+								</div>
+							</div>
+							<br/>
+							<div class="row">
+								<div class="col-xs-12">
+									<table>
+										<tbody>
+											<tr>
+												<td class="borde" style="width:20%;padding:3px;" >DELITO(S)</td>
+												<td class="borde text-left" style="padding:3px;">
+													<t t-foreach="o.x_delitos_id" t-as="i">
+														<t t-if="i">
+															<span t-field="i.x_name"/>,
+														</t>
+													</t>
+												</td>
+												<td class="borde" style="width:20%;padding:3px;">RECLASIFICADO</td>
+												<td class="borde" style="width:10%;padding:3px;">
+													SI (<t t-if="o.x_reclasificado=='si'">
+														<strong>X</strong>
+													</t>)
+													NO (<t t-if="o.x_reclasificado=='no'">
+														<strong>X</strong>
+													</t>)
+												</td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+							</div>
+							<br/>
+							DATOS GENERALES DEL IMPUTADO
+							<br/>
+							<div class="row">
+								<div class="col-xs-12">
+									<table class="table borde">
+										<tbody>
+											<tr >
+												<td class="borde text-left" style="width:10%;">NOMBRE:</td>
+												<td class="borde text-left" colspan="4">
+													<span t-field="o.x_imputado.display_name"/>
+												</td>
+											</tr>
+											<tr>
+												<td class="borde text-left">
+													GÉNERO:
+													<br/>
+													<span t-field="o.x_sexo"/>
+												</td>
+												<td class="borde text-left" style="width:10%;">
+													EDAD:
+													<br/>
+													<span t-field="o.x_edad"/>
+												</td>
+												<td class="borde text-left">
+													ESTADO CIVIL:
+													<br/>
+													<span t-field="o.x_estado_civil"/>
+												</td>
+												<td class="borde text-left" colspan="2">
+													ENFERMEDADES DIAGNOSTICADAS Y/O CAPACIDADES ESPECIALES:
+													<br/>
+													<t t-foreach="o.x_enfermedades_ids" t-as="i">
+														<t t-if="i">
+															<span t-field="i.x_name"/>,
+														</t>
+													</t>
+													<br/>
+													<t t-if="o.x_discapacidad_padece=='si'">
+														Otros: 
+														<span t-field="o.x_discapacidad_id.x_name"/>
+													</t>
+												</td>
+											</tr>
+											<tr>
+												<td class="borde text-left" colspan="2">
+													OCUPACIÓN:
+													<br/>
+													<t t-foreach="o.x_empleos_ids" t-as="i">
+														<t t-if="i">
+															<span t-field="i.x_name"/>
+															<br/>
+														</t>
+													</t>
+												</td>
+												<td class="borde text-left" colspan="2">
+													LUGAR DE OCUPACIÓN:
+													<br/>
+													<t t-foreach="o.x_empleos_ids" t-as="i">
+														<t t-if="i">
+															<t t-foreach="i.x_domicilio_ids" t-as="j">
+																<t t-if="j">
+																	<span t-field="j.x_calle"/>, 
+																	<span t-field="j.x_colonia"/>, 
+																	<span t-field="j.x_municipio"/>, 
+																	<span t-field="j.x_estado_id.name"/>
+																	<br/>
+																</t>
+															</t>
+														</t>
+													</t>
+												</td>
+												<td class="borde text-left">
+													TELÉFONO:
+													<br/>
+													<t t-foreach="o.x_empleos_ids" t-as="i">
+														<t t-if="i">
+															<span t-field="i.x_telefono_empleo"/>
+															<br/>
+														</t>
+													</t>
+													<br/>
+												</td>
+											</tr>
+											<tr>
+												<td class="borde text-left" colspan="2">FECHA Y LUGAR DE NACIMIENTO:</td>
+												<td class="borde text-left" colspan="3">
+													<span t-field="o.x_fecha_nacimiento"/>, 
+													<span t-field="o.x_lugar_nacimiento"/>
+												</td>
+											</tr>
+											<tr>
+												<td class="borde text-left" colspan="2">DOMICILIO(S):</td>
+												<td class="borde text-left" colspan="3">
+													<t t-set="n" t-value="1"/><!--Enumerar-->
+													<t t-foreach="o.x_domicilio_actual" t-as="i">
+														<t t-if="i">
+															Domicilio <span t-esc="n"/>.- 
+															<span t-field="i.x_calle"/>, 
+															<span t-field="i.x_colonia"/>, 
+															<span t-field="i.x_municipio"/>, 
+															<span t-field="i.x_estado_id.name"/>
+															(<span t-field="i.x_tipo_domicilio"/>)
+															<t t-set="n" t-value="n+1"/>
+															<br/>
+														</t>
+													</t>
+											</td>
+											</tr>
+											<tr>
+												<td class="borde text-left" colspan="5">
+													REFERENCIAS DEL DOMICILIO:
+													<br/>
+													<t t-set="n" t-value="1"/><!--Enumerar-->
+													<t t-foreach="o.x_domicilio_actual" t-as="i">
+														Domicilio <span t-esc="n"/>.-
+														<span t-field="i.x_caracteristicas_ref"/>
+														<t t-set="n" t-value="n+1"/>
+														<br/>
+													</t>
+												</td>
+											</tr>
+											<tr>
+												<td class="borde text-left" colspan="2">TELÉFONO CELULAR:</td>
+												<td class="borde text-left">
+													<span t-field="o.x_celular"/>
+												</td>
+												<td class="borde text-left">TELÉFONO FIJO:</td>
+												<td class="borde text-left" style="width:20%;">
+													<span t-field="o.x_telefono"/>
+												</td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+							</div>
+							<br/>
+							<br/>
+							PERSONAS CON LAS QUE VIVE EL IMPUTADO (Corroborar que los datos proporcionados en la entrevista de evaluación son los más actualizados)
+							<br/>
+							<table>
+								<tbody>
+									<tr>
+										<td class="borde text-center" style="padding:3px;">NOMBRE</td>
+										<td class="borde text-center" style="padding:3px;">EDAD</td>
+										<td class="borde text-center" style="padding:3px;">PARENTESCO</td>
+										<td class="borde text-center" style="padding:3px;">OCUPACIÓN</td>
+									</tr>
+									<t t-foreach="o.x_contacto_ids" t-as="i">
+										<t t-if="i">
+											<tr>
+												<td class="borde text-left" style="padding:3px;">
+													<span t-field="i.name"/> 
+													<span t-field="i.ap_paterno"/> 
+													<span t-field="i.ap_materno"/> 
+												</td>
+												<td class="borde text-center" style="padding:3px;">
+													<span t-field="i.edad"/>
+												</td>
+												<td class="borde text-left" style="padding:3px;">
+													<span t-field="i.x_parentesco"/>
+												</td>
+												<td class="borde text-left" style="padding:3px;">
+													<span t-field="i.x_ocupacion"/>
+												</td>
+											</tr>
+										</t>
+									</t>
+								</tbody>
+							</table>
+							<br/>
+							<br/>
+							PREFERENCIAS PERSONALES
+							<br/>
+							<table>
+								<tbody>
+									<tr>
+										<td class="borde text-center" style="padding:3px;">NOMBRE</td>
+										<td class="borde text-center" style="padding:3px;">RELACIÓN</td>
+										<td class="borde text-center" style="padding:3px;">TELÉFONO</td>
+										<td class="borde text-center" style="padding:3px;">DIRECCIÓN</td>
+									</tr>
+									<t t-foreach="o.x_amistades_ids" t-as="i">
+										<t t-if="i">
+											<tr>
+												<td class="borde text-left" style="padding:3px;">
+													<span t-field="i.x_name"/>
+												</td>
+												<td class="borde text-left" style="padding:3px;">
+													<span t-field="i.x_relacion"/>
+												</td>
+												<td class="borde text-left" style="padding:3px;">
+													<span t-field="i.x_numero"/>
+												</td>
+												<td class="borde text-left" style="padding:3px;">
+													<t t-foreach="i.x_domicilio_ids" t-as="j">
+														<t t-if="j">
+															<span t-field="j.x_calle"/>, 
+															<span t-field="j.x_colonia"/>, 
+															<span t-field="j.x_municipio"/>, 
+															<span t-field="j.x_estado_id.name"/>
+															<br/>
+														</t>
+													</t>
+												</td>
+											</tr>
+											
+										</t>
+									</t>
+								</tbody>
+							</table>
+							<br/>
+							<br/>
+							ACTIVIDADES QUE REALIZA EL IMPUTADO (Días, horarios, lugares y personas que frecuenta)
+							<table>
+								<tbody>
+									<tr>
+										<td class="borde text-left">
+											<div style="min-height:50px;padding:3px;">
+												<t t-set="n" t-value="1"/>
+												<t t-foreach="o.x_actividades_ids" t-as="i">
+													<t t-if="i">
+														Actividad  
+														<span t-esc="n"/>.- 
+														<span t-field="i.x_name"/>, 
+														<span t-field="i.x_tipo"/>, 
+														<span t-field="i.x_descripcion"/>
+														<t t-if="i.x_tiempo_libre=='si'">
+															, Otras: 
+															<span t-field="i.x_tiempo_libre_cuales"/>
+														</t>
+														<t t-set="n" t-value="n+1"/>
+														<br/>
+													</t>
+												</t>
+											</div>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+							<br/>
+							<table>
+								<tbody>
+									<tr>
+										<td class="borde">CROQUIS</td>
+									</tr>
+									<tr>
+										<td class="borde">
+											<div style="min-height:100px;"></div>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+							<br/>
+							PATRÓN DE CONSUMO DE SUSTANCIAS ADICTIVAS
+							<br/>
+							<table class="table table-bordered">
+								<tbody>
+									<tr>
+										<td>
+											¿CONSUME SUSTANCIAS?
+											(<t t-if="o.x_consume_sustancias=='si'"> 	
+												<strong>X</strong>
+											</t>
+											) SI   
+											(
+											<t t-if="o.x_consume_sustancias=='no'"> 	
+												<strong>X</strong>
+											</t>
+											) NO
+										</td>
+										<td>FRECUENCIA DE CONSUMO</td>
+										<td>CANTIDAD</td>
+										<td>FECHA DE ÚLTIMO CONSUMO</td>
+									</tr>
+									<t t-if="o.x_consume_sustancias=='si'">
+										<t t-foreach="o.x_sustancias_ids" t-as="i">
+											<t t-if="i"> 	
+												<tr>
+													<td><span t-field="i.x_name"/></td>
+													<td><span t-field="i.x_frecuencia"/></td>
+													<td><span t-field="i.x_cantidad"/></td>
+													<td><span t-field="i.x_ultimo_consumo"/></td>
+												</tr>
+											</t>
+										</t>
+									</t>
+								</tbody>
+							</table>
+							<br/>
+							OBSERVACIONES: (Actitud del imputado acerca de la situación legal)
+							<br/>
+							<p style="padding:5px;">
+								<span t-field="o.x_observaciones_actitud"/>
+							</p>
+							<br/>
+							ANÁLISIS DEL SUPERVISOR (Se realiza una vez que el imputado se haya retirado)
+							<br/>
+							<table>
+								<tbody>
+									<tr>
+										<td class="borde text-center" style="padding:3x;">Factores de Riesgos</td>
+										<td class="borde text-center" style="padding:3x;">Factores de Estabilidad</td>
+									</tr>
+									<tr>
+										<td class="borde text-left" style="padding:5px;">
+											<span t-field="o.x_factores_riesgos"/>
+										</td>
+										<td class="borde text-left" style="padding:5px;">
+											<span t-field="o.x_factores_estabilidad"/>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+							<br/>
+							<div class="row">
+								<div class="col-xs-6">
+									DÍA Y HORA DE FIRMA: <span t-field="o.x_dia_hora_firma"/>
+								</div>
+								<div class="col-xs-6">
+									NOMBRE DEL ABOGADO: <span t-field="o.x_abogado"/>
+								</div>
+							</div>
+							<br/>
+							<div class="row">
+								<div class="col-xs-6">
+									SUPERVISOR: <span t-field="o.x_supervisor_id"/>
+								</div>
+								<div class="col-xs-6">
+									FIRMA:______________________________
+								</div>
+							</div>
+							<br/>
+							HORA DE CONCLUSIÓN:
+							<span t-esc="'%02d:%02d' % (int(o.x_hora_conclusion), o.x_hora_conclusion % 1 * 60)"/> Hrs.
+							<div class="row">
+								<div class="col-xs-8"></div>
+								<div class="col-xs-4">
+									<table class="table table-bordered text-center" style="font-size:9px;">
+										<thead>
+											<tr>
+												<th colspan="4" style="padding: 0;font-size:9px;">
+													<center>CLASIFICACIÓN ARCHIVISTICA</center>
+												</th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr style="background-color:#f2f2f2;">
+												<td style="padding: 0;">SECCIÓN</td>
+												<td style="padding: 0;">SERIE</td>
+												<td style="padding: 0;">SUBSERIE</td>
+											</tr>
+											<tr>
+												<td style="padding: 0;">
+													<span t-field="o.seccion"/>
+												</td>
+												<td style="padding: 0;">
+													<span t-field="o.serie"/>
+												</td>
+												<td style="padding: 0;">
+													<span t-field="o.sub_serie"/>
+												</td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+							</div>
+						</div><!--End div class-->
+					</t>
+				</t>
+			</t>
+		</template>
+	</data>
+</odoo>
