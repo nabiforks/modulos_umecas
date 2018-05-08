@@ -30,7 +30,7 @@
 
 		<report id="mc_scp_report_compromiso" 
 		model="sup_mc_scp" 
-		string="Carta-Compromiso del Imputado" 
+		string="Carta compromiso del Imputado" 
 		name="reportes_supervision.cartacompromiso_mc_scp" 
 		file="reportes_supervision.mc_scp_report_compromiso" 
 		report_type="qweb-pdf" />
