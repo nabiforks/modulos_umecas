@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+	<data>-
+		<report id="planeacion_actividades_report" 
+			model="sup_planeacion_actividades"
+			string="Planeación de actividades"
+			name="reportes_supervision.rpt_planeacion"
+			file="reportes_supervision.planeacion_actividades_report"
+			report_type="qweb-pdf"
+		/>
+		<template id="rpt_planeacion">
+			<t t-call="report.html_container">
+				<t t-foreach="docs" t-as="o">
+					<t t-call="report.external_layout">
+						<div class="page">
+							<div class="text-right">
+								<strong>Oficio:</strong>
+								<span t-field="o.x_oficio"/>
+								<br/>
+								<strong>Asunto:</strong>
+								<span t-field="o.x_asunto"/>
+							</div>
+							<div class="row">
+								<div class="col-xs-12">
+									LIC. MIGUEL SALVADOR GUZMÁN GONZÁLEZ <br/>
+									DIRECTOR DE MEDIDAS CAUTELARES <br/>
+									Y POLICÍA PROCESAL <br/>
+									P R E S E N T E. <br/>
+									<br/>
+									<p class="text-justify">
+										De conformidad con los artículos 153, 154, 155, 156, 157, 164, 174, 177, 182 y 195 del Código Nacional de Procedimeintos Penales; 69 y 70 de la ley de Ejecución de Medidas Cuatelares y Sanciones Penales; 17 fracciones XIII y XIV de la Ley de Seguridad Pública, todas para el Estado de Puebla, en cumplimiento a los planes de supervisión de las Medidas Cautelares y Condiciones de Suspencion Condicional, elaborados por la responasable del Área de Evaluación de Riesgos y Suspensión de Medidas Cautelares de la Región Judicial Centro, se debe realizar lo siguiente:
+									</p>
+									<br/>
+									<table>
+										<tbody>
+											<tr>
+												<td class="borde" colspan="2">
+													ACTIVIDAD
+												</td>
+											</tr>
+											<t t-foreach="o.x_supervisados_ids" t-as="i">
+												<t t-if="i">
+													<tr>
+														<td class="borde" style="width:10%;">
+															<t t-if="i.x_foja">
+																Foja 
+																<span t-field="i.x_foja"/>
+															</t>
+															<br/>
+															<t t-if="i.x_libro">
+																Libro 
+																<span t-field="i.x_libro"/>
+															</t>
+														</td>
+														<td class="borde text-justify" style="padding:2px;">
+															<strong>Tipo:</strong>
+															<span t-field="i.x_tipovisita_id"/>
+															<br/>
+															<strong>Imputado:</strong>
+															<span t-field="i.x_imputado_id"/>
+															<br/>
+															<strong>Medidas cautelares:</strong>
+															<t t-foreach="i.x_mc_ids" t-as="j">
+																<t t-if="j">
+																	<span t-field="j.descripcion"/>, 
+																</t>
+															</t>
+															<br/>
+															<strong>Teléfono:</strong>
+															<span t-field="i.x_imputado_id.phone"/>
+														</td>
+													</tr>
+												</t>
+											</t>
+										</tbody>
+									</table>
+
+								</div>
+							</div>
+						</div> <!--End div page-->
+					</t>
+				</t>
+			</t>
+		</template>
+	</data>
+</odoo>
