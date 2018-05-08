@@ -31,8 +31,8 @@
                                     <field name="x_imputado_id" options="{ 'no_open': True}" />
                                     <field name="x_resolucion" readonly="1" />
                                     <field name="x_expediente_id" options="{ 'no_open': True}" />
-                                    <field name="x_mc_ids" attrs="{ 'invisible':[('x_resolucion','not in','mc')] }"/>
-                                    <field name="x_scp_ids" attrs="{ 'invisible':[('x_resolucion','not in','scp')] }"/>
+                                    <!--field name="x_mc_ids" attrs="{ 'invisible':[('x_resolucion','not in','mc')] }"/>
+                                    <field name="x_scp_ids" attrs="{ 'invisible':[('x_resolucion','not in','scp')] }"/-->
                                     <field name="x_tipovisita_id" />
                                     <field name="x_cumplio" />
                                     <field name="x_supervisado" />

@@ -73,9 +73,9 @@
                                 <br/>
                                 <field name="x_apoyo_moral_html" widget="html"/>
                             </page>
-                            <page string="Presentación periódica">
+                            <!--page string="Presentación periódica">
                                 <field name="x_eventos_ids" />
-                            </page>
+                            </page-->
                             <page string="Informe">
                                 <field name="x_informe_html" widget="html" options="{'style-inline': true}"/>
                             </page>

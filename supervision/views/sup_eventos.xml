@@ -16,6 +16,12 @@
                         </group>
                     </group>
                 </xpath>
+                <xpath expr="//field[@name='partner_ids']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//page[3]" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
             </field>
         </record>
         <!--  tree view /////////////////////////////////////////////////////-->
@@ -26,14 +32,15 @@
             <field name="arch" type="xml">
                 <xpath expr="//tree" position="replace">
                     <tree string="Meetings" decoration-bf="message_needaction==True">
-                        <field name="id" />
-                        <field name="name" string="Subject"/>
+                        <field name="name" />
+                        <field name="x_imputado_name" />
                         <field name="allday" invisible="True"/>
-                        <field name="start" string="Start Date"/>
-                        <field name="stop" string="End Date"/>
-                        <field name="partner_ids"/>
-                        <field name="location"/>
+                        <field name="start" />
+                        <!--field name="stop" string="End Date"/-->
+                        <!--field name="partner_ids"/-->
+                        <!--field name="location"/-->
                         <field name="state" invisible="True"/>
+                        <field name="x_supervision_id" />
                         <field name="x_cumplio"/>
                         <field name="message_needaction" invisible="1"/>
                     </tree>

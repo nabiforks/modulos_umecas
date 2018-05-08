@@ -232,6 +232,6 @@
                 <p class="oe_view_nocontent_create">Agregar primer registro</p>
             </field>
         </record>
-        <menuitem id="sup_entrevista_encuadre" sequence="13" name="Entrevista Encuadre" parent="sup_menu_principal" action="sup_entrevista_encuadre_list_action" />
+        <menuitem id="sup_entrevista_encuadre" sequence="12" name="Entrevista Encuadre" parent="sup_menu_principal" action="sup_entrevista_encuadre_list_action" />
     </data>
 </odoo>
