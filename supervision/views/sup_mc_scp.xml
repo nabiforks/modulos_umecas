@@ -32,8 +32,14 @@
                                 <field name="x_causa_penal" />
                                 <field name="x_numero_oficio" />
                                 <field name="x_inicia" />
+                                <label for="x_tiempo_anios" string="Tiempo"/>
+                                <div class="address_format">
+                                    <field name="x_tiempo_anios" />
+                                    <label string="&#160; años," nolabel="1" />
+                                    <field name="x_tiempo_meses" />
+                                    <label string="&#160; meses" nolabel="1" />
+                                </div>
                                 <field name="x_finaliza" />
-                                <field name="x_tiempo" />
                             </group>
                             <group>
                                 <field name="x_supervisor_id" options="{'no_create_edit': True,'no_open': True}" />
@@ -73,9 +79,7 @@
                                 <br/>
                                 <field name="x_apoyo_moral_html" widget="html"/>
                             </page>
-                            <!--page string="Presentación periódica">
-                                <field name="x_eventos_ids" />
-                            </page-->
+                            <!--page string="Presentación periódica"><field name="x_eventos_ids" /></page-->
                             <page string="Informe">
                                 <field name="x_informe_html" widget="html" options="{'style-inline': true}"/>
                             </page>

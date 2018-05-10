@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from datetime import timedelta, datetime, date
+from dateutil.relativedelta import relativedelta
 from odoo import api, fields, models
 
 
@@ -47,12 +48,27 @@ class sup_mc_scp(models.Model):
         default=fields.Date.context_today,
     )
     x_finaliza = fields.Date(
-        string=u'Fecha de Término',
-        default=fields.Date.context_today,
+        string=u'Fecha de Término',        
+        readonly=True,        
     )
-    x_tiempo = fields.Char(
-        string=u'Tiempo',
+    x_tiempo_anios = fields.Integer(
+        string=u'Años',
     )
+    x_tiempo_meses = fields.Integer(
+        string=u'Meses',
+    )
+    #########################################################3
+    ##########Función para calcular la fecha de finalización
+    @api.onchange('x_inicia','x_tiempo_anios','x_tiempo_meses')
+    def calcular_fecha_finaliza(self):
+        if self.x_inicia: 
+            start_date = fields.Datetime.from_string(self.x_inicia)
+            if self.x_tiempo_anios > 0:
+                start_date = start_date + relativedelta(years=self.x_tiempo_anios)
+            if self.x_tiempo_meses > 0:
+                start_date = start_date + relativedelta(months=self.x_tiempo_meses)
+            self.x_finaliza = start_date
+    
 
     x_supervisor_id = fields.Many2one(
         string=u'Supervisor',
