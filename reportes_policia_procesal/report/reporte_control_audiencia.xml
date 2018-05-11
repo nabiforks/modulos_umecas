@@ -18,14 +18,14 @@
 					<t t-call="report.external_layout">
 						<div class="page text-uppercase">
 							<div class="row">
-								<div class="col-xs-4"></div>
-								<div class="col-xs-4 text-center">
+								<div class="col-xs-3"></div>
+								<div class="col-xs-6 text-center">
 									<strong>Dirección de medidas cautelares y policia procesal</strong>
 									<br/>
 									<p>Subdirección de la policia procesal</p>
 									<span t-esc="user.company_id.name"/>
 								</div>
-								<div class="col-xs-4"></div>
+								<div class="col-xs-3"></div>
 							</div>
 							<div class="row">
 								<div class="col-xs-12 text-right">
@@ -105,7 +105,7 @@
 											</tr>
 											<tr>
 												<td class="borde" style="width:12%;padding:5;">
-													HORA:
+													FECHA:
 												</td>
 												<td class="borde" colspan="3">
 													<div class="row">
@@ -191,15 +191,19 @@
 											<tr>
 												<td class="borde" colspan="2" style="width:25%;padding:5;">HORA INICIO:</td>
 												<td class="borde" colspan="2" style="width:25%;padding:5;">
-													<strong>
-														<span t-esc="'%02d:%02d' % (int(control.hora_inicio), control.hora_inicio % 1 * 60)"/>
-													</strong>
+													<t t-if="control.hora_inicio">
+														<strong>
+															<span t-esc="'%02d:%02d' % (int(control.hora_inicio), control.hora_inicio % 1 * 60)"/>
+														</strong>
+													</t>
 												</td>
 												<td class="borde" colspan="2" style="width:25%;padding:5;">HORA TERMINO:</td>
 												<td class="borde" colspan="2" style="width:25%;padding:5;">
-													<strong>
-														<span t-esc="'%02d:%02d' % (int(control.hora_termino), control.hora_termino % 1 * 60)"/>
-													</strong>
+													<t t-if="control.hora_termino">
+														<strong>
+															<span t-esc="'%02d:%02d' % (int(control.hora_termino), control.hora_termino % 1 * 60)"/>
+														</strong>
+													</t>
 												</td>
 											</tr>
 											<tr>
@@ -301,9 +305,11 @@
 												<td class="borde" colspan="2" style="padding:5;"></td>
 												<td class="borde" colspan="1" style="width:15%;padding:5;">HORA:</td>
 												<td class="borde" colspan="1" style="width:15%;padding:5;">
-													<strong>
-														<span t-esc="'%02d:%02d' % (int(control.hora_recibe), control.hora_recibe % 1 * 60)"/>
-													</strong>
+													<t t-if="control.hora_recibe">
+														<strong>
+															<span t-esc="'%02d:%02d' % (int(control.hora_recibe), control.hora_recibe % 1 * 60)"/>
+														</strong>
+													</t>
 												</td>
 											</tr>
 											<tr>

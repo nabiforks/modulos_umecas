@@ -156,7 +156,9 @@
 								</div>
 								<div class="col-xs-1 text-center borde-bottom" style="padding-right:0;min-height: 25px;">
 									<strong>
-										<span t-esc="'%02d:%02d' % (int(recepcion.hora_termino_audiencia), recepcion.hora_termino_audiencia % 1 * 60)"/> hrs
+										<t t-if="recepcion.hora_termino_audiencia">
+											<span t-esc="'%02d:%02d' % (int(recepcion.hora_termino_audiencia), recepcion.hora_termino_audiencia % 1 * 60)"/> hrs
+										</t>
 									</strong>
 								</div>
 							</div>
@@ -206,7 +208,7 @@
 											<div style="width:90%;">
 												Cargo, nombre y firma del responsable de la custodia 
 												provisional del detenido y/o imputado.
-												<p>En centro de justicia.</p>
+												<p>En centro o casa de justicia.</p>
 											</div>
 										</center>
 									</strong>

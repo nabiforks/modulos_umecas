@@ -11,6 +11,8 @@
                         <button name="capturar_medidas" type="object" string="Capturar MC-SCP" class="oe_highlight" states="orden"/>
                         <button name="generar_entrevista" type="object" string="Entrevista Encuadre" class="oe_highlight" states="mc-scp"/>
                         <button name="regresar_capturar_medidas" type="object" string="Regresar a MC-SCP" states="encuadre"/>
+                        <button name="generar_carta_compromiso" type="object" string="Carta compromiso" class="oe_highlight"/>
+                        <button name="generar_carta_apoyo_moral" type="object" string="Carta compromiso de apoyo moral" class="oe_highlight"/>
                         <field name="state" widget="statusbar"/>
                     </header>
                     <sheet>
@@ -67,11 +69,31 @@
                                 </group>
                             </page>
                             <page string="Carta compromiso y apoyo moral">
-                                <field name="x_compromiso_html" widget="html"/>
-                                <br/>
-                                <hr style="border:solid 1px #ccc;"/>
-                                <br/>
-                                <field name="x_apoyo_moral_html" widget="html"/>
+                                <group>
+                                    <group>
+                                        <field name="x_nombre_apoyo_moral"/>
+                                    </group>
+                                     <group>
+                                        <field name="x_parentesco_id"/>
+                                    </group>
+                                </group>
+                                <group>
+                                    <field name="x_compromiso_documento_id"/>
+                                    <field name="x_apoyo_documento_id"/>
+                                </group>
+                            </page>
+                            <page string="Actas circunstanciadas">
+                                <div class="row">
+                                    <div class="col-xs-5">
+                                        <group>
+                                            <field name="x_actas_ids" context="{'default_x_orden_name': x_name}">
+                                                <tree>
+                                                    <field name="x_name"/>
+                                                </tree>
+                                            </field>
+                                        </group>
+                                    </div>
+                                </div>
                             </page>
                             <page string="Presentación periódica">
                                 <field name="x_eventos_ids" />

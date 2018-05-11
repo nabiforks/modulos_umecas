@@ -8,3 +8,4 @@ from . import sup_inheritto_encuadre
 from . import sup_entrevista_encuadre
 from . import sup_eventos
 from . import sup_planeacion_actividades
+from . import sup_documentos
