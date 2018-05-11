@@ -239,7 +239,7 @@ class sup_mc_scp(models.Model):
     x_eventos = fields.Integer(
         string=u'Eventos',        
         compute='compute_registros_count',        
-        store=True,        
+        #store=True,        
     )
     @api.multi
     def compute_registros_count(self):
