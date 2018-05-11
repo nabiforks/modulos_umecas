@@ -20,8 +20,10 @@
 							<div class="row">
 								<div class="col-xs-12 text-center">
 									<strong>
+										<br/>
+										<br/>
 										<p><span t-esc="user.company_id.name"/></p>
-										<p>POLICÍA PROCESAL REGIÓN-CENTRO</p>
+										
 										<br/>
 										<p>Formato de resguardo de pertenencias y suministro de alimentos</p>
 									</strong>
@@ -36,10 +38,12 @@
 								</div>
 								<div class="col-xs-4">
 									Horario registro: 
-									<strong>
-										<span t-field="custodia.fecha_hora_registro" t-options="{&quot;format&quot;: &quot;HH:mm &quot;}"/>
-									</strong>
-									horas
+									<t t-if="custodia.fecha_hora_registro">
+										<strong>
+											<span t-field="custodia.fecha_hora_registro" t-options="{&quot;format&quot;: &quot;HH:mm &quot;}"/>
+										</strong>
+										horas
+									</t>
 								</div>
 								<div class="col-xs-4">
 									Causa penal: 
@@ -180,9 +184,11 @@
 								</div>
 								<div class="col-xs-9">
 									Horario de egreso del centro de justicia: 
-									<b>
-										<span t-field="custodia.fecha_hora_egreso" t-options="{&quot;format&quot;: &quot;HH:mm &quot;}"/>
-									</b> horas.
+									<t t-if="custodia.fecha_hora_egreso">
+										<b>
+											<span t-field="custodia.fecha_hora_egreso" t-options="{&quot;format&quot;: &quot;HH:mm &quot;}"/>
+										</b> horas.
+									</t>
 								</div>
 							</div>
 

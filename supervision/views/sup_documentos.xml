@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+	<data>
+		<record model="ir.ui.view" id="documentos_form_view">
+			<field name="name">supervision.documentos</field>
+			<field name="model">sup_documentos</field>
+			<field name="arch" type="xml">
+				<form>
+					<sheet>
+						<div class="oe_title">
+                            <h1>
+                                <field name="x_name" />
+                            </h1>
+                        </div>
+                        <group>
+                        	<group string="Adjuntado a">
+								<field name="x_res_model"/>
+								<field name="x_modelo_id"/>
+								<field name="x_orden_name"/>
+								<field name='x_tipo_documento'/>
+                        	</group>
+                        </group>
+                        <br/>
+						<field name="x_contenido"/>
+					</sheet>
+				</form>
+			</field>
+		</record>
+		<record model='ir.ui.view' id='documentos_tree_view'>
+			<field name='name'>sup_documentos.tree</field>
+			<field name='model'>sup_documentos</field>
+			<field name='arch' type='xml'>
+				<tree>
+					<field name='x_name'/>
+					<field name='x_orden_id'/>
+					<field name='x_res_model'/>
+					<field name='x_modelo_id'/>
+				</tree>
+			</field>
+		</record>
+		<!--Search-->
+		<record id="documents_search" model="ir.ui.view">
+		    <field name="name">sup_documentos.search</field>
+		    <field name="model">sup_documentos</field>
+		    <field name="arch" type="xml">
+		        <search>
+		        	<field name='x_name'/>
+					<field name='x_orden_id'/>
+					<field name='x_res_model'/>
+					<field name='x_modelo_id'/>
+					<field name='x_tipo_documento'/>
+		        </search>
+		    </field>
+		</record>
+
+		<record id="sup_documentos_action_list" model="ir.actions.act_window">
+			<field name="name">Documentos</field>
+			<field name="res_model">sup_documentos</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+		</record>
+		<menuitem id="sup_documentos_menu" name="Documentos" parent="sup_configuracion" action="sup_documentos_action_list"/>
+	</data>
+</odoo>

@@ -22,5 +22,12 @@
             <field name="padding">5</field>
             <field eval="1" name="number_increment"/>
         </record>
+        <record id="seq_names_sup_documentos" model="ir.sequence">
+            <field name="name">Names_automatics_sup_documentos</field>
+            <field name="code">sup_documentos</field>
+            <field name="prefix">DOC</field>
+            <field name="padding">5</field>
+            <field eval="1" name="number_increment"/>
+        </record>
     </data>
 </odoo>

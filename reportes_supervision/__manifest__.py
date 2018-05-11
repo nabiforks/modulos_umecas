@@ -21,6 +21,7 @@
         'report/reporte_mc_scp.xml',
         'report/reporte_entrevista.xml',
         'report/reporte_actividades.xml',
+        'report/reporte_documentos.xml',
         #'views/evaluacion_inherit.xml',
         #'security/accesos.csv',
     ],

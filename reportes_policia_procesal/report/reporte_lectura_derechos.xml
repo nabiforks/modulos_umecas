@@ -21,8 +21,9 @@
 							<div class="row">
 								<div class="col-xs-12 text-center">
 									<strong>
-										<p><span t-esc="user.company_id.name"/></p>
-										<p>POLICÍA PROCESAL REGIÓN-CENTRO</p>
+										<br/>
+										<br/>
+										<p class="text-uppercase"><span t-esc="user.company_id.name"/></p>
 									</strong>
 								</div>
 							</div>
