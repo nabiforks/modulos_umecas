@@ -48,8 +48,10 @@ class sup_mc_scp(models.Model):
         default=fields.Date.context_today,
     )
     x_finaliza = fields.Date(
-        string=u'Fecha de Término',        
-        readonly=True,        
+        string=u'Fecha de Término',
+        compute = 'calcular_fecha_finaliza',        
+        readonly=True,                
+        store=True,        
     )
     x_tiempo_anios = fields.Integer(
         string=u'Años',
@@ -59,7 +61,7 @@ class sup_mc_scp(models.Model):
     )
     #########################################################3
     ##########Función para calcular la fecha de finalización
-    @api.onchange('x_inicia','x_tiempo_anios','x_tiempo_meses')
+    @api.depends('x_inicia','x_tiempo_anios','x_tiempo_meses')
     def calcular_fecha_finaliza(self):
         if self.x_inicia: 
             start_date = fields.Datetime.from_string(self.x_inicia)

@@ -23,7 +23,7 @@ class sup_entrevista_encuadre(models.Model):
         string=u'Imputado',
         comodel_name='res.partner',
         ondelete='restrict',
-        #readonly=True,        
+        readonly=True,        
         required=True,        
     )
     x_orden_id = fields.Many2one(
@@ -42,9 +42,15 @@ class sup_entrevista_encuadre(models.Model):
         ondelete='set null',
         #readonly=True,        
     )
-    actividades_evaluacion = fields.Selection(
-        string=u'Actividades de evaluación',
-        selection=[('1', 'Entrevista de Evaluación'), ('2', 'Evaluación de riesgos'),('3','Opinión Técnica'),('4','Otra')]
+    actividades_entrevista = fields.Boolean(
+        string=u'Entrevista de evaluación',        
+    )
+    
+    actividades_evaluacion = fields.Boolean(
+        string=u'Evaluación de Riesgos',
+    )
+    actividades_opinion = fields.Boolean(
+        string=u'Opinión Técnica',
     )
     x_otra_actividad = fields.Char(
         string=u'Otra',

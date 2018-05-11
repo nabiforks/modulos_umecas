@@ -113,9 +113,7 @@
             <tree >
                 <field name="x_name" widget="selection" />
                 <field name="x_tipo" />
-                <field name="x_descripcion" />
-                <field name="x_tiempo_libre" />
-                <field name="x_tiempo_libre_cuales"  />
+                <field name="x_descripcion" />                
             </tree>
         </field>
     </record>
@@ -132,9 +130,7 @@
                     <group>
                         <field name="x_name" class="oe_inline" placeholder="Actividad" />
                         <field name="x_tipo" class="oe_inline" />
-                        <field name="x_descripcion" class="oe_inline" placeholder="Describir Actividad..." />
-                        <field name="x_tiempo_libre" />
-                        <field name="x_tiempo_libre_cuales" attrs="{ 'invisible' : [('x_tiempo_libre','=',False)] }" />
+                        <field name="x_descripcion" class="oe_inline" placeholder="Describir Actividad..." />                        
                     </group>
                     <group></group>
                 </sheet>

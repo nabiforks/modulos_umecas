@@ -262,6 +262,13 @@ class Entrevistas(models.Model):
         comodel_name='umc_actividades',
         inverse_name='x_entrevista2_id',
     )
+    x_tiempo_libre = fields.Selection(
+        string=u'¿Realiza otra(s) actividad en su tiempo libre?',
+        selection=[('si', 'Si'), ('no', 'No')]
+    )
+    x_tiempo_libre_cuales = fields.Text(
+        string=u'¿Cuales?',
+    )
 
     #//////////////////////////////////IV.-Relaciones familiares/////////////////
     x_contacto_ids = fields.One2many(

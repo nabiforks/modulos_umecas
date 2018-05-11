@@ -14,7 +14,7 @@
     'category': 'Extra Tools',
     'version': '1.0',
 
-    'depends': ['base','UMECAS'],
+    'depends': ['base','UMECAS','supervision'],
 
     'data': [
         'data/report_format.xml',

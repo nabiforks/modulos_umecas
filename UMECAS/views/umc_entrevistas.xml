@@ -83,10 +83,10 @@
                                             <field name="x_name" widget="selection" />
                                             <field name="x_tipo" />
                                             <field name="x_descripcion" />
-                                            <field name="x_tiempo_libre" />
-                                            <field name="x_tiempo_libre_cuales" />
                                         </tree>
                                     </field>
+                                    <field name="x_tiempo_libre" widget="radio" options="{'horizontal': true}"/>
+                                    <field name="x_tiempo_libre_cuales" attrs="{ 'invisible' : [('x_tiempo_libre','not in','si')] }" />
                                 </group>
                             </page>
                             <page string="IV.-Relaciones familiares">

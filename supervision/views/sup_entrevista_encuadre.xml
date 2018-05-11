@@ -23,8 +23,14 @@
                             <group>
                                 <field name="x_supervisor_id" />
                                 <field name="fecha_hora_inicio" />
-                                <field name="actividades_evaluacion" widget="radio"/>
-                                <field name="x_otra_actividad" attrs="{ 'invisible':[('actividades_evaluacion','not in','4')] }" />
+                                <label for="1234"/>
+                                <p class="text-muted" id="1234">
+                                    <h4> Actividades de Evaluación</h4>
+                                </p>
+                                <field name="actividades_entrevista"/>
+                                <field name="actividades_evaluacion"/>
+                                <field name="actividades_opinion"/>
+                                <field name="x_otra_actividad" />
                             </group>
                             <group>
                                 <field name="x_imputado_id" invisible="1" />
@@ -113,10 +119,10 @@
                                             <field name="x_name" widget="selection" />
                                             <field name="x_tipo" />
                                             <field name="x_descripcion" />
-                                            <field name="x_tiempo_libre" />
-                                            <field name="x_tiempo_libre_cuales" />
                                         </tree>
                                     </field>
+                                    <field name="x_tiempo_libre" widget="radio" options="{'horizontal': true}"/>
+                                    <field name="x_tiempo_libre_cuales" attrs="{ 'invisible' : [('x_tiempo_libre','not in','si')] }" />
                                 </group>
                             </page>
                             <page string="Consumo de sustancias">

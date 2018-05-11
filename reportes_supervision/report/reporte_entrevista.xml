@@ -72,7 +72,7 @@
 												<td class="text-left">Entrevista de Evaluación</td>
 												<td class="text-left" style="width:50%;">
 													<div class="borde text-center" style="width:15px;height:15px;">
-														<t t-if="o.actividades_evaluacion=='1'">
+														<t t-if="o.actividades_entrevista">
 															<strong>X</strong>
 														</t>
 													</div>
@@ -82,7 +82,7 @@
 												<td class="text-left">Evaluación de riesgos</td>
 												<td class="text-left" style="width:50%;">
 													<div class="borde text-center" style="width:15px;height:15px;">
-														<t t-if="o.actividades_evaluacion=='2'">
+														<t t-if="o.actividades_evaluacion">
 															<strong>X</strong>
 														</t>
 													</div>
@@ -92,7 +92,7 @@
 												<td class="text-left">Opinión Técnica</td>
 												<td class="text-left" style="width:50%;">
 													<div class="borde text-center" style="width:15px;height:15px;">
-														<t t-if="o.actividades_evaluacion=='3'">
+														<t t-if="o.actividades_opinion">
 															<strong>X</strong>
 														</t>
 													</div>
@@ -101,7 +101,7 @@
 											<tr>
 												<td class="text-left" colspan="2">
 													Otra: 
-													<t t-if="o.actividades_evaluacion=='4'">
+													<t t-if="o.x_otra_actividad">
 														<strong><span t-field="o.x_otra_actividad"/></strong>
 													</t>
 												</td>
@@ -388,14 +388,14 @@
 														<span t-esc="n"/>.- 
 														<span t-field="i.x_name"/>, 
 														<span t-field="i.x_tipo"/>, 
-														<span t-field="i.x_descripcion"/>
-														<t t-if="i.x_tiempo_libre=='si'">
-															, Otras: 
-															<span t-field="i.x_tiempo_libre_cuales"/>
-														</t>
+														<span t-field="i.x_descripcion"/>														
 														<t t-set="n" t-value="n+1"/>
 														<br/>
 													</t>
+												</t>
+												<t t-if="o.x_tiempo_libre=='si'">
+													Otras: 
+													<span t-field="o.x_tiempo_libre_cuales"/>
 												</t>
 											</div>
 										</td>
