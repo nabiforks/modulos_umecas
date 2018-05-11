@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <!--  vusta para el modelo umc_municipio /////////////////////////////////////////////////////-->
+    <record model="ir.ui.view" id="umc_municipio_form_view">
+        <field name="name">umc_municipio.form.view</field>
+        <field name="model">umc_municipio</field>
+        <field name="arch" type="xml">
+            <form string="Municipio">
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="codigo"/>
+                        <field name="estado_id" options="{&quot;no_open&quot;: True}"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record model="ir.ui.view" id="umc_municipio_tree_view">
+        <field name="name">umc_municipio.tree.view</field>
+        <field name="model">umc_municipio</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="codigo"/>
+                <field name="estado_id" />
+            </tree>
+        </field>
+    </record>
+    <record model="ir.actions.act_window" id="umc_municipio_list_action">
+        <field name="name">Municipios</field>
+        <field name="res_model">umc_municipio</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        <!--field name="context" eval="{'search_default_customer': 1}"/-->
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">Agregar primer registro                </p>
+        </field>
+    </record>
+    <menuitem id="umc_domicilio_menu_label" sequence="2" name="Domicilio/Localización" parent="UMECAS.umc_configuracion" />
+    <menuitem id="umc_municipio" sequence="3" name="Municipios" parent="umc_domicilio_menu_label" action="umc_municipio_list_action"/>
+    <!--  vista para el modelo umc_colonia /////////////////////////////////////////////////////-->
+    <record model="ir.ui.view" id="umc_colonia_form_view">
+        <field name="name">umc_colonia.form.view</field>
+        <field name="model">umc_colonia</field>
+        <field name="arch" type="xml">
+            <form string="Colonia">
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="codigo"/>
+                        <field name="municipio_id" />
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record model="ir.ui.view" id="umc_colonia_tree_view">
+        <field name="name">umc_colonia.tree.view</field>
+        <field name="model">umc_colonia</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="codigo"/>
+                <field name="municipio_id" />
+            </tree>
+        </field>
+    </record>
+    <record model="ir.actions.act_window" id="umc_colonia_list_action">
+        <field name="name">Colonias</field>
+        <field name="res_model">umc_colonia</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        <!--field name="context" eval="{'search_default_customer': 1}"/-->
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">Agregar primer registro                </p>
+        </field>
+    </record>
+    <menuitem id="umc_colonia" sequence="3" name="Colonias" parent="umc_domicilio_menu_label" action="umc_colonia_list_action"/>
+</odoo>

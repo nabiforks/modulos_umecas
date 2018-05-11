@@ -91,12 +91,16 @@ class Entrevistas(models.Model):
         cp=''
         empleo=''
         salario=''
+        latitud=0
+        longitud=0
         if self.x_domicilio_actual:
             calle = self.x_domicilio_actual[0].x_calle
-            colonia = self.x_domicilio_actual[0].x_colonia
-            municipio = self.x_domicilio_actual[0].x_municipio
+            colonia = self.x_domicilio_actual[0].x_colonia.name
+            municipio = self.x_domicilio_actual[0].x_municipio.name
             estado = self.x_domicilio_actual[0].x_estado_id.id
             cp = self.x_domicilio_actual[0].x_cp
+            latitud = self.x_domicilio_actual[0].latitud
+            longitud = self.x_domicilio_actual[0].longitud
         if self.x_empleos_ids:
             empleo = self.x_empleos_ids[0].x_name.id
             salario = str(self.x_empleos_ids[0].x_salario)+" "+str(self.x_empleos_ids[0].x_moneda)
@@ -117,9 +121,10 @@ class Entrevistas(models.Model):
             'phone': self.x_telefono,
             'mobile': self.x_telefono_otro,
             'x_estado_civil': self.x_estado_civil,
-            'x_ocupacion':empleo,
-            
-            'x_ingreso_economico':salario
+            'x_ocupacion':empleo,            
+            'x_ingreso_economico':salario,
+            'partner_latitude':latitud,
+            'partner_longitude':longitud
 
         }
         partner.write(datos)

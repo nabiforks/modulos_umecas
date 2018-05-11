@@ -46,13 +46,15 @@
                                         <span t-field="entrevista.x_lugar_entrevista"/>
                                     </div>
                                     <div class="col-xs-5 ">
-                                        <t t-if="entrevista.x_tipo != 'retenido'">
+                                        <t t-if="entrevista.x_causa_penal">
                                             <span>CAUSA PENAL : </span>
+                                            <span t-field="entrevista.x_causa_penal" />
                                         </t>
-                                        <t t-if="entrevista.x_tipo == 'retenido'">
-                                            <span>CDI/C.P. :  </span>
+                                        <t t-if="entrevista.x_cdi">
+                                            <span>CDI :  </span>
+                                            <span t-field="entrevista.x_cdi" />
                                         </t>
-                                        <span t-field="entrevista.x_causa_penal" />
+                                        
                                     </div>
                                 </div>
                                 <div class="row cuadrado">

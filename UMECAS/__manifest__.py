@@ -42,7 +42,8 @@
         'views/umc_sustancias.xml',
         'views/umc_amistades.xml',
         'views/umc_company.xml',
-        'data/datos_demo.xml'
+        'data/datos_demo.xml',
+        'views/umc_colonia_municipio.xml'
     ],
     # only loaded in demonstration mode
     'demo': [

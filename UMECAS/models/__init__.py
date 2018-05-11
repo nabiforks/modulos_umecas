@@ -6,6 +6,8 @@ from . import umc_ubicacion_intramuros
 from . import umc_delitos_proceso
 from . import umc_enfermedades
 from . import umc_sustancias
+from . import umc_municipio
+from . import umc_colonia
 from . import umc_domicilio
 from . import umc_amistades
 from . import umc_empleos

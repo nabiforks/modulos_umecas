@@ -75,12 +75,24 @@ class Domicilio(models.Model):
     x_calle = fields.Char(
         string=u'Calle',
     )
-    x_colonia = fields.Char(
+    #x_colonia = fields.Char(
+    #    string=u'Colonia',
+    #)
+    
+    x_colonia= fields.Many2one(
         string=u'Colonia',
-    )
-    x_municipio = fields.Char(
+        comodel_name='umc_colonia',
+        ondelete='set null',
+    )    
+    #x_municipio = fields.Char(
+    #    string=u'Municipio',
+    #)    
+    x_municipio= fields.Many2one(
         string=u'Municipio',
+        comodel_name='umc_municipio',
+        ondelete='set null',
     )
+    
     x_estado_id = fields.Many2one(
         string=u'Estado',
         comodel_name='res.country.state',
