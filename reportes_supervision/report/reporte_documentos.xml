@@ -11,7 +11,7 @@
 			<t t-call="report.html_container">
 				<t t-foreach="docs" t-as="docs">
 					<t t-call="report.external_layout">
-						<div class="page" style="font-size:13px;">
+						<div class="page">
 							<div class="row">
 								<div class="col-xs-12 text-justify">
 									<span t-field="docs.x_contenido"/>

@@ -318,6 +318,10 @@ class sup_mc_scp(models.Model):
         string='Actas circunstanciadas',
         ondelete='restrict',
     )
+    default_acta = fields.Html(
+        string='Contenido',
+        default=lambda self: self.default_acta_text(),
+    )
 
     #////////////////////////////////CARTAS Y/O DOCUMENTOS//////////////////////////////
 
@@ -358,3 +362,58 @@ class sup_mc_scp(models.Model):
             self.x_apoyo_documento_id = res
             self.x_apoyo_documento_id.carta_apoyo_moral()
             return res
+
+    def default_acta_text(self):
+        default_code = """
+        <div class="text-center">
+            <h4>ACTA CIRCUNSTANCIADA</h4>
+        </div>
+        <p style="font-size:12px;">
+            En la ciudad de Puebla, Puebla siendo las __________ horas del día __________ de __________ del __________, el (los) Supervisor(es) ______________________________ y ______________________________, adscrito(s) a la 
+            Dirección de Medidas Cautelares y Policía Procesal dependiente de la Dirección General de Centros de Reinserción Social del Estado, con domicilio en Prolongación 11 sur, número
+            11921, Colonia Ex-Hacienda Castillotla, Puebla; quién(es) actúa(n) legalmente con testigos de asistencia, siendo los (las) CC. ______________________________ y ______________________________, 
+            en consecuencia y fundamentos de los artículos 14, 20 inciso c) fracción VI, 21 de la Constitución Política de los Estados
+            Unidos Mexicanos, 153, 154, 155, 157, 164. 169, 170, 177, 191, 192, 195 Y demás relativos y aplicables del Código Nacional de Procedimientos Penales; 29 del Código de Procedimientos Civiles, 
+            de aplicación supletoria en términos del artículo 5 fracción VII, 17 Fracciones XIII y XIV de la Ley de Segundad Pública, 7 fracciones V, VII, XII y XIX,
+             8 y 30 Bis fracciones del Reglamento Interior de la Secretaría de Seguridad Pública todas para el Estado de Puebla.
+        </p>
+        <p style="font-size:12px;">
+            A efecto de supervisar al C. ____________________________________________________________ 
+            nos constituimos legalmente en el domicilio que obra en actuaciones dentro del expediente administrativo en que se actúa, ubicado en la calle ____________________________________________________________ número __________
+            de la colonia ______________________________ del municipio de ______________________________, por lo que una vez que nos cercioramos plena y legalmente de ser éste el domicilio de la citada persona 
+            (víctima, ofendido o testigo), por así indicarlo la nomenclatura, de la calle y el número de la casa, el cual tiene las siguientes características 
+            ________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+            , se procede a tocar en la puerta de acceso de dicho inmueble, siendo atendidos por el(a) C.____________________________________________________________, con la siguiente fisonomía __________________________________________________________________________________________,
+            quién dijo ser ______________________________ del supervisado mismo(a) que se identifica con ____________________________________________________________, previa copia simple de la misma para constancia 
+            y al preguntar por el (la) C. ______________________________________________________________________________________ manifestó:
+            ________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+        </p>
+        <p style="font-size:12px;">
+            Lo que se hace constar para los efectos legales correspondientes, firmando al calce los que en esta intervinieron para constancia legal con lo antenor se da por terminada la presente 
+            acta de supervisión siendo las ___________ del día en que se actúa.
+        </p>
+        <br>
+        <br>
+        <div class="row">
+            <div class="col-xs-6 text-center">
+                ________________________________________
+                <p> T. DE A.</p>
+            </div>
+            <div class="col-xs-6 text-center">
+                ________________________________________
+                <p>SUPERVISOR</p>
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-xs-6 text-center">
+                ________________________________________
+               <p> T. DE A.</p>
+            </div>
+            <div class="col-xs-6 text-center">
+                ________________________________________
+                <p>SUPERVISOR</p>
+            </div>
+        </div>
+        """
+        return default_code

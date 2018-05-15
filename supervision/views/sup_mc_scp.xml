@@ -92,7 +92,8 @@
                                 <div class="row">
                                     <div class="col-xs-5">
                                         <group>
-                                            <field name="x_actas_ids" context="{'default_x_orden_name': x_name}">
+                                            <field name="default_acta" invisible="1"/>
+                                            <field name="x_actas_ids" context="{'default_x_orden_name': x_name,'default_x_contenido': default_acta}">
                                                 <tree>
                                                     <field name="x_name"/>
                                                 </tree>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+	<data>
+		<record model="ir.ui.view" id="document_inherit_view">
+	        <field name="name">documentos_inherit_form.view</field>
+	        <field name="model">sup_documentos</field>
+	        <field name="inherit_id" ref="supervision.documentos_form_view"/>
+	        <field name="arch" type="xml">
+	            <xpath expr="//label[@name='header']" position="after">
+	                <button name="imprimir_documento" type="object" string="Imprimir" class="oe_highlight"/>
+	            </xpath>
+	        </field>
+	    </record>
+	</data>
+</odoo>
