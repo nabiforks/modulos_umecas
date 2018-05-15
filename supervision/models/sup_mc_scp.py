@@ -38,7 +38,7 @@ class sup_mc_scp(models.Model):
     )
     x_resolucion = fields.Selection(
         string=u'Resolución',
-        selection=[('mc', 'MC'), ('scp', 'SCP')]
+        selection=[('mc', 'MC'), ('scp', 'SCP'),('otro','Otra')]
     )
     x_numero_oficio = fields.Char(
         string=u'Oficio número',
@@ -220,6 +220,16 @@ class sup_mc_scp(models.Model):
     x_scp_ids = fields.One2many(
         string=u'SCP',
         comodel_name='sup_scp_lines',
+        inverse_name='x_registro_id',
+    )
+    #///////////////////////////////// otro
+    #///////////////////////////////// otro
+    #///////////////////////////////// otro
+    #///////////////////////////////// otro
+
+    x_otro_ids = fields.One2many(
+        string=u'otro',
+        comodel_name='sup_otro_lines',
         inverse_name='x_registro_id',
     )
     #///////////////////////////////// Entrevista encuadre

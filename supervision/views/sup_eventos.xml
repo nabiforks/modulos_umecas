@@ -9,7 +9,10 @@
             <field name="arch" type="xml">
                 <xpath expr="//div[@class='oe_title']" position="after">
                     <group>
-                        <group></group>
+                        <group>
+                            <button name="set_cumplio_firma" type="object" string="Cumplió" class="oe_highlight" attrs="{ 'invisible':[('recurrency','=',True)] }"/>
+                            <button name="action_detach_recurring_event" type="object" string="Cumplió" class="oe_highlight" attrs="{ 'invisible':[('recurrency','=',False)] }" />
+                        </group>
                         <group>
                             <field name="x_cumplio" />
                             <field name="x_supervision_id" />
@@ -36,16 +39,20 @@
                 <xpath expr="//field[@name='duration']" position="attributes">
                     <attribute name="string">Tolerancia de espera</attribute>
                 </xpath>
+                <xpath expr="//label[@for='partner_ids']" position="replace"></xpath>
+                <xpath expr="//field[@name='name']" position="attributes">
+                    <attribute name="placeholder">por ejemplo, Firma Periódica</attribute>
+                </xpath>
             </field>
         </record>
         <!--  tree view /////////////////////////////////////////////////////-->
         <record model="ir.ui.view" id="sup_eventos_tree_view">
             <field name="name">sup_eventos.tree.view</field>
             <field name="model">calendar.event</field>
-            <field name="inherit_id" ref="calendar.view_calendar_event_tree"/>            
+            <field name="inherit_id" ref="calendar.view_calendar_event_tree"/>
             <field name="arch" type="xml">
                 <xpath expr="//tree" position="replace">
-                    <tree string="Meetings" decoration-bf="message_needaction==True">
+                    <tree string="Meetings" colors="blue:x_cumplio == False;" decoration-bf="message_needaction==True">
                         <field name="name" />
                         <field name="x_imputado_name" />
                         <field name="allday" invisible="True"/>
@@ -79,7 +86,6 @@
         <record id="calendar.action_calendar_event" model="ir.actions.act_window">
             <field name="view_mode">tree,calendar,form,graph</field>
         </record>
-        
         <menuitem id="sup_eventos" sequence="13" name="Presentación Periódica" parent="supervision.sup_planeacion_menu" action="calendar.action_calendar_event" />
     </data>
 </odoo>

@@ -36,10 +36,10 @@
                                 <field name="x_inicia" />
                                 <label for="x_tiempo_anios" string="Tiempo"/>
                                 <div class="address_format">
-                                    <field name="x_tiempo_anios" />
-                                    <label string="&#160; años," nolabel="1" />
-                                    <field name="x_tiempo_meses" />
-                                    <label string="&#160; meses" nolabel="1" />
+                                    <field name="x_tiempo_anios" class="oe_inline" />
+                                    <span> Años </span>
+                                    <field name="x_tiempo_meses" class="oe_inline"/>
+                                    <span> Meses</span>
                                 </div>
                                 <field name="x_finaliza" />
                             </group>
@@ -52,6 +52,13 @@
                             </group>
                         </group>
                         <notebook>
+                            <page string="Otra Resolución" attrs="{ 'invisible':['|',('x_resolucion','not in','otro'),('state','in','orden')] }">
+                                <field name="x_otro_ids" mode="tree">
+                                    <tree string="Otras" create="1" delete="1" edit="1" editable="bottom">
+                                        <field name="name"  />
+                                    </tree>
+                                </field>
+                            </page>
                             <page string="Medidas Cautelares" attrs="{ 'invisible':['|',('x_resolucion','not in','mc'),('state','in','orden')] }">
                                 <field name="x_mc_ids" mode="tree">
                                     <tree string="Medidas Cautelares" create="1" delete="1" edit="1" editable="bottom">

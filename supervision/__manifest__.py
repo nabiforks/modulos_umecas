@@ -22,6 +22,7 @@
         'views/sup_catalogos.xml',
         'views/sup_entrevista_encuadre.xml',
         'views/sup_eventos.xml',
+        'views/sup_planeacion_actividades.xml',
         'views/sup_documentos.xml'
     ],
     'intallable': True,

@@ -57,8 +57,7 @@ class sup_entrevista_encuadre(models.Model):
     )
     x_resolucion = fields.Selection(
         string=u'Resolución',
-        selection=[('mc', 'MC'), ('scp', 'SCP')],        
-        readonly=True,        
+        selection=[('mc', 'MC'), ('scp', 'SCP'),('otro','Otra')]
     )
     x_numero_causa = fields.Char(
         string=u'Número de causa',

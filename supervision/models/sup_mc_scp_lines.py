@@ -47,6 +47,20 @@ class sup_scp_lines(models.Model):
         comodel_name='sup_mc_scp',
         ondelete='cascade',      
     )
+class sup_otro_lines(models.Model):
+    _name = 'sup_otro_lines'
+    
+    name = fields.Text(
+        string=u'Otro',        
+    )
+    #/////////////////////////////////////////////
+    #/////////////////////////////////////////////
+    #/////////////////////////////////////////////    
+    x_registro_id = fields.Many2one(
+        string=u'Registro ID',
+        comodel_name='sup_mc_scp',
+        ondelete='cascade',      
+    )
     
     
     
