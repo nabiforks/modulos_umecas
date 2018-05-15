@@ -15,10 +15,6 @@ class sup_documentos(models.Model):
         string='Contenido',
         #default=lambda self: self.tipo_contenido(),
     )
-    x_tipo_documento = fields.Char(
-        string='Tipo documento',
-        readonly=True, 
-    )
     x_modelo_id = fields.Char(
         string='ID del Recurso',
         readonly=True, 

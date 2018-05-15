@@ -22,6 +22,7 @@
         'report/reporte_entrevista.xml',
         'report/reporte_actividades.xml',
         'report/reporte_documentos.xml',
+        'views/documentos_inherit.xml',
         #'views/evaluacion_inherit.xml',
         #'security/accesos.csv',
     ],
