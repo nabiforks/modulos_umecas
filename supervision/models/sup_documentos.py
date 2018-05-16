@@ -55,6 +55,9 @@ class sup_documentos(models.Model):
     x_fecha = fields.Date(
         string='Fecha'
     )
+    x_lista_mc_scp = fields.Char(
+        string='Lista',
+    )
 
     @api.model
     def create(self, vals):
@@ -271,16 +274,34 @@ class sup_documentos(models.Model):
         """
         self.x_contenido = default_code
 
-    def acta_circunstanciada(self):
+    def informe_html(self):
+        nombre_imputado = self.x_imputado_id.display_name
+        lista = self.x_lista_mc_scp
         default_code = """
             <div class="row">
-                <div class="col-xs-2"></div>
-                <div class="col-xs-8 text-center">
-                    <h4>DIRECCIÓN DE MEDIDAS CAUTELARES Y POLICÍA PROCESAL ÁREA DE SUPERVISIÓN</h4>
-                    <br>
-                    <h4>CARTA COMPROMISO DEL APOYO MORAL</h4>
+                <div class="col-xs-12 text-right">
+                    Oficio número: <br>
+                    Asunto: <br>
+                    Causa Penal: <br>
                 </div>
-                <div class="col-xs-2"></div>
             </div>
+            <div class="row">
+                <div class="col-xs-12">
+                    Abogado: <br>
+                    ______________________________ <br>
+                    ______________________________ <br>
+                    P r e s e n t e: <br>
+                </div>
+            </div>
+            <p> 
+                Con fundamento en lo dispuesto por los artículos 176, 177, 184, 191, 195 y 209 del Código Nacional de Procedimiento Penales;
+                69 y 70 de la Ley de Ejecución de Medidas Cautelares y Sanciones Penales; 17 fracciones XIII y XIV de la Ley de Seguridad Pública; 
+                8, 30 Bis Fracciones II, III IV, V, VI, VIl y VIII del Reglamento Interior de la Secretaria de Seguridad Pública todas para el Estado de Puebla;
+                en cumplimiento a su oficio número _______________, de fecha _______________, dictado dentro de la causa penal indicada al rubro, mediante el cual 
+                solicita se vigile el cumplimiento de las condiciones decretadas al imputado """+nombre_imputado.encode('utf-8')+""" por el plazo de un año, contados a partir de día de 
+                la emisión del oficio en comento siendo las condiciones siguientes: 
+            </p>
+            """+lista.encode('utf-8')+"""
+
         """
         self.x_contenido = default_code

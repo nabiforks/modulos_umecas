@@ -22,7 +22,7 @@
 							</div>
 							<div class="row">
 								<div class="col-xs-12">
-									LIC. MIGUEL SALVADOR GUZMÁN GONZÁLEZ <br/>
+									<span t-field="o.x_dirigido_a"/> <br/>
 									DIRECTOR DE MEDIDAS CAUTELARES <br/>
 									Y POLICÍA PROCESAL <br/>
 									P R E S E N T E. <br/>
