@@ -23,7 +23,7 @@ class sup_eventos(models.Model):
     x_atrasado = fields.Boolean(
         string=u'Atrasado',        
         readonly=True,        
-        compute='get_atrasados'
+        #compute='get_atrasados'
     )
     estatus = fields.Selection(
         [('pendiente', 'Pendiente'),
@@ -33,15 +33,16 @@ class sup_eventos(models.Model):
         readonly=True, string=u'Estatus',
         #compute='get_atrasados'
     )
-    @api.multi
+    """@api.multi
     @api.depends('start_datetime','estatus')
     def get_atrasados(self):
         fecha = datetime.now()
         for record in self:
             fecha_inicio = fields.Datetime.from_string(record.start_datetime)
-            if fecha_inicio < fecha:
+            fecha_fin = fields.Datetime.from_string(fecha)
+            if fecha_inicio < fecha_fin:
                 record.x_atrasado = True
-                record.estatus = 'atrasado'
+                record.estatus = 'atrasado'"""
     @api.multi
     def set_cumplio_firma(self):
         self.x_cumplio= True
