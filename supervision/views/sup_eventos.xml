@@ -7,13 +7,19 @@
             <field name="model">calendar.event</field>
             <field name="inherit_id" ref="calendar.view_calendar_event_form"/>
             <field name="arch" type="xml">
+                <xpath expr="//form//sheet" position="before">
+                    <header>
+                        <button name="set_incumplimiento" type="object" string="Incumplió" attrs="{ 'invisible':[('x_cumplio','=',False)] }" confirm="¿Desea confirmar incumplimiento?"/>
+                        <button name="set_cumplio_firma" type="object" string="Cumplió" class="oe_highlight" attrs="{ 'invisible':['|',('recurrency','=',True),('x_cumplio','=',True)] }" confirm="¿Desea confirmar?"/>
+                        <button name="action_detach_recurring_event" type="object" string="Cumplió" class="oe_highlight" attrs="{'invisible':['|',('recurrency','=',False),('x_cumplio','=',True)] }" confirm="¿Desea confirmar?"/>
+                        <field name="estatus" widget="statusbar"/>
+                    </header>
+                </xpath>
                 <xpath expr="//div[@class='oe_title']" position="after">
                     <group>
+                        <group></group>
                         <group>
-                            <button name="set_cumplio_firma" type="object" string="Cumplió" class="oe_highlight" attrs="{ 'invisible':[('recurrency','=',True)] }"/>
-                            <button name="action_detach_recurring_event" type="object" string="Cumplió" class="oe_highlight" attrs="{ 'invisible':[('recurrency','=',False)] }" />
-                        </group>
-                        <group>
+                            <field name="x_atrasado" />
                             <field name="x_cumplio" />
                             <field name="x_supervision_id" />
                             <field name="x_imputado_name" />
@@ -52,7 +58,7 @@
             <field name="inherit_id" ref="calendar.view_calendar_event_tree"/>
             <field name="arch" type="xml">
                 <xpath expr="//tree" position="replace">
-                    <tree string="Meetings" colors="blue:x_cumplio == False;" decoration-bf="message_needaction==True">
+                    <tree string="Meetings" colors="orange:estatus == 'pendiente';green:estatus == 'realizado';red:estatus == 'atrasado';" decoration-bf="message_needaction==True">
                         <field name="name" />
                         <field name="x_imputado_name" />
                         <field name="allday" invisible="True"/>
@@ -61,6 +67,7 @@
                         <field name="x_supervision_id" />
                         <field name="x_cumplio"/>
                         <field name="message_needaction" invisible="1"/>
+                        <field name="estatus" />
                     </tree>
                 </xpath>
             </field>
