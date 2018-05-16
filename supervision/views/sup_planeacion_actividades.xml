@@ -18,7 +18,9 @@
                             </h1>
                         </div>
                         <group>
-                            <group></group>
+                            <group>
+                                <field name="x_dirigido_a" />
+                            </group>
                             <group>
                                 <field name="x_oficio" />
                                 <field name="x_asunto" />

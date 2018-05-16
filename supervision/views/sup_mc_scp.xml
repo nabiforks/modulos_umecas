@@ -11,8 +11,9 @@
                         <button name="capturar_medidas" type="object" string="Capturar MC-SCP" class="oe_highlight" states="orden"/>
                         <button name="generar_entrevista" type="object" string="Entrevista Encuadre" class="oe_highlight" states="mc-scp"/>
                         <button name="regresar_capturar_medidas" type="object" string="Regresar a MC-SCP" states="encuadre"/>
-                        <button name="generar_carta_compromiso" type="object" string="Carta compromiso" class="oe_highlight"/>
-                        <button name="generar_carta_apoyo_moral" type="object" string="Carta compromiso de apoyo moral" class="oe_highlight"/>
+                        <button name="generar_carta_compromiso" type="object" string="Carta compromiso" class="oe_highlight" states="encuadre"/>
+                        <button name="generar_carta_apoyo_moral" type="object" string="Carta compromiso de apoyo moral" class="oe_highlight" states="encuadre"/>
+                        <button name="generar_informe" type="object" string="Informe" class="oe_highlight" states="compromisos"/>
                         <field name="state" widget="statusbar"/>
                     </header>
                     <sheet>
@@ -55,7 +56,7 @@
                             <page string="Otra Resolución" attrs="{ 'invisible':['|',('x_resolucion','not in','otro'),('state','in','orden')] }">
                                 <field name="x_otro_ids" mode="tree">
                                     <tree string="Otras" create="1" delete="1" edit="1" editable="bottom">
-                                        <field name="name"  />
+                                        <field name="name" />
                                     </tree>
                                 </field>
                             </page>
@@ -75,27 +76,7 @@
                                     </tree>
                                 </field>
                             </page>
-                            <page string="Entrevista Encuadre" attrs="{'invisible': [('state','in',('orden','mc-scp'))]}">
-                                <group>
-                                    <field name="x_encuadre_id"/>
-                                    <field name="x_encuadre_status"/>
-                                </group>
-                            </page>
-                            <page string="Carta compromiso y apoyo moral">
-                                <group>
-                                    <group>
-                                        <field name="x_nombre_apoyo_moral"/>
-                                    </group>
-                                     <group>
-                                        <field name="x_parentesco_id"/>
-                                    </group>
-                                </group>
-                                <group>
-                                    <field name="x_compromiso_documento_id"/>
-                                    <field name="x_apoyo_documento_id"/>
-                                </group>
-                            </page>
-                            <page string="Actas circunstanciadas">
+                            <page string="Actas circunstanciadas" attrs="{'invisible':[('state','in','orden')]}">
                                 <div class="row">
                                     <div class="col-xs-5">
                                         <group>
@@ -109,9 +90,31 @@
                                     </div>
                                 </div>
                             </page>
+                            <page string="Entrevista Encuadre" attrs="{'invisible': [('state','in',('orden','mc-scp'))]}">
+                                <group>
+                                    <field name="x_encuadre_id"/>
+                                    <field name="x_encuadre_status"/>
+                                </group>
+                            </page>
+                            <page string="Carta compromiso y apoyo moral" attrs="{'invisible': [('state','in',('orden','mc-scp'))]}">
+                                <group>
+                                    <group>
+                                        <field name="x_nombre_apoyo_moral"/>
+                                    </group>
+                                     <group>
+                                        <field name="x_parentesco_id"/>
+                                    </group>
+                                </group>
+                                <group>
+                                    <field name="x_compromiso_documento_id"/>
+                                    <field name="x_apoyo_documento_id"/>
+                                </group>
+                            </page>
                             <!--page string="Presentación periódica"><field name="x_eventos_ids" /></page-->
-                            <page string="Informe">
-                                <field name="x_informe_html" widget="html" options="{'style-inline': true}"/>
+                            <page string="Informe" attrs="{'invisible': [('state','in',('orden','mc-scp','encuadre','compromisos'))]}">
+                               <group>
+                                    <field name="x_informe_id" />
+                               </group>
                             </page>
                         </notebook>
                     </sheet>

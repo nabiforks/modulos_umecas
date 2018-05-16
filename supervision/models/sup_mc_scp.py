@@ -322,6 +322,12 @@ class sup_mc_scp(models.Model):
             readonly=True,
             ondelete='restrict',
     )
+    x_informe_id = fields.Many2one(
+            string=u'Informe',
+            comodel_name='sup_documentos',
+            readonly=True,
+            ondelete='restrict',
+    )
     x_actas_ids = fields.One2many(
         'sup_documentos',
         'x_orden_id',
@@ -331,6 +337,9 @@ class sup_mc_scp(models.Model):
     default_acta = fields.Html(
         string='Contenido',
         default=lambda self: self.default_acta_text(),
+    )
+    x_lista_mc_scp = fields.Char(
+        string='Lista',
     )
 
     #////////////////////////////////CARTAS Y/O DOCUMENTOS//////////////////////////////
@@ -357,6 +366,7 @@ class sup_mc_scp(models.Model):
     def generar_carta_apoyo_moral(self):
         if self.x_supervisor_id and not self.x_apoyo_documento_id:
             res_model = str(self.__class__.__name__)
+            self.state = 'compromisos'
             valores_documento = {
                                 'x_orden_name': self.x_name,
                                 'x_res_model':res_model,
@@ -371,6 +381,24 @@ class sup_mc_scp(models.Model):
             res = self.env['sup_documentos'].create(valores_documento)
             self.x_apoyo_documento_id = res
             self.x_apoyo_documento_id.carta_apoyo_moral()
+            return res
+
+    @api.multi
+    def generar_informe(self):
+        if self.x_supervisor_id and not self.x_informe_id:
+            res_model = str(self.__class__.__name__)
+            self.state = 'informe'
+            self.get_mc()
+            valores_documento = {
+                                'x_orden_name':self.x_name,
+                                'x_res_model':res_model,
+                                'x_modelo_id':self.id,
+                                'x_imputado_id':self.x_imputado_id.id,
+                                'x_lista_mc_scp':self.x_lista_mc_scp,
+                                }
+            res = self.env['sup_documentos'].create(valores_documento)
+            self.x_informe_id = res
+            self.x_informe_id.informe_html()
             return res
 
     def default_acta_text(self):
@@ -427,3 +455,37 @@ class sup_mc_scp(models.Model):
         </div>
         """
         return default_code
+
+    def get_mc(self):
+        if self.x_resolucion =='mc':
+            n = 1
+            lista = """
+                    <div style='padding:20px;'>
+                """
+            for mc in self.x_mc_ids:
+                lista += "<p>" + str(n) +'.- '+ mc.descripcion + "</p>"
+                n = n+1
+            lista += "</div>"
+            self.x_lista_mc_scp = lista
+
+        elif self.x_resolucion =='scp':
+            n = 1
+            lista = """
+                    <div style='padding:20px;'>
+                """
+            for scp in self.x_scp_ids:
+                lista += "<p>" + str(n) +'.- '+ scp.descripcion + "</p>"
+                n = n+1
+            lista += "</div>"
+            self.x_lista_mc_scp = lista
+
+        elif self.x_resolucion =='otro':
+            n = 1
+            lista = """
+                    <div style='padding:20px;'>
+                """
+            for otro in self.x_otro_ids:
+                lista += "<p>" + str(n) +'.- '+ otro.name + "</p>"
+                n = n+1
+            lista += "</div>"
+            self.x_lista_mc_scp = lista

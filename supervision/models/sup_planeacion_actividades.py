@@ -26,6 +26,9 @@ class sup_planeacion_actividades(models.Model):
         string=u'Actividades',
         comodel_name='sup_mc_scp',
     )
+    x_dirigido_a = fields.Char(
+        string='Dirigido a',
+    )
     
     
     
