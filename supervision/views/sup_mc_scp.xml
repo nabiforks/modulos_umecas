@@ -13,7 +13,8 @@
                         <button name="regresar_capturar_medidas" type="object" string="Regresar a MC-SCP" states="encuadre"/>
                         <button name="generar_carta_compromiso" type="object" string="Carta compromiso" class="oe_highlight" states="encuadre"/>
                         <button name="generar_carta_apoyo_moral" type="object" string="Carta compromiso de apoyo moral" class="oe_highlight" states="encuadre"/>
-                        <button name="generar_informe" type="object" string="Informe" class="oe_highlight" states="compromisos"/>
+                        <button name="generar_actas" type="object" string="Actas circunstanciadas" class="oe_highlight" states="compromisos"/>
+                        <button name="generar_informe" type="object" string="Informe" class="oe_highlight" states="supervision"/>
                         <field name="state" widget="statusbar"/>
                     </header>
                     <sheet>
@@ -93,20 +94,6 @@
                                     </tree>
                                 </field>
                             </page>
-                            <page string="Actas circunstanciadas" attrs="{'invisible':[('state','in','orden')]}">
-                                <div class="row">
-                                    <div class="col-xs-5">
-                                        <group>
-                                            <field name="default_acta" invisible="1"/>
-                                            <field name="x_actas_ids" context="{'default_x_orden_name': x_name,'default_x_contenido': default_acta}">
-                                                <tree>
-                                                    <field name="x_name"/>
-                                                </tree>
-                                            </field>
-                                        </group>
-                                    </div>
-                                </div>
-                            </page>
                             <page string="Entrevista Encuadre" attrs="{'invisible': [('state','in',('orden','mc-scp'))]}">
                                 <group>
                                     <field name="x_encuadre_id"/>
@@ -127,9 +114,25 @@
                                     <field name="x_apoyo_documento_id"/>
                                 </group>
                             </page>
+                            <page string="Actas circunstanciadas" attrs="{'invisible':[('state','in',('orden','mc-scp','encuadre','compromisos'))]}">
+                                <div class="row">
+                                    <div class="col-xs-5">
+                                        <group>
+                                            <field name="default_acta" invisible="1"/>
+                                            <field name="x_actas_ids" context="{'default_x_modelo_id':id,'default_x_orden_name': x_name,'default_x_contenido': default_acta,'default_x_tipo_documento':'Acta circunstanciada'}">
+                                                <tree>
+                                                    <field name="x_name"/>
+                                                    <field name="x_tipo_documento"/>
+                                                    <field name="x_fecha_documento"/>
+                                                </tree>
+                                            </field>
+                                        </group>
+                                    </div>
+                                </div>
+                            </page>
                             <!--page string="Presentación periódica"><field name="x_eventos_ids" /></page-->
-                            <page string="Informe" attrs="{'invisible': [('state','in',('orden','mc-scp','encuadre','compromisos'))]}">
-                                <group>
+                            <page string="Informe" attrs="{'invisible': [('state','in',('orden','mc-scp','encuadre','compromisos','supervision'))]}">
+                               <group>
                                     <field name="x_informe_id" />
                                 </group>
                             </page>

@@ -31,6 +31,13 @@ class sup_documentos(models.Model):
         string='Modelo relacionado',
         readonly=True, 
     )
+    x_fecha_documento = fields.Date(
+        string='Fecha',
+        default=fields.Date.today()
+    )
+    x_tipo_documento = fields.Char(
+        string='Tipo documento',
+    )
     x_imputado_id = fields.Many2one(
         'res.partner',
         string='Imputado',
@@ -52,11 +59,28 @@ class sup_documentos(models.Model):
         'umc_parentesco',
         string='Parentesco con el imputado',
     )
-    x_fecha = fields.Date(
-        string='Fecha'
-    )
+    
     x_lista_mc_scp = fields.Char(
         string='Lista',
+    )
+    x_print_clasificacion = fields.Boolean(
+        
+    )
+    x_print_clasificacion = fields.Selection(
+        string='¿Imprimir clasificación achivística?',
+        selection=[('si', 'Si'), ('no', 'No')],
+        default='si'
+    )
+    seccion = fields.Char(
+        string='Sección',
+        default='11S',
+    )
+    serie = fields.Char(
+        string='Serie',
+        default='11S.2',
+    )
+    sub_serie = fields.Char(
+        string='Subserie',
     )
 
     @api.model
@@ -168,19 +192,19 @@ class sup_documentos(models.Model):
             </strong>
             <br>
             <br>
-            <p class="text-justify">NOMBRE DEL IMPUTADO: <strong>"""+nombre_imputado.encode('utf-8')+"""</strong></p>
+            <p class="text-justify">NOMBRE DEL IMPUTADO:  <strong>"""+nombre_imputado.encode('utf-8')+"""</strong></p>
             <div class="row">
             	<div class="col-xs-8">
             		Firma:_______________________________
             	</div>
             	<div class="col-xs-4">
-            		Fecha: <strong>"""+self.x_fecha+"""</strong>
+            		Fecha: <strong>"""+str(self.x_fecha_documento)+"""</strong>
             	</div>
             </div>
             <br>
             <div class="row">
             	<div class="col-xs-8">
-           			 <p class="text-justify">NOMBRE DEL SUPERVISOR:<strong>"""+nombre_sup.encode('utf-8')+"""</strong></p>
+           			 <p class="text-justify">NOMBRE DEL SUPERVISOR:  <strong>"""+nombre_sup.encode('utf-8')+"""</strong></p>
             	</div>
             	<div class="col-xs-4">
             		Firma:_______________________________
@@ -253,7 +277,7 @@ class sup_documentos(models.Model):
             </ul>
             <br>
 			<br>
-            <p class="text-justify">NOMBRE DEL APOYO MORAL: <strong>"""+nombre_a_moral.encode('utf-8')+"""</strong></p>
+            <p class="text-justify">NOMBRE DEL APOYO MORAL:  <strong>"""+nombre_a_moral.encode('utf-8')+"""</strong></p>
             <div class="row">
             	<div class="col-xs-8">
             		Firma:_______________________________
@@ -262,13 +286,13 @@ class sup_documentos(models.Model):
             <br>
             <div class="row">
             	<div class="col-xs-4">
-           			 <p class="text-justify">NOMBRE DEL SUPERVISOR:<strong>"""+nombre_sup.encode('utf-8')+"""</strong></p>
+           			 <p class="text-justify">NOMBRE DEL SUPERVISOR:  <strong>"""+nombre_sup.encode('utf-8')+"""</strong></p>
             	</div>
             	<div class="col-xs-4">
             		Firma:_______________________________
             	</div>
             	<div class="col-xs-4">
-            		Fecha: <strong>"""+self.x_fecha+"""</strong>
+            		Fecha:  <strong>"""+str(self.x_fecha_documento)+"""</strong>
             	</div>
             </div>
         """
