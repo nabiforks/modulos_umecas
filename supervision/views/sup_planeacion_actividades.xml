@@ -54,7 +54,9 @@
             <field name="model">sup_planeacion_actividades</field>
             <field name="arch" type="xml">
                 <tree>
-                    <field name="x_name" />
+                    <field name="x_name"/>
+                    <field name="x_oficio"/>
+                    <field name="x_asunto"/>
                 </tree>
             </field>
         </record>

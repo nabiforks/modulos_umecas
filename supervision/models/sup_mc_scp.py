@@ -101,9 +101,10 @@ class sup_mc_scp(models.Model):
          ('mc-scp', 'MC-SCP'),
          ('encuadre', 'Ent. Encuadre'),
          ('compromisos', 'Compromisos'),
+         ('supervision', 'Supervisión'),
          ('informe', 'Informe'),
          ('terminado', 'Terminado'),
-         ('cancelado', 'Cancelado')],
+         ('archivado', 'Archivado')],
         default='orden',
         readonly=True, string=u'Estatus',
     )
@@ -307,7 +308,7 @@ class sup_mc_scp(models.Model):
     )
     x_parentesco_id = fields.Many2one(
         'umc_parentesco',
-        string='Parentesco con el imputado',
+        string='Relación con el imputado',
     )
 
     x_compromiso_documento_id = fields.Many2one(
@@ -346,7 +347,7 @@ class sup_mc_scp(models.Model):
 
     @api.multi
     def generar_carta_compromiso(self):
-        if self.x_supervisor_id and not self.x_compromiso_documento_id:
+        if not self.x_compromiso_documento_id:
             res_model = str(self.__class__.__name__)
             valores_documento = {
                                 'x_orden_name': self.x_name,
@@ -355,7 +356,7 @@ class sup_mc_scp(models.Model):
                                 'x_imputado_id':self.x_imputado_id.id,
                                 'x_causa_penal':self.x_causa_penal,
                                 'x_supervisor_id':self.x_supervisor_id.id,
-                                'x_fecha':self.x_inicia
+                                'x_tipo_documento':'Carta compromiso'
                                 }
             res = self.env['sup_documentos'].create(valores_documento)
             self.x_compromiso_documento_id = res
@@ -364,7 +365,7 @@ class sup_mc_scp(models.Model):
 
     @api.multi
     def generar_carta_apoyo_moral(self):
-        if self.x_supervisor_id and not self.x_apoyo_documento_id:
+        if self.x_compromiso_documento_id and not self.x_apoyo_documento_id:
             res_model = str(self.__class__.__name__)
             self.state = 'compromisos'
             valores_documento = {
@@ -376,16 +377,23 @@ class sup_mc_scp(models.Model):
                                 'x_supervisor_id':self.x_supervisor_id.id,
                                 'x_parentesco_id':self.x_parentesco_id.id,
                                 'x_nombre_apoyo_moral':self.x_nombre_apoyo_moral,
-                                'x_fecha':self.x_inicia
+                                'x_tipo_documento':'Carta compromiso del apoyo moral'
                                 }
             res = self.env['sup_documentos'].create(valores_documento)
             self.x_apoyo_documento_id = res
             self.x_apoyo_documento_id.carta_apoyo_moral()
             return res
+        elif self.x_compromiso_documento_id:
+            self.state = 'compromisos'
+
+    @api.multi
+    def generar_actas(self):
+        if self.x_apoyo_documento_id:
+            self.state = 'supervision'
 
     @api.multi
     def generar_informe(self):
-        if self.x_supervisor_id and not self.x_informe_id:
+        if not self.x_informe_id:
             res_model = str(self.__class__.__name__)
             self.state = 'informe'
             self.get_mc()
@@ -395,16 +403,19 @@ class sup_mc_scp(models.Model):
                                 'x_modelo_id':self.id,
                                 'x_imputado_id':self.x_imputado_id.id,
                                 'x_lista_mc_scp':self.x_lista_mc_scp,
+                                'x_tipo_documento':'Informe'
                                 }
             res = self.env['sup_documentos'].create(valores_documento)
             self.x_informe_id = res
             self.x_informe_id.informe_html()
             return res
+        elif self.x_informe_id:
+            self.state = 'informe'
 
     def default_acta_text(self):
         default_code = """
         <div class="text-center">
-            <h4>ACTA CIRCUNSTANCIADA</h4>
+            <h4>ACTA CIRCUNSTANCIADA()</h4>
         </div>
         <p style="font-size:12px;">
             En la ciudad de Puebla, Puebla siendo las __________ horas del día __________ de __________ del __________, el (los) Supervisor(es) ______________________________ y ______________________________, adscrito(s) a la 

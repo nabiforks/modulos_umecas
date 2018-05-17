@@ -17,15 +17,46 @@
                         </div>
                         <group string="Adjuntado a">
                         	<group>
-								<field name="x_res_model"/>
-                        	</group>
-                        	<group>
                         		<field name="x_modelo_id"/>
 								<field name="x_orden_name"/>
+                        	</group>
+                        	<group>
+								<field name="x_res_model" invisible="1"/>
+								<field name="x_fecha_documento"/>
+								<field name="x_tipo_documento"/>
                         	</group>
                         </group>
                         <br/>
 						<field name="x_contenido"/>
+						<br/>
+						<notebook>
+							<page string="Datos del reporte">
+								<group>
+									<field name="x_print_clasificacion" widget="radio" options="{'horizontal': true}" />
+								</group>
+								<div class="row" attrs="{'invisible':[('x_print_clasificacion','in','no')]}">
+									<div class="col-xs-6">
+										<table class="table table-bordered text-center">
+		                                    <tbody>
+		                                        <tr>
+		                                            <th colspan="4"><center>Clasificación archivista</center></th>
+		                                        </tr>
+		                                        <tr>
+		                                            <td>Sección</td>
+		                                            <td>Serie</td>
+		                                            <td>Subserie</td>
+		                                        </tr>
+		                                        <tr>
+		                                            <td><field name="seccion"/></td>
+		                                            <td><field name="serie"/></td>
+		                                            <td><field name="sub_serie"/></td>
+		                                        </tr>
+		                                    </tbody>
+		                                </table>
+									</div>
+								</div>
+							</page>
+						</notebook>
 					</sheet>
 				</form>
 			</field>
@@ -36,8 +67,9 @@
 			<field name='arch' type='xml'>
 				<tree>
 					<field name='x_name'/>
+					<field name='x_tipo_documento'/>
+					<field name='x_fecha_documento'/>
 					<field name='x_orden_id'/>
-					<field name='x_res_model'/>
 					<field name='x_modelo_id'/>
 				</tree>
 			</field>

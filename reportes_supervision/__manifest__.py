@@ -18,7 +18,7 @@
 
     'data': [
         'data/report_format.xml',
-        'report/reporte_mc_scp.xml',
+        #'report/reporte_mc_scp.xml',
         'report/reporte_entrevista.xml',
         'report/reporte_actividades.xml',
         'report/reporte_documentos.xml',

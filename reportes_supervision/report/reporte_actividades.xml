@@ -8,6 +8,9 @@
 			file="reportes_supervision.planeacion_actividades_report"
 			report_type="qweb-pdf"
 		/>
+		<record id="reportes_supervision.planeacion_actividades_report" model="ir.actions.report.xml">
+            <field name="paperformat_id" ref="reportes_supervision.rpt_supervision" />
+        </record>
 		<template id="rpt_planeacion">
 			<t t-call="report.html_container">
 				<t t-foreach="docs" t-as="o">
@@ -28,7 +31,7 @@
 									P R E S E N T E. <br/>
 									<br/>
 									<p class="text-justify">
-										De conformidad con los artículos 153, 154, 155, 156, 157, 164, 174, 177, 182 y 195 del Código Nacional de Procedimeintos Penales; 69 y 70 de la ley de Ejecución de Medidas Cuatelares y Sanciones Penales; 17 fracciones XIII y XIV de la Ley de Seguridad Pública, todas para el Estado de Puebla, en cumplimiento a los planes de supervisión de las Medidas Cautelares y Condiciones de Suspencion Condicional, elaborados por la responasable del Área de Evaluación de Riesgos y Suspensión de Medidas Cautelares de la Región Judicial Centro, se debe realizar lo siguiente:
+										De conformidad con los artículos 153, 154, 155, 156, 157, 164, 174, 177, 182 y 195 del Código Nacional de Procedimeintos Penales; 69 y 70 de la ley de Ejecución de Medidas Cautelares y Sanciones Penales; 17 fracciones XIII y XIV de la Ley de Seguridad Pública, todas para el Estado de Puebla, en cumplimiento a los planes de supervisión de las Medidas Cautelares y Condiciones de Suspensión Condicional, elaborados por la responsable del Área de Evaluación de Riesgos y Suspensión de Medidas Cautelares de la Región Judicial Centro, se debe realizar lo siguiente:
 									</p>
 									<br/>
 									<table>
@@ -59,12 +62,30 @@
 															<strong>Imputado:</strong>
 															<span t-field="i.x_imputado_id"/>
 															<br/>
+															<strong>Domicilio:</strong>
+															<br/>
 															<strong>Medidas cautelares:</strong>
-															<t t-foreach="i.x_mc_ids" t-as="j">
-																<t t-if="j">
-																	<span t-field="j.descripcion"/>, 
-																</t>
-															</t>
+															<table>
+																<tbody>
+																	<t t-set="n" t-value="1"/>
+																	<t t-foreach="i.x_mc_ids" t-as="j">
+																		<t t-if="j">
+																			<tr>
+																				<td style="padding-left:5px;">
+																					<span t-esc="n"/>.- 
+																				</td>
+																				<td class="text-justify">
+																					<span t-field="j.descripcion"/>
+																				</td>
+																				<td style="width:40px;padding-left:10px;">
+																					<div class="borde" style="width:15px;height:15px;"></div>
+																				</td>
+																			</tr>
+																			<t t-set="n" t-value="n+1"/>
+																		</t>
+																	</t>
+																</tbody>
+															</table>
 															<br/>
 															<strong>Teléfono:</strong>
 															<span t-field="i.x_imputado_id.phone"/>
