@@ -12,8 +12,10 @@ class umc_municipio(models.Model):
     )
     codigo = fields.Char(
         string=u'Código de Municipio',
-    )   
-    
+    )
+    x_ruta = fields.Integer(
+        string=u'Ruta',
+    )
     estado_id = fields.Many2one(
         string=u'Estado',
         comodel_name='res.country.state',

@@ -10,6 +10,7 @@
                     <group>
                         <field name="name"/>
                         <field name="codigo"/>
+                        <field name="x_ruta" />
                         <field name="estado_id" options="{&quot;no_open&quot;: True}"/>
                     </group>
                 </sheet>
@@ -23,6 +24,7 @@
             <tree>
                 <field name="name"/>
                 <field name="codigo"/>
+                <field name="x_ruta" />
                 <field name="estado_id" />
             </tree>
         </field>
@@ -49,6 +51,7 @@
                     <group>
                         <field name="name"/>
                         <field name="codigo"/>
+                        <field name="x_sector" />
                         <field name="municipio_id" />
                     </group>
                 </sheet>
@@ -62,6 +65,7 @@
             <tree>
                 <field name="name"/>
                 <field name="codigo"/>
+                <field name="x_sector" />
                 <field name="municipio_id" />
             </tree>
         </field>

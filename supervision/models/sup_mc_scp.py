@@ -26,13 +26,7 @@ class sup_mc_scp(models.Model):
         readonly=True,
         required=True,
     )
-    x_tipo_imputado = fields.Selection(
-        [('retenido', 'Retenido'), ('adolescente',
-                                    'Adolescente'), ('interno', 'Interno')],
-        string=u'Tipo de imputado',
-        related='x_imputado_id.x_imputado_tipo',
-        readonly=True,
-    )
+    
     x_causa_penal = fields.Char(
         string=u'Causa Penal',
     )
@@ -201,6 +195,62 @@ class sup_mc_scp(models.Model):
     x_cumplio = fields.Boolean(
         string=u'Cumplió',
     )
+    
+    #///////////////////////////////// Datos generales
+    #///////////////////////////////// Datos generales
+    #///////////////////////////////// Datos generales
+    x_tipo_imputado = fields.Selection(
+        [('retenido', 'Retenido'), ('adolescente',
+                                    'Adolescente'), ('interno', 'Interno')],
+        string=u'Tipo de imputado',
+        related='x_imputado_id.x_imputado_tipo',        
+        readonly=True,               
+        store=True,        
+    )
+    x_imputado_sexo = fields.Selection(
+        string=u'Sexo',
+        selection=[('m', 'Masculino'), ('f', 'Femenino'),('o', 'Otro')],
+        related='x_imputado_id.x_sexo',        
+        store=True,
+        readonly=True,                 
+    )
+    x_imputado_edad = fields.Integer(
+        string=u'Edad',
+        related='x_imputado_id.edad',        
+        store=True,
+        readonly=True,
+    )
+    x_colonia_imputado = fields.Many2one(
+        string=u'Colonia',
+        comodel_name='umc_colonia',
+        ondelete='set null',        
+        related='x_imputado_id.street2',
+        store=True,        
+        readonly=True,        
+    )
+    x_sector_imputado = fields.Selection(
+        string=u'Sector',
+        selection=[('1', '1'), ('2', '2'),('3', '3'),('4', '4')],
+        related='x_imputado_id.street2.x_sector',
+        store=True,
+        readonly=True       
+    )
+    x_municipio_imputado = fields.Many2one(
+        string=u'Municipio',
+        comodel_name='umc_municipio',
+        ondelete='set null',        
+        related='x_imputado_id.city',
+        store=True,        
+        readonly=True,        
+    )
+    x_ruta_imputado = fields.Integer(
+        string=u'Ruta',
+        related='x_imputado_id.city.x_ruta',
+        store=True,        
+        readonly=True,
+    )
+    
+    
     
     
     #///////////////////////////////// Medidas Cautelares

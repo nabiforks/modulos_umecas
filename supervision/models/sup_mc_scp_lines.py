@@ -15,8 +15,9 @@ class sup_mc_lines(models.Model):
     descripcion = fields.Text(
         string=u'Descripción',
     )
-    #/////////////////////////////////////////////
-    #/////////////////////////////////////////////
+    cumplio_mc = fields.Boolean(
+        string=u'Cumplió MC',
+    )
     #/////////////////////////////////////////////
     
     x_registro_id = fields.Many2one(
@@ -38,8 +39,9 @@ class sup_scp_lines(models.Model):
     descripcion = fields.Text(
         string=u'Descripción',
     )
-    #/////////////////////////////////////////////
-    #/////////////////////////////////////////////
+    cumplio_scp = fields.Boolean(
+        string=u'Cumplió SCP',
+    )
     #/////////////////////////////////////////////
     
     x_registro_id = fields.Many2one(
@@ -53,8 +55,9 @@ class sup_otro_lines(models.Model):
     name = fields.Text(
         string=u'Otro',        
     )
-    #/////////////////////////////////////////////
-    #/////////////////////////////////////////////
+    cumplio_resolucion = fields.Boolean(
+        string=u'Cumplió Resolución',
+    )
     #/////////////////////////////////////////////    
     x_registro_id = fields.Many2one(
         string=u'Registro ID',

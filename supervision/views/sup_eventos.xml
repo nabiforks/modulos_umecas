@@ -46,6 +46,12 @@
                     <attribute name="string">Tolerancia de espera</attribute>
                 </xpath>
                 <xpath expr="//label[@for='partner_ids']" position="replace"></xpath>
+                <xpath expr="//label[@for='description']" position="replace">
+                    <label for='description' string="Observaciones"/>
+                </xpath>
+                <xpath expr="//label[@for='name']" position="replace">
+                    <label for='name' string="Presentación"/>
+                </xpath>
                 <xpath expr="//field[@name='name']" position="attributes">
                     <attribute name="placeholder">por ejemplo, Firma Periódica</attribute>
                 </xpath>

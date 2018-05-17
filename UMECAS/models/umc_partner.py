@@ -96,8 +96,20 @@ class Partner(models.Model):
         # print location.address
         print geol
     """
-    
-
+    #//////////////////////////////////////////Renombrar campos para colonia y municipio////////////
+    #//////////////////////////////////////////Renombrar campos para colonia y municipio////////////
+    #//////////////////////////////////////////Renombrar campos para colonia y municipio/////////////////
+    #//////////////////////////////////////////Renombrar campos para colonia y municipio///////////////////
+    street2 = fields.Many2one(
+        string=u'Colonia',
+        comodel_name='umc_colonia',
+        ondelete='set null',
+    )
+    city = fields.Many2one(
+        string=u'Municipio',
+        comodel_name='umc_municipio',
+        ondelete='set null',
+    )
     #//////////////////////////////////////////Campos usados en entrevista////////////
     #//////////////////////////////////////////Campos usados en entrevista////////////
     #//////////////////////////////////////////Campos usados en entrevista/////////////////

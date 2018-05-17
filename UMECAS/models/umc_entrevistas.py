@@ -95,8 +95,8 @@ class Entrevistas(models.Model):
         longitud=0
         if self.x_domicilio_actual:
             calle = self.x_domicilio_actual[0].x_calle
-            colonia = self.x_domicilio_actual[0].x_colonia.name
-            municipio = self.x_domicilio_actual[0].x_municipio.name
+            colonia = self.x_domicilio_actual[0].x_colonia.id
+            municipio = self.x_domicilio_actual[0].x_municipio.id
             estado = self.x_domicilio_actual[0].x_estado_id.id
             cp = self.x_domicilio_actual[0].x_cp
             latitud = self.x_domicilio_actual[0].latitud
