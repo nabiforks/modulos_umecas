@@ -6,7 +6,7 @@ class sup_planeacion_actividades(models.Model):
     _name = 'sup_planeacion_actividades'
     
     
-    x_name = fields.Char('Documento', required=True, readonly=True,
+    x_name = fields.Char('Planeación Actividades', required=True, readonly=True,
                          default=lambda self: 'Nuevo'
                          )
     @api.model
@@ -29,6 +29,10 @@ class sup_planeacion_actividades(models.Model):
     x_dirigido_a = fields.Char(
         string='Dirigido a',
     )
+    x_fecha_limite = fields.Date(
+        string=u'Fecha límite',
+    )
+    
     
     
     

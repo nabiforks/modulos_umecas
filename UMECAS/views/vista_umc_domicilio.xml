@@ -44,7 +44,7 @@
                                 <!-- something to do here -->
                                 <group colspan="2" col="2">
                                     <separator string="Geolocalización" colspan="2"/>
-                                    <button string="Geolocalizar" name="geo_localiza" colspan="2" icon="fa-check" type="object"/>
+                                    <!--button string="Geolocalizar" name="geo_localiza" colspan="2" icon="fa-check" type="object"/-->
                                     <div>
                                         <span> ( Lat : </span>
                                         <field name="latitud" nolabel="1" class="oe_inline"/>

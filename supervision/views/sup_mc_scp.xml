@@ -19,7 +19,7 @@
                     </header>
                     <sheet>
                         <div class="oe_button_box" name="button_box">
-                            <button class="oe_stat_button" name="calendar.action_calendar_event" icon="fa-calendar" type="action" context="{'search_default_x_supervision_id': active_id}">
+                            <button class="oe_stat_button" name="calendar.action_calendar_event" icon="fa-calendar" type="action" context="{'search_default_x_supervision_id': active_id,'default_start_date':x_inicia,'default_end_type':'end_date','default_final_date':x_finaliza,'default_privacy':'confidential'}">
                                 <field string="Visitas/Firmas" name="x_eventos" widget="statinfo"/>
                             </button>
                         </div>
@@ -48,14 +48,16 @@
                                 <field name="x_supervisor_id" options="{'no_create_edit': True,'no_open': True}" />
                                 <field name="x_foja" />
                                 <field name="x_libro" />
-                                <field name="x_expediente_id"/>
-                                <field name="x_casa_justicia" options="{ 'no_open': True}" />
+                                <field name="x_expediente_id"/>                                
+                                <field name="x_incumplimiento_scp" />
+                                <field name="x_ultimasupervision" />
                             </group>
                         </group>
                         <notebook>
                             <page string="Datos Generales">
                                 <group>
                                     <group>
+                                        <field name="x_casa_justicia" options="{ 'no_open': True}" />
                                         <field name="x_tipo_imputado" />
                                         <field name="x_imputado_sexo" />
                                         <field name="x_imputado_edad" />
@@ -132,7 +134,7 @@
                             </page>
                             <!--page string="Presentación periódica"><field name="x_eventos_ids" /></page-->
                             <page string="Informe" attrs="{'invisible': [('state','in',('orden','mc-scp','encuadre','compromisos','supervision'))]}">
-                               <group>
+                                <group>
                                     <field name="x_informe_id" />
                                 </group>
                             </page>
