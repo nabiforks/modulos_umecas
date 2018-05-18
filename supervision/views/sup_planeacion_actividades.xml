@@ -21,6 +21,8 @@
                             <group>
                                 <field name="create_date" string="Creado" readonly="1"/>
                                 <field name="x_fecha_limite" />
+                                <field name="x_dirigido_a" />
+                                <field name="x_cargo" />
                             </group>
                             <group>
                                 <field name="x_dirigido_a" />
@@ -102,7 +104,14 @@
                             </field>
                         </div>
                         <notebook>
-                            <page string="Title"></page>
+                            <page string="Observaciones">
+                                <field name="x_observaciones"/>
+                            </page>
+                            <page string="Datos del reporte">
+                                <group>
+                                    <field name="x_parrafo"/>
+                                </group>
+                            </page>
                         </notebook>
                     </sheet>
                 </form>

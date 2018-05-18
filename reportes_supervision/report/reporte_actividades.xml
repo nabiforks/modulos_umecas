@@ -25,13 +25,14 @@
 							</div>
 							<div class="row">
 								<div class="col-xs-12">
-									<span t-field="o.x_dirigido_a"/> <br/>
-									DIRECTOR DE MEDIDAS CAUTELARES <br/>
-									Y POLICÍA PROCESAL <br/>
+									<span t-field="o.x_dirigido_a"/>
+									<br/>
+									<span t-field="o.x_cargo"/>
+									<br/>
 									P R E S E N T E. <br/>
 									<br/>
 									<p class="text-justify">
-										De conformidad con los artículos 153, 154, 155, 156, 157, 164, 174, 177, 182 y 195 del Código Nacional de Procedimeintos Penales; 69 y 70 de la ley de Ejecución de Medidas Cautelares y Sanciones Penales; 17 fracciones XIII y XIV de la Ley de Seguridad Pública, todas para el Estado de Puebla, en cumplimiento a los planes de supervisión de las Medidas Cautelares y Condiciones de Suspensión Condicional, elaborados por la responsable del Área de Evaluación de Riesgos y Suspensión de Medidas Cautelares de la Región Judicial Centro, se debe realizar lo siguiente:
+										<span t-field="o.x_parrafo"/>
 									</p>
 									<br/>
 									<table>
@@ -63,8 +64,21 @@
 															<span t-field="i.x_imputado_id"/>
 															<br/>
 															<strong>Domicilio:</strong>
+															<span t-field="i.x_imputado_id.street"/>, 
+															<span t-field="i.x_imputado_id.street2"/>, 
+															<span t-field="i.x_imputado_id.city"/>, 
+															<span t-field="i.x_imputado_id.state_id"/>, C.P. 
+															<span t-field="i.x_imputado_id.zip"/>
 															<br/>
-															<strong>Medidas cautelares:</strong>
+															<t t-if="i.x_resolucion=='mc'">
+																<strong>Medidas cautelares:</strong>
+															</t>
+															<t t-if="i.x_resolucion=='scp'">
+																<strong>Suspención condicional del proceso:</strong>
+															</t>
+															<t t-if="i.x_resolucion=='otro'">
+																<strong>Otras condiciones:</strong>
+															</t>
 															<table>
 																<tbody>
 																	<t t-set="n" t-value="1"/>
