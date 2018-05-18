@@ -20,6 +20,7 @@
                         <group>
                             <group>
                                 <field name="x_dirigido_a" />
+                                <field name="x_cargo" />
                             </group>
                             <group>
                                 <field name="x_oficio" />
@@ -42,7 +43,14 @@
                             </field>
                         </div>
                         <notebook>
-                            <page string="Title"></page>
+                            <page string="Observaciones">
+                                <field name="x_observaciones"/>
+                            </page>
+                            <page string="Datos del reporte">
+                                <group>
+                                    <field name="x_parrafo"/>
+                                </group>
+                            </page>
                         </notebook>
                     </sheet>
                 </form>
