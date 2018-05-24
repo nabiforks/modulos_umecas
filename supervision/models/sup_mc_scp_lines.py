@@ -11,6 +11,11 @@ class sup_mc_lines(models.Model):
         comodel_name='sup_mc',
         ondelete='set null',        
         required=True,        
+    )  
+    codigo = fields.Char(
+        string='Código',        
+        related='name.codigo',        
+        readonly=True,                
     )    
     descripcion = fields.Text(
         string=u'Descripción',
@@ -35,6 +40,11 @@ class sup_scp_lines(models.Model):
         comodel_name='sup_scp',
         ondelete='set null',        
         required=True,        
+    )
+    codigo = fields.Char(
+        string='Código',        
+        related='name.codigo',        
+        readonly=True,                
     )    
     descripcion = fields.Text(
         string=u'Descripción',

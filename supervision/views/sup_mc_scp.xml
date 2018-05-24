@@ -48,7 +48,7 @@
                                 <field name="x_supervisor_id" options="{'no_create_edit': True,'no_open': True}" />
                                 <field name="x_foja" />
                                 <field name="x_libro" />
-                                <field name="x_expediente_id"/>                                
+                                <field name="x_expediente_id"/>
                                 <field name="x_incumplimiento_scp" />
                                 <field name="x_ultimasupervision" />
                             </group>
@@ -81,6 +81,7 @@
                             <page string="Medidas Cautelares" attrs="{ 'invisible':['|',('x_resolucion','not in','mc'),('state','in','orden')] }">
                                 <field name="x_mc_ids" mode="tree">
                                     <tree string="Medidas Cautelares" create="1" delete="1" edit="1" editable="bottom">
+                                        <field name="codigo" />
                                         <field name="name" options="{'no_create': True, 'no_open': True}"/>
                                         <field name="descripcion" />
                                         <field name="cumplio_mc" />
@@ -90,6 +91,7 @@
                             <page string="SCP" attrs="{ 'invisible':['|',('x_resolucion','not in','scp'),('state','in','orden')] }">
                                 <field name="x_scp_ids" mode="tree">
                                     <tree string="Medidas Cautelares" create="1" delete="1" edit="1" editable="bottom">
+                                        <field name="codigo" />
                                         <field name="name" options="{'no_create': True, 'no_open': True}"/>
                                         <field name="descripcion" />
                                         <field name="cumplio_scp" />
@@ -179,7 +181,18 @@
                     <field name="x_name" />
                     <field name="x_imputado_id"/>
                     <field name="x_expediente_id"/>
-                    <filter string="ID" name="Filtrar id" domain="[('id','=',1)]" context="{}" help="" />
+                    <field name="x_resolucion" />
+                    <filter string="Resolución es MC" name="resolucion_mc" domain="[('x_resolucion','=','mc')]" context="{}" help="Resolución = MC" />
+                    <filter string="Resolución es SCP" name="resolucion_scp" domain="[('x_resolucion','=','scp')]" context="{}" help="Resolución = SCP" />
+                    <separator />
+                    <filter string="Sector 1" name="sector_imputado" domain="[('x_sector_imputado','=','1')]" context="{}" help="Sector = 1" />
+                    <filter string="Sector 2" name="sector_imputado2" domain="[('x_sector_imputado','=','2')]" context="{}" help="Sector = 2" />
+                    <filter string="Sector 3" name="sector_imputado3" domain="[('x_sector_imputado','=','3')]" context="{}" help="Sector = 3" />
+                    <filter string="Sector 4" name="sector_imputado4" domain="[('x_sector_imputado','=','4')]" context="{}" help="Sector = 4" />
+                    <separator />
+                    <filter string="MC = I,V,VI,VII,IX,X,XI,XIII" name="mc_supervisar" domain="[('x_mc_ids.codigo','in',['155-I','155-V','155-VI','155-VII','155-VIII','155-IX','155-X','155-XI','155-XIII'])]" context="{}" help="Tiene alguna de las siguientes MC: I,V,VI,VII,IX,X,XI,XIII" />
+                    <filter string="SCP = I,II,V,VIII,XII" name="scp_supervisar" domain="[('x_scp_ids.codigo','in',['195-I','195-II','195-V','195-VIII','195-XII'])]" context="{}" help="Tiene alguna de las siguientes SCP: I,II,V,VIII,XII" />
+                    
                 </search>
             </field>
         </record>

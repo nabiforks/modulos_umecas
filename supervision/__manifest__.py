@@ -23,7 +23,8 @@
         'views/sup_entrevista_encuadre.xml',
         'views/sup_eventos.xml',
         'views/sup_planeacion_actividades.xml',
-        'views/sup_documentos.xml'
+        'views/sup_documentos.xml',
+        'data/ir_cron.xml'
     ],
     'intallable': True,
     'auto_install': False,

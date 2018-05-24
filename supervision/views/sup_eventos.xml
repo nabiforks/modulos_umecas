@@ -19,7 +19,6 @@
                     <group>
                         <group></group>
                         <group>
-                            <field name="x_atrasado" />
                             <field name="x_cumplio" />
                             <field name="x_supervision_id" />
                             <field name="x_imputado_name" />
@@ -89,9 +88,14 @@
             <field name="model">calendar.event</field>
             <field name="inherit_id" ref="calendar.view_calendar_event_search"/>
             <field name="arch" type="xml">
-                <xpath expr="//field[@name='name']" position="before">
-                    <field name="x_supervision_id" />
-                    <field name="x_cumplio" />
+                <xpath expr="//search" position="replace">
+                    <search string="Eventos">
+                        <field name="x_supervision_id" />
+                        <field name="x_cumplio" />
+                        <!--filter string="Atrasados" domain="[('start_datetime','&lt;',datetime.datetime.now()),('x_cumplio','=',False)]"/-->
+                        <filter string="Pendientes" domain="[('estatus','=','pendiente')]"/>
+                        <filter string="Atrasados" domain="[('estatus','=','atrasado')]"/>
+                    </search>
                 </xpath>
             </field>
         </record>

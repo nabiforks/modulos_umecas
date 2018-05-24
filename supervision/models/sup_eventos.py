@@ -20,29 +20,24 @@ class sup_eventos(models.Model):
         string=u'Cumplió/Realizado',        
         readonly=True,        
     )
-    x_atrasado = fields.Boolean(
-        string=u'Atrasado',        
-        readonly=True,        
-        #compute='get_atrasados'
-    )
     estatus = fields.Selection(
         [('pendiente', 'Pendiente'),
          ('realizado', 'Realizado'),
          ('atrasado', 'Atrasado')],
         default='pendiente',
         readonly=True, string=u'Estatus',
-        #compute='get_atrasados'
     )
-    """@api.multi
-    @api.depends('start_datetime','estatus')
-    def get_atrasados(self):
-        fecha = datetime.now()
-        for record in self:
-            fecha_inicio = fields.Datetime.from_string(record.start_datetime)
-            fecha_fin = fields.Datetime.from_string(fecha)
-            if fecha_inicio < fecha_fin:
-                record.x_atrasado = True
-                record.estatus = 'atrasado'"""
+    @api.multi
+    def set_state_atrasado(self):
+        res = self.search([('start','<',datetime.now().strftime('%Y-%m-%d %H:%M:%S')),('x_cumplio','=',False)])
+        for r in res:
+            if r.recurrency:
+                aux = r.action_detach_recurring_event()
+                evento = self.env['calendar.event'].search([('id', '=', aux['res_id'])])
+                evento.write({'x_cumplio':False,'estatus': 'atrasado'}) 
+            else :
+                r.write({'estatus': 'atrasado'})        
+        return True
     @api.multi
     def set_cumplio_firma(self):
         self.x_cumplio= True
@@ -56,4 +51,4 @@ class sup_eventos(models.Model):
         res = super(sup_eventos, self).action_detach_recurring_event()
         evento = self.env['calendar.event'].search([('id', '=', res['res_id'])])
         evento.write({'x_cumplio':True,'estatus':'realizado'})
-        return
+        return res
