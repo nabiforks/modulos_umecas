@@ -18,7 +18,7 @@
 		<menuitem id="ca_manu" name="Resolución" parent="main_pp_menu" action="control_audiencia_action" sequence="4"/>
 
 		<!--Crear menu Control de audiencias-->
-		<menuitem id="egresos_manu" name="Egresos" parent="main_pp_menu" action="egreso_action_list" sequence="5"/>
+		<menuitem id="egresos_manu" name="Egreso" parent="main_pp_menu" action="egreso_action_list" sequence="5"/>
 
 
 		<!--Crear menu Configuracion-->

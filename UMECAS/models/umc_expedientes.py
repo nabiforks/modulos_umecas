@@ -12,7 +12,6 @@ class Expedientes(models.Model):
     partner_id = fields.Many2one(
         'res.partner',
         string=u'Imputado',
-        readonly=True,
         ondelete='set null',
     )
     x_imputado_name = fields.Char(
@@ -47,6 +46,14 @@ class Expedientes(models.Model):
         comodel_name='res.company',
         ondelete='set null',
         default=lambda self: self.env.user.company_id,
+    )
+    x_municipio_delito_id = fields.Many2one(
+        'umc_municipio',
+        string='Municipio',
+    )
+    x_colonia_delito_id = fields.Many2one(
+        'umc_colonia',
+        string='Colonia',
     )
     _sql_constraints = [
         ('folio_unique_expediente', 'UNIQUE(x_name)', 'Error al procesar la solicitud por favor intentelo más tarde.')
