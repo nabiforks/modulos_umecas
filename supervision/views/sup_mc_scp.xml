@@ -1,211 +1,224 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
-    <data>
-        <!--  form view /////////////////////////////////////////////////////-->
-        <record model="ir.ui.view" id="sup_mc_scp_form_view">
-            <field name="name">sup_mc_scp.form.view</field>
-            <field name="model">sup_mc_scp</field>
-            <field name="arch" type="xml">
-                <form>
-                    <header>
-                        <button name="capturar_medidas" type="object" string="Capturar MC-SCP" class="oe_highlight" states="orden"/>
-                        <button name="generar_entrevista" type="object" string="Entrevista Encuadre" class="oe_highlight" states="mc-scp"/>
-                        <button name="regresar_capturar_medidas" type="object" string="Regresar a MC-SCP" states="encuadre"/>
-                        <button name="generar_carta_compromiso" type="object" string="Carta compromiso" class="oe_highlight" states="encuadre"/>
-                        <button name="generar_carta_apoyo_moral" type="object" string="Carta compromiso de apoyo moral" class="oe_highlight" states="encuadre"/>
-                        <button name="generar_actas" type="object" string="Actas circunstanciadas" class="oe_highlight" states="compromisos"/>
-                        <button name="generar_informe" type="object" string="Informe" class="oe_highlight" states="supervision"/>
-                        <field name="state" widget="statusbar"/>
-                    </header>
-                    <sheet>
-                        <div class="oe_button_box" name="button_box">
-                            <button class="oe_stat_button" name="calendar.action_calendar_event" icon="fa-calendar" type="action" context="{'search_default_x_supervision_id': active_id,'default_start_date':x_inicia,'default_end_type':'end_date','default_final_date':x_finaliza,'default_privacy':'confidential'}">
-                                <field string="Visitas/Firmas" name="x_eventos" widget="statinfo"/>
-                            </button>
-                        </div>
-                        <div class="oe_title">
-                            <h1>
-                                <field name="x_name" />
-                            </h1>
-                        </div>
-                        <group>
-                            <group>
-                                <field name="x_imputado_id"/>
-                                <field name="x_resolucion" widget="radio" options="{'horizontal': true}" />
-                                <field name="x_causa_penal" />
-                                <field name="x_numero_oficio" />
-                                <field name="x_inicia" />
-                                <label for="x_tiempo_anios" string="Tiempo"/>
-                                <div class="address_format">
-                                    <field name="x_tiempo_anios" class="oe_inline" />
-                                    <span> Años </span>
-                                    <field name="x_tiempo_meses" class="oe_inline"/>
-                                    <span> Meses</span>
-                                </div>
-                                <field name="x_finaliza" />
-                            </group>
-                            <group>
-                                <field name="x_supervisor_id" options="{'no_create_edit': True,'no_open': True}" />
-                                <field name="x_foja" />
-                                <field name="x_libro" />
-                                <field name="x_expediente_id"/>
-                                <field name="x_incumplimiento_scp" />
-                                <field name="x_ultimasupervision" />
-                            </group>
-                        </group>
-                        <notebook>
-                            <page string="Datos Generales">
-                                <group>
-                                    <group>
-                                        <field name="x_casa_justicia" options="{ 'no_open': True}" />
-                                        <field name="x_tipo_imputado" />
-                                        <field name="x_imputado_sexo" />
-                                        <field name="x_imputado_edad" />
-                                    </group>
-                                    <group>
-                                        <field name="x_colonia_imputado" />
-                                        <field name="x_sector_imputado" />
-                                        <field name="x_municipio_imputado" />
-                                        <field name="x_ruta_imputado" />
-                                    </group>
-                                </group>
-                            </page>
-                            <page string="Otra Resolución" attrs="{ 'invisible':['|',('x_resolucion','not in','otro'),('state','in','orden')] }">
-                                <field name="x_otro_ids" mode="tree">
-                                    <tree string="Otras" create="1" delete="1" edit="1" editable="bottom">
-                                        <field name="name" />
-                                        <field name="cumplio_resolucion" />
-                                    </tree>
-                                </field>
-                            </page>
-                            <page string="Medidas Cautelares" attrs="{ 'invisible':['|',('x_resolucion','not in','mc'),('state','in','orden')] }">
-                                <field name="x_mc_ids" mode="tree">
-                                    <tree string="Medidas Cautelares" create="1" delete="1" edit="1" editable="bottom">
-                                        <field name="codigo" />
-                                        <field name="name" options="{'no_create': True, 'no_open': True}"/>
-                                        <field name="descripcion" />
-                                        <field name="cumplio_mc" />
-                                    </tree>
-                                </field>
-                            </page>
-                            <page string="SCP" attrs="{ 'invisible':['|',('x_resolucion','not in','scp'),('state','in','orden')] }">
-                                <field name="x_scp_ids" mode="tree">
-                                    <tree string="Medidas Cautelares" create="1" delete="1" edit="1" editable="bottom">
-                                        <field name="codigo" />
-                                        <field name="name" options="{'no_create': True, 'no_open': True}"/>
-                                        <field name="descripcion" />
-                                        <field name="cumplio_scp" />
-                                    </tree>
-                                </field>
-                            </page>
-                            <page string="Entrevista Encuadre" attrs="{'invisible': [('state','in',('orden','mc-scp'))]}">
-                                <group>
-                                    <field name="x_encuadre_id"/>
-                                    <field name="x_encuadre_status"/>
-                                </group>
-                            </page>
-                            <page string="Carta compromiso y apoyo moral" attrs="{'invisible': [('state','in',('orden','mc-scp'))]}">
-                                <group>
-                                    <group>
-                                        <field name="x_nombre_apoyo_moral"/>
-                                    </group>
-                                    <group>
-                                        <field name="x_parentesco_id"/>
-                                    </group>
-                                </group>
-                                <group>
-                                    <field name="x_compromiso_documento_id"/>
-                                    <field name="x_apoyo_documento_id"/>
-                                </group>
-                            </page>
-                            <page string="Actas circunstanciadas" attrs="{'invisible':[('state','in',('orden','mc-scp','encuadre','compromisos'))]}">
-                                <div class="row">
-                                    <div class="col-xs-5">
-                                        <group>
-                                            <field name="default_acta" invisible="1"/>
-                                            <field name="x_actas_ids" context="{'default_x_modelo_id':id,'default_x_orden_name': x_name,'default_x_contenido': default_acta,'default_x_tipo_documento':'Acta circunstanciada'}">
-                                                <tree>
-                                                    <field name="x_name"/>
-                                                    <field name="x_tipo_documento"/>
-                                                    <field name="x_fecha_documento"/>
-                                                </tree>
-                                            </field>
-                                        </group>
-                                    </div>
-                                </div>
-                            </page>
-                            <!--page string="Presentación periódica"><field name="x_eventos_ids" /></page-->
-                            <page string="Informe" attrs="{'invisible': [('state','in',('orden','mc-scp','encuadre','compromisos','supervision'))]}">
-                                <group>
-                                    <field name="x_informe_id" />
-                                </group>
-                            </page>
-                        </notebook>
-                    </sheet>
-                </form>
-            </field>
-        </record>
-        <!--  tree view /////////////////////////////////////////////////////-->
-        <record model="ir.ui.view" id="sup_mc_scp_tree_view">
-            <field name="name">sup_mc_scp.tree.view</field>
-            <field name="model">sup_mc_scp</field>
-            <field name="arch" type="xml">
-                <tree>
-                    <field name="x_name" />
-                    <field name="x_imputado_id"/>
-                    <field name="x_resolucion" />
-                    <field name="x_inicia" />
-                    <field name="x_finaliza" />
-                    <field name="x_expediente_id"/>
-                    <field name="state" />
-                </tree>
-            </field>
-        </record>
-        <!--  graph view /////////////////////////////////////////////////////-->
-        <record model="ir.ui.view" id="sup_mc_scp_graph_view">
-            <field name="name">sup_mc_scp.graph.view</field>
-            <field name="model">sup_mc_scp</field>
-            <field name="arch" type="xml">
-                <graph string="Registros">
-                    <field name="x_inicia" type="row" />
-                    <field name="x_resolucion" type="row"/>
-                </graph>
-            </field>
-        </record>
-        <!--Agrgar filtros de busqueda -->
-        <record model="ir.ui.view" id="sup_mc_scp_search_view">
-            <field name="name">sup_mc_scp.search.view</field>
-            <field name="model">sup_mc_scp</field>
-            <field name="arch" type="xml">
-                <search>
-                    <field name="x_name" />
-                    <field name="x_imputado_id"/>
-                    <field name="x_expediente_id"/>
-                    <field name="x_resolucion" />
-                    <filter string="Resolución es MC" name="resolucion_mc" domain="[('x_resolucion','=','mc')]" context="{}" help="Resolución = MC" />
-                    <filter string="Resolución es SCP" name="resolucion_scp" domain="[('x_resolucion','=','scp')]" context="{}" help="Resolución = SCP" />
+	<data>
+		<!--  form view /////////////////////////////////////////////////////-->
+		<record model="ir.ui.view" id="sup_mc_scp_form_view">
+			<field name="name">sup_mc_scp.form.view</field>
+			<field name="model">sup_mc_scp</field>
+			<field name="arch" type="xml">
+				<form>
+					<header>
+						<button name="capturar_medidas" type="object" string="Capturar MC-SCP" class="oe_highlight" states="orden"/>
+						<button name="generar_entrevista" type="object" string="Entrevista Encuadre" class="oe_highlight" states="mc-scp"/>
+						<button name="regresar_capturar_medidas" type="object" string="Regresar a MC-SCP" states="encuadre"/>
+						<button name="generar_carta_compromiso" type="object" string="Carta compromiso" class="oe_highlight" states="encuadre"/>
+						<button name="generar_carta_apoyo_moral" type="object" string="Carta compromiso de apoyo moral" class="oe_highlight" states="encuadre"/>
+						<button name="generar_actas" type="object" string="Actas circunstanciadas" class="oe_highlight" states="compromisos"/>
+						<button name="generar_informe" type="object" string="Informe" class="oe_highlight" states="supervision"/>
+						<field name="state" widget="statusbar"/>
+					</header>
+					<sheet>
+						<div class="oe_button_box" name="button_box">
+							<button name="toggle_active" type="object" class="oe_stat_button" icon="fa-archive">
+								<field name="active" widget="boolean_button" options="{&quot;terminology&quot;: &quot;archive&quot;}"/>
+							</button>
+							<button class="oe_stat_button" name="calendar.action_calendar_event" icon="fa-calendar" type="action" context="{'search_default_x_supervision_id': active_id,'default_start_date':x_inicia,'default_end_type':'end_date','default_final_date':x_finaliza,'default_privacy':'confidential'}">
+								<field string="Visitas/Firmas" name="x_eventos" widget="statinfo"/>
+							</button>
+						</div>
+						<div class="oe_title">
+							<h1>
+								<field name="x_name" />
+							</h1>
+						</div>
+						<group>
+							<group>
+								<field name="x_imputado_id"/>
+								<field name="x_resolucion" widget="radio" options="{'horizontal': true}" />
+								<field name="x_causa_penal" />
+								<field name="x_numero_oficio" />
+								<field name="x_inicia" />
+								<label for="x_tiempo_anios" string="Tiempo"/>
+								<div class="address_format">
+									<field name="x_tiempo_anios" class="oe_inline" />
+									<span> Años </span>
+									<field name="x_tiempo_meses" class="oe_inline"/>
+									<span> Meses</span>
+								</div>
+								<field name="x_finaliza" />
+							</group>
+							<group>
+								<field name="x_supervisor_id" options="{'no_create_edit': True,'no_open': True}" />
+								<field name="x_foja" />
+								<field name="x_libro" />
+								<field name="x_expediente_id"/>
+								<field name="x_incumplimiento_scp" />
+								<field name="x_ultimasupervision" />
+							</group>
+						</group>
+						<notebook>
+							<page string="Datos Generales">
+								<group>
+									<group>
+										<field name="x_casa_justicia" options="{ 'no_open': True}" />
+										<field name="x_tipo_imputado" />
+										<field name="x_imputado_sexo" />
+										<field name="x_imputado_edad" />
+									</group>
+									<group>
+										<field name="x_colonia_imputado" />
+										<field name="x_sector_imputado" />
+										<field name="x_municipio_imputado" />
+										<field name="x_ruta_imputado" />
+									</group>
+								</group>
+								<group>
+									<field name="x_abogado" />
+									<field name="x_abogado_tipo" />
+									<field name="x_abogado_telefono" widget="phone"/>
+								</group>
+							</page>
+							<page string="Otra Resolución" attrs="{ 'invisible':['|',('x_resolucion','not in','otro'),('state','in','orden')] }">
+								<field name="x_otro_ids" mode="tree">
+									<tree string="Otras" create="1" delete="1" edit="1" editable="bottom">
+										<field name="name" />
+										<field name="cumplio_resolucion" />
+									</tree>
+								</field>
+							</page>
+							<page string="Medidas Cautelares" attrs="{ 'invisible':['|',('x_resolucion','not in','mc'),('state','in','orden')] }">
+								<field name="x_mc_ids" mode="tree">
+									<tree string="Medidas Cautelares" create="1" delete="1" edit="1" editable="bottom">
+										<field name="codigo" />
+										<field name="name" options="{'no_create': True, 'no_open': True}"/>
+										<field name="descripcion" />
+										<field name="cumplio_mc" />
+									</tree>
+								</field>
+							</page>
+							<page string="SCP" attrs="{ 'invisible':['|',('x_resolucion','not in','scp'),('state','in','orden')] }">
+								<field name="x_scp_ids" mode="tree">
+									<tree string="Medidas Cautelares" create="1" delete="1" edit="1" editable="bottom">
+										<field name="codigo" />
+										<field name="name" options="{'no_create': True, 'no_open': True}"/>
+										<field name="descripcion" />
+										<field name="cumplio_scp" />
+									</tree>
+								</field>
+							</page>
+							<page string="Entrevista Encuadre" attrs="{'invisible': [('state','in',('orden','mc-scp'))]}">
+								<group>
+									<field name="x_encuadre_id"/>
+									<field name="x_encuadre_status"/>
+								</group>
+							</page>
+							<page string="Carta compromiso y apoyo moral" attrs="{'invisible': [('state','in',('orden','mc-scp'))]}">
+								<group>
+									<group>
+										<field name="x_nombre_apoyo_moral"/>
+									</group>
+									<group>
+										<field name="x_parentesco_id"/>
+									</group>
+								</group>
+								<group>
+									<field name="x_compromiso_documento_id"/>
+									<field name="x_apoyo_documento_id"/>
+								</group>
+							</page>
+							<page string="Actas circunstanciadas" attrs="{'invisible':[('state','in',('orden','mc-scp','encuadre','compromisos'))]}">
+								<div class="row">
+									<div class="col-xs-5">
+										<group>
+											<field name="default_acta" invisible="1"/>
+											<field name="x_actas_ids" context="{'default_x_modelo_id':id,'default_x_orden_name': x_name,'default_x_contenido': default_acta,'default_x_tipo_documento':'Acta circunstanciada'}">
+												<tree>
+													<field name="x_name"/>
+													<field name="x_tipo_documento"/>
+													<field name="x_fecha_documento"/>
+												</tree>
+											</field>
+										</group>
+									</div>
+								</div>
+							</page>
+							<!--page string="Presentación periódica"><field name="x_eventos_ids" /></page-->
+							<page string="Informe" attrs="{'invisible': [('state','in',('orden','mc-scp','encuadre','compromisos','supervision'))]}">
+								<group>
+									<field name="x_informe_id" />
+								</group>
+							</page>
+						</notebook>
+					</sheet>
+				</form>
+			</field>
+		</record>
+		<!--  tree view /////////////////////////////////////////////////////-->
+		<record model="ir.ui.view" id="sup_mc_scp_tree_view">
+			<field name="name">sup_mc_scp.tree.view</field>
+			<field name="model">sup_mc_scp</field>
+			<field name="arch" type="xml">
+				<tree>
+					<field name="x_name" />
+					<field name="x_imputado_id"/>
+					<field name="x_numero_oficio" string="No. Oficio" />
+					<field name="x_resolucion" />
+					<field name="x_inicia" />
+					<field name="x_finaliza" />
+					<field name="x_expediente_id"/>
+					<field name="state" />
+				</tree>
+			</field>
+		</record>
+		<!--  graph view /////////////////////////////////////////////////////-->
+		<record model="ir.ui.view" id="sup_mc_scp_graph_view">
+			<field name="name">sup_mc_scp.graph.view</field>
+			<field name="model">sup_mc_scp</field>
+			<field name="arch" type="xml">
+				<graph string="Registros">
+					<field name="x_inicia" type="row" />
+					<field name="x_resolucion" type="row"/>
+				</graph>
+			</field>
+		</record>
+		<!--Agrgar filtros de busqueda -->
+		<record model="ir.ui.view" id="sup_mc_scp_search_view">
+			<field name="name">sup_mc_scp.search.view</field>
+			<field name="model">sup_mc_scp</field>
+			<field name="arch" type="xml">
+				<search>
+					<field name="x_name" />
+					<field name="x_imputado_id"/>
+					<field name="x_numero_oficio" string="No. Oficio" />
+					<field name="x_mc_ids" />
+					<field name="x_scp_ids" />
+					<field name="x_expediente_id"/>
+					<field name="x_resolucion" />
+					<filter string="Resolución es MC" name="resolucion_mc" domain="[('x_resolucion','=','mc')]" context="{}" help="Resolución = MC" />
+					<filter string="Resolución es SCP" name="resolucion_scp" domain="[('x_resolucion','=','scp')]" context="{}" help="Resolución = SCP" />
+					<separator />
+					<filter string="Sector 1" name="sector_imputado" domain="[('x_sector_imputado','=','1')]" context="{}" help="Sector = 1" />
+					<filter string="Sector 2" name="sector_imputado2" domain="[('x_sector_imputado','=','2')]" context="{}" help="Sector = 2" />
+					<filter string="Sector 3" name="sector_imputado3" domain="[('x_sector_imputado','=','3')]" context="{}" help="Sector = 3" />
+					<filter string="Sector 4" name="sector_imputado4" domain="[('x_sector_imputado','=','4')]" context="{}" help="Sector = 4" />
+					<separator />
+					<filter string="MC = I,V,VI,VII,IX,X,XI,XIII" name="mc_supervisar" domain="[('x_mc_ids.codigo','in',['155-I','155-V','155-VI','155-VII','155-VIII','155-IX','155-X','155-XI','155-XIII'])]" context="{}" help="Tiene alguna de las siguientes MC: I,V,VI,VII,IX,X,XI,XIII" />
+					<filter string="SCP = I,II,V,VIII,XII" name="scp_supervisar" domain="[('x_scp_ids.codigo','in',['195-I','195-II','195-V','195-VIII','195-XII'])]" context="{}" help="Tiene alguna de las siguientes SCP: I,II,V,VIII,XII" />
                     <separator />
-                    <filter string="Sector 1" name="sector_imputado" domain="[('x_sector_imputado','=','1')]" context="{}" help="Sector = 1" />
-                    <filter string="Sector 2" name="sector_imputado2" domain="[('x_sector_imputado','=','2')]" context="{}" help="Sector = 2" />
-                    <filter string="Sector 3" name="sector_imputado3" domain="[('x_sector_imputado','=','3')]" context="{}" help="Sector = 3" />
-                    <filter string="Sector 4" name="sector_imputado4" domain="[('x_sector_imputado','=','4')]" context="{}" help="Sector = 4" />
-                    <separator />
-                    <filter string="MC = I,V,VI,VII,IX,X,XI,XIII" name="mc_supervisar" domain="[('x_mc_ids.codigo','in',['155-I','155-V','155-VI','155-VII','155-VIII','155-IX','155-X','155-XI','155-XIII'])]" context="{}" help="Tiene alguna de las siguientes MC: I,V,VI,VII,IX,X,XI,XIII" />
-                    <filter string="SCP = I,II,V,VIII,XII" name="scp_supervisar" domain="[('x_scp_ids.codigo','in',['195-I','195-II','195-V','195-VIII','195-XII'])]" context="{}" help="Tiene alguna de las siguientes SCP: I,II,V,VIII,XII" />
-                    
-                </search>
-            </field>
-        </record>
-        <!-- window action ///////////////////////////////////////////////////////////////////////////////-->
-        <record model="ir.actions.act_window" id="sup_mc_scp_list_action">
-            <field name="name">Ordenes de Supervisión</field>
-            <field name="res_model">sup_mc_scp</field>
-            <field name="view_type">form</field>
-            <field name="view_mode">tree,graph,kanban,form</field>
-            <field name="help" type="html">
-                <p class="oe_view_nocontent_create">Agregar primer registro</p>
-            </field>
-        </record>
-        <menuitem id="sup_mc_scp_menu" sequence="12" name="Orden Supervisión" parent="sup_menu_principal" action="sup_mc_scp_list_action" />
-    </data>
+					<filter string="Archivados" name="archivados" domain="[('active','=',False)]" context="{}" help="Ordenes Archivados" />
+				</search>
+			</field>
+		</record>
+		<!-- window action ///////////////////////////////////////////////////////////////////////////////-->
+		<record model="ir.actions.act_window" id="sup_mc_scp_list_action">
+			<field name="name">Ordenes de Supervisión</field>
+			<field name="res_model">sup_mc_scp</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,graph,kanban,form</field>
+			<field name="help" type="html">
+				<p class="oe_view_nocontent_create">Agregar primer registro</p>
+			</field>
+		</record>
+		<menuitem id="sup_mc_scp_menu" sequence="12" name="Orden Supervisión" parent="sup_menu_principal" action="sup_mc_scp_list_action" />
+	</data>
 </odoo>

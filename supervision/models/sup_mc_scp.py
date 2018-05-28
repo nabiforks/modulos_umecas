@@ -104,6 +104,12 @@ class sup_mc_scp(models.Model):
         default='orden',
         readonly=True, string=u'Estatus',
     )
+    
+    active= fields.Boolean(
+        string=u'Activo',        
+        default=True,        
+    )
+    
     x_ultimasupervision = fields.Date(
         string=u'Ultima Supervisión',
     )
@@ -290,7 +296,16 @@ class sup_mc_scp(models.Model):
         store=True,
         readonly=True,
     )
-
+    x_abogado = fields.Char(
+        string=u'Abogado',
+    )
+    x_abogado_tipo = fields.Selection(
+        string=u'Tipo Abogado',
+        selection=[('publico', 'Público'), ('particular', 'Particular')]
+    )
+    x_abogado_telefono = fields.Char(
+        string=u'Teléfono',
+    )
     #///////////////////////////////// Medidas Cautelares
     #///////////////////////////////// Medidas Cautelares
     #///////////////////////////////// Medidas Cautelares

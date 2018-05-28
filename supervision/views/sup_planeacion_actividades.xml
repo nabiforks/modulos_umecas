@@ -1,166 +1,167 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
-    <data>
-        <!--  form view /////////////////////////////////////////////////////-->
-        <record model="ir.ui.view" id="sup_planeacion_actividades_form_view">
-            <field name="name">sup_planeacion_actividades.form.view</field>
-            <field name="model">sup_planeacion_actividades</field>
-            <field name="arch" type="xml">
-                <form>
-                    <header>
-                        <!--button name="capturar_medidas" type="object" string="Capturar MC-SCP" class="oe_highlight" states="orden"/><button name="generar_entrevista" type="object" string="Entrevista Encuadre" class="oe_highlight" states="mc-scp"/><button name="regresar_capturar_medidas" type="object" string="Regresar a MC-SCP" states="encuadre"/><field name="state" widget="statusbar"/-->
-                    </header>
-                    <sheet>
-                        <!--div class="oe_button_box" name="button_box"><button class="oe_stat_button" name="calendar.action_calendar_event" icon="fa-calendar" type="action" context="{'search_default_x_supervision_id': active_id}"><field string="Visitas/Firmas" name="x_eventos" widget="statinfo"/></button></div-->
-                        <div class="oe_title">
-                            <h1>
-                                <field name="x_name" />
-                            </h1>
-                        </div>
-                        <group>
-                            <group>
-                                <field name="create_date" string="Creado" readonly="1"/>
-                                <field name="x_fecha_limite" />
-                                <field name="x_dirigido_a" />
-                                <field name="x_cargo" />
-                            </group>
-                            <group>
-                                <field name="x_dirigido_a" />
-                                <field name="x_oficio" />
-                                <field name="x_asunto" />
-                            </group>
-                        </group>
-                        <div class="row">
-                            <field name="x_supervisados_ids" widget="many2many">
-                                <!--tree string="Caption" create="1" delete="1" edit="1" editable="bottom"><field name="x_name" /><field name="x_imputado_id" options="{ 'no_open': True}" /><field name="x_resolucion" readonly="1" /><field name="x_expediente_id" options="{ 'no_open': True}" /><field name="x_tipovisita_id" /><field name="x_cumplio" /><field name="x_supervisado" /></tree-->
-                                <form string="Caption" create="1" delete="1" edit="1">
-                                    <sheet>
-                                        <div class="oe_title">
-                                            <label for="x_name" class="oe_edit_only" />
-                                            <h1>
-                                                <field name="x_name" placeholder="Describe the item..." />
-                                            </h1>
-                                        </div>
-                                        <group>
-                                            <group>
-                                                <field name="x_imputado_id"/>
-                                                <field name="x_resolucion" widget="radio" options="{'horizontal': true}" readonly="1" />
-                                                <field name="x_causa_penal" readonly="1"/>
-                                                <field name="x_numero_oficio" readonly="1" />
-                                            </group>
-                                            <group>
-                                                <field name="x_supervisor_id" options="{'no_create_edit': True,'no_open': True}" />
-                                                <field name="x_foja" readonly="1"/>
-                                                <field name="x_libro" readonly="1"/>
-                                                <field name="x_tipovisita_id" />
-                                            </group>
-                                        </group>
-                                        <notebook>
-                                            <page string="Otra Resolución" attrs="{ 'invisible':[('x_resolucion','not in','otro')] }">
-                                                <field name="x_otro_ids" mode="tree">
-                                                    <tree string="Otras" create="0" delete="0" edit="1" editable="bottom">
-                                                        <field name="name" readonly="1"/>
-                                                        <field name="cumplio_resolucion" />
-                                                    </tree>
-                                                </field>
-                                            </page>
-                                            <page string="Medidas Cautelares" attrs="{ 'invisible':[('x_resolucion','not in','mc')] }">
-                                                <field name="x_mc_ids" mode="tree">
-                                                    <tree string="Medidas Cautelares" create="0" delete="0" edit="1" editable="bottom">
-                                                        <field name="name" options="{'no_create': True, 'no_open': True}" readonly="1"/>
-                                                        <field name="descripcion" readonly="1"/>
-                                                        <field name="cumplio_mc" />
-                                                    </tree>
-                                                </field>
-                                            </page>
-                                            <page string="SCP" attrs="{ 'invisible':[('x_resolucion','not in','scp')] }">
-                                                <field name="x_scp_ids" mode="tree">
-                                                    <tree string="Medidas Cautelares" create="0" delete="0" edit="1" editable="bottom">
-                                                        <field name="name" options="{'no_create': True, 'no_open': True}" readonly="1"/>
-                                                        <field name="descripcion" readonly="1"/>
-                                                        <field name="cumplio_scp" />
-                                                    </tree>
-                                                </field>
-                                            </page>
-                                            <page string="Actas circunstanciadas">
-                                                <div class="row">
-                                                    <div class="col-xs-5">
-                                                        <group>
-                                                            <field name="default_acta" invisible="1"/>
-                                                            <field name="x_actas_ids" context="{'default_x_modelo_id':id,'default_x_orden_name': x_name,'default_x_contenido': default_acta,'default_x_tipo_documento':'Acta circunstanciada'}">
-                                                                <tree>
-                                                                    <field name="x_name"/>
-                                                                    <field name="x_tipo_documento"/>
-                                                                    <field name="x_fecha_documento"/>
-                                                                </tree>
-                                                            </field>
-                                                        </group>
-                                                    </div>
-                                                </div>
-                                            </page>
-                                        </notebook>
-                                    </sheet>
-                                </form>
-                            </field>
-                        </div>
-                        <notebook>
-                            <page string="Observaciones">
-                                <field name="x_observaciones"/>
-                            </page>
-                            <page string="Datos del reporte">
-                                <group>
-                                    <field name="x_parrafo"/>
-                                </group>
-                            </page>
-                        </notebook>
-                    </sheet>
-                </form>
-            </field>
-        </record>
-        <!--  tree view /////////////////////////////////////////////////////-->
-        <record model="ir.ui.view" id="sup_planeacion_actividades_tree_view">
-            <field name="name">sup_planeacion_actividades.tree.view</field>
-            <field name="model">sup_planeacion_actividades</field>
-            <field name="arch" type="xml">
-                <tree>
-                    <field name="x_name"/>
-                    <field name="create_date" string="Creado"/>
-                    <field name="x_fecha_limite" />
-                    <field name="x_oficio"/>
-                    <field name="x_asunto"/>
-                </tree>
-            </field>
-        </record>
-        <!--  graph view /////////////////////////////////////////////////////-->
-        <record model="ir.ui.view" id="sup_planeacion_actividades_graph_view">
-            <field name="name">sup_planeacion_actividades.graph.view</field>
-            <field name="model">sup_planeacion_actividades</field>
-            <field name="arch" type="xml">
-                <graph string="Registros">
-                    <field name="x_name" type="row" />
-                </graph>
-            </field>
-        </record>
-        <!--Agrgar filtros de busqueda -->
-        <record model="ir.ui.view" id="sup_planeacion_actividades_search_view">
-            <field name="name">sup_planeacion_actividades.search.view</field>
-            <field name="model">sup_planeacion_actividades</field>
-            <field name="arch" type="xml">
-                <search>
-                    <field name="x_name" />
-                </search>
-            </field>
-        </record>
-        <!-- window action ///////////////////////////////////////////////////////////////////////////////-->
-        <record model="ir.actions.act_window" id="sup_planeacion_actividades_list_action">
-            <field name="name">Planeación de Actividades</field>
-            <field name="res_model">sup_planeacion_actividades</field>
-            <field name="view_type">form</field>
-            <field name="view_mode">tree,graph,kanban,form</field>
-            <field name="help" type="html">
-                <p class="oe_view_nocontent_create">Agregar primer registro</p>
-            </field>
-        </record>
-        <menuitem id="sup_planeacion_actividades_menu" sequence="13" name="Planeación Actividades" parent="supervision.sup_planeacion_menu" action="sup_planeacion_actividades_list_action" />
-    </data>
+	<data>
+		<!--  form view /////////////////////////////////////////////////////-->
+		<record model="ir.ui.view" id="sup_planeacion_actividades_form_view">
+			<field name="name">sup_planeacion_actividades.form.view</field>
+			<field name="model">sup_planeacion_actividades</field>
+			<field name="arch" type="xml">
+				<form>
+					<header>
+						<!--button name="capturar_medidas" type="object" string="Capturar MC-SCP" class="oe_highlight" states="orden"/><button name="generar_entrevista" type="object" string="Entrevista Encuadre" class="oe_highlight" states="mc-scp"/><button name="regresar_capturar_medidas" type="object" string="Regresar a MC-SCP" states="encuadre"/><field name="state" widget="statusbar"/-->
+					</header>
+					<sheet>
+						<!--div class="oe_button_box" name="button_box"><button class="oe_stat_button" name="calendar.action_calendar_event" icon="fa-calendar" type="action" context="{'search_default_x_supervision_id': active_id}"><field string="Visitas/Firmas" name="x_eventos" widget="statinfo"/></button></div-->
+						<div class="oe_title">
+							<h1>
+								<field name="x_name" />
+							</h1>
+						</div>
+						<group>
+							<group>
+								<field name="create_date" string="Creado" readonly="1"/>
+								<field name="x_dirigido_a" />
+								<field name="x_cargo" />
+							</group>
+							<group>
+								<field name="x_atentamente" />
+								<field name="x_atentamente_cargo" />
+								<field name="x_oficio" />
+								<field name="x_asunto" />
+								<field name="x_fecha_limite" />
+							</group>
+						</group>
+						<div class="row">
+							<field name="x_supervisados_ids" widget="many2many">
+								<!--tree string="Caption" create="1" delete="1" edit="1" editable="bottom"><field name="x_name" /><field name="x_imputado_id" options="{ 'no_open': True}" /><field name="x_resolucion" readonly="1" /><field name="x_expediente_id" options="{ 'no_open': True}" /><field name="x_tipovisita_id" /><field name="x_cumplio" /><field name="x_supervisado" /></tree-->
+								<form string="Caption" create="1" delete="1" edit="1">
+									<sheet>
+										<div class="oe_title">
+											<label for="x_name" class="oe_edit_only" />
+											<h1>
+												<field name="x_name" placeholder="Describe the item..." />
+											</h1>
+										</div>
+										<group>
+											<group>
+												<field name="x_imputado_id"/>
+												<field name="x_resolucion" widget="radio" options="{'horizontal': true}" readonly="1" />
+												<field name="x_causa_penal" readonly="1"/>
+												<field name="x_numero_oficio" readonly="1" />
+											</group>
+											<group>
+												<field name="x_supervisor_id" options="{'no_create_edit': True,'no_open': True}" />
+												<field name="x_foja" readonly="1"/>
+												<field name="x_libro" readonly="1"/>
+												<field name="x_tipovisita_id" />
+											</group>
+										</group>
+										<notebook>
+											<page string="Otra Resolución" attrs="{ 'invisible':[('x_resolucion','not in','otro')] }">
+												<field name="x_otro_ids" mode="tree">
+													<tree string="Otras" create="0" delete="0" edit="1" editable="bottom">
+														<field name="name" readonly="1"/>
+														<field name="cumplio_resolucion" />
+													</tree>
+												</field>
+											</page>
+											<page string="Medidas Cautelares" attrs="{ 'invisible':[('x_resolucion','not in','mc')] }">
+												<field name="x_mc_ids" mode="tree">
+													<tree string="Medidas Cautelares" create="0" delete="0" edit="1" editable="bottom">
+														<field name="name" options="{'no_create': True, 'no_open': True}" readonly="1"/>
+														<field name="descripcion" readonly="1"/>
+														<field name="cumplio_mc" />
+													</tree>
+												</field>
+											</page>
+											<page string="SCP" attrs="{ 'invisible':[('x_resolucion','not in','scp')] }">
+												<field name="x_scp_ids" mode="tree">
+													<tree string="Medidas Cautelares" create="0" delete="0" edit="1" editable="bottom">
+														<field name="name" options="{'no_create': True, 'no_open': True}" readonly="1"/>
+														<field name="descripcion" readonly="1"/>
+														<field name="cumplio_scp" />
+													</tree>
+												</field>
+											</page>
+											<page string="Actas circunstanciadas">
+												<div class="row">
+													<div class="col-xs-5">
+														<group>
+															<field name="default_acta" invisible="1"/>
+															<field name="x_actas_ids" context="{'default_x_modelo_id':id,'default_x_orden_name': x_name,'default_x_contenido': default_acta,'default_x_tipo_documento':'Acta circunstanciada'}">
+																<tree>
+																	<field name="x_name"/>
+																	<field name="x_tipo_documento"/>
+																	<field name="x_fecha_documento"/>
+																</tree>
+															</field>
+														</group>
+													</div>
+												</div>
+											</page>
+										</notebook>
+									</sheet>
+								</form>
+							</field>
+						</div>
+						<notebook>
+							<page string="Observaciones">
+								<field name="x_observaciones"/>
+							</page>
+							<page string="Datos del reporte">
+								<group>
+									<field name="x_parrafo"/>
+								</group>
+							</page>
+						</notebook>
+					</sheet>
+				</form>
+			</field>
+		</record>
+		<!--  tree view /////////////////////////////////////////////////////-->
+		<record model="ir.ui.view" id="sup_planeacion_actividades_tree_view">
+			<field name="name">sup_planeacion_actividades.tree.view</field>
+			<field name="model">sup_planeacion_actividades</field>
+			<field name="arch" type="xml">
+				<tree>
+					<field name="x_name"/>
+					<field name="create_date" string="Creado"/>
+					<field name="x_fecha_limite" />
+					<field name="x_oficio"/>
+					<field name="x_asunto"/>
+				</tree>
+			</field>
+		</record>
+		<!--  graph view /////////////////////////////////////////////////////-->
+		<record model="ir.ui.view" id="sup_planeacion_actividades_graph_view">
+			<field name="name">sup_planeacion_actividades.graph.view</field>
+			<field name="model">sup_planeacion_actividades</field>
+			<field name="arch" type="xml">
+				<graph string="Registros">
+					<field name="x_name" type="row" />
+				</graph>
+			</field>
+		</record>
+		<!--Agrgar filtros de busqueda -->
+		<record model="ir.ui.view" id="sup_planeacion_actividades_search_view">
+			<field name="name">sup_planeacion_actividades.search.view</field>
+			<field name="model">sup_planeacion_actividades</field>
+			<field name="arch" type="xml">
+				<search>
+					<field name="x_name" />
+				</search>
+			</field>
+		</record>
+		<!-- window action ///////////////////////////////////////////////////////////////////////////////-->
+		<record model="ir.actions.act_window" id="sup_planeacion_actividades_list_action">
+			<field name="name">Planeación de Actividades</field>
+			<field name="res_model">sup_planeacion_actividades</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,graph,kanban,form</field>
+			<field name="help" type="html">
+				<p class="oe_view_nocontent_create">Agregar primer registro</p>
+			</field>
+		</record>
+		<menuitem id="sup_planeacion_actividades_menu" sequence="13" name="Planeación Actividades" parent="supervision.sup_planeacion_menu" action="sup_planeacion_actividades_list_action" />
+	</data>
 </odoo>

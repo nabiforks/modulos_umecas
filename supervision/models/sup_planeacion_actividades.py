@@ -44,6 +44,13 @@ class sup_planeacion_actividades(models.Model):
         string='Presente',
         default=lambda self:self.parrafo_default()
     )
+    x_atentamente = fields.Char(
+        string=u'Atentamente',
+    )
+    x_atentamente_cargo = fields.Text(
+        string='Cargo',
+        default='Responsable del Área de Supervisión de Medidas Cautelares'
+    )
     
     def parrafo_default(self):
         text = "De conformidad con los artículos 153, 154, 155, 156, 157, 164, 174, 177, 182 y 195 del Código Nacional de Procedimeintos Penales; 69 y 70 de la ley de Ejecución de Medidas Cautelares y Sanciones Penales; 17 fracciones XIII y XIV de la Ley de Seguridad Pública, todas para el Estado de Puebla, en cumplimiento a los planes de supervisión de las Medidas Cautelares y Condiciones de Suspensión Condicional, elaborados por la responsable del Área de Evaluación de Riesgos y Suspensión de Medidas Cautelares de la Región Judicial Centro, se debe realizar lo siguiente:"
