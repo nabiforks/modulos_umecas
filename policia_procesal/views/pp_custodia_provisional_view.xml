@@ -82,6 +82,7 @@
 							</div>
 						</div>
 						<br/>
+						<field name="x_casa_justicia" invisible="1"/>
 						<br/>
 						<div class="row">
 							<div class="col-xs-4">

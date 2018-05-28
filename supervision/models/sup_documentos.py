@@ -216,8 +216,13 @@ class sup_documentos(models.Model):
     def carta_apoyo_moral(self):
     	nombre_imputado = self.x_imputado_id.display_name
     	nombre_sup = self.x_supervisor_id.name
-    	nombre_a_moral = self.x_nombre_apoyo_moral
-    	parentesco = self.x_parentesco_id.x_name
+        nombre_a_moral = "_________________________"
+    	parentesco = "_________________________"
+
+        if self.x_nombre_apoyo_moral:
+            nombre_a_moral = self.x_nombre_apoyo_moral
+        if self.x_parentesco_id:
+            parentesco = self.x_parentesco_id.x_name
         default_code = """
             <div class="row">
                 <div class="col-xs-2"></div>

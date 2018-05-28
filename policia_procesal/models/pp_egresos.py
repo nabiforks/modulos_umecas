@@ -102,3 +102,9 @@ class Egreso(models.Model):
     sub_serie = fields.Char(
         string='Subserie',
     )
+    x_casa_justicia = fields.Many2one(
+        string=u'Casa de Justicia',
+        comodel_name='res.company',
+        ondelete='set null',
+        default=lambda self: self.env.user.company_id,
+    )

@@ -105,17 +105,17 @@
 						</group>
 
 						<notebook>
-							<page string="Retiro de traslado">
-								<group style="margin:0;">
+							<page string="Retiro de traslado">								
+								<group>
 									<field name="observaciones_traslado"/>
 								</group>
-								<br/>
-								<br/>
-								<p>Datos del reporte</p>
+							</page>
+							<page string="Datos del reporte">
 								<div class="row">
 									<div class="col-xs-6">
 										<group>
 											<field name="responsable"/>
+											<field name="x_casa_justicia" invisible="1"/>
 										</group>
 									</div>
 									<div class="col-xs-6">

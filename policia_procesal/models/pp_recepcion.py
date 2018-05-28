@@ -144,6 +144,12 @@ class Recepcion(models.Model):
     sub_serie = fields.Char(
         string='Subserie',
     )
+    x_casa_justicia = fields.Many2one(
+        string=u'Casa de Justicia',
+        comodel_name='res.company',
+        ondelete='set null',
+        default=lambda self: self.env.user.company_id,
+    )
 
     #==========METHODS==========
     @api.model
@@ -151,6 +157,7 @@ class Recepcion(models.Model):
         if vals.get('name', 'Nuevo') == 'Nuevo':
             vals['name'] = self.env['ir.sequence'].next_by_code(
                 'pp.recepcion') or 'Nuevo'
+            print "###################### Aqui Create"
         result = super(Recepcion, self).create(vals)
         return result
 

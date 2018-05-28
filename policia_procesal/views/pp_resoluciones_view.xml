@@ -159,6 +159,9 @@
 		                                    </tbody>
 		                                </table>
 									</div>
+									<div class="col-xs-4">
+										<field name="x_casa_justicia" invisible="1"/>
+									</div>
 								</div>
 							</page>
 						</notebook>

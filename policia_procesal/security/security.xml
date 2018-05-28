@@ -4,5 +4,35 @@
 		<record id="pp_admin" model="res.groups">
 			 <field name="name">Policia Procesal</field>
 		</record>
+		<record model="ir.rule" id="pp_recepcion_rule">
+            <field name="name">Recepcion multi-company</field>
+            <field name="model_id" ref="model_pp_recepcion"/>
+            <field name="global" eval="True"/>
+            <field name="domain_force">['|',('x_casa_justicia','=',False),('x_casa_justicia','child_of',[user.company_id.id])]</field>
+        </record>
+		<record model="ir.rule" id="pp_custodia_rule">
+            <field name="name">Custpdia multi-company</field>
+            <field name="model_id" ref="model_pp_custodia"/>
+            <field name="global" eval="True"/>
+            <field name="domain_force">['|',('x_casa_justicia','=',False),('x_casa_justicia','child_of',[user.company_id.id])]</field>
+        </record>
+		<record model="ir.rule" id="pp_audiencias_rule">
+            <field name="name">Audiencias multi-company</field>
+            <field name="model_id" ref="model_pp_audiencia"/>
+            <field name="global" eval="True"/>
+            <field name="domain_force">['|',('x_casa_justicia','=',False),('x_casa_justicia','child_of',[user.company_id.id])]</field>
+        </record>
+		<record model="ir.rule" id="pp_resolucion_rule">
+            <field name="name">Resolucion multi-company</field>
+            <field name="model_id" ref="model_pp_control_audiencia"/>
+            <field name="global" eval="True"/>
+            <field name="domain_force">['|',('x_casa_justicia','=',False),('x_casa_justicia','child_of',[user.company_id.id])]</field>
+        </record>
+		<record model="ir.rule" id="pp_egreso_rule">
+            <field name="name">Egreso multi-company</field>
+            <field name="model_id" ref="model_pp_egreso"/>
+            <field name="global" eval="True"/>
+            <field name="domain_force">['|',('x_casa_justicia','=',False),('x_casa_justicia','child_of',[user.company_id.id])]</field>
+        </record>
 	</data>
 </odoo>
