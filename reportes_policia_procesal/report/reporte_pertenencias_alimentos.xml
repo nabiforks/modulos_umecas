@@ -23,6 +23,7 @@
 										<br/>
 										<br/>
 										<p><span t-esc="user.company_id.name"/></p>
+										<p>Policía Procesal <span t-esc="user.company_id.x_region.x_name"/></p>
 										
 										<br/>
 										<p>Formato de resguardo de pertenencias y suministro de alimentos</p>

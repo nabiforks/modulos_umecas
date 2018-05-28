@@ -171,6 +171,7 @@
 									<div class="col-xs-6">
 										<group>
 											<field name="responsable"/>
+											<field name="x_casa_justicia" invisible="1"/>
 										</group>
 									</div>
 									<div class="col-xs-6">

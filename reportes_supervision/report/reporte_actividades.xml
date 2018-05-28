@@ -110,7 +110,34 @@
 										</tbody>
 									</table>
 
+									<br/>
+									<p class="text-justify">
+										<span t-field="o.x_parrafo_final"/>
+									</p>
+									
 								</div>
+							</div>
+							<br/>
+							<div class="row">
+								<div class="col-xs-3"></div>
+								<div class="col-xs-6 text-center">
+									<strong>
+										A t e n t a m e n t e <br/>
+										<span t-esc="user.company_id.x_abreviatura"/>; 
+										<t t-if="o.create_date">
+											a <span t-field="o.create_date" t-options="{'format': 'd'}"/> de 
+											<span t-field="o.create_date" t-options="{'format': 'MMMM'}"/> de 
+											<span t-field="o.create_date" t-options="{'format': 'y'}"/> 
+										</t>
+										<br/>
+										<br/>
+										<br/>
+										<br/>
+										<span t-field="o.x_dirigido_a"/><br/>
+										Responsable del Área de Supervisión de Medidas Cautelares de la <span t-esc="user.company_id.x_region.x_name"/>
+									</strong>
+								</div>
+								<div class="col-xs-3"></div>
 							</div>
 						</div> <!--End div page-->
 					</t>

@@ -24,6 +24,7 @@
 										<br/>
 										<br/>
 										<p class="text-uppercase"><span t-esc="user.company_id.name"/></p>
+										<p class="text-uppercase">Policía Procesal <span t-esc="user.company_id.x_region.x_name"/></p>
 									</strong>
 								</div>
 							</div>

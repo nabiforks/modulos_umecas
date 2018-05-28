@@ -112,6 +112,9 @@
 								<group>
 									<field name="x_parrafo"/>
 								</group>
+                                <group>
+                                    <field name="x_parrafo_final"/>
+                                </group>
 							</page>
 						</notebook>
 					</sheet>
