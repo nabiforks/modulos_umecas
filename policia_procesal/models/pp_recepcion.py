@@ -155,9 +155,8 @@ class Recepcion(models.Model):
     @api.model
     def create(self, vals):
         if vals.get('name', 'Nuevo') == 'Nuevo':
-            vals['name'] = self.env['ir.sequence'].next_by_code(
+            vals['name'] = self.env['ir.sequence'].sudo().next_by_code(
                 'pp.recepcion') or 'Nuevo'
-            print "###################### Aqui Create"
         result = super(Recepcion, self).create(vals)
         return result
 

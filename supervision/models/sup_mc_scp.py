@@ -14,7 +14,7 @@ class sup_mc_scp(models.Model):
     @api.model
     def create(self, vals):
         if vals.get('x_name', 'Nuevo') == 'Nuevo':
-            vals['x_name'] = self.env['ir.sequence'].next_by_code(
+            vals['x_name'] = self.env['ir.sequence'].sudo().next_by_code(
                 'sup_mc_scp') or'Nuevo'
         result = super(sup_mc_scp, self).create(vals)
         return result
