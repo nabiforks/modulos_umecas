@@ -14,6 +14,8 @@
     'version': '0.1',
     'depends': ['base','mail','UMECAS','calendar'],
     'data': [
+        'security/sup_grupos.xml',
+        'security/ir.model.access.csv',
         'views/sup_menu_items.xml',
         'data/sequence_names.xml',
         'views/sup_mc_scp.xml',

@@ -63,6 +63,10 @@ umecas_lugares_jefe,UMC lugares,UMECAS.model_umc_lugares,UMECAS.umc_jefe_depto,1
 umecas_lugares_all,UMC lugares all,UMECAS.model_umc_lugares,,1,0,0,0
 umecas_detenidos_con_jefe,UMC detenidos_con,UMECAS.model_umc_detenidos_con,UMECAS.umc_jefe_depto,1,1,1,1
 umecas_detenidos_con_all,UMC detenidos_con all,UMECAS.model_umc_detenidos_con,,1,0,0,0
+umecas_colonia_jefe,UMC colonia,UMECAS.model_umc_colonia,UMECAS.umc_jefe_depto,1,1,1,1
+umecas_colonia_all,UMC colonia all,UMECAS.model_umc_colonia,,1,0,0,0
+umecas_municipio_jefe,UMC municipio,UMECAS.model_umc_municipio,UMECAS.umc_jefe_depto,1,1,1,1
+umecas_municipio_all,UMC municipio all,UMECAS.model_umc_municipio,,1,0,0,0
 ,,,,,,,
 umecas_ucm_escalavalores_secciones_jefe,UMC ucm_escalavalores_secciones,UMECAS.model_ucm_escalavalores_secciones,UMECAS.umc_jefe_depto,1,1,1,1
 umecas_ucm_escalavalores_secciones_all,UMC ucm_escalavalores_secciones all,UMECAS.model_ucm_escalavalores_secciones,,1,0,0,0
@@ -105,3 +109,5 @@ umecas_autoridad_evaluador,UMC autoridad_evaluador,UMECAS.model_umc_autoridad,UM
 umecas_lugares_evaluador,UMC lugares_evaluador,UMECAS.model_umc_lugares,UMECAS.umc_evaluador,1,1,1,0
 umecas_detenidos_con_evaluador,UMC detenidos_con_evaluador,UMECAS.model_umc_detenidos_con,UMECAS.umc_evaluador,1,1,1,0
 umecas_tipo_vivienda_evaluador,UMC tipo vivienda_evaluador,UMECAS.model_umc_tipo_vivienda,UMECAS.umc_evaluador,1,1,1,0
+umecas_colonia_evaluador,UMC tipo vivienda_evaluador,UMECAS.model_umc_colonia,UMECAS.umc_evaluador,1,1,1,0
+umecas_municipio_evaluador,UMC tipo vivienda_evaluador,UMECAS.model_umc_municipio,UMECAS.umc_evaluador,1,1,1,0

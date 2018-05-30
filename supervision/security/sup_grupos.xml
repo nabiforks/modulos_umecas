@@ -1,16 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
     <data>
-        <record id="umc_jefe_depto" model="res.groups">
-            <field name="name">UMC Jefe departamento</field>
-        </record>
-        <record id="umc_supervisor" model="res.groups">
+        
+        <record id="sup_supervisor" model="res.groups">
             <field name="name">UMC Analista supervisor</field>
         </record>
-        <record id="umc_evaluador" model="res.groups">
-            <field name="name">UMC Analista evaluador</field>
-        </record>
-        <record id="umc_evaluador_CRU" model="ir.rule">
+        
+        <!--record id="umc_evaluador_CRU" model="ir.rule">
             <field name="name">read and update mis evaluaciones</field>
             <field name="model_id" ref="model_umc_evaluacion"/>
             <field name="groups" eval="[(4, ref('umc_evaluador'))]"/>
@@ -39,7 +35,7 @@
             <field name="model_id" ref="model_umc_entrevistas"/>
             <field name="global" eval="True"/>
             <field name="domain_force">['|',('x_casa_justicia','=',False),('x_casa_justicia','child_of',[user.company_id.id])]</field>
-        </record>
+        </record-->
         
     </data>
 </odoo>

@@ -76,7 +76,7 @@ class sup_mc_scp(models.Model):
         #domain=lambda self: [( "groups_id", "=", self.env.ref( "UMECAS.umc_supervisor" ).id )]
         # no funciona domain=lambda self:[('company_id','=',self.env.x_casa_justicia)]
         domain=lambda self: ['&', ('company_id', '=', self.env.user.company_id.id), (
-            "groups_id", "=", self.env.ref("UMECAS.umc_supervisor").id)]
+            "groups_id", "=", self.env.ref("supervision.sup_supervisor").id)]
     )
 
     x_foja = fields.Integer(
