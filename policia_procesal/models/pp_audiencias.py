@@ -130,7 +130,7 @@ class Audiencias(models.Model):
     @api.model
     def create(self, vals):
         if vals.get('name', 'Nuevo') == 'Nuevo':
-            vals['name'] = self.env['ir.sequence'].next_by_code(
+            vals['name'] = self.env['ir.sequence'].sudo().next_by_code(
                 'pp.audiencia') or 'Nuevo'
         result = super(Audiencias, self).create(vals)
         return result

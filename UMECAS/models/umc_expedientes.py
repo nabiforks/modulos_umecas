@@ -62,7 +62,7 @@ class Expedientes(models.Model):
     @api.model
     def create(self, vals):
         if vals.get('x_name', 'New') == 'New':
-            vals['x_name'] = self.env['ir.sequence'].next_by_code(
+            vals['x_name'] = self.env['ir.sequence'].sudo().next_by_code(
                 'umc_expedientes') or 'New'
             now = datetime.now()
             folio = self.createFolioExpedienteByAnio(now.year,1)

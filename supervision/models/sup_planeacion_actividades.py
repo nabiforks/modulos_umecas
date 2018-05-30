@@ -12,7 +12,7 @@ class sup_planeacion_actividades(models.Model):
     @api.model
     def create(self, vals):
         if vals.get('x_name', 'Nuevo') == 'Nuevo':
-            vals['x_name'] = self.env['ir.sequence'].next_by_code(
+            vals['x_name'] = self.env['ir.sequence'].sudo().next_by_code(
                 'sup_planeacion_actividades') or'Nuevo'
         result = super(sup_planeacion_actividades, self).create(vals)
         return result

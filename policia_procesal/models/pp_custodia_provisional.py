@@ -113,7 +113,7 @@ class CustodiaProvisional(models.Model):
     @api.model
     def create(self, vals):
         if vals.get('name', 'Nuevo') == 'Nuevo':
-            vals['name'] = self.env['ir.sequence'].next_by_code(
+            vals['name'] = self.env['ir.sequence'].sudo().next_by_code(
                 'pp.custodia') or 'Nuevo'
         result = super(CustodiaProvisional, self).create(vals)
         return result

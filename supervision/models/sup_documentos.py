@@ -86,7 +86,7 @@ class sup_documentos(models.Model):
     @api.model
     def create(self, vals):
         if vals.get('x_name', 'Nuevo') == 'Nuevo':
-            vals['x_name'] = self.env['ir.sequence'].next_by_code(
+            vals['x_name'] = self.env['ir.sequence'].sudo().next_by_code(
                 'sup_documentos') or'Nuevo'
         result = super(sup_documentos, self).create(vals)
         return result
