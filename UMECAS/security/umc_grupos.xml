@@ -19,12 +19,22 @@
 			<field name="groups" eval="[(4, ref('umc_evaluador'))]"/>
 			<field name="domain_force">[('x_evaluador_id','=',user.id)]</field>
 		</record>
-		<record model="ir.rule" id="umc_expedientes_companias_rule">
+		<record model="ir.rule" id="umc_expedientes_multicompanias">
+			<field name="name">Expedientes multi-company Read and W</field>
+			<field name="model_id" ref="model_umc_expedientes"/>
+			<field name="groups" eval="[(4, ref('umc_jefe_depto'))]"/>
+            <field name="perm_read" eval="0"/>
+            <field name="perm_write" eval="1"/>
+            <field name="perm_create" eval="0"/>
+            <field name="perm_unlink" eval="1"/>
+			<field name="domain_force">[('x_casa_justicia','child_of',[user.company_id.id])]</field>
+		</record>
+		<!--record model="ir.rule" id="umc_expedientes_companias_rule">
 			<field name="name">Expedientes multi-company</field>
 			<field name="model_id" ref="model_umc_expedientes"/>
 			<field name="global" eval="True"/>
 			<field name="domain_force">['|',('x_casa_justicia','=',False),('x_casa_justicia','child_of',[user.company_id.id])]</field>
-		</record>
+		</record-->
 		<record model="ir.rule" id="umc_evaluacion_companias_rule">
 			<field name="name">Evaluacion multi-company</field>
 			<field name="model_id" ref="model_umc_evaluacion"/>

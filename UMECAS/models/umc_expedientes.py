@@ -58,6 +58,14 @@ class Expedientes(models.Model):
     _sql_constraints = [
         ('folio_unique_expediente', 'UNIQUE(x_name)', 'Error al procesar la solicitud por favor intentelo más tarde.')
     ]
+    
+    @api.multi
+    def _get_current_user(self):
+        self.usuario_actual = self.env.uid
+
+    usuario_actual = fields.Many2one('res.users', 'Usuario actual', compute='_get_current_user',
+    store=True,
+    )
 
     @api.model
     def create(self, vals):
