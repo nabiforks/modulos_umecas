@@ -84,6 +84,10 @@ class sup_entrevista_encuadre(models.Model):
         required=False,        
         ondelete='set null',
     )
+    @api.multi
+    def set_actualizar_entrevista(self):
+        self.x_orden_id.get_ultima_entrevista()
+        return True
     #================================================================================
     #=====Renombrar campos para o2m y m2o============================================
     #================================================================================

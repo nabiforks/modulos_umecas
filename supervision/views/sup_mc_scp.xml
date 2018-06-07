@@ -14,7 +14,7 @@
 						<button name="generar_carta_compromiso" type="object" string="Carta compromiso" class="oe_highlight" states="encuadre"/>
 						<button name="generar_carta_apoyo_moral" type="object" string="Carta compromiso de apoyo moral" class="oe_highlight" states="encuadre"/>
 						<button name="generar_actas" type="object" string="Actas circunstanciadas" class="oe_highlight" states="compromisos"/>
-						<button name="generar_informe" type="object" string="Informe" class="oe_highlight" states="supervision"/>
+						<button name="generar_informe" type="object" string="Informe" class="oe_highlight" states="supervision"/>						
 						<field name="state" widget="statusbar"/>
 					</header>
 					<sheet>

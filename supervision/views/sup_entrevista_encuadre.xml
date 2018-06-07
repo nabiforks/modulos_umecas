@@ -8,6 +8,7 @@
             <field name="arch" type="xml">
                 <form>
                     <header>
+                        <button name="set_actualizar_entrevista" type="object" string="Actualizar Entrevista" states="borrador" confirm="Se perderan todos los cambios realizados previamente sobre este registro. .- ¿Desea continuar?"/>
                         <button name="regresar_borrador" type="object" string="Regresar a borrador" states="terminado"/>
                         <button name="entrevista_realizada" type="object" string="Entrevista Terminada" class="oe_highlight" states="borrador"/>
                         <field name="state" widget="statusbar"/>

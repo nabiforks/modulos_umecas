@@ -124,6 +124,9 @@ class sup_mc_scp(models.Model):
         compute='get_incumplimiento'
     )
 
+    #========================================================================
+    #=========== Función para monitorear incumplimiento alguna resolucion de SCP, MC
+    ##======================================================================== 
     @api.depends('x_scp_ids', 'x_mc_ids', 'x_resolucion')
     def get_incumplimiento(self):
         for record in self:
@@ -143,17 +146,62 @@ class sup_mc_scp(models.Model):
                     for otro in record.x_otro_ids:
                         if not otro.cumplio_resolucion:
                             record.x_incumplimiento_scp = True
-                            
+    #========================================================================
+    #=========== Función para copiar los campos o2m de entrevistas a encuadre
+    ##========================================================================                        
+    @api.multi
+    def set_o2m_fields(self):
+        for domicilio in self.x_encuadre_id.x_domicilio_actual:
+            domicilio.unlink()
+        for enfermedad in self.x_encuadre_id.x_enfermedades_ids:
+            enfermedad.unlink()
+        for empleos in self.x_encuadre_id.x_empleos_ids:
+            empleos.unlink()
+        for contacto in self.x_encuadre_id.x_contacto_ids:
+            contacto.unlink()
+        for amistades in self.x_encuadre_id.x_amistades_ids:
+            amistades.unlink()
+        for actividades in self.x_encuadre_id.x_actividades_ids:
+            actividades.unlink()
+        for sustancias in self.x_encuadre_id.x_sustancias_ids:
+            sustancias.unlink()   
 
+        entrevistas = self.env['umc_entrevistas'].search(
+            [('x_imputado_id', '=', self.x_imputado_id.id)])
+        if entrevistas:
+            entrevista= entrevistas[-1]
+            for domicilio in entrevista.x_domicilio_actual:
+                res= domicilio.copy()
+                res.write({'x_evaluacion_id':'','x_encuadre_id':self.x_encuadre_id.id})
+            for enfermedad in entrevista.x_enfermedades_ids:
+                res= enfermedad.copy()
+                res.write({'x_entrevista_id':'','x_encuadre_id':self.x_encuadre_id.id})
+            for empleo in entrevista.x_empleos_ids:
+                res= empleo.copy()
+                res.write({'x_entrevista_id':'','x_encuadre_id':self.x_encuadre_id.id})
+            for contacto in entrevista.x_contacto_ids:
+                res= contacto.copy()
+                res.write({'x_entrevistas_id':'','x_encuadre_id':self.x_encuadre_id.id})
+            for amistad in entrevista.x_amistades_ids:
+                res= amistad.copy()
+                res.write({'x_entrevista_id':'','x_encuadre_id':self.x_encuadre_id.id})
+            for actividad in entrevista.x_actividades_ids:
+                res= actividad.copy()
+                res.write({'x_entrevista2_id':'','x_encuadre_id':self.x_encuadre_id.id})
+            for sustancia in entrevista.x_sustancias_ids:
+                res= sustancia.copy()
+                res.write({'x_entrevista_id':'','x_encuadre_id':self.x_encuadre_id.id})
+    
+    #========================================================================
+    #=========== Función para copiar los campos de entrevistas a encuadre
+    ##========================================================================        
+    
     @api.multi
     def get_ultima_entrevista(self):
         entrevistas = self.env['umc_entrevistas'].search(
             [('x_imputado_id', '=', self.x_imputado_id.id)])
         if entrevistas:
             entrevista = entrevistas[-1]
-            #domicilio_aux= ''
-            # self.copy(domicilio_aux : entrevista.x_domicilio_actual.ids)
-            # print "==============0--",domicilio_aux
             datos = {
                 'x_sexo': entrevista.x_sexo,
                 'x_lugar_nacimiento': entrevista.x_lugar_nacimiento,
@@ -162,23 +210,17 @@ class sup_mc_scp(models.Model):
                 'x_estado_civil_otro': entrevista.x_estado_civil_otro,
                 'x_telefono': entrevista.x_telefono,
                 'x_telefono_otro': entrevista.x_telefono_otro,
-                #'x_domicilio_actual':[(6,0,entrevista.x_domicilio_actual.ids)],
-                #'x_enfermedades_ids':[(6,0,entrevista.x_enfermedades_ids.ids)],
                 'x_discapacidad_padece': entrevista.x_discapacidad_padece,
                 'x_discapacidad_id': entrevista.x_discapacidad_id.id,
-                #'x_empleos_ids':[(6,0,entrevista.x_empleos_ids.ids)],
-                #'x_contacto_ids':[(6,0,entrevista.x_contacto_ids.ids)],
-                #'x_amistades_ids':[(6,0,entrevista.x_amistades_ids.ids)],
-                #'x_actividades_ids':[(6,0,entrevista.x_actividades_ids.ids)],
+                'x_contacto_ids':[(6,0,entrevista.x_contacto_ids.ids)],
                 'x_consume_sustancias': entrevista.x_consume_sustancias,
-                #'x_sustancias_ids':[(6,0,entrevista.x_sustancias_ids.ids)],
                 'x_observaciones_actitud': entrevista.x_observaciones_actitud
 
             }
             partner = self.env['sup_entrevista_encuadre'].search(
                 [('id', '=', self.x_encuadre_id.id)])
-            #partner = self.copy(default={'x_domicilio_actual':entrevista.x_domicilio_actual.ids})
             partner.write(datos)
+            self.set_o2m_fields()
 
     @api.multi
     def capturar_medidas(self):
@@ -225,8 +267,6 @@ class sup_mc_scp(models.Model):
     @api.multi
     def regresar_capturar_medidas(self):
         self.state = 'mc-scp'
-        # print "////////////////////delitos",self.x_expediente_id.x_delito.ids
-        # self.get_ultima_entrevista()
     #///////////////////////////////// Supervisión
     #///////////////////////////////// Supervisión
     #///////////////////////////////// Supervisión
@@ -355,12 +395,6 @@ class sup_mc_scp(models.Model):
     #///////////////////////////////// Visita periodica
     #///////////////////////////////// Visita periodica
     #///////////////////////////////// Visita periodica
-
-    """x_eventos_ids = fields.One2many(
-        string=u'Eventos',
-        comodel_name='calendar.event',
-        inverse_name='x_supervision_id',
-    )"""
 
     x_eventos_ids = fields.Many2many(
         string=u'Eventos Programados',
