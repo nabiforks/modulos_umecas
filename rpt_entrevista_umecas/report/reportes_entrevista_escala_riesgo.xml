@@ -28,13 +28,28 @@
                                 <table class="table cuadrado col-xs-12">
                                     <tr class="fondo">
                                         <td>
-                                            NOMBRE DEL ADOLECENTE EN INTERNAMIENTO
+                                            <div class="row">
+                                                <div class="col-xs-3"></div>
+                                                <div class="col-xs-6">
+                                                    NOMBRE DEL ENTREVISTADO
+                                                </div>
+                                                <div class="col-xs-3 text-right">
+                                                    <t t-if="docs.x_expediente_id.x_cdi_nic">
+                                                       CDI: <span t-field="docs.x_expediente_id.x_cdi_nic"/>
+                                                    </t>
+                                                    <t t-if="docs.x_expediente_id.x_cdi_nic and docs.x_expediente_id.x_causa_penal">
+                                                        <br/>
+                                                    </t>
+                                                    <t t-if="docs.x_expediente_id.x_causa_penal">
+                                                       CP: <span t-field="docs.x_expediente_id.x_causa_penal"/>
+                                                    </t>
+                                                </div>
+                                            </div>
                                         </td>
                                     </tr>
                                     <tr>
                                         <td>
                                             <span t-field="entrevista.partner_id.display_name"/>
-
                                         </td>
                                     </tr>
 
@@ -49,7 +64,7 @@
                                                 <span t-field="escala.seccion"/>
                                             </td>
                                             <td>
-                                                CDIA
+                                                Valor
                                             </td>
                                         </tr>
                                         <tr>
@@ -116,7 +131,7 @@
                                         <td class="cuadrado text-center">Bajo (14/4)</td>
                                         <td class="cuadrado text-center">
                                             <t t-if="entrevista.x_escala_riesgos =='bajo' ">
-                                                <span class="text-center">X</span>
+                                                <span class="text-center" t-field="entrevista.x_ponderacion"></span>
                                             </t>
                                         </td>
                                     </tr>
@@ -124,7 +139,7 @@
                                         <td class="cuadrado text-center">Medio (3/-6)</td>
                                         <td class="cuadrado text-center">
                                             <t t-if="entrevista.x_escala_riesgos =='medio' ">
-                                                <span class="text-center">X</span>
+                                                <span class="text-center" t-field="entrevista.x_ponderacion"></span>
                                             </t>
                                         </td>
                                     </tr>
@@ -132,20 +147,21 @@
                                         <td class="cuadrado text-center">Alto 7/-17+</td>
                                         <td class="cuadrado text-center">
                                             <t t-if="entrevista.x_escala_riesgos =='alto' ">
-                                                <span class="text-center">X</span>
+                                                <span class="text-center" t-field="entrevista.x_ponderacion"></span>
                                             </t>
                                         </td>
                                     </tr>
                                     <tr>
                                         <td class="cuadrado text-center">Entrevistó:</td>
                                         <td class="cuadrado text-center">
-                                            <span t-field="entrevista.x_evaluador_id"/>
-
+                                            <span t-field="entrevista.x_entrevista_id.x_entrevistador"/>
                                         </td>
                                     </tr>
                                     <tr>
                                         <td class="cuadrado text-center">Elaboró:</td>
-                                        <td class="cuadrado text-center"></td>
+                                        <td class="cuadrado text-center">
+                                             <span t-field="entrevista.x_evaluador_id"/>
+                                        </td>
                                     </tr>
                                 </table>
                                 <table class="col-xs-offset-1 col-xs-5">

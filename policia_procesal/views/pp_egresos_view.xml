@@ -35,7 +35,7 @@
 								<field name="autoridad_que_solicita_id"/>
 							</group>
 							<group style="margin:0;">
-								<field name="cargo_autoridad_solicita"/>
+								<field name="cargo_autoridad_solicita" placeholder="Cargo de la autoridad que solicita/ordena el traslado"/>
 							</group>
 						</group>
 
@@ -52,7 +52,7 @@
 								<field name="autoridad_que_realiza_id"/>
 							</group>
 							<group style="margin:0;">
-								<field name="cargo_autoridad_realiza"/>
+								<field name="cargo_autoridad_realiza" placeholder="Cargo de la autoridad que realiza el traslado"/>
 							</group>
 						</group>
 						<group style="margin:0;">
@@ -60,7 +60,7 @@
 								<field name="numero_elementos"/>
 							</group>
 							<group style="margin:0;">
-								<field name="dependencia"/>
+								<field name="dependencia" placeholder="De la autoridad que realiza el traslado"/>
 							</group>
 						</group>
 						<group>
@@ -72,9 +72,7 @@
 								</tree>
 							</field>
 						</group>
-						<group style="margin:0;">
-							<label string="Fecha y hora de inicio de la audiencia"/>
-						</group>
+						<p style="font-size:18px;"><strong>Fecha y hora de inicio de la audiencia</strong></p>
 						<div class="row">
 							<div class="col-xs-4">
 								<group style="margin:0;">
@@ -111,13 +109,16 @@
 								</group>
 							</page>
 							<page string="Datos del reporte">
+								<group>
+									<group>
+										<field name="responsable"/>
+										<field name="x_casa_justicia" invisible="1"/>
+									</group>
+									<group>
+										<field name="leyenda_destino"/>
+									</group>
+								</group>
 								<div class="row">
-									<div class="col-xs-6">
-										<group>
-											<field name="responsable"/>
-											<field name="x_casa_justicia" invisible="1"/>
-										</group>
-									</div>
 									<div class="col-xs-6">
 										<table class="table table-bordered text-center">
 		                                    <tbody>
@@ -137,6 +138,7 @@
 		                                    </tbody>
 		                                </table>
 									</div>
+									<div class="col-xs-6"></div>
 								</div>
 							</page>
 						</notebook>

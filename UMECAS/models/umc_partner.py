@@ -153,4 +153,6 @@ class Partner(models.Model):
         comodel_name='umc_expedientes',
         inverse_name='partner_id',
     )
-    
+    x_edad_int = fields.Integer(
+        string="Edad"
+    )

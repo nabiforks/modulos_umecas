@@ -81,7 +81,6 @@
                                         <group>
                                             <group>
                                                 <field name="x_name_abogado"/>
-                                                <field name="x_area"/>
                                             </group>
                                             <group>
                                                 <field name="x_puesto"/>
@@ -90,65 +89,75 @@
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-xs-12">
+                                    <div class="col-xs-6">
                                         <group>
                                             <label for="x_parrafo"/>
                                         </group>
                                         <field name="x_parrafo"/>
                                     </div>
+                                    <div class="col-xs-6">
+                                        <group>
+                                            <label for="x_parrafo_segundo"/>
+                                        </group>
+                                        <field name="x_parrafo_segundo"/>
+                                    </div>
                                 </div>
                                 <div class="row">
+                                    <div class="col-xs-6">
+                                        <h4>Historia personal</h4>
+                                        <field name="x_historia_personal"/>
+                                    </div>
                                     <div class="col-xs-6">
                                         <h4>Lazos con la comunidad</h4>
-                                        <label style="font-weight: bold;" for="x_actividades_desarrolladas"/>
+                                        <label style="font-weight: bold;" for="x_actividades_desarrolladas"/><br/>
                                         <field name="x_actividades_desarrolladas"/>
-                                    </div>
-                                    <div class="col-xs-6">
-                                        <h4>Relaciones familiares</h4>
-                                        <label style="font-weight: bold;" for="x_nucleo_primario"/>
-                                        <field name="x_nucleo_primario"/>
-                                        <label style="font-weight: bold;" for="x_nucleo_secundario"/>
-                                        <field name="x_nucleo_secundario"/>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-xs-6">
-                                        <h4>Referencias personales</h4>
-                                        <label style="font-weight: bold;" for="x_ref_personales"/>
-                                        <field name="x_ref_personales"/>
+                                        <h4>Relaciones familiares</h4>
+                                        <label style="font-weight: bold;" for="x_nucleo_primario"/><br/>
+                                        <field name="x_nucleo_primario"/><br/>
+                                        <label style="font-weight: bold;" for="x_nucleo_secundario"/><br/>
+                                        <field name="x_nucleo_secundario"/>
                                     </div>
                                     <div class="col-xs-6">
+                                        <h4>Referencias personales</h4>
+                                        <label style="font-weight: bold;" for="x_ref_personales"/><br/>
+                                        <field name="x_ref_personales"/>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-6">
                                         <h4>Empleos</h4>
-                                        <label style="font-weight: bold;" for="x_sintesis_act_laboral"/>
+                                        <label style="font-weight: bold;" for="x_sintesis_act_laboral"/><br/>
                                         <field name="x_sintesis_act_laboral"/>
                                         <label style="font-weight: bold;" for="x_ant_laborales"/>
                                         <field name="x_ant_laborales"/>
                                     </div>
-                                </div>
-                                <div class="row">
                                     <div class="col-xs-6">
                                         <h4>Lugar de recidencia</h4>
-                                        <label style="font-weight: bold;" for="x_sintesis_domiciliaria"/>
+                                        <label style="font-weight: bold;" for="x_sintesis_domiciliaria"/><br/>
                                         <field name="x_sintesis_domiciliaria"/>
-                                    </div>
-                                    <div class="col-xs-6">
-                                        <h4>Estudios</h4>
-                                        <label style="font-weight: bold;" for="x_sintesis_educativa"/>
-                                        <field name="x_sintesis_educativa"/>
                                     </div>
                                 </div>
                                 <div class="row">
+                                    <div class="col-xs-6">
+                                        <h4>Estudios</h4>
+                                        <label style="font-weight: bold;" for="x_sintesis_educativa"/><br/>
+                                        <field name="x_sintesis_educativa"/>
+                                    </div>
                                     <div class="col-xs-6">
                                         <h4>Información destacada</h4>
                                         <field name="x_inf_destacada"/>
                                     </div>
+                                </div>
+                                <div class="row">
                                     <div class="col-xs-6">
                                         <h4>Cumplimiento de medidas cautelares ateriores</h4>
                                         <field name="x_mc_anteriores"/>
                                     </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-xs-12">
+                                    <div class="col-xs-6">
                                         <h4>Verificación de datos</h4>
                                         <field name="x_verificacion_datos"/>
                                     </div>

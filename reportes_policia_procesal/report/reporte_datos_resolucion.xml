@@ -13,7 +13,7 @@
 			<t t-call="report.html_container">
 				<t t-foreach="docs" t-as="audiencia">
 					<t t-call="report.external_layout">
-						<div class="page" style="font-size:12px;">
+						<div class="page text-uppercase" style="font-size:12px;">
 							<div class="row">
 								<div class="col-xs-12">
 									<table style="width:100%;">
@@ -34,7 +34,7 @@
 														<span t-esc="'%02d:%02d' % (int(audiencia.hora_inicio), audiencia.hora_inicio % 1 * 60)"/>
 													</strong>
 												</td>
-												<td class="text-left borde" style="width:15%;padding:3;">HORA DE TERMINO:</td>
+												<td class="text-left borde" style="width:15%;padding:3;">HORA DE TÉRMINO:</td>
 												<td class="text-left borde" style="width:10%;padding:3;">
 													<strong>
 														<span t-esc="'%02d:%02d' % (int(audiencia.hora_termino), audiencia.hora_termino % 1 * 60)"/>
