@@ -33,10 +33,10 @@
             </field>
             <field name="street2" position="attributes">
                 <attribute name="placeholder">Colonia</attribute>
-                <attribute name="options">{&quot;no_open&quot;: True, &quot;no_create&quot;: True}</attribute>
+                <attribute name="options">{&quot;no_open&quot;: True,&quot;no_quick_create&quot;: True}</attribute>
             </field>
             <field name="city" position="replace">
-                <field name="city" placeholder="Municipio" class="o_address_city" options="{&quot;no_open&quot;: True, &quot;no_create&quot;: True}" attrs="{'readonly': [('type', '=', 'contact'),('parent_id', '!=', False)]}"/></field>
+                <field name="city" placeholder="Municipio" class="o_address_city" options="{&quot;no_open&quot;: True,&quot;no_quick_create&quot;: True}" attrs="{'readonly': [('type', '=', 'contact'),('parent_id', '!=', False)]}"/></field>
             <!--field name="country_id" position="attributes"><attribute name="deafult">get_default_country</attribute></field-->
             <!--field name="type" position="attributes"><attribute name="invisible">1</attribute></field-->
             <xpath expr="//page[@name='sales_purchases']" position="attributes">

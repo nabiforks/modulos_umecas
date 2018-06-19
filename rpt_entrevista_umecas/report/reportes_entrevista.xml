@@ -26,6 +26,9 @@
                             </div>
                             <div class="row" style="background-color:#D7D7D7;">
                                 <div>
+                                    <t t-if="entrevista.x_tipo == 'citacion'">
+                                        <h5 class="text-center text-bold">ENTREVISTA PARA CITACIÓN</h5>
+                                    </t>
                                     <t t-if="entrevista.x_tipo == 'retenido'">
                                         <h5 class="text-center text-bold">ENTREVISTA PARA EL RETENIDO</h5>
                                     </t>
@@ -241,7 +244,7 @@
                                 </div>
                                 <div class="row">
                                     <table class="table-bordered">
-                                        <t t-if="entrevista.x_tipo != 'retenido'">
+                                        <t t-if="entrevista.x_tipo == 'interno' or entrevista.x_tipo == 'adolescente'">
                                             <tr>
                                                 <th class="text-medio">2.1 A)UBICACIÓN INTRAMUROS</th>
                                                 <td colspan="3">
@@ -279,8 +282,8 @@
                                     <table class="table-bordered">
                                         <tr>
                                             <th colspan="2" class="text-medio">
-                                                <t t-if="entrevista.x_tipo == 'retenido'">2.1 A) DOMICILIO ACTUAL</t>
-                                                <t t-if="entrevista.x_tipo != 'retenido'">2.1 B) DOMICILIO ANTES DE LA DETENCIÓN</t>
+                                                <t t-if="entrevista.x_tipo == 'retenido' or entrevista.x_tipo == 'citacion'">2.1 A) DOMICILIO ACTUAL</t>
+                                                <t t-if="entrevista.x_tipo == 'interno' or entrevista.x_tipo == 'adolescente'">2.1 B) DOMICILIO ANTES DE LA DETENCIÓN</t>
                                             </th>
                                             <td colspan="4">
                                                 <t t-if="entrevista.x_domicilio_actual">
@@ -334,10 +337,10 @@
                                         </tr>
                                         <tr>
                                             <th colspan="6" class="text-medio">
-                                                <t t-if="entrevista.x_tipo == 'retenido'">
+                                                <t t-if="entrevista.x_tipo == 'retenido' or entrevista.x_tipo == 'citacion'">
                                                     <h6 class="text-center">2.5 CROQUIS DEL DOMICILIO ACTUAL</h6>
                                                 </t>
-                                                <t t-if="entrevista.x_tipo != 'retenido'">
+                                                <t t-if="entrevista.x_tipo == 'interno' or entrevista.x_tipo == 'adolescente'">
                                                     <h6 class="text-center">2.5 CROQUIS DEL DOMICILIO ANTES DE LA DETENCIÓN</h6>
                                                 </t>
                                             </th>
@@ -441,7 +444,7 @@
                                             <t t-foreach="entrevista.x_actividades_ids" t-as="actividad">
                                                 <tr>
                                                     <th width="20%" colspan="1" rowspan="2" class="text-medio">3.1 ¿PARTICIPA USTED EN ACTIVIDADES                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        
-                                                        <t t-if="entrevista.x_tipo != 'retenido'">
+                                                        <t t-if="entrevista.x_tipo == 'interno' or entrevista.x_tipo == 'adolescente'">
                                                             <span t-field="actividad.x_tipo" />
                                                         </t>?                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    
                                                     </th>
@@ -752,7 +755,7 @@
                                     </div>
                                 </div>
                                 <div class="row ">
-                                    <t t-if="entrevista.x_tipo != 'retenido'">
+                                    <t t-if="entrevista.x_tipo == 'interno' or entrevista.x_tipo == 'adolescente'">
                                         <table class="table-bordered">
                                             <tr colspan="4">
                                                 <td colspan="4">
@@ -782,7 +785,7 @@
                                             <tr >
                                                 <td colspan="4">
                                                     <h6>
-                                                        <t t-if="entrevista.x_tipo != 'retenido'">ESCOLARIDAD EXTRAMUROS</t>
+                                                        <t t-if="entrevista.x_tipo == 'interno' or entrevista.x_tipo == 'adolescente'">ESCOLARIDAD EXTRAMUROS</t>
                                                     </h6>
                                                 </td>
                                             </tr>
@@ -907,7 +910,7 @@
                                     </div>
                                 </div>
                                 <div class="row ">
-                                    <t t-if="entrevista.x_tipo != 'retenido'">
+                                    <t t-if="entrevista.x_tipo == 'interno' or entrevista.x_tipo == 'adolescente'">
                                         <table class="table-bordered">
                                             <tr>
                                                 <td colspan="4">
@@ -983,7 +986,7 @@
                                             </t>
                                         </table>
                                     </t>
-                                    <t t-if="entrevista.x_tipo == 'retenido'">
+                                    <t t-if="entrevista.x_tipo == 'retenido' or entrevista.x_tipo == 'citacion'">
                                         <table class="table-bordered">
                                             <tr>
                                                 <th width="25%" class=" text-medio">¿CONSUME SUSTANCIAS?</th>

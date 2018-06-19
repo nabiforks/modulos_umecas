@@ -41,7 +41,7 @@ class umc_evaluacion(models.Model):
         readonly=True,
     )
     x_tipo_entrevista = fields.Selection(
-        [('retenido', 'Retenido'), ('adolescente', 'Adolescente'), ('interno', 'Interno')], default='1', required=True, string=u'Tipo de Entrevista')
+        [('retenido', 'Retenido'), ('adolescente', 'Adolescente'), ('interno', 'Interno'),('citacion', 'Citación')], default='1', required=True, string=u'Tipo de Entrevista')
     
     x_fecha_inicio = fields.Datetime(
         string=u'Fecha/Hora Inicio',

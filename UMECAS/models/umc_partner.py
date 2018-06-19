@@ -33,7 +33,7 @@ class Partner(models.Model):
     )    
     
     x_imputado_tipo = fields.Selection(
-        [('retenido', 'Retenido'), ('adolescente', 'Adolescente'), ('interno', 'Interno')],  string=u'Tipo de imputado')
+        [('retenido', 'Retenido'), ('adolescente', 'Adolescente'), ('interno', 'Interno'),('citacion', 'Citación')],  string=u'Tipo de imputado')
 
     x_apodo = fields.Char(
         string=u'Apodo / Sobrenombre',

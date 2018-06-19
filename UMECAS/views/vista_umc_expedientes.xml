@@ -23,7 +23,7 @@
 						<field name="x_causa_penal" />
 						<field name="x_numero_oficio" />
 						<field name="x_fecha_inicio" />
-						<field name="x_delito" widget="many2many_tags" options="{'no_quick_create': True}"></field>
+						<field name="x_delito" widget="many2many_tags" ></field>
 						<field name="x_delito_descripcion" />
 					</group>
 					<group>

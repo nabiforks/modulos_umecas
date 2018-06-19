@@ -35,13 +35,17 @@
                             </div>
                             <label for="x_dias_trabaja"/>
                             <div class="address_format">
-                                <field name="x_dias_trabaja" style="width: 50%"/>
-                                <field name="x_dias_trabaja_hasta" style="width: 50%"/>
+                                <span> de </span>
+                                <field name="x_dias_trabaja" class="oe_inline"/>
+                                <span> a </span>
+                                <field name="x_dias_trabaja_hasta" class="oe_inline"/>
                             </div>
                             <label for="x_hora_inicio"/>
                             <div class="address_format">
-                                <field name="x_hora_inicio" widget="float_time" style="width: 50%"/>
-                                <field name="x_hora_fin" widget="float_time" style="width: 50%"/>
+                                <span> de </span>
+                                <field name="x_hora_inicio" widget="float_time" class="oe_inline"/>
+                                <span> a </span>
+                                <field name="x_hora_fin" widget="float_time" class="oe_inline"/>
                             </div>
                             <field name="x_motivo" attrs="{ 'invisible':[('x_actual_anterior','not in','anterior')] }" />
                         </group>

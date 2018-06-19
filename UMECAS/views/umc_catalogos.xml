@@ -23,8 +23,8 @@
                 <header></header>
                 <sheet>
                     <group>
-                        <field name="x_name" class="oe_inline" placeholder="Delito" />
-                        <group></group>
+                        <field name="x_name" placeholder="Delito" />
+                        
                     </group>
                 </sheet>
             </form>

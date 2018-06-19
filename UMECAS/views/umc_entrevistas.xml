@@ -68,7 +68,7 @@
                             </page>
                             <page string="II.-Domicilio">
                                 <group>
-                                    <field name="x_ubicacion_intramuros" domain="[('id', '=', -1)]" attrs="{ 'invisible':[('x_tipo','in','retenido')] }" />
+                                    <field name="x_ubicacion_intramuros" domain="[('id', '=', -1)]" attrs="{ 'invisible':[('x_tipo','in',['retenido','citacion'])] }" />
                                 </group>
                                 <p>
                                     <h4>Domicilio </h4>
@@ -124,16 +124,16 @@
                             </page>
                             <page string="VII.-Estudios">
                                 <group>
-                                    <label for="x_estudios_ids" string="Escolaridad Intramuros" attrs="{ 'invisible': [('x_tipo','in','retenido')]}" />
+                                    <label for="x_estudios_ids" string="Escolaridad Intramuros" attrs="{ 'invisible': [('x_tipo','in',['retenido','citacion'])]}" />
                                     <div>
                                         <br/>
                                     </div>
-                                    <field name="x_escolaridad_intramuros" attrs="{ 'invisible': [('x_tipo','in','retenido')]}" />
-                                    <field name="x_escolaridad_intramuros_cual" attrs="{'invisible':['|',('x_escolaridad_intramuros','not in','si'),('x_tipo','in','retenido')] }" />
-                                    <field name="x_observaciones" attrs="{ 'invisible': [('x_tipo','in','retenido')]}"/>
-                                    <label for="x_estudios_ids" string="Escolaridad Extramuros" attrs="{ 'invisible': [('x_tipo','in','retenido')]}" />
+                                    <field name="x_escolaridad_intramuros" attrs="{ 'invisible': [('x_tipo','in',['retenido','citacion'])]}" />
+                                    <field name="x_escolaridad_intramuros_cual" attrs="{'invisible':['|',('x_escolaridad_intramuros','not in','si'),('x_tipo','in',['retenido','citacion'])] }" />
+                                    <field name="x_observaciones" attrs="{ 'invisible': [('x_tipo','in',['retenido','citacion'])]}"/>
+                                    <label for="x_estudios_ids" string="Escolaridad Extramuros" attrs="{ 'invisible': [('x_tipo','in',['retenido','citacion'])]}" />
                                     <div></div>
-                                    <label for="x_estudios_ids" string="Estudios" attrs="{ 'invisible': [('x_tipo','not in','retenido')]}" />
+                                    <label for="x_estudios_ids" string="Estudios" attrs="{ 'invisible': [('x_tipo','not in',['retenido','citacion'])]}" />
                                     <div>
                                         <field name="x_estudios_ids"/>
                                     </div>
