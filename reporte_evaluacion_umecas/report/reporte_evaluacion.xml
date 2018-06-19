@@ -77,7 +77,7 @@
 										</div>
 										<div class="col-xs-12">
 											<p class="text-justify">
-												Al constituirse de manera física y legal en el Área de  <span t-field="entrevista.x_area" />, y una vez que se realizó el conversatorio con  <span t-field="entrevista.x_imputado_name"/>, éste expresó y autorizó la recolección de datos y su posterior comprobación; en razón de lo anterior siendo las 
+												Al constituirse de manera física y legal en el Área de , y una vez que se realizó el conversatorio con  <span t-field="entrevista.x_imputado_name"/>, éste expresó y autorizó la recolección de datos y su posterior comprobación; en razón de lo anterior siendo las
 												<span t-esc="'%02d:%02d' % (int(entrevista.x_entrevista_id.x_hora_inicio), entrevista.x_entrevista_id.x_hora_inicio % 1 * 60)"/> horas del 
 												<span t-field="entrevista.x_entrevista_id.x_fecha_entrevista" t-options="{'format': 'd'}"/> de 
 												<span t-field="entrevista.x_entrevista_id.x_fecha_entrevista" t-options="{'format': 'MMMM'}"/> de 

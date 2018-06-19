@@ -41,11 +41,17 @@
 							</field>
 						</group>
 
-						<group style="margin:0;">
-							<group style="margin:0;">
-								<field name="delito_ids" widget="many2many_tags"/>
-							</group>
-							<group style="margin:0;">
+                        <group style="margin:0;">
+                           <group style="margin:0;">
+                                <field name="delito_ids" widget="many2many_tags"/>
+                           </group>
+                            <group></group>
+                        </group>
+                        <group style="margin:0;">
+                            <group style="margin:0;">
+                                <field name="descripcion_delito"/>
+                            </group>
+                            <group style="margin:0;">
 								<field name="nic_cdi_nuc"/>
 							</group>
 						</group>
@@ -54,7 +60,7 @@
 								<field name="autoridad_que_solicita_id"/>
 							</group>
 							<group style="margin:0;">
-								<field name="cargo_autoridad_solicita"/>
+								<field name="cargo_autoridad_solicita" placeholder="Cargo de la autoridad que solicita/ordena el traslado"/>
 							</group>
 						</group>
 
@@ -71,12 +77,12 @@
 								<field name="autoridad_que_realiza_id"/>
 							</group>
 							<group style="margin:0;">
-								<field name="cargo_autoridad_realiza"/>
+								<field name="cargo_autoridad_realiza" placeholder="Cargo de la autoridad que realiza el traslado"/>
 							</group>
 						</group>
 						<group style="margin:0;">
 							<group style="margin:0;">
-								<field name="dependencia"/>
+								<field name="dependencia" placeholder="De la autoridad que realiza el traslado"/>
 							</group>
 							<group></group>
 						</group>
@@ -88,10 +94,7 @@
 								<field name="placas"/>
 							</field>
 						</group>
-
-						<group style="margin:0;">
-							<label string="Fecha y hora de inicio de la audiencia"/>
-						</group>
+                        <p style="font-size:18px;"><strong>Fecha y hora de inicio de la audiencia</strong></p>
 						<div class="row">
 							<div class="col-xs-4">
 								<group style="margin:0;">
@@ -174,6 +177,13 @@
 											<field name="x_casa_justicia" invisible="1"/>
 										</group>
 									</div>
+									<div class="col-xs-6">
+										<group>
+											<field name="leyenda_destino"/>
+										</group>
+									</div>
+								</div>
+								<div class="row">
 									<div class="col-xs-6">
 										<table class="table table-bordered text-center">
 		                                    <tbody>

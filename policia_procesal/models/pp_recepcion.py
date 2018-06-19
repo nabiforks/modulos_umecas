@@ -42,13 +42,13 @@ class Recepcion(models.Model):
         string='Tipo de audiencia',
     )
     fecha_inicio_audiencia = fields.Date(
-        string='Fecha',
+        string='Fecha audiencia',
     )
     hora_inicio_audiencia = fields.Float(
-        string='Hora',
+        string='Hora de inicio de audiencia',
     )
     hora_termino_audiencia = fields.Float(
-        string="Hora de termino de Audiencia",
+        string="Hora de termino de audiencia",
     )
     fecha_hora_entrega_responsable = fields.Datetime(
         string='Fecha y hora de entrega al responsable del traslado',
@@ -56,8 +56,11 @@ class Recepcion(models.Model):
     observaciones = fields.Text(
         string='Observaciones',
     )
+    descripcion_delito = fields.Char(
+        string="Descripción del delito"
+    )
 
-    #==========RELATIONSHIP==========
+    # ==========RELATIONSHIP==========
     partner_ids = fields.Many2many(
         'res.partner',
         string='Detenido y/o imputado(s)',
@@ -129,9 +132,13 @@ class Recepcion(models.Model):
         string='Nombre',
     )
 
-    #==========Datos para reporte==========
+    # ==========Datos para reporte==========
     responsable = fields.Char(
         string='Nombre del responsable que recibe la custodia',
+    )
+    leyenda_destino = fields.Char(
+        string="Destino de traslado",
+        default="Cargo, nombre y firma del responsable del traslado al cereso en mención del detenido y/o imputado"
     )
     seccion = fields.Char(
         string='Sección',

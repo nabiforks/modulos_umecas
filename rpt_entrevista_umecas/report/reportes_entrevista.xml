@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
     <data>
-        <report id="rpt_entrevista_umecas_detalles_entrevista" model="umc_entrevistas" string="Reporte de entrevista" name="rpt_entrevista_umecas.detalles_entrevista" file="rpt_entrevista_umecas.rpt_entrevista_umecas_detalles_entrevista" report_type="qweb-pdf" />
+                <report id="rpt_entrevista_umecas_detalles_entrevista" model="umc_entrevistas" string="Reporte de entrevista" name="rpt_entrevista_umecas.detalles_entrevista" file="rpt_entrevista_umecas.rpt_entrevista_umecas_detalles_entrevista" report_type="qweb-pdf" />
         <record id="rpt_entrevista_umecas_detalles_entrevista_escala_riesgo_paper" model="report.paperformat">
             <field name="name">oficios UMECAS</field>
             <field name="format">Legal</field>
@@ -1194,7 +1194,9 @@
                                         </tr>
                                         <tr>
                                             <th class=" text-medio" colspan="1">13.12 NOMBRE DEL ENTREVISTADOR</th>
-                                            <td class=" text-small" colspan="4"></td>
+                                            <td class=" text-small" colspan="4">
+                                                <span t-field="entrevista.x_entrevistador.name"/>
+                                            </td>
                                         </tr>
                                         <tr>
                                             <th class=" text-medio" colspan="1">FIRMA</th>

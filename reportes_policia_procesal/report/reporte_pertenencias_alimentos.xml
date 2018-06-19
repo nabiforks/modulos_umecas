@@ -6,7 +6,7 @@
 			model="pp.custodia"
 			string="Formato resguardo de pertenencias y suministro de alimentos"
 			name="reportes_policia_procesal.rpt_pertenencias_alimentos"
-			file="reportes_policia_procesal.pertenencias_alimentos _pp_report"
+			file="reportes_policia_procesal.pertenencias_alimentos_pp_report"
 			report_type="qweb-pdf"			
 		/>
 		<record id="reportes_policia_procesal.pertenencias_alimentos_pp_report" model="ir.actions.report.xml">
@@ -152,6 +152,11 @@
 											</tr>
 										</tbody>
 									</table>
+									<br/>
+									<p><strong>Observaciones:</strong></p>
+									<p>
+										<span t-field="custodia.observaciones"/>
+									</p>
 								</div>
 							</div>
 							<br/>
@@ -178,7 +183,7 @@
 							<br/>
 							<div class="row text-left">
 								<div class="col-xs-3">
-									Fecha
+									Fecha:
 									<b>
 										<span t-field="custodia.fecha_hora_egreso" t-options='{"format": "dd/MM/yyyy"}'/>
 									</b> 

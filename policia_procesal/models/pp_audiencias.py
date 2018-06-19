@@ -44,7 +44,7 @@ class Audiencias(models.Model):
         string='Resolución',
     )
     observaciones = fields.Text(
-        string='Observaciones',
+        string='Observaciones (Próxima fecha de audiencia)',
     )
 
     #Control de audiencias

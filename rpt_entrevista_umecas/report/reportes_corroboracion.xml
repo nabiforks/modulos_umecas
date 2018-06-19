@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+        <report
+                id="rpt_corroboracion"
+                model="umc_entrevistas"
+                string="Reporte Corroboración"
+                name="rpt_entrevista_umecas.rpt_corroboracion_ent"
+                file="rpt_entrevista_umecas.rpt_corroboracion"
+                report_type="qweb-pdf"
+        />
+
+        <record id="rpt_entrevista_umecas.rpt_entrevista_umecas_detalles_entrevista_escala_riesgo" model="ir.actions.report.xml">
+            <field name="paperformat_id" ref="rpt_entrevista_umecas.rpt_entrevista_umecas_detalles_entrevista_escala_riesgo_paper" />
+        </record>
+        <template id="assets_common" name="rpt_entrevista_umecas assets" inherit_id="report.assets_common">
+            <xpath expr="." position="inside">
+                <link href="/rpt_entrevista_umecas/static/src/css/main.css" rel="stylesheet"/>
+            </xpath>
+        </template>
+
+        <template id="rpt_corroboracion_ent">
+            <t t-call="report.html_container">
+                <t t-foreach="docs" t-as="docs">
+                    <t t-call="report.external_layout">
+                        <div class="page">
+                            <div class="row">
+                                <div class="col-xs-12">
+                                    <span t-field="docs.x_corroboracion"/>
+                                </div>
+                            </div>
+                        </div>
+                    </t>
+                </t>
+            </t>
+        </template>
+    </data>
+</odoo>

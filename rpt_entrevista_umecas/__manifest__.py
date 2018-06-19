@@ -22,7 +22,8 @@
         'report/reportes_entrevista.xml',
         'report/reportes_entrevista_escala_riesgo.xml',
         'views/entrevista_inherit.xml',
-        'report/external_layout_inherit.xml'
+        'report/external_layout_inherit.xml',
+        'report/reportes_corroboracion.xml'
         # 'security/accesos.csv',
     ],
 

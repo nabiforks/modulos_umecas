@@ -17,7 +17,9 @@
 			<t t-call="report.html_container">
 				<t t-foreach="docs" t-as="custodia">
 					<t t-call="report.external_layout">
-						<div class="page">
+						<div class="page text-uppercase" style="font-size:12px;">
+							<br/>
+							<br/>
 							<div class="row">
 								<div class="col-xs-12 text-center">
 									<strong>
@@ -179,7 +181,7 @@
 									</p>
 									<p>
 										<strong>
-											CONSTANCIA DE DERECHOS SALVAGUARDADOS AL MOMENTO DE INGRESAR AL CENTRO DE JUSTICIA PENAL, REGIÓN CENTRO.
+											CONSTANCIA DE DERECHOS SALVAGUARDADOS AL MOMENTO DE INGRESAR AL CENTRO DE JUSTICIA PENAL, <span t-esc="user.company_id.x_region.x_name"/>.
 										</strong>
 									</p>
 									<p>

@@ -53,7 +53,7 @@ class umc_evaluacion(models.Model):
         string=u'Tiempo transcurrido',        
         readonly=True,        
     )
-    
+
     
 
     state = fields.Selection([
@@ -126,6 +126,10 @@ class umc_evaluacion(models.Model):
     @api.multi
     def terminar_analisis(self):
         self.state = 'evaluacion'
+        self.x_name_abogado = self.x_expediente_id.x_abogado
+        self.x_puesto = self.x_expediente_id.x_abogado_cargo
+        self.x_historia_personal = self.historia_personal()
+        self.x_actividades_desarrolladas = self.actividades_desarrolladas()
 
     @api.multi
     def terminar_evaluacion(self):
@@ -222,6 +226,48 @@ class umc_evaluacion(models.Model):
     # ///////////////////////////////////////////Evaluación/////////////////////////////////////////////
     # ///////////////////////////////////////////Evaluación/////////////////////////////////////////////
 
+    def historia_personal(self):
+        domicilio = ""
+        text = "Entrevistado: "+self.x_imputado_name.encode('utf-8')+'\n'
+        text += "Fecha de nacimiento: "+str(self.x_entrevista_id.x_fecha_nacimiento)+'\n'
+        text += "Edad: """+str(self.x_entrevista_id.x_edad)+'\n'
+        if self.x_entrevista_id.x_apodo:
+            text += "Alias o apodo: " + str(self.x_entrevista_id.x_apodo.encode('utf-8')) + '\n'
+        elif self.x_entrevista_id.x_lugar_nacimiento:
+            text += "Lugar de nacimiento: "+str(self.x_entrevista_id.x_lugar_nacimiento.encode('utf-8'))+'\n'
+        elif self.x_entrevista_id.x_lengua.x_name:
+            text += "Lengua y/o dialecto: "+str(self.x_entrevista_id.x_lengua.x_name.encode('utf-8'))+'\n'
+        elif self.x_entrevista_id.x_grupo_etnico.x_name:
+            text += "Grupo étnico: "+str(self.x_entrevista_id.x_grupo_etnico.x_name.encode('utf-8'))+'\n'
+        elif self.x_entrevista_id.x_estado_civil:
+            text += "Estado civil: "+str(self.x_entrevista_id.x_estado_civil.encode('utf-8'))+'\n'
+        elif self.partner_id.street:
+            domicilio = str(self.partner_id.street.encode('utf-8'))+", "
+        elif self.partner_id.street2.name:
+            domicilio += str(self.partner_id.street2.name.encode('utf-8'))+", "
+        elif self.partner_id.city.name:
+            domicilio += str(self.partner_id.city.name.encode('utf-8'))+", "
+        elif self.partner_id.state_id.name:
+            domicilio += str(self.partner_id.state_id.name.encode('utf-8'))
+
+        text += "Domicilio: "+domicilio
+
+        return text
+
+    def actividades_desarrolladas(self):
+        text = ""
+        if self.x_entrevista_id.x_actividades_ids:
+            text = "Aludió realizar las siguientes actividades:"+'\n'
+            for record in self.x_entrevista_id.x_actividades_ids:
+                text += str(record.x_name.x_name)+", "+str(record.x_descripcion)+'\n'
+        elif self.x_entrevista_id.x_actividades_ids and self.x_tiempo_libre == 'si':
+            text += "Otras actividades:"
+            text += ""
+        else:
+            text = "Aludió no realizar actividades cívicas, culturales, religiosas ni deportivas que generen lazos con la comunidad."
+        return text
+
+
     x_conclusion = fields.Text(
         string=u'Conclusión',
     )
@@ -231,11 +277,11 @@ class umc_evaluacion(models.Model):
     x_name_abogado = fields.Char(
         string='Abogado',
     )
-    x_area = fields.Char(
-        string='Área',
-    )
     x_puesto = fields.Char(
         string='Puesto',
+    )
+    x_historia_personal = fields.Text(
+        string="Historia Personal"
     )
     x_actividades_desarrolladas = fields.Text(
         string='Tipo de actividades desarrolladas',
@@ -321,7 +367,11 @@ class umc_evaluacion(models.Model):
 
     #==========Default value==========
     x_parrafo = fields.Text(
-        string='Párrafo inicializado',
+        string='Presente',
         default='En atención al oficio X, asignado por el Abogado X, Agente del Ministerio Público Adscrito a la Unidad de Flagrancia de fecha, con fundamento en lo dispuesto por los articulos 153, 155, 156, 157, 158, 164, 168, 169 y 170 del Código Nacional de Procedimientos Penales: 65, 66, 67 y 68 de la Ley de Ejecucíón de Medidas Cautelares y Sanciones Penales para el Estado de Puebla y 17 fracción XIII y XIV de la Ley de Seguridad Pública del Estado; se emite la presente evaluación de riesgos del entrevistado X, dentro de la Carpeta de Investigación  X. Con base al resultado de la entrevista y recopilación de datos.',
+    )
+    x_parrafo_segundo = fields.Text(
+        string="Análisis de riesgos",
+        default="Al constituirse de manera física y legal en el área de xxxxx, y una vez que se realizó el conversatorio con el xxxxx, este expreso y  autorizó la recolección de datos  y su posterior comprobación; en razón de lo anterior siendo las xxxxx horas del xxxx procedió a realizar la entrevista"
     )
 

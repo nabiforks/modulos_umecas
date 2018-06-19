@@ -55,9 +55,19 @@ class Expedientes(models.Model):
         'umc_colonia',
         string='Colonia',
     )
+    x_lugar_delito = fields.Char(
+        string="Lugar"
+    )
     _sql_constraints = [
         ('folio_unique_expediente', 'UNIQUE(x_name)', 'Error al procesar la solicitud por favor intentelo más tarde.')
     ]
+
+    x_abogado=fields.Char(
+        string="Abogado"
+    )
+    x_abogado_cargo=fields.Char(
+        string="Cargo de abogado"
+    )
     
     @api.multi
     def _get_current_user(self):

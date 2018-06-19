@@ -21,7 +21,7 @@ class Entrevistas(models.Model):
         string=u'Causa Penal',
     )    
     x_fecha_entrevista = fields.Date(
-        string=u'Fecha',
+        string=u'Fecha de entrevista',
         default=fields.Date.context_today,
     )
     x_hora_inicio = fields.Float(
@@ -293,6 +293,9 @@ class Entrevistas(models.Model):
         comodel_name='umc_amistades',
         inverse_name='x_entrevista_id',
     )
+    x_no_menciono = fields.Char(
+        string="Observaciones"
+    )
 
     #//////////////////////////////////VI.-Empleo/////////////////
 
@@ -300,6 +303,9 @@ class Entrevistas(models.Model):
         string=u'Empleos',
         comodel_name='umc_empleos',
         inverse_name='x_entrevista_id',
+    )
+    x_no_menciono_emp = fields.Char(
+        string="Observaciones"
     )
     #//////////////////////////////////VII.-Estudios/////////////////
 
@@ -448,4 +454,13 @@ class Entrevistas(models.Model):
     )
     x_observaciones_actitud = fields.Text(
         string=u'Observaciones (Actitud ante la entrevista)',
+    )
+    x_entrevistador = fields.Many2one(
+        'res.users',
+        string="Entrevistador",
+        ondelete='set null',
+        domain="[('company_id','=',x_casa_justicia)]"
+    )
+    x_corroboracion = fields.Text(
+        string = "Observaciones"
     )

@@ -32,6 +32,7 @@
                             <field name="x_imputado_id" invisible="1" />
                             <field name="x_evaluacion_id" />
                             <field name="x_evaluador_name" />
+                            <field name="x_entrevistador" options="{'no_create': True, 'no_open': True}"/>
                             <field name="x_evaluador_id" invisible="1"/>
                             <field name="x_casa_justicia" />
                         </group>
@@ -97,8 +98,7 @@
                                     <tree editable="bottom">
                                         <field name="x_nucleo" />
                                         <field name="name" />
-                                        <field name="fecha_nacimiento" />
-                                        <field name="edad" widget="integer"/>
+                                        <field name="x_edad_int" widget="integer"/>
                                         <field name="x_domicilio" />
                                         <field name="x_parentesco" />
                                         <field name="x_ocupacion" />
@@ -115,11 +115,13 @@
                             <page string="V.-Amistades (Referencias personales)">
                                 <group>
                                     <field name="x_amistades_ids" mode="tree"/>
+                                    <field name="x_no_menciono"/>
                                 </group>
                             </page>
                             <page string="VI.-Empleos">
                                 <group>
                                     <field name="x_empleos_ids"/>
+                                    <field name="x_no_menciono_emp"/>
                                 </group>
                             </page>
                             <page string="VII.-Estudios">
@@ -235,6 +237,11 @@
                                     <field name="x_cumplio_scp" widget="radio" options="{'horizontal': true}"/>
                                     <field name="x_colaboro_anteriores" widget="radio" options="{'horizontal': true}"/>
                                     <field name="x_observaciones_actitud" />
+                                </group>
+                            </page>
+                            <page string="Corroboración">
+                                <group>
+                                    <field name="x_corroboracion"/>
                                 </group>
                             </page>
                         </notebook>
