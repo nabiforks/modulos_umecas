@@ -38,8 +38,8 @@
         <!--Datos Casas de justicia ////////////////////////////////-->
         <!--Datos Casas de justicia ////////////////////////////////-->
         <record id="umc_casa_justicia_1" model="res.company">
-            <field name="name">Casa de Justicia Tezuitlán</field>
-            <field name="x_abreviatura">Tezuitlán</field>
+            <field name="name">Casa de Justicia Teziutlán</field>
+            <field name="x_abreviatura">Teziutlán</field>
             <field name="x_region" ref='umc_regiones_1'/>
         </record>
         <record id="umc_casa_justicia_2" model="res.company">
@@ -461,8 +461,8 @@
             <field name="x_codigo">CHUEJO</field>
         </record>
         <record id="umc_lugares_12" model="umc_lugares">
-            <field name="x_name">Carcel Distrital Tezuhitlán</field>
-            <field name="x_codigo">CDTEZU</field>
+            <field name="x_name">Carcel Distrital Teziutlán</field>
+            <field name="x_codigo">CDTEZIU</field>
         </record>
         <record id="umc_lugares_13" model="umc_lugares">
             <field name="x_name">Carcel Distrital Izucar de Matamoros</field>
@@ -633,7 +633,7 @@
         </record>
         <!--Seccion 4-->
         <record id="umc_seccion_4" model="ucm.escalavalores.secciones">
-            <field name="name">III.- Relaciones familiares extramuros</field>
+            <field name="name">III.- Relaciones familiares</field>
         </record>
         <record id="umc_escalavalores_respuesta_20" model="ucm.escalavalores.valor">
             <field name="name">Vive con un familiar (padres, hijos conyuge)</field>
@@ -654,11 +654,15 @@
             <field name="name">Vive solo</field>
             <field name="valor">-2</field>
             <field name="seccion_id" ref="umc_seccion_4"/>
+        </record>        
+        <!--Seccion 4.1-->
+        <record id="umc_seccion_4_1" model="ucm.escalavalores.secciones">
+            <field name="name">III.- b) Dependientes económicos</field>
         </record>
         <record id="umc_escalavalores_respuesta_24" model="ucm.escalavalores.valor">
             <field name="name">Tiene dependientes económicos </field>
             <field name="valor">2</field>
-            <field name="seccion_id" ref="umc_seccion_4"/>
+            <field name="seccion_id" ref="umc_seccion_4_1"/>
         </record>
         <!--Seccion 5-->
         <record id="umc_seccion_5" model="ucm.escalavalores.secciones">

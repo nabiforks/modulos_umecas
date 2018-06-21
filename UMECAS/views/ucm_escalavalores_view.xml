@@ -28,6 +28,7 @@
 			<field name='model'>ucm.escalavalores.secciones</field>
 			<field name='arch' type='xml'>
 				<tree string='Nombre'>
+					<field name="sequence" widget="handle"/>
 					<field name='name'/>
 				</tree>
 			</field>
@@ -85,6 +86,7 @@
 						<field name="seccion"/>
 						<field name="valor_ids" domain="[('seccion_id', '=', seccion)]"/>
 						<field name="num_valor"/>
+						<field name="sequence" invisible="1" />
 					</group>
 				</form>
 			</field>
@@ -95,6 +97,7 @@
 			<field name='model'>ucm.escalavalores.evaluacion</field>
 			<field name='arch' type='xml'>
 				<tree string='Nombre'>
+					<field name="sequence" widget="handle"/>
 					<field name="seccion"/>
 				</tree>
 			</field>

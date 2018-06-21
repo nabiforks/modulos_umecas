@@ -1,24 +1,56 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
-    <data>
-        <template id="external_layout_header_inherit" inherit_id="report.external_layout_header">
-            <xpath expr="//div[@class='header']" position="replace">
-                <div class="header">
-                    <div class="row">
-                        <div class="col-xs-3">
-                            <img t-if="company.logo" t-att-src="'data:image/png;base64,%s' % company.logo" style="max-height: 70px;"/>
-                        </div>
-                        <div class="col-xs-9 text-right">
-                            <img t-if="company.x_logo_actual" t-att-src="'data:image/png;base64,%s' % company.x_logo_actual" style="max-height: 70px;"/>
-                        </div>
-                    </div>
-                </div>
-            </xpath>
-        </template>
-        <template id="external_layout_footer_inherit" inherit_id="report.external_layout_footer">
-            <xpath expr="//div[@class='footer']" position="replace">
-                <div class="footer"></div>
-            </xpath>
-        </template>
-    </data>
+	<data>
+		<template id="external_layout_header_inherit" inherit_id="report.external_layout_header">
+			<xpath expr="//div[@class='header']" position="replace">
+				<div class="header">
+					<div class="row">
+						<div class="col-xs-3">
+							<img t-if="company.logo" t-att-src="'data:image/png;base64,%s' % company.logo" style="max-height: 70px;"/>
+						</div>
+						<div class="col-xs-9 text-right">
+							<img t-if="company.x_logo_actual" t-att-src="'data:image/png;base64,%s' % company.x_logo_actual" style="max-height: 70px;"/>
+						</div>
+					</div>
+				</div>
+			</xpath>
+		</template>
+		<template id="external_layout_footer_inherit" inherit_id="report.external_layout_footer">
+			<xpath expr="//div[@class='footer']" position="replace">
+				<div class="footer">
+					<div class="text-center" style="border-top: 1px solid black;">
+						<ul t-if="not company.custom_footer" class="list-inline">
+							<t t-set="company" t-value="company.sudo()"/>
+							<li t-if="company.partner_id">
+								<t t-if="company.partner_id.street">
+									<span t-field="company.street"/>,
+								</t>
+								<t t-if="company.partner_id.street2"> 																	
+									<span t-field="company.partner_id.street2.name"/>,
+								</t>
+								<t t-if="company.partner_id.city">
+									<span t-field="company.partner_id.city.name"/>,
+								</t>
+								<t t-if="company.partner_id.state_id">
+									<span t-field="company.partner_id.state_id.name"/>
+								</t>
+							</li>
+							<li t-if="company.phone">&amp;bull; 																
+								<span t-field="company.phone"/>
+							</li>
+							<li t-if="company.email">&amp;bull; 																
+								<span t-field="company.email"/>
+							</li>
+							<li t-if="company.website">&amp;bull; 																
+								<span t-field="company.website"/>
+							</li>
+						</ul>
+						<t t-if="company.custom_footer">
+							<span t-raw="company.rml_footer"/>
+						</t>
+					</div>
+				</div>
+			</xpath>
+		</template>
+	</data>
 </odoo>
