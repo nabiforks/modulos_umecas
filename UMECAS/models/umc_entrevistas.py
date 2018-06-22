@@ -296,6 +296,9 @@ class Entrevistas(models.Model):
     x_no_menciono = fields.Char(
         string="Observaciones"
     )
+    x_no_menciono_est = fields.Char(
+        string="Observaciones"
+    )
 
     #//////////////////////////////////VI.-Empleo/////////////////
 

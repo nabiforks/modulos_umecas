@@ -139,6 +139,7 @@
                                     <div>
                                         <field name="x_estudios_ids"/>
                                     </div>
+                                    <field name="x_no_menciono_est"/>
                                 </group>
                             </page>
                             <page string="VIII.-Antecedentes penales">

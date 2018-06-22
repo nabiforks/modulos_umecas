@@ -12,6 +12,7 @@
                     <button name="terminar_entrevista" type="object" string="Escala de riesgos" class="oe_highlight" states="entrevista"/>
                     <button name="terminar_analisis" type="object" string="Evaluación" class="oe_highlight" states="analisis"/>
                     <button name="terminar_evaluacion" type="object" string="Terminar Evaluación" class="oe_highlight" states="evaluacion"/>
+                    <button name="impedimento" type="object" string="Impedimento"/>
                     <field name="state" widget="statusbar"/>
                 </header>
                 <sheet>
@@ -116,14 +117,10 @@
                                 <div class="row">
                                     <div class="col-xs-6">
                                         <h4>Relaciones familiares</h4>
-                                        <label style="font-weight: bold;" for="x_nucleo_primario"/><br/>
-                                        <field name="x_nucleo_primario"/><br/>
-                                        <label style="font-weight: bold;" for="x_nucleo_secundario"/><br/>
-                                        <field name="x_nucleo_secundario"/>
+                                        <field name="x_rel_familiares"/>
                                     </div>
                                     <div class="col-xs-6">
                                         <h4>Referencias personales</h4>
-                                        <label style="font-weight: bold;" for="x_ref_personales"/><br/>
                                         <field name="x_ref_personales"/>
                                     </div>
                                 </div>
@@ -132,8 +129,6 @@
                                         <h4>Empleos</h4>
                                         <label style="font-weight: bold;" for="x_sintesis_act_laboral"/><br/>
                                         <field name="x_sintesis_act_laboral"/>
-                                        <label style="font-weight: bold;" for="x_ant_laborales"/>
-                                        <field name="x_ant_laborales"/>
                                     </div>
                                     <div class="col-xs-6">
                                         <h4>Lugar de recidencia</h4>
@@ -170,7 +165,7 @@
                                 </div>
                                 <br/>
                                 <h3>Conclusión</h3>
-                                <hr/>
+                                <field name="x_conclusion_primero"/>
                                 <div class="row">
                                     <div class="col-xs-6">
                                         <h4>Peligro de sustracción del imputado</h4>
@@ -197,6 +192,7 @@
                                 <div class="row">
                                     <div class="col-xs-6">
                                         <group>
+                                            <field name="x_conc_sjp"/>
                                             <field name="x_conc_retencion"/>
                                             <field name="x_conc_ant_reincidencias"/>
                                         </group>
@@ -205,17 +201,18 @@
                                         <group>
                                             <field name="x_conc_ingresos"/>
                                             <field name="x_conc_proximidad"/>
+                                            <field name="x_conc_nota"/>
                                         </group>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-xs-12">
-                                        <field name="x_conclusion" placeholder="El entrevistado no manifestó haber estado..."/>
+                                        <field name="x_conclusion" placeholder="Por el nivel de riesgos..."/>
                                     </div>
                                 </div>
-                                <group>
-                                    <field name="x_conclusion"/>
-                                </group>
+                                    <group>
+                                        <field name="x_conc_antecedentes" placeholder="En entrevistado si/no manifestó haber estado...."/>
+                                    </group>
                                 <br/>
                                 <div class="row">
                                     <div class="col-xs-6">

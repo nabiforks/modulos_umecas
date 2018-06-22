@@ -1,0 +1,126 @@
+<!--
+    Pagina estraida de el reporte de entrevista
+-->
+
+
+
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+        <report
+                id="rpt_corroboracion"
+                model="umc_entrevistas"
+                string="Reporte Corroboración"
+                name="rpt_entrevista_umecas.rpt_corroboracion_ent"
+                file="rpt_entrevista_umecas.rpt_corroboracion"
+                report_type="qweb-pdf"
+        />
+
+        <record id="rpt_entrevista_umecas.rpt_entrevista_umecas_detalles_entrevista_escala_riesgo" model="ir.actions.report.xml">
+            <field name="paperformat_id" ref="rpt_entrevista_umecas.rpt_entrevista_umecas_detalles_entrevista_escala_riesgo_paper" />
+        </record>
+        <template id="assets_common" name="rpt_entrevista_umecas assets" inherit_id="report.assets_common">
+            <xpath expr="." position="inside">
+                <link href="/rpt_entrevista_umecas/static/src/css/main.css" rel="stylesheet"/>
+            </xpath>
+        </template>
+
+        <template id="rpt_corroboracion_ent">
+            <t t-call="report.html_container">
+                <t t-foreach="docs" t-as="docs">
+                    <t t-call="report.external_layout">
+                        <div class="page">
+                            <p style="page-break-after:always;"></p>
+                            <div class="main-container">
+                                <div class="row">
+                                    <div class="col-xs-12">
+                                        <h6 class="text-center ">DIRECCIÓN GENERAL DE CENTROS DE REINSERCIÓN SOCIAL DEL                                            ESTADO DE PUEBLA                                        </h6>
+                                    </div>
+                                    <div class="col-xs-12">
+                                        <h6 class="text-center ">DIRECCIÓN DE MEDIDAS CAUTELARES Y POLICÍA PROCESAL</h6>
+                                    </div>
+                                    <div class="col-xs-12">
+                                        <h6 class="text-center ">REGIÓN JUDICAL CENTRO</h6>
+                                    </div>
+                                    <div class="col-xs-12">
+                                        <h5 class="text-center ">CONSENTIMIENTO PARA REALIZAR LA ENTREVISTA DE                                            EVALUACIÓN DE RIESGOS                                        </h5>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-12">
+                                        <p class="text-justify">                                            Con fundamento en los artículos 5,71, 72 Fracción I, de la Ley Nacional del                                            Sistema Integral de Justicia Penal para Adolecentes articulos 153, 154, 155,                                            156, 157, 158 y 164 del Código Nacional de Procedimientos Penales 65, 66 67                                            y 68 de la Ley de Ejecución de Medidas Cautelares y Sanciones Penales, 8, 30                                            bis. Fracciones I, III, VII, XII del regalmento interior de la Secretaria de                                            Seguridad Publica, ambas para el estado de Puebla: le solicito su                                            autorización para realizarle una entrevista con el objetivo de obtener                                            información relevante que será proporcionada al Ministerio Publico y a su                                            defensor para que el Juez de control determine sobre la imposiciónde medidas                                            cautelares; así como se le hace saber que la información que suministre no                                            podría ser usada para demostrar su culpabilidad, que será manejada de forma                                            confidencial y será corroborada pro diversos medios para determinar la                                            calidad de la misam; así como que puede abstenerse de proporcionar datos.                                            Haciendole de su conocimiento que tiene derecho a que su defensor y tutor                                            estén presentes durante la entrevista.                                        </p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-12">
+                                        <p class="text-justify">                                            EL personal del área de evaluación de riesgos siendo el suscrito
+                                            <u>______________________</u>                                            se identifica con el/la Adolescente
+                                            <u>________________________</u>                                            quien se encuentra retenido (a) en:
+                                            <u>________________________</u>
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-12">
+                                        <p class="text-justify">
+                                            <u>______________________</u>                                            Entendí la explicación y
+                                            <u>________________________</u> otorgo mi                                            consentimiento para que el operador me realice la entrevista
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-12">
+                                        <p class="text-justify">
+                                            <u>______________________</u>                                            Entendí la explicación y
+                                            <u>________________________</u> otorgo mi                                            consentimiento para que el operador me realice la entrevista
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-12">
+                                        <p class="text-justify">                                            A la presente explicación, hecha por el evaluador al adolecente, la defensa                                            y el padre o tutor del mismo
+                                            <u>________________________</u>                                            autorizan la aplicación de la presente entrevista, firmando la conformidad.
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-12">
+                                        <table class="col-xs-12 extra_top">
+                                            <tr>
+                                                <td class="borde-top">                                                    Nombre y firma                                                </td>
+                                                <td>padre o tutor</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="borde-top">                                                    Nombre y firma                                                </td>
+                                                <td>Defensa</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="borde-top">                                                    Nombre y firma                                                </td>
+                                                <td>                                                    Otro:
+                                                    <u>_______________</u>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-12">
+                                        <p class="text-justify">                                            Nombre completo adolecente
+                                            <u>____________________________________________________________</u>
+                                            <br/>                                            Firma
+                                            <u>_________________________________________</u> Fecha:
+                                            <u>                                                ____________________________________________                                            </u>
+                                            <br/>                                            Hora:
+                                            <u>_________________________________________</u>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--End page-->
+                    </t>
+                </t>
+            </t>
+        </template>
+    </data>
+</odoo>
