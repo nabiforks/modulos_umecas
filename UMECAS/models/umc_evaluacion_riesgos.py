@@ -24,8 +24,8 @@ class umc_evaluacion(models.Model):
         'res.users',
         string=u'Evaluador',
         required=True,
-        ondelete='set null',        
-        domain="[('company_id','=',x_casa_justicia)]",        
+        ondelete='set null',
+        domain="[('company_id','=',x_casa_justicia)]",
     )
     partner_id = fields.Many2one(
         'res.partner',
@@ -41,8 +41,9 @@ class umc_evaluacion(models.Model):
         readonly=True,
     )
     x_tipo_entrevista = fields.Selection(
-        [('retenido', 'Retenido'), ('adolescente', 'Adolescente'), ('interno', 'Interno'),('citacion', 'Citación')], default='1', required=True, string=u'Tipo de Entrevista')
-    
+        [('retenido', 'Retenido'), ('adolescente', 'Adolescente'), ('interno', 'Interno'), ('citacion', 'Citación')],
+        default='1', required=True, string=u'Tipo de Entrevista')
+
     x_fecha_inicio = fields.Datetime(
         string=u'Fecha/Hora Inicio',
     )
@@ -50,11 +51,9 @@ class umc_evaluacion(models.Model):
         string=u'Fecha/Hora Final',
     )
     x_tiempo_transcurrido = fields.Float(
-        string=u'Tiempo transcurrido',        
-        readonly=True,        
+        string=u'Tiempo transcurrido',
+        readonly=True,
     )
-
-    
 
     state = fields.Selection([
         ('solicitud', 'Solicitud'),
@@ -91,14 +90,28 @@ class umc_evaluacion(models.Model):
                                   'x_evaluador_id': self.x_evaluador_id,
                                   'x_imputado_id': self.partner_id,
                                   'x_casa_justicia': self.x_casa_justicia.id,
-                                  'x_cdi':self.x_expediente_id.x_cdi_nic,
-                                  'x_causa_penal':self.x_expediente_id.x_causa_penal,
-                                  'x_apellido_pat':self.partner_id.ap_paterno,
-                                  'x_apellido_mat':self.partner_id.ap_materno,
-                                  'x_nombre_entrevistado':self.partner_id.name}
+                                  'x_cdi': self.x_expediente_id.x_cdi_nic,
+                                  'x_causa_penal': self.x_expediente_id.x_causa_penal,
+                                  'x_apellido_pat': self.partner_id.ap_paterno,
+                                  'x_apellido_mat': self.partner_id.ap_materno,
+                                  'x_nombre_entrevistado': self.partner_id.name,
+                                  'x_hechos_conducta': self.x_expediente_id.x_delito_descripcion,
+                                  'x_lugar_detencion': self.lugar_delito()
+                                  }
             res = self.env['umc_entrevistas'].create(valores_entrevista)
             self.x_entrevista_id = res
             return res
+
+    def lugar_delito(self):
+        text = ""
+        if self.x_expediente_id.x_lugar_delito:
+            text += str(self.x_expediente_id.x_lugar_delito.encode('utf-8'))
+        if self.x_expediente_id.x_colonia_delito_id:
+            text += ", "+str(self.x_expediente_id.x_colonia_delito_id.name.encode('utf-8'))
+        if self.x_expediente_id.x_municipio_delito_id:
+            text += ", "+str(self.x_expediente_id.x_municipio_delito_id.name.encode('utf-8'))
+        print text
+        return text
 
     @api.multi
     def terminar_entrevista(self):
@@ -130,6 +143,13 @@ class umc_evaluacion(models.Model):
         self.x_puesto = self.x_expediente_id.x_abogado_cargo
         self.x_historia_personal = self.historia_personal()
         self.x_actividades_desarrolladas = self.actividades_desarrolladas()
+        self.x_rel_familiares = self.rel_familiares()
+        self.x_ref_personales = self.ref_personales()
+        self.x_sintesis_act_laboral = self.ev_empleos()
+        self.x_sintesis_domiciliaria = self.sintesis_domiciliaria()
+        self.x_sintesis_educativa = self.sintesis_educativa()
+        self.x_inf_destacada = self.inf_destacada()
+        self.x_nombre_elav = self.x_entrevista_id.x_entrevistador.name
 
     @api.multi
     def terminar_evaluacion(self):
@@ -140,7 +160,8 @@ class umc_evaluacion(models.Model):
         else:
             self.folio_evalucion = self.getFolioEvaluacion()
             self.calcular_tiempo()
-            self.state='evaluacion_terminada'
+            self.state = 'evaluacion_terminada'
+
     @api.multi
     def calcular_tiempo(self):
         if not self.x_fecha_final:
@@ -148,13 +169,10 @@ class umc_evaluacion(models.Model):
         if self.x_fecha_inicio and self.x_fecha_final:
             start_date = fields.Datetime.from_string(self.x_fecha_inicio)
             end_date = fields.Datetime.from_string(self.x_fecha_final)
-            dias = float((end_date - start_date).days*24)
-            horas = float((end_date - start_date).seconds/3600)
-            minutos = float((((end_date - start_date).seconds%3600)/60))
-            self.x_tiempo_transcurrido=dias + horas+(minutos/60)
-        
-        
-
+            dias = float((end_date - start_date).days * 24)
+            horas = float((end_date - start_date).seconds / 3600)
+            minutos = float((((end_date - start_date).seconds % 3600) / 60))
+            self.x_tiempo_transcurrido = dias + horas + (minutos / 60)
 
     # ///////////////////////////////////////Campos de las entrevistas////////////////
     # ///////////////////////////////////////Campos de las entrevistas////////////////
@@ -188,8 +206,8 @@ class umc_evaluacion(models.Model):
     x_escala_riesgos = fields.Selection(
         string=u'Escala de riesgo',
         selection=[('bajo', 'Bajo'), ('medio', 'Medio'), ('alto', 'Alto')],
-        compute='calcular_ponderacion',        
-        store=True,        
+        compute='calcular_ponderacion',
+        store=True,
     )
     x_escala_valores_id = fields.Many2one(
         string=u'Escala valores ID',
@@ -227,53 +245,276 @@ class umc_evaluacion(models.Model):
     # ///////////////////////////////////////////Evaluación/////////////////////////////////////////////
 
     def historia_personal(self):
-        domicilio = ""
-        text = "Entrevistado: "+self.x_imputado_name.encode('utf-8')+'\n'
-        text += "Fecha de nacimiento: "+str(self.x_entrevista_id.x_fecha_nacimiento)+'\n'
-        text += "Edad: """+str(self.x_entrevista_id.x_edad)+'\n'
+        text = "Entrevistado: " + self.x_imputado_name.encode('utf-8') + '\n'
+        text += "Fecha de nacimiento: " + str(self.x_entrevista_id.x_fecha_nacimiento) + '\n'
+        text += "Edad: """ + str(self.x_entrevista_id.x_edad) + '\n'
         if self.x_entrevista_id.x_apodo:
             text += "Alias o apodo: " + str(self.x_entrevista_id.x_apodo.encode('utf-8')) + '\n'
-        elif self.x_entrevista_id.x_lugar_nacimiento:
-            text += "Lugar de nacimiento: "+str(self.x_entrevista_id.x_lugar_nacimiento.encode('utf-8'))+'\n'
-        elif self.x_entrevista_id.x_lengua.x_name:
-            text += "Lengua y/o dialecto: "+str(self.x_entrevista_id.x_lengua.x_name.encode('utf-8'))+'\n'
-        elif self.x_entrevista_id.x_grupo_etnico.x_name:
-            text += "Grupo étnico: "+str(self.x_entrevista_id.x_grupo_etnico.x_name.encode('utf-8'))+'\n'
-        elif self.x_entrevista_id.x_estado_civil:
-            text += "Estado civil: "+str(self.x_entrevista_id.x_estado_civil.encode('utf-8'))+'\n'
-        elif self.partner_id.street:
-            domicilio = str(self.partner_id.street.encode('utf-8'))+", "
-        elif self.partner_id.street2.name:
-            domicilio += str(self.partner_id.street2.name.encode('utf-8'))+", "
-        elif self.partner_id.city.name:
-            domicilio += str(self.partner_id.city.name.encode('utf-8'))+", "
-        elif self.partner_id.state_id.name:
-            domicilio += str(self.partner_id.state_id.name.encode('utf-8'))
 
-        text += "Domicilio: "+domicilio
+        if self.x_entrevista_id.x_lugar_nacimiento:
+            text += "Lugar de nacimiento: " + str(self.x_entrevista_id.x_lugar_nacimiento.encode('utf-8')) + '\n'
+
+        if self.x_entrevista_id.x_lengua.x_name:
+            text += "Lengua y/o dialecto: " + str(self.x_entrevista_id.x_lengua.x_name.encode('utf-8')) + '\n'
+
+        if self.x_entrevista_id.x_grupo_etnico.x_name:
+            text += "Grupo étnico: " + str(self.x_entrevista_id.x_grupo_etnico.x_name.encode('utf-8')) + '\n'
+
+        if self.x_entrevista_id.x_estado_civil:
+            text += "Estado civil: " + str(self.x_entrevista_id.x_estado_civil.encode('utf-8')) + '\n'
+
+        if self.x_entrevista_id.x_domicilio_actual:
+            for record in self.x_entrevista_id.x_domicilio_actual:
+                if record.x_tipo_domicilio == 'actual':
+                    domicilio = ""
+                    if record.x_calle:
+                        domicilio = str(record.x_calle.encode('utf-8')) + ", "
+                    if record.x_colonia.name:
+                        domicilio += str(record.x_colonia.name.encode('utf-8')) + ", "
+                    if record.x_municipio.name:
+                        domicilio += str(record.x_municipio.name.encode('utf-8')) + ", "
+                    if record.x_estado_id.name:
+                        domicilio += str(record.x_estado_id.name.encode('utf-8')) + ", "
+                    if record.x_vivienda:
+                        domicilio += "vivienda " + str(record.x_vivienda.x_name.encode('utf-8')) + ", "
+                    if record.x_tiempo_cantidad:
+                        domicilio += str(record.x_tiempo_cantidad) + " "
+                    if record.x_tiempo_unidad:
+                        domicilio += str(dict(record._fields['x_tiempo_unidad'].selection).get(record.x_tiempo_unidad))
+                    text += "Domicilio actual: " + domicilio + '\n'
 
         return text
 
     def actividades_desarrolladas(self):
-        text = ""
         if self.x_entrevista_id.x_actividades_ids:
-            text = "Aludió realizar las siguientes actividades:"+'\n'
+            text = "Aludió realizar las siguientes actividades:" + '\n'
             for record in self.x_entrevista_id.x_actividades_ids:
-                text += str(record.x_name.x_name)+", "+str(record.x_descripcion)+'\n'
-        elif self.x_entrevista_id.x_actividades_ids and self.x_tiempo_libre == 'si':
-            text += "Otras actividades:"
-            text += ""
+                text += str(record.x_name.x_name.encode('utf-8')) + ", " + str(
+                    record.x_descripcion.encode('utf-8')) + '\n'
+
+            if self.x_entrevista_id.x_tiempo_libre == 'si':
+                text += '\n'
+                text += "Comentó que en su tiempo libre realiza:" + '\n'
+
+                if self.x_entrevista_id.x_tiempo_libre_cuales:
+                    text += str(self.x_entrevista_id.x_tiempo_libre_cuales.encode('utf-8'))
+
+        elif not self.x_entrevista_id.x_actividades_ids and self.x_entrevista_id.x_tiempo_libre == 'si':
+            text = "Comentó que en su tiempo libre realiza:" + '\n'
+
+            if self.x_entrevista_id.x_tiempo_libre_cuales:
+                text += str(self.x_entrevista_id.x_tiempo_libre_cuales.encode('utf-8'))
+
         else:
             text = "Aludió no realizar actividades cívicas, culturales, religiosas ni deportivas que generen lazos con la comunidad."
+
         return text
 
+    def rel_familiares(self):
+        text = ""
+        if self.x_entrevista_id.x_intrafamiliares_primario:
+            text += "Núcleo primario" + '\n'
+            text += str(self.x_entrevista_id.x_intrafamiliares_primario.encode('utf-8'))+'\n'+'\n'
+        if self.x_entrevista_id.x_intrafamiliares_secundario:
+            text += "Núcleo secundario" + '\n'
+            text += str(self.x_entrevista_id.x_intrafamiliares_secundario.encode('utf-8')) + '\n'
 
+        return text
+
+    def ref_personales(self):
+        text = ""
+        if self.x_entrevista_id.x_amistades_ids:
+            text += "Refirió los siguietes nombres:" + '\n'
+            for record in self.x_entrevista_id.x_amistades_ids:
+                text += str(record.x_name.encode('utf-8'))
+                text += ", con domicilio en "
+                for rec in record.x_domicilio_ids:
+                    domicilio = ""
+                    if rec.x_calle:
+                        domicilio = str(rec.x_calle.encode('utf-8')) + ", "
+                    if rec.x_colonia.name:
+                        domicilio += str(rec.x_colonia.name.encode('utf-8')) + ", "
+                    if rec.x_municipio.name:
+                        domicilio += str(rec.x_municipio.name.encode('utf-8')) + ", "
+                    if rec.x_estado_id.name:
+                        domicilio += str(rec.x_estado_id.name.encode('utf-8'))
+                    text += domicilio
+                if record.x_relacion:
+                    text += ", quién es su " + str(record.x_relacion.x_name.encode('utf-8'))
+                if record.x_numero:
+                    text += ", número de teléfono " + str(record.x_numero.encode('utf-8'))
+                if record.x_tiempo_cantidad:
+                    text += " con " + str(record.x_tiempo_cantidad) + " "
+                if record.x_tiempo_unidad:
+                    text += str(
+                        dict(record._fields['x_tiempo_unidad'].selection).get(record.x_tiempo_unidad)) + " de conocerlo"
+                text += '\n'
+
+        if self.x_entrevista_id.x_no_menciono:
+            text += '\n' + str(self.x_entrevista_id.x_no_menciono.encode('utf-8'))
+
+        return text
+
+    def ev_empleos(self):
+        text = ""
+        if self.x_entrevista_id.x_empleos_ids:
+            for record in self.x_entrevista_id.x_empleos_ids:
+                if record.x_actual_anterior == 'actual':
+                    if record.x_anios_trabajando:
+                        text += "Comentó que desde " + str(record.x_anios_trabajando)
+                    if record.x_tiempo_unidad:
+                        text += " " + str(
+                            dict(record._fields['x_tiempo_unidad'].selection).get(record.x_tiempo_unidad)) + " "
+
+                    text += "se desempeña "
+                    if record.x_tipo_empleo:
+                        text += "de manera " + str(
+                            dict(record._fields['x_tipo_empleo'].selection).get(record.x_tipo_empleo))
+                    if record.x_formal:
+                        text += ", " + str(dict(record._fields['x_formal'].selection).get(record.x_formal))
+                    text += " como " + str(record.x_name.x_name.encode('utf-8')) + '\n'
+                    if record.x_propio:
+                        if record.x_propio == '2':
+                            if record.x_patron:
+                                text += "Al servicio de: " + str(record.x_patron.encode('utf-8')) + '\n'
+                        else:
+                            text += "Al servicio de: " + "Por cuenta propia" + '\n'
+                    if record.x_domicilio_ids:
+                        text += "Con dirección: "
+                        for rec in record.x_domicilio_ids:
+                            domicilio = ""
+                            if rec.x_calle:
+                                domicilio = str(rec.x_calle.encode('utf-8')) + ", "
+                            if rec.x_colonia.name:
+                                domicilio += str(rec.x_colonia.name.encode('utf-8')) + ", "
+                            if rec.x_municipio.name:
+                                domicilio += str(rec.x_municipio.name.encode('utf-8')) + ", "
+                            if rec.x_estado_id.name:
+                                domicilio += str(rec.x_estado_id.name.encode('utf-8'))
+                            text += domicilio + '\n'
+                    text += "Salario " + str(
+                        dict(record._fields['x_salario_pagos'].selection).get(record.x_salario_pagos)) + " de " + str(
+                        record.x_salario) + " " + str(
+                        dict(record._fields['x_moneda'].selection).get(record.x_moneda)) + '\n'
+                    text += "Horario: " + str(record.x_dias_trabaja) + " a " + str(
+                        record.x_dias_trabaja_hasta) + " de " + str(record.x_hora_inicio) + " a " + str(
+                        record.x_hora_fin)
+
+        if self.x_entrevista_id.x_no_menciono_emp:
+            text += '\n' + str(self.x_entrevista_id.x_no_menciono_emp.encode('utf-8'))
+
+        return text
+
+    def sintesis_domiciliaria(self):
+        text = "SÍNTESIS DOMICILIARIA" + '\n'
+        if self.x_entrevista_id.x_domicilio_actual:
+            for record in self.x_entrevista_id.x_domicilio_actual:
+                if record.x_tipo_domicilio == 'actual':
+                    domicilio = "Indicó que desde " + str(record.x_tiempo_cantidad) + " " + str(
+                        dict(record._fields['x_tiempo_unidad'].selection).get(record.x_tiempo_unidad))
+                    domicilio += " habita en una vivienda"
+                    if record.x_vivienda:
+                        domicilio += " " + str(record.x_vivienda.x_name.encode('utf-8'))
+                    domicilio += " ubicado en la dirección: "
+                    if record.x_calle:
+                        domicilio += str(record.x_calle.encode('utf-8')) + ", "
+                    if record.x_colonia.name:
+                        domicilio += str(record.x_colonia.name.encode('utf-8')) + ", "
+                    if record.x_municipio.name:
+                        domicilio += str(record.x_municipio.name.encode('utf-8')) + ", "
+                    if record.x_estado_id.name:
+                        domicilio += str(record.x_estado_id.name.encode('utf-8'))
+                    text += domicilio + '\n'
+
+            text += '\n' + "DOMICILIOS SECUNDARIOS" + '\n'
+            for record in self.x_entrevista_id.x_domicilio_actual:
+                if record.x_tipo_domicilio == 'secundario':
+                    domicilio = "Indicó que desde " + str(record.x_tiempo_cantidad) + " " + str(
+                        dict(record._fields['x_tiempo_unidad'].selection).get(record.x_tiempo_unidad))
+                    domicilio += " habita en una vivienda"
+                    if record.x_vivienda:
+                        domicilio += " " + str(record.x_vivienda.x_name.encode('utf-8'))
+                    domicilio += " ubicado en la dirección: "
+                    if record.x_calle:
+                        domicilio += str(record.x_calle.encode('utf-8')) + ", "
+                    if record.x_colonia.name:
+                        domicilio += str(record.x_colonia.name.encode('utf-8')) + ", "
+                    if record.x_municipio.name:
+                        domicilio += str(record.x_municipio.name.encode('utf-8')) + ", "
+                    if record.x_estado_id.name:
+                        domicilio += str(record.x_estado_id.name.encode('utf-8'))
+                    text += domicilio + '\n'
+
+            text += '\n' + "DOMICILIOS ANTERIORES" + '\n'
+            for record in self.x_entrevista_id.x_domicilio_actual:
+                if record.x_tipo_domicilio == 'anterior':
+                    domicilio = "Así mismo indico que desde " + str(record.x_tiempo_cantidad) + " " + str(
+                        dict(record._fields['x_tiempo_unidad'].selection).get(record.x_tiempo_unidad))
+                    domicilio += " radicó en una vivienda"
+                    if record.x_vivienda:
+                        domicilio += " " + str(record.x_vivienda.x_name.encode('utf-8'))
+                    domicilio += " ubicado en la dirección: "
+                    if record.x_calle:
+                        domicilio += str(record.x_calle.encode('utf-8')) + ", "
+                    if record.x_colonia.name:
+                        domicilio += str(record.x_colonia.name.encode('utf-8')) + ", "
+                    if record.x_municipio.name:
+                        domicilio += str(record.x_municipio.name.encode('utf-8')) + ", "
+                    if record.x_estado_id.name:
+                        domicilio += str(record.x_estado_id.name.encode('utf-8'))
+                    text += domicilio + '\n'
+
+        return text
+
+    def sintesis_educativa(self):
+        text = "Manifestó haber estudiado en:" + '\n'
+        if self.x_entrevista_id.x_estudios_ids:
+            for record in self.x_entrevista_id.x_estudios_ids:
+                text += "Escolaridad: " + str(record.x_name.x_name.encode('utf-8')) + " "
+                if record.x_institucion:
+                    text += "en la institución: " + str(record.x_institucion.encode('utf-8')) + " "
+                for rec in record.x_domicilio_ids:
+                    domicilio = ",con domicilio en "
+                    if rec.x_calle:
+                        domicilio += str(rec.x_calle.encode('utf-8')) + ", "
+                    if rec.x_colonia.name:
+                        domicilio += str(rec.x_colonia.name.encode('utf-8')) + ", "
+                    if rec.x_municipio.name:
+                        domicilio += str(rec.x_municipio.name.encode('utf-8')) + ", "
+                    if rec.x_estado_id.name:
+                        domicilio += str(rec.x_estado_id.name.encode('utf-8'))
+                    text += domicilio + '\n'
+                if record.x_desercion:
+                    text += "Motivos de desercion: " + str(record.x_desercion.encode('utf-8')) + '\n'
+
+        return text
+
+    def inf_destacada(self):
+        text = ""
+        if self.x_entrevista_id.x_consume_sustancias == 'si':
+            if self.x_entrevista_id.x_sustancias_ids:
+                text += "El entrevistado manisfestó consumir las siguientes sustancias:" + '\n'
+                for record in self.x_entrevista_id.x_sustancias_ids:
+                    text += str(record.x_name.x_name.encode('utf-8')) + " " + str(
+                        record.x_cantidad.encode('utf-8')) + " " + str(
+                        dict(record._fields['x_frecuencia'].selection).get(
+                            record.x_frecuencia)) + " con última fecha de consumo en " + str(record.x_ultimo_consumo)
+
+        return text
+
+    def impedimento(self):
+        return "impedimento()"
+
+    x_conclusion_primero = fields.Text(
+        string="Conclusión",
+        default="Con base a los parámetro establecidos en la escala de riesgos y derivado de la verificación de campo y gabinete, se desprende el siguiente resultado:"+'\n'+"Los riesgos procesales son XXXX debido a:"
+    )
     x_conclusion = fields.Text(
-        string=u'Conclusión',
+        string='Conclusión',
+        default="Por lo que el nivel de riesgo (), la o las medidas cautelares que se pudieran solicitar para su imposición, estas deberán ser una herramienta que confirmen la protección a la comunidad, así como aseguren la comparecencia del entrevistado a los actos procesales que sea citado."+'\n'+'\n'+"El Plan de Supervición que se elavorará tedría complejidad para supervisar por parte de esta Dirección de Medidad Cautelares, debido a las condiciones socio-ambientales del entrevistado."
     )
 
-    
-    #==========Campos para reporte==========
+    # ==========Campos para reporte==========
     x_name_abogado = fields.Char(
         string='Abogado',
     )
@@ -286,6 +527,9 @@ class umc_evaluacion(models.Model):
     x_actividades_desarrolladas = fields.Text(
         string='Tipo de actividades desarrolladas',
     )
+    x_rel_familiares = fields.Text(
+        string="Relaciones familiares"
+    )
     x_nucleo_primario = fields.Text(
         string='Núcleo primario',
     )
@@ -297,9 +541,6 @@ class umc_evaluacion(models.Model):
     )
     x_sintesis_act_laboral = fields.Text(
         string='Síntesis de actividad laboral',
-    )
-    x_ant_laborales = fields.Text(
-        string='Antecedentes laborales',
     )
     x_sintesis_domiciliaria = fields.Text(
         string='Síntesis domiciliaria',
@@ -337,6 +578,9 @@ class umc_evaluacion(models.Model):
     x_conc_comunidad = fields.Text(
         string='Comunidad y/o sociedad',
     )
+    x_conc_sjp = fields.Text(
+        string='Conocimiento del SJP',
+    )
     x_conc_retencion = fields.Text(
         string='Retención',
     )
@@ -349,6 +593,12 @@ class umc_evaluacion(models.Model):
     x_conc_proximidad = fields.Text(
         string='Proximidad',
     )
+    x_conc_nota = fields.Text(
+        string='Nota',
+    )
+    x_conc_antecedentes = fields.Text(
+        string="Antecedentes"
+    )
     x_nombre_elav = fields.Char(
         string='Elaboró',
     )
@@ -357,15 +607,17 @@ class umc_evaluacion(models.Model):
     )
     x_seccion = fields.Char(
         string='Sección',
+        default='11s'
     )
     x_serie = fields.Char(
         string='Serie',
+        default='11S.3'
     )
     x_sub_serie = fields.Char(
         string='Subserie',
     )
 
-    #==========Default value==========
+    # ==========Default value==========
     x_parrafo = fields.Text(
         string='Presente',
         default='En atención al oficio X, asignado por el Abogado X, Agente del Ministerio Público Adscrito a la Unidad de Flagrancia de fecha, con fundamento en lo dispuesto por los articulos 153, 155, 156, 157, 158, 164, 168, 169 y 170 del Código Nacional de Procedimientos Penales: 65, 66, 67 y 68 de la Ley de Ejecucíón de Medidas Cautelares y Sanciones Penales para el Estado de Puebla y 17 fracción XIII y XIV de la Ley de Seguridad Pública del Estado; se emite la presente evaluación de riesgos del entrevistado X, dentro de la Carpeta de Investigación  X. Con base al resultado de la entrevista y recopilación de datos.',
@@ -374,4 +626,3 @@ class umc_evaluacion(models.Model):
         string="Análisis de riesgos",
         default="Al constituirse de manera física y legal en el área de xxxxx, y una vez que se realizó el conversatorio con el xxxxx, este expreso y  autorizó la recolección de datos  y su posterior comprobación; en razón de lo anterior siendo las xxxxx horas del xxxx procedió a realizar la entrevista"
     )
-

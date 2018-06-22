@@ -1,345 +1,334 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
-	<!--  session form view /////////////////////////////////////////////////////-->
-	<record model="ir.ui.view" id="umc_eval_form_view">
-		<field name="name">evaluacion_de_riesgos.form.view</field>
-		<field name="model">umc_evaluacion</field>
-		<field name="arch" type="xml">
-			<form>
-				<header>
-					<button name="asignar_borrador" type="object" string="Solicitud" states="entrevista"/>
-					<button name="generar_entrevista" type="object" string="Generar entrevista" class="oe_highlight" states="solicitud"/>
-					<button name="terminar_entrevista" type="object" string="Escala de riesgos" class="oe_highlight" states="entrevista"/>
-					<button name="terminar_analisis" type="object" string="Evaluación" class="oe_highlight" states="analisis"/>
-					<button name="terminar_evaluacion" type="object" string="Terminar Evaluación" class="oe_highlight" states="evaluacion"/>
-					<field name="state" widget="statusbar"/>
-				</header>
-				<sheet>
-					<div class="oe_title">
-						<h1>
-							<field name="x_name"/>
-						</h1>
-					</div>
-					<group>
-						<group>
-							<field name="x_evaluador_id" attrs="{'readonly': [('state','not in',('solicitud'))]}" options="{'no_create': True, 'no_open': True}"/>
-							<field name="x_tipo_entrevista" widget="radio" options="{'horizontal': true}"/>
-							<field name="folio_evalucion"/>
-							<field name="x_fecha_inicio" />
-							<field name="x_fecha_final" />
-							<label for="1234"></label>
-							<div id="1234">
-								<button name="calcular_tiempo" type="object" string="Calcular tiempo" class="oe_highlight" attrs="{ 'invisible':[('state','in','evaluacion_terminada')] }" />
-							</div>
-							<field name="x_tiempo_transcurrido" widget="float_time" />
-						</group>
-						<group>
-							<field name="x_imputado_name"/>
-							<field name="partner_id" invisible="1"/>
-							<field name="x_expediente_id"/>
-							<field name="x_casa_justicia"/>
-						</group>
-					</group>
-					<group class="row">
-						<notebook>
-							<page string="Entrevista" attrs="{'invisible': [('state','in',('solicitud'))]}">
-								<group>
-									<field name="x_entrevista_id"/>
-									<field name="x_entrevista_status"/>
-								</group>
-							</page>
-							<page string="Escala de riesgos" attrs="{'invisible': [('state','in',('solicitud','entrevista'))]}">
-								<group class="row">
-									<group>
-										<field name="x_fecha_analisis"/>
-									</group>
-									<group>
-										<field name="x_ponderacion" readonly="1"/>
-										<field name="x_escala_riesgos" readonly="1"/>
-										<field name="x_escala_valores_id" invisible="1"/>
-										<div>
-											<button name="semaforo_verde" string="B" style="{border-radius: 25px}" type="button" class="btn btn-success" attrs="{'invisible': [('x_escala_riesgos','not in','bajo')]}"/>
-											<button name="semaforo_ambar" string="M" style="{border-radius: 25px}" type="button" class="btn btn-warning" attrs="{'invisible': [('x_escala_riesgos','not in','medio')]}"/>
-											<button name="semaforo_rojo" string="A" style="{border-radius: 25px}" type="button" class="btn btn-danger" attrs="{'invisible': [('x_escala_riesgos','not in','alto')]}"/>
-										</div>
-									</group>
-								</group>
-								<group>
-									<field name="x_escalas_ids">
-										<tree string="Escala de valores" create="1" delete="1" edit="1" editable="buttom">
+    <!--  session form view /////////////////////////////////////////////////////-->
+    <record model="ir.ui.view" id="umc_eval_form_view">
+        <field name="name">evaluacion_de_riesgos.form.view</field>
+        <field name="model">umc_evaluacion</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="asignar_borrador" type="object" string="Solicitud" states="entrevista"/>
+                    <button name="generar_entrevista" type="object" string="Generar entrevista" class="oe_highlight" states="solicitud"/>
+                    <button name="terminar_entrevista" type="object" string="Escala de riesgos" class="oe_highlight" states="entrevista"/>
+                    <button name="terminar_analisis" type="object" string="Evaluación" class="oe_highlight" states="analisis"/>
+                    <button name="terminar_evaluacion" type="object" string="Terminar Evaluación" class="oe_highlight" states="evaluacion"/>
+                    <button name="impedimento" type="object" string="Impedimento"/>
+                    <field name="state" widget="statusbar"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="x_name"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="x_evaluador_id" attrs="{'readonly': [('state','not in',('solicitud'))]}" options="{'no_create': True, 'no_open': True}"/>
+                            <field name="x_tipo_entrevista" widget="radio" options="{'horizontal': true}"/>
+                            <field name="folio_evalucion"/>
+                            <field name="x_fecha_inicio" />
+                            <field name="x_fecha_final" />
+                            <label for="1234"></label>
+                            <div id="1234">
+                                <button name="calcular_tiempo" type="object" string="Calcular tiempo" class="oe_highlight" attrs="{ 'invisible':[('state','in','evaluacion_terminada')] }" />
+                            </div>
+                            <field name="x_tiempo_transcurrido" widget="float_time" />
+                        </group>
+                        <group>
+                            <field name="x_imputado_name"/>
+                            <field name="partner_id" invisible="1"/>
+                            <field name="x_expediente_id"/>
+                            <field name="x_casa_justicia"/>
+                        </group>
+                    </group>
+                    <group class="row">
+                        <notebook>
+                            <page string="Entrevista" attrs="{'invisible': [('state','in',('solicitud'))]}">
+                                <group>
+                                    <field name="x_entrevista_id"/>
+                                    <field name="x_entrevista_status"/>
+                                </group>
+                            </page>
+                            <page string="Escala de riesgos" attrs="{'invisible': [('state','in',('solicitud','entrevista'))]}">
+                                <group class="row">
+                                    <group>
+                                        <field name="x_fecha_analisis"/>
+                                    </group>
+                                    <group>
+                                        <field name="x_ponderacion" readonly="1"/>
+                                        <field name="x_escala_riesgos" readonly="1"/>
+                                        <field name="x_escala_valores_id" invisible="1"/>
+                                        <div>
+                                            <button name="semaforo_verde" string="B" style="{border-radius: 25px}" type="button" class="btn btn-success" attrs="{'invisible': [('x_escala_riesgos','not in','bajo')]}"/>
+                                            <button name="semaforo_ambar" string="M" style="{border-radius: 25px}" type="button" class="btn btn-warning" attrs="{'invisible': [('x_escala_riesgos','not in','medio')]}"/>
+                                            <button name="semaforo_rojo" string="A" style="{border-radius: 25px}" type="button" class="btn btn-danger" attrs="{'invisible': [('x_escala_riesgos','not in','alto')]}"/>
+                                        </div>
+                                    </group>
+                                </group>
+                                <group>
+                                    <field name="x_escalas_ids">
+                                        <tree string="Escala de valores" create="1" delete="1" edit="1" editable="buttom">
 											<field name="sequence" widget="handle"/>
 											<field name="seccion" options="{'no_create': True, 'no_open': True}"/>
 											<field name="valor_ids" options="{'no_create': True, 'no_open': True}" domain="[('seccion_id', '=', seccion)]"/>
-											<field name="num_valor"/>
-										</tree>
-									</field>
-								</group>
-							</page>
-							<page string="Evaluación" attrs="{'invisible': [('state','not in',('evaluacion','evaluacion_terminada'))]}">
-								<div class="row">
-									<div class="col-xs-12">
-										<h4>Datos para reporte</h4>
-										<group>
-											<group>
-												<field name="x_name_abogado"/>
-											</group>
-											<group>
-												<field name="x_puesto"/>
-											</group>
-										</group>
-									</div>
-								</div>
-								<div class="row">
-									<div class="col-xs-6">
-										<group>
-											<label for="x_parrafo"/>
-										</group>
-										<field name="x_parrafo"/>
-									</div>
-									<div class="col-xs-6">
-										<group>
-											<label for="x_parrafo_segundo"/>
-										</group>
-										<field name="x_parrafo_segundo"/>
-									</div>
-								</div>
-								<div class="row">
-									<div class="col-xs-6">
-										<h4>Historia personal</h4>
-										<field name="x_historia_personal"/>
-									</div>
-									<div class="col-xs-6">
-										<h4>Lazos con la comunidad</h4>
-										<label style="font-weight: bold;" for="x_actividades_desarrolladas"/>
-										<br/>
-										<field name="x_actividades_desarrolladas"/>
-									</div>
-								</div>
-								<div class="row">
-									<div class="col-xs-6">
-										<h4>Relaciones familiares</h4>
-										<label style="font-weight: bold;" for="x_nucleo_primario"/>
-										<br/>
-										<field name="x_nucleo_primario"/>
-										<br/>
-										<label style="font-weight: bold;" for="x_nucleo_secundario"/>
-										<br/>
-										<field name="x_nucleo_secundario"/>
-									</div>
-									<div class="col-xs-6">
-										<h4>Referencias personales</h4>
-										<label style="font-weight: bold;" for="x_ref_personales"/>
-										<br/>
-										<field name="x_ref_personales"/>
-									</div>
-								</div>
-								<div class="row">
-									<div class="col-xs-6">
-										<h4>Empleos</h4>
-										<label style="font-weight: bold;" for="x_sintesis_act_laboral"/>
-										<br/>
-										<field name="x_sintesis_act_laboral"/>
-										<label style="font-weight: bold;" for="x_ant_laborales"/>
-										<field name="x_ant_laborales"/>
-									</div>
-									<div class="col-xs-6">
-										<h4>Lugar de recidencia</h4>
-										<label style="font-weight: bold;" for="x_sintesis_domiciliaria"/>
-										<br/>
-										<field name="x_sintesis_domiciliaria"/>
-									</div>
-								</div>
-								<div class="row">
-									<div class="col-xs-6">
-										<h4>Estudios</h4>
-										<label style="font-weight: bold;" for="x_sintesis_educativa"/>
-										<br/>
-										<field name="x_sintesis_educativa"/>
-									</div>
-									<div class="col-xs-6">
-										<h4>Información destacada</h4>
-										<field name="x_inf_destacada"/>
-									</div>
-								</div>
-								<div class="row">
-									<div class="col-xs-6">
-										<h4>Cumplimiento de medidas cautelares ateriores</h4>
-										<field name="x_mc_anteriores"/>
-									</div>
-									<div class="col-xs-6">
-										<h4>Verificación de datos</h4>
-										<field name="x_verificacion_datos"/>
-									</div>
-								</div>
-								<div class="row">
-									<div class="col-xs-12">
-										<h4>Comportamiento en la entrevista</h4>
-										<field name="x_comportamiento"/>
-									</div>
-								</div>
-								<br/>
-								<h3>Conclusión</h3>
-								<hr/>
-								<div class="row">
-									<div class="col-xs-6">
-										<h4>Peligro de sustracción del imputado</h4>
-										<group>
-											<field name="x_conc_domiciliaria"/>
-											<field name="x_conc_laboral_esc"/>
-											<field name="x_conc_familiar"/>
-										</group>
-									</div>
-									<div class="col-xs-6">
-										<h4>Riesgo para la victima u ofendido</h4>
-										<group>
-											<field name="x_conc_victima"/>
-											<field name="x_conc_testigos"/>
-											<field name="x_conc_comunidad"/>
-										</group>
-									</div>
-								</div>
-								<div class="row">
-									<div class="col-xs-12">
-										<h4>Peligro de obstaculización del desarrollo de la investigación</h4>
-									</div>
-								</div>
-								<div class="row">
-									<div class="col-xs-6">
-										<group>
-											<field name="x_conc_retencion"/>
-											<field name="x_conc_ant_reincidencias"/>
-										</group>
-									</div>
-									<div class="col-xs-6">
-										<group>
-											<field name="x_conc_ingresos"/>
-											<field name="x_conc_proximidad"/>
-										</group>
-									</div>
-								</div>
-								<div class="row">
-									<div class="col-xs-12">
-										<field name="x_conclusion" placeholder="El entrevistado no manifestó haber estado..."/>
-									</div>
-								</div>
-								<group>
-									<field name="x_conclusion"/>
-								</group>
-								<br/>
-								<div class="row">
-									<div class="col-xs-6">
-										<table class="table table-bordered text-center">
-											<tbody>
-												<tr>
-													<th>
-														<center>Elaboró</center>
-													</th>
-												</tr>
-												<tr>
-													<td>
-														<field name="x_nombre_elav"/>
-													</td>
-												</tr>
-												<tr>
-													<td>
-														<field name="x_puesto_elav"/>
-													</td>
-												</tr>
-											</tbody>
-										</table>
-									</div>
-									<div class="col-xs-6">
-										<table class="table table-bordered text-center">
-											<tbody>
-												<tr>
-													<th colspan="4">
-														<center>Clasificación archivista</center>
-													</th>
-												</tr>
-												<tr>
-													<td>Sección</td>
-													<td>Serie</td>
-													<td>Subserie</td>
-												</tr>
-												<tr>
-													<td>
-														<field name="x_seccion"/>
-													</td>
-													<td>
-														<field name="x_serie"/>
-													</td>
-													<td>
-														<field name="x_sub_serie"/>
-													</td>
-												</tr>
-											</tbody>
-										</table>
-									</div>
-								</div>
-							</page>
-						</notebook>
-					</group>
-				</sheet>
-				<!--div class="oe_chatter"><field name="message_follower_ids" widget="mail_followers"/><field name="message_ids" widget="mail_thread"/></div-->
-			</form>
-		</field>
-	</record>
-	<!--  tree view /////////////////////////////////////////////////////-->
-	<record model="ir.ui.view" id="umc_evaluacion_tree_view">
-		<field name="name">evaluacion.tree.view</field>
-		<field name="model">umc_evaluacion</field>
-		<field name="arch" type="xml">
-			<tree>
-				<field name="x_name"/>
-				<field name="x_imputado_name"/>
-				<field name="partner_id" invisible="1"/>
-				<field name="folio_evalucion"/>
-				<field name="x_evaluador_id"/>
-				<field name="x_tiempo_transcurrido" widget="float_time" />
-				<field name="x_expediente_id"/>
-				<field name="state"/>
-			</tree>
-		</field>
-	</record>
-	<!--Agregar filtros de busqueda -->
-	<record model="ir.ui.view" id="evaluaciones_umc_search_view">
-		<field name="name">evaluaciones_umc.search.view</field>
-		<field name="model">umc_evaluacion</field>
-		<field name="arch" type="xml">
-			<search>
-				<filter string="Estatus evaluación" name="state_eval" domain="[('state','=','evaluacion')]" help="Filtra las solicitudes que estan en estatus de evaluación"/>
-				<field name="x_expediente_id"/>
-				<field name="x_imputado_name"/>
-				<field name="x_tipo_entrevista"/>
-				<field name="state"/>
-				<group string="Group By">
-					<filter name="group_by_state" string="Estatus" context="{'group_by':'state'} "/>
-				</group>
-			</search>
-		</field>
-	</record>
-	<!--  graph view /////////////////////////////////////////////////////-->
-	<record model="ir.ui.view" id="umc_solicitudes_graph_view">
-		<field name="name">solicitudess.graph.view</field>
-		<field name="model">umc_evaluacion</field>
-		<field name="arch" type="xml">
-			<graph string="Solicitudes">
-				<field name="state" type="row" />
-				<field name="x_tiempo_transcurrido" type="measure" />
-				<!--field name="x_imputado" type="measure" /-->
-			</graph>
-		</field>
-	</record>
-	<!-- window action ///////////////////////////////////////////////////////////////////////////////-->
-	<record model="ir.actions.act_window" id="umc_evaluacion_list_action">
-		<field name="name">Solicitud</field>
-		<field name="res_model">umc_evaluacion</field>
-		<field name="view_type">form</field>
-		<field name="view_mode">tree,kanban,form,graph</field>
-		<!--field name="context" eval="{'search_default_customer': 1}"/-->
-		<field name="help" type="html">
-			<p class="oe_view_nocontent_create">Agregar primer registro</p>
-		</field>
-	</record>
-	<menuitem id="evaluaciones_menu" name="Solicitudes" parent="main_umc_menu" action="umc_evaluacion_list_action"/>
+                                            <field name="num_valor"/>
+                                        </tree>
+                                    </field>
+                                </group>
+                            </page>
+                            <page string="Evaluación" attrs="{'invisible': [('state','not in',('evaluacion','evaluacion_terminada'))]}">
+                                <div class="row">
+                                    <div class="col-xs-12">
+                                        <h4>Datos para reporte</h4>
+                                        <group>
+                                            <group>
+                                                <field name="x_name_abogado"/>
+                                            </group>
+                                            <group>
+                                                <field name="x_puesto"/>
+                                            </group>
+                                        </group>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-6">
+                                        <group>
+                                            <label for="x_parrafo"/>
+                                        </group>
+                                        <field name="x_parrafo"/>
+                                    </div>
+                                    <div class="col-xs-6">
+                                        <group>
+                                            <label for="x_parrafo_segundo"/>
+                                        </group>
+                                        <field name="x_parrafo_segundo"/>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-6">
+                                        <h4>Historia personal</h4>
+                                        <field name="x_historia_personal"/>
+                                    </div>
+                                    <div class="col-xs-6">
+                                        <h4>Lazos con la comunidad</h4>
+                                        <label style="font-weight: bold;" for="x_actividades_desarrolladas"/><br/>
+                                        <field name="x_actividades_desarrolladas"/>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-6">
+                                        <h4>Relaciones familiares</h4>
+                                        <field name="x_rel_familiares"/>
+                                    </div>
+                                    <div class="col-xs-6">
+                                        <h4>Referencias personales</h4>
+                                        <field name="x_ref_personales"/>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-6">
+                                        <h4>Empleos</h4>
+                                        <label style="font-weight: bold;" for="x_sintesis_act_laboral"/><br/>
+                                        <field name="x_sintesis_act_laboral"/>
+                                    </div>
+                                    <div class="col-xs-6">
+                                        <h4>Lugar de residencia</h4>
+                                        <label style="font-weight: bold;" for="x_sintesis_domiciliaria"/><br/>
+                                        <field name="x_sintesis_domiciliaria"/>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-6">
+                                        <h4>Estudios</h4>
+                                        <label style="font-weight: bold;" for="x_sintesis_educativa"/><br/>
+                                        <field name="x_sintesis_educativa"/>
+                                    </div>
+                                    <div class="col-xs-6">
+                                        <h4>Información destacada</h4>
+                                        <field name="x_inf_destacada"/>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-6">
+                                        <h4>Cumplimiento de medidas cautelares ateriores</h4>
+                                        <field name="x_mc_anteriores"/>
+                                    </div>
+                                    <div class="col-xs-6">
+                                        <h4>Verificación de datos</h4>
+                                        <field name="x_verificacion_datos"/>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-12">
+                                        <h4>Comportamiento en la entrevista</h4>
+                                        <field name="x_comportamiento"/>
+                                    </div>
+                                </div>
+                                <br/>
+                                <h3>Conclusión</h3>
+                                <field name="x_conclusion_primero"/>
+                                <div class="row">
+                                    <div class="col-xs-6">
+                                        <h4>Peligro de sustracción del imputado</h4>
+                                        <group>
+                                            <field name="x_conc_domiciliaria"/>
+                                            <field name="x_conc_laboral_esc"/>
+                                            <field name="x_conc_familiar"/>
+                                        </group>
+                                    </div>
+                                    <div class="col-xs-6">
+                                        <h4>Riesgo para la victima u ofendido</h4>
+                                        <group>
+                                            <field name="x_conc_victima"/>
+                                            <field name="x_conc_testigos"/>
+                                            <field name="x_conc_comunidad"/>
+                                        </group>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-12">
+                                        <h4>Peligro de obstaculización del desarrollo de la investigación</h4>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-6">
+                                        <group>
+                                            <field name="x_conc_sjp"/>
+                                            <field name="x_conc_retencion"/>
+                                            <field name="x_conc_ant_reincidencias"/>
+                                        </group>
+                                    </div>
+                                    <div class="col-xs-6">
+                                        <group>
+                                            <field name="x_conc_ingresos"/>
+                                            <field name="x_conc_proximidad"/>
+                                            <field name="x_conc_nota"/>
+                                        </group>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-12">
+                                        <field name="x_conclusion" placeholder="Por el nivel de riesgos..."/>
+                                    </div>
+                                </div>
+                                    <group>
+                                        <field name="x_conc_antecedentes" placeholder="En entrevistado si/no manifestó haber estado...."/>
+                                    </group>
+                                <br/>
+                                <div class="row">
+                                    <div class="col-xs-6">
+                                        <table class="table table-bordered text-center">
+                                            <tbody>
+                                                <tr>
+                                                    <th>
+                                                        <center>Elaboró</center>
+                                                    </th>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <field name="x_nombre_elav"/>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <field name="x_puesto_elav"/>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div class="col-xs-6">
+                                        <table class="table table-bordered text-center">
+                                            <tbody>
+                                                <tr>
+                                                    <th colspan="4">
+                                                        <center>Clasificación archivista</center>
+                                                    </th>
+                                                </tr>
+                                                <tr>
+                                                    <td>Sección</td>
+                                                    <td>Serie</td>
+                                                    <td>Subserie</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <field name="x_seccion"/>
+                                                    </td>
+                                                    <td>
+                                                        <field name="x_serie"/>
+                                                    </td>
+                                                    <td>
+                                                        <field name="x_sub_serie"/>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </page>
+                        </notebook>
+                    </group>
+                </sheet>
+                <!--div class="oe_chatter"><field name="message_follower_ids" widget="mail_followers"/><field name="message_ids" widget="mail_thread"/></div-->
+            </form>
+        </field>
+    </record>
+    <!--  tree view /////////////////////////////////////////////////////-->
+    <record model="ir.ui.view" id="umc_evaluacion_tree_view">
+        <field name="name">evaluacion.tree.view</field>
+        <field name="model">umc_evaluacion</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="x_name"/>
+                <field name="x_imputado_name"/>
+                <field name="partner_id" invisible="1"/>
+                <field name="folio_evalucion"/>
+                <field name="x_evaluador_id"/>
+                <field name="x_tiempo_transcurrido" widget="float_time" />
+                <field name="x_expediente_id"/>
+                <field name="state"/>
+            </tree>
+        </field>
+    </record>
+    <!--Agregar filtros de busqueda -->
+    <record model="ir.ui.view" id="evaluaciones_umc_search_view">
+        <field name="name">evaluaciones_umc.search.view</field>
+        <field name="model">umc_evaluacion</field>
+        <field name="arch" type="xml">
+            <search>
+                <filter string="Estatus evaluación" name="state_eval" domain="[('state','=','evaluacion')]" help="Filtra las solicitudes que estan en estatus de evaluación"/>
+                <field name="x_expediente_id"/>
+                <field name="x_imputado_name"/>
+                <field name="x_tipo_entrevista"/>
+                <field name="state"/>
+                <group string="Group By">
+                    <filter name="group_by_state" string="Estatus" context="{'group_by':'state'} "/>
+                </group>
+            </search>
+        </field>
+    </record>
+    <!--  graph view /////////////////////////////////////////////////////-->
+    <record model="ir.ui.view" id="umc_solicitudes_graph_view">
+        <field name="name">solicitudess.graph.view</field>
+        <field name="model">umc_evaluacion</field>
+        <field name="arch" type="xml">
+            <graph string="Solicitudes">
+                <field name="state" type="row" />
+                <field name="x_tiempo_transcurrido" type="measure" />
+                <!--field name="x_imputado" type="measure" /-->
+            </graph>
+        </field>
+    </record>
+    <!-- window action ///////////////////////////////////////////////////////////////////////////////-->
+    <record model="ir.actions.act_window" id="umc_evaluacion_list_action">
+        <field name="name">Solicitud</field>
+        <field name="res_model">umc_evaluacion</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,kanban,form,graph</field>
+        <!--field name="context" eval="{'search_default_customer': 1}"/-->
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">Agregar primer registro</p>
+        </field>
+    </record>
+    <menuitem id="evaluaciones_menu" name="Solicitudes" parent="main_umc_menu" action="umc_evaluacion_list_action"/>
 </odoo>
