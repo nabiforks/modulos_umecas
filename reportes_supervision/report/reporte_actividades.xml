@@ -1,16 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
-	<data>-
-		<report id="planeacion_actividades_report" 
-			model="sup_planeacion_actividades"
-			string="Planeación de actividades"
-			name="reportes_supervision.rpt_planeacion"
-			file="reportes_supervision.planeacion_actividades_report"
-			report_type="qweb-pdf"
-		/>
+	<data>-				
+		<report id="planeacion_actividades_report" model="sup_planeacion_actividades" string="Planeación de actividades" name="reportes_supervision.rpt_planeacion" file="reportes_supervision.planeacion_actividades_report" report_type="qweb-pdf" />
 		<record id="reportes_supervision.planeacion_actividades_report" model="ir.actions.report.xml">
-            <field name="paperformat_id" ref="reportes_supervision.rpt_supervision" />
-        </record>
+			<field name="paperformat_id" ref="reportes_supervision.rpt_supervision" />
+		</record>
 		<template id="rpt_planeacion">
 			<t t-call="report.html_container">
 				<t t-foreach="docs" t-as="o">
@@ -28,8 +22,8 @@
 									<span t-field="o.x_dirigido_a"/>
 									<br/>
 									<span t-field="o.x_cargo"/>
+									<br/>P R E S E N T E. 									
 									<br/>
-									P R E S E N T E. <br/>
 									<br/>
 									<p class="text-justify">
 										<span t-field="o.x_parrafo"/>
@@ -38,21 +32,17 @@
 									<table>
 										<tbody>
 											<tr>
-												<td class="borde" colspan="2">
-													ACTIVIDAD
-												</td>
+												<td class="borde" colspan="2">													ACTIVIDAD												</td>
 											</tr>
 											<t t-foreach="o.x_supervisados_ids" t-as="i">
 												<t t-if="i">
 													<tr>
 														<td class="borde" style="width:10%;">
-															<t t-if="i.x_foja">
-																Foja 
+															<t t-if="i.x_foja">																Foja 																																
 																<span t-field="i.x_foja"/>
 															</t>
 															<br/>
-															<t t-if="i.x_libro">
-																Libro 
+															<t t-if="i.x_libro">																Libro 																																
 																<span t-field="i.x_libro"/>
 															</t>
 														</td>
@@ -64,39 +54,44 @@
 															<span t-field="i.x_imputado_id"/>
 															<br/>
 															<strong>Domicilio:</strong>
-															<span t-field="i.x_imputado_id.street"/>, 
-															<span t-field="i.x_imputado_id.street2"/>, 
-															<span t-field="i.x_imputado_id.city"/>, 
-															<span t-field="i.x_imputado_id.state_id"/>, C.P. 
+															<span t-field="i.x_imputado_id.street"/>, 																														
+															<span t-field="i.x_imputado_id.street2"/>, 																														
+															<span t-field="i.x_imputado_id.city"/>, 																														
+															<span t-field="i.x_imputado_id.state_id"/>, C.P. 																														
 															<span t-field="i.x_imputado_id.zip"/>
 															<br/>
+															<t t-set="resolucion" t-value="i.x_mc_ids" />
 															<t t-if="i.x_resolucion=='mc'">
 																<strong>Medidas cautelares:</strong>
 															</t>
 															<t t-if="i.x_resolucion=='scp'">
 																<strong>Suspención condicional del proceso:</strong>
-															</t>
+																<t t-set="resolucion" t-value="i.x_scp_ids" /></t>
 															<t t-if="i.x_resolucion=='otro'">
 																<strong>Otras condiciones:</strong>
-															</t>
+																<t t-set="resolucion" t-value="i.x_otro_ids" /></t>
 															<table>
 																<tbody>
 																	<t t-set="n" t-value="1"/>
-																	<t t-foreach="i.x_mc_ids" t-as="j">
+																	<t t-foreach="resolucion" t-as="j">
 																		<t t-if="j">
 																			<tr>
 																				<td style="padding-left:5px;">
-																					<span t-esc="n"/>.- 
+																					<span t-esc="n"/>.- 																																								
 																				</td>
 																				<td class="text-justify">
-																					<span t-field="j.descripcion"/>
+																					<t t-if="i.x_resolucion=='otro'">
+																						<span t-field="j.name"/>
+																					</t>
+																					<t t-if="i.x_resolucion!='otro'">
+																						<span t-field="j.descripcion"/>
+																					</t>
 																				</td>
 																				<td style="width:40px;padding-left:10px;">
 																					<div class="borde" style="width:15px;height:15px;"></div>
 																				</td>
 																			</tr>
-																			<t t-set="n" t-value="n+1"/>
-																		</t>
+																			<t t-set="n" t-value="n+1"/></t>
 																	</t>
 																</tbody>
 															</table>
@@ -109,37 +104,38 @@
 											</t>
 										</tbody>
 									</table>
-
 									<br/>
 									<p class="text-justify">
 										<span t-field="o.x_parrafo_final"/>
 									</p>
-									
 								</div>
 							</div>
 							<br/>
 							<div class="row">
 								<div class="col-xs-3"></div>
 								<div class="col-xs-6 text-center">
-									<strong>
-										A t e n t a m e n t e <br/>
-										<span t-esc="user.company_id.x_abreviatura"/>; 
-										<t t-if="o.create_date">
-											a <span t-field="o.create_date" t-options="{'format': 'd'}"/> de 
-											<span t-field="o.create_date" t-options="{'format': 'MMMM'}"/> de 
-											<span t-field="o.create_date" t-options="{'format': 'y'}"/> 
+									<strong>										A t e n t a m e n t e 										
+										<br/>
+										<span t-esc="user.company_id.name"/>; 																				
+										<t t-if="o.create_date">											a 											
+											<span t-field="o.create_date" t-options="{'format': 'd'}"/> de 																						
+											<span t-field="o.create_date" t-options="{'format': 'MMMM'}"/> de 																						
+											<span t-field="o.create_date" t-options="{'format': 'y'}"/>
 										</t>
 										<br/>
 										<br/>
 										<br/>
 										<br/>
-										<span t-field="o.x_dirigido_a"/><br/>
-										Responsable del Área de Supervisión de Medidas Cautelares de la <span t-esc="user.company_id.x_region.x_name"/>
+										<span t-field="o.x_atentamente"/>
+										<br/>
+										<span t-field="o.x_atentamente_cargo"/> De la 										
+										<span t-esc="user.company_id.x_region.x_name"/>
 									</strong>
 								</div>
 								<div class="col-xs-3"></div>
 							</div>
-						</div> <!--End div page-->
+						</div>
+						<!--End div page-->
 					</t>
 				</t>
 			</t>

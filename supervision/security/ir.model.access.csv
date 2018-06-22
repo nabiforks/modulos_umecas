@@ -1,7 +1,7 @@
 id,name,model_id/id,group_id/id,perm_read,perm_write,perm_create,perm_unlink
 sup_documentos_supervisor,Sup documentos_supervisor,supervision.model_sup_documentos,supervision.sup_supervisor,1,1,1,1
 sup_documentos_all,Sup documentos_all,supervision.model_sup_documentos,,1,0,0,0
-sup_mc_all,Sup mc_supervisor,supervision.model_sup_mc,supervision.sup_supervisor,1,1,1,1
+sup_mc_supervisor,Sup mc_supervisor,supervision.model_sup_mc,supervision.sup_supervisor,1,1,1,1
 sup_mc_all,Sup mc_all,supervision.model_sup_mc,,1,0,0,0
 sup_scp_supervisor,Sup scp_supervisor,supervision.model_sup_scp,supervision.sup_supervisor,1,1,1,1
 sup_scp_all,Sup scp_all,supervision.model_sup_scp,,1,0,0,0
@@ -19,3 +19,42 @@ sup_entrevista_encuadre_supervisor,Sup entrevista_encuadre_supervisor,supervisio
 sup_entrevista_encuadre_all,Sup entrevista_encuadre_all,supervision.model_sup_entrevista_encuadre,,1,0,0,0
 sup_planeacion_actividades_supervisor,Sup planeacion_actividades_supervisor,supervision.model_sup_planeacion_actividades,supervision.sup_supervisor,1,1,1,1
 sup_planeacion_actividades_all,Sup planeacion_actividades_all,supervision.model_sup_planeacion_actividades,,1,0,0,0
+,,,,,,,
+,,,,,,,
+umecas_evaluacion_supervisor,UMC Evaluaciones_supervisor,UMECAS.model_umc_evaluacion,supervision.sup_supervisor,1,1,1,0
+umecas_entrevistas_supervisor,UMC entrevistas_supervisor,UMECAS.model_umc_entrevistas,supervision.sup_supervisor,1,1,1,0
+umecas_domicilio_supervisor,UMC Domicilio_supervisor,UMECAS.model_umc_domicilio,supervision.sup_supervisor,1,1,1,1
+umecas_actividades_supervisor,UMC actividades_supervisor,UMECAS.model_umc_actividades,supervision.sup_supervisor,1,1,1,0
+umecas_empleos_supervisor,UMC empleos_supervisor,UMECAS.model_umc_empleos,supervision.sup_supervisor,1,1,1,1
+umecas_ocupacion_supervisor,UMC ocupacion_supervisor,UMECAS.model_umc_ocupacion,supervision.sup_supervisor,1,1,1,1
+umecas_nacionalidad_supervisor,UMC nacionalidad_supervisor,UMECAS.model_umc_nacionalidad,supervision.sup_supervisor,1,1,1,0
+umecas_identificacion_supervisor,UMC identificacion_supervisor,UMECAS.model_umc_identificacion,supervision.sup_supervisor,1,1,1,0
+umecas_actividad_supervisor,UMC actividad_supervisor,UMECAS.model_umc_actividad,supervision.sup_supervisor,1,1,1,0
+umecas_escolaridad_supervisor,UMC escolaridad_supervisor,UMECAS.model_umc_escolaridad,supervision.sup_supervisor,1,1,1,0
+umecas_estudios_supervisor,UMC estudios_supervisor,UMECAS.model_umc_estudios,supervision.sup_supervisor,1,1,1,0
+umecas_enfermedades_supervisor,UMC enfermedades_supervisor,UMECAS.model_umc_enfermedades,supervision.sup_supervisor,1,1,1,0
+umecas_enfermedades_padece_supervisor,UMC enfermedades_padece_supervisor,UMECAS.model_umc_enfermedades_padece,supervision.sup_supervisor,1,1,1,1
+umecas_discapacidad_supervisor,UMC discapacidad_supervisor,UMECAS.model_umc_discapacidad,supervision.sup_supervisor,1,1,1,0
+umecas_sustancia_supervisor,UMC sustancia_supervisor,UMECAS.model_umc_sustancia,supervision.sup_supervisor,1,1,1,0
+umecas_sustancias_consume_supervisor,UMC sustancias_consume_supervisor,UMECAS.model_umc_sustancias_consume,supervision.sup_supervisor,1,1,1,1
+umecas_amistades_supervisor,UMC amistades_supervisor,UMECAS.model_umc_amistades,supervision.sup_supervisor,1,1,1,1
+umecas_expedientes_supervisor,UMC expedientes_supervisor,UMECAS.model_umc_expedientes,supervision.sup_supervisor,1,1,1,0
+umecas_parentesco_supervisor,UMC parentesco_supervisor,UMECAS.model_umc_parentesco,supervision.sup_supervisor,1,1,1,0
+umecas_ucm_escalavalores_secciones_supervisor,UMC supervisor_escalavalores_secciones,UMECAS.model_ucm_escalavalores_secciones,supervision.sup_supervisor,1,1,1,1
+umecas_ucm_escalavalores_valor_supervisor,UMC supervisor_escalavalores_valor,UMECAS.model_ucm_escalavalores_valor,supervision.sup_supervisor,1,1,1,1
+umecas_ucm_escalavalores_evaluacion_supervisor,UMC supervisor_escalavalores_evaluacion,UMECAS.model_ucm_escalavalores_evaluacion,supervision.sup_supervisor,1,1,1,1
+umecas_escalas_supervisor,UMC escalas_supervisor,UMECAS.model_umc_escalas,supervision.sup_supervisor,1,1,1,0
+umecas_regiones_supervisor,UMC regiones_supervisor,UMECAS.model_umc_regiones,supervision.sup_supervisor,1,1,1,0
+umecas_lengua_supervisor,UMC lengua_supervisor,UMECAS.model_umc_lengua,supervision.sup_supervisor,1,1,1,0
+umecas_grupoetnico_supervisor,UMC grupoetnico_supervisor,UMECAS.model_umc_grupoetnico,supervision.sup_supervisor,1,1,1,0
+umecas_idioma_supervisor,UMC idioma_supervisor,UMECAS.model_umc_idioma,supervision.sup_supervisor,1,1,1,0
+umecas_ubicacion_intramuros_supervisor,UMC ubicacion_intramuros_supervisor,UMECAS.model_umc_ubicacion_intramuros,supervision.sup_supervisor,1,1,1,0
+umecas_casas_justicia_anio_fiscal_supervisor,UMC casas_justicia_anio_fiscal_supervisor,UMECAS.model_umc_casas_justicia_anio_fiscal,supervision.sup_supervisor,1,1,1,0
+umecas_delitos_proceso_supervisor,UMC delitos_proceso_supervisor,UMECAS.model_umc_delitos_proceso,supervision.sup_supervisor,1,1,1,0
+umecas_autoridad_supervisor,UMC autoridad_supervisor,UMECAS.model_umc_autoridad,supervision.sup_supervisor,1,1,1,0
+umecas_lugares_supervisor,UMC lugares_supervisor,UMECAS.model_umc_lugares,supervision.sup_supervisor,1,1,1,0
+umecas_detenidos_con_supervisor,UMC detenidos_con_supervisor,UMECAS.model_umc_detenidos_con,supervision.sup_supervisor,1,1,1,0
+umecas_tipo_vivienda_supervisor,UMC tipo vivienda_supervisor,UMECAS.model_umc_tipo_vivienda,supervision.sup_supervisor,1,1,1,0
+umecas_colonia_supervisor,UMC colonia_supervisor,UMECAS.model_umc_colonia,supervision.sup_supervisor,1,1,1,0
+umecas_municipio_supervisor,UMC municipio_supervisor,UMECAS.model_umc_municipio,supervision.sup_supervisor,1,1,1,0
+umecas_delitos_supervisor,UMC tipo delitos_supervisor,UMECAS.model_umc_delitos,supervision.sup_supervisor,1,1,1,0
