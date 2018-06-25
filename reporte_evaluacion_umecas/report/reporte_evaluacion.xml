@@ -288,10 +288,45 @@
 								</div>
 							</div>
 							<br/>
-
 							<div class="row">
 								<div class="col-xs-12 text-justify">
 									<span t-field="entrevista.x_conc_antecedentes"/>
+								</div>
+							</div>
+							<div class="row">								
+								<t t-if="entrevista.x_expedientes_ids">
+									<table class="table-bordered">
+										<thead>
+											<th>Expediente</th>
+											<th>Delito</th>
+											<th>Fecha inicio</th>
+											<th>Casa/Centro de Justicia</th>
+										</thead>										
+										<t t-foreach="entrevista.x_expedientes_ids" t-as="antecedente">											
+											<tr>
+												<td>
+													<span t-field="antecedente.x_name" />
+												</td>
+												<td>													
+													<t t-foreach="antecedente.x_delito" t-as="delito">
+														<span t-field="delito.x_name" />,
+													</t>
+												</td>
+												<td>
+													<span t-field="antecedente.x_fecha_inicio" />
+												</td>
+												<td>													
+													<span t-field="antecedente.x_casa_justicia" />													
+												</td>
+											</tr>
+										</t>
+										
+									</table>
+								</t>								
+							</div>
+							<div class="row">
+								<div class="col-xs-12 text-justify">
+									<span t-field="entrevista.x_expedientes_observaciones"/>
 								</div>
 							</div>
 							<br/>

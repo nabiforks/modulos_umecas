@@ -511,9 +511,15 @@ class umc_evaluacion(models.Model):
     )
     x_conclusion = fields.Text(
         string='Conclusión',
-        default="Por lo que el nivel de riesgo (), la o las medidas cautelares que se pudieran solicitar para su imposición, estas deberán ser una herramienta que confirmen la protección a la comunidad, así como aseguren la comparecencia del entrevistado a los actos procesales que sea citado."+'\n'+'\n'+"El Plan de Supervición que se elavorará tedría complejidad para supervisar por parte de esta Dirección de Medidad Cautelares, debido a las condiciones socio-ambientales del entrevistado."
-    )
-
+        default="Por lo que el nivel de riesgo (), la o las medidas cautelares que se pudieran solicitar para su imposición, estas deberán ser una herramienta que confirmen la protección a la comunidad, así como aseguren la comparecencia del entrevistado a los actos procesales que sea citado."+'\n'+'\n'+"El Plan de Supervición que se elaboraría tedría complejidad para supervisar por parte de esta Dirección de Medidad Cautelares, debido a las condiciones socio-ambientales del entrevistado."
+    )    
+    x_expedientes_ids = fields.Many2many(
+        string=u'Registro de Antecedentes',
+        comodel_name='umc_expedientes',
+    )    
+    x_expedientes_observaciones = fields.Text(
+        string=u'Observaciones de Antecedentes',
+    )    
     # ==========Campos para reporte==========
     x_name_abogado = fields.Char(
         string='Abogado',

@@ -212,7 +212,20 @@
                                     </div>
                                 </div>
                                     <group>
-                                        <field name="x_conc_antecedentes" placeholder="En entrevistado si/no manifestó haber estado...."/>
+                                        <field name="x_conc_antecedentes" placeholder="En entrevistado si/no manifestó haber estado...."/>                                        
+                                        <field name="x_expedientes_ids" mode="tree"  context="{'search_default_partner_id': partner_id}" >                                            
+                                            <tree string="Caption" create="1" delete="1" edit="1" editable="bottom">
+                                                <field name="x_name" />
+                                                <field name="partner_id" invisible="1"/>
+                                                <field name="x_imputado_name" />
+                                                <field name="x_cdi_nic" />
+                                                <field name="x_causa_penal" />
+                                                <field name="x_numero_oficio" />
+                                                <field name="x_fecha_inicio" />
+                                                <field name="x_delito" />
+                                            </tree>                                            
+                                        </field>                                        
+                                        <field name="x_expedientes_observaciones" />                                                                                
                                     </group>
                                 <br/>
                                 <div class="row">
