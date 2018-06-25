@@ -40,7 +40,7 @@ class sup_entrevista_encuadre(models.Model):
         string=u'Supervisor',
         comodel_name='res.users',
         ondelete='set null',
-        #readonly=True,        
+        #readonly=True,
     )
     actividades_entrevista = fields.Boolean(
         string=u'Entrevista de evaluación',        
