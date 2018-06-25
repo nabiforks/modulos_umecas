@@ -12,7 +12,6 @@
                     <button name="terminar_entrevista" type="object" string="Escala de riesgos" class="oe_highlight" states="entrevista"/>
                     <button name="terminar_analisis" type="object" string="Evaluación" class="oe_highlight" states="analisis"/>
                     <button name="terminar_evaluacion" type="object" string="Terminar Evaluación" class="oe_highlight" states="evaluacion"/>
-                    <button name="impedimento" type="object" string="Impedimento"/>
                     <field name="state" widget="statusbar"/>
                 </header>
                 <sheet>
@@ -76,7 +75,7 @@
                                     </field>
                                 </group>
                             </page>
-                            <page string="Evaluación" attrs="{'invisible': [('state','not in',('evaluacion','evaluacion_terminada'))]}">
+                            <page string="Evaluación" attrs="{'invisible': [('state','not in',('evaluacion','evaluacion_terminada','impedimento'))]}">
                                 <div class="row">
                                     <div class="col-xs-12">
                                         <h4>Datos para reporte</h4>
@@ -278,6 +277,8 @@
                                         </table>
                                     </div>
                                 </div>
+                            </page>
+                            <page string="Impedimento" name="page_impedimento" attrs="{'invisible': [('state','not in',('impedimento'))]}">
                             </page>
                         </notebook>
                     </group>

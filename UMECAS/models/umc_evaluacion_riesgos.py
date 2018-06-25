@@ -61,6 +61,7 @@ class umc_evaluacion(models.Model):
         ('analisis', 'Escala de Riesgos'),
         ('evaluacion', 'Evaluación'),
         ('evaluacion_terminada', 'Evaluación Terminada'),
+        ('impedimento', 'Impedimento'),
     ], default='solicitud', readonly=True, string='Estatus')
     x_casa_justicia = fields.Many2one(
         string=u'Casa de Justicia',
@@ -501,9 +502,6 @@ class umc_evaluacion(models.Model):
                             record.x_frecuencia)) + " con última fecha de consumo en " + str(record.x_ultimo_consumo)
 
         return text
-
-    def impedimento(self):
-        return "impedimento()"
 
     x_conclusion_primero = fields.Text(
         string="Conclusión",

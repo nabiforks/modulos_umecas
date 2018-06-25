@@ -20,6 +20,7 @@
         'data/sequence_names.xml',
         'views/sup_mc_scp.xml',
         'views/sup_expedientes_inherit.xml',
+        'views/sup_evaluacion_inherit.xml',
         'data/datos_demo.xml',
         'views/sup_catalogos.xml',
         'views/sup_entrevista_encuadre.xml',

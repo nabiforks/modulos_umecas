@@ -90,8 +90,7 @@ class sup_documentos(models.Model):
                 'sup_documentos') or'Nuevo'
         result = super(sup_documentos, self).create(vals)
         return result
-     
-   
+
     def carta_compromiso(self):
     	nombre_imputado = self.x_imputado_id.display_name
     	nombre_sup = self.x_supervisor_id.name
@@ -332,5 +331,48 @@ class sup_documentos(models.Model):
             </p>
             """+lista.encode('utf-8')+"""
 
+        """
+        self.x_contenido = default_code
+
+    def impedimento(self):
+        default_code = """
+            <div class="row">
+                <div class="col-xs-12 text-right">
+                    Oficio número: <br>
+                    Asunto: Se informa impedimento <br>
+                    Causa Penal: <br>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12">
+                    Abogado: <br>
+                    ______________________________ <br>
+                    ______________________________ <br>
+                    P r e s e n t e: <br>
+                </div>
+            </div>
+            <p>
+                Con fundamento en lo dispuesto en los articulos 73, 153, 155, 156, 157, 158, 164, 168, 169 y 170 del Código Nacional de Procedimientos penales 65, 66, 67 y 68 de la Ley
+                de Ejecución de Medidas Cautelares y Sanciones Penales, 17 fracciones XIII y XIV de la Ley de Seguridad Pública, ambas para el Estado de Puebla; en atención a su oficio
+                número ____________________ de fecha 04 de junio de 2018, asignado por el ___________________ mediante el cual solicita se inicie el Análisis de Riesgos Procesales
+                al C. ______________________________, dentro de la Carpeta de investigación ______________________________ en atención a que se encuentra a su disposición por el delito de __________.
+            </p>
+            <p>
+                En razón a lo anterior me permito comunicarle que con el fin de dar cumplimiento a la petición realizada, el _____________________________ evaluador de riesgos procesales de la Dirección
+                de Medidas Cautelares de la Región Judicial Centro se constituyó en las instalaciones que ocupa la Fiscalía General del Estado, se constituyó en __________________________________.
+            </p>
+            <p>
+                Motivo por el cual esta Dirección, se encuentra impedida para realizar la entrevista de Evaluación de Riesgos Procesales, debido a la negación de proporcionar información por parte del
+                imputado, para llevar a cabo el procedimiento de entrevista, recolección y corroboración de datos.
+                El entrevistado manifestó ____ haber estado sujeto a proceso penal, _____ haber tenido sentencia firme por el delito culposo o doloso, motivo por el cual se solicitó la búsqueda
+                de antecedentes penales del mismo, teniendo como respuesta; _____ SE ENCONTRÓ REGISTRO coincidente con el nombre proporcionado.
+            </p>
+            <p>
+                Informo a los actos legales que haya lugar.
+            </p>
+            <br>
+            <p align-text='center'>
+                Atentamente:
+            </p>
         """
         self.x_contenido = default_code
