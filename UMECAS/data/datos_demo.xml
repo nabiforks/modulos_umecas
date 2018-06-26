@@ -544,12 +544,12 @@
             <field name="seccion_id" ref="umc_seccion_1"/>
         </record>
         <record id="umc_escalavalores_respuesta_4" model="ucm.escalavalores.valor">
-            <field name="name">No proporcionó número teléfonico</field>
+            <field name="name">No proporcionó número telefónico</field>
             <field name="valor">-2</field>
             <field name="seccion_id" ref="umc_seccion_1"/>
         </record>
         <record id="umc_escalavalores_respuesta_5" model="ucm.escalavalores.valor">
-            <field name="name">No cuenta con número teléfonico</field>
+            <field name="name">No cuenta con número telefónico</field>
             <field name="valor">-1</field>
             <field name="seccion_id" ref="umc_seccion_1"/>
         </record>
@@ -689,7 +689,7 @@
             <field name="seccion_id" ref="umc_seccion_5"/>
         </record>
         <record id="umc_escalavalores_respuesta_29" model="ucm.escalavalores.valor">
-            <field name="name">No fue posible constatar que desempeñe atividad laboral, académica o sea dependiente económico</field>
+            <field name="name">No fue posible constatar que desempeñe actividad laboral, académica o sea dependiente económico</field>
             <field name="valor">-1</field>
             <field name="seccion_id" ref="umc_seccion_5"/>
         </record>

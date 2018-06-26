@@ -15,6 +15,7 @@
 						<button name="generar_carta_apoyo_moral" type="object" string="Carta compromiso de apoyo moral" class="oe_highlight" states="encuadre"/>
 						<button name="generar_actas" type="object" string="Actas circunstanciadas" class="oe_highlight" states="compromisos"/>
 						<button name="generar_informe" type="object" string="Informe" class="oe_highlight" states="supervision"/>						
+						<button name="terminado" type="object" string="Terminar" class="oe_highlight" states="informe"/>
 						<field name="state" widget="statusbar"/>
 					</header>
 					<sheet>
@@ -147,6 +148,9 @@
 								<group>
 									<field name="x_informe_id" />
 								</group>
+							</page>
+							<page string="Resolución judiacial">
+
 							</page>
 						</notebook>
 					</sheet>

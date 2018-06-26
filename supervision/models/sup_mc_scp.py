@@ -99,8 +99,7 @@ class sup_mc_scp(models.Model):
          ('compromisos', 'Compromisos'),
          ('supervision', 'Supervisión'),
          ('informe', 'Informe'),
-         ('terminado', 'Terminado'),
-         ('archivado', 'Archivado')],
+         ('terminado', 'Terminado')],
         default='orden',
         readonly=True, string=u'Estatus',
     )
@@ -479,6 +478,9 @@ class sup_mc_scp(models.Model):
     x_lista_mc_scp = fields.Char(
         string='Lista',
     )
+    x_observaciones_rj = fields.Text(
+        string='Observaciones'
+    )
 
     #////////////////////////////////CARTAS Y/O DOCUMENTOS//////////////////////////////
 
@@ -637,3 +639,6 @@ class sup_mc_scp(models.Model):
                 n = n + 1
             lista += "</div>"
             self.x_lista_mc_scp = lista
+
+    def terminado(self):
+        self.state = 'terminado'

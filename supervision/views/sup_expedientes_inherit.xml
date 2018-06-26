@@ -7,7 +7,7 @@
             <field name="inherit_id" ref="UMECAS.umc_expediente_form_view"></field>
             <field name="arch" type="xml">
                 <xpath expr="//div[@name='button_box']" position="inside">
-                    <button class="oe_stat_button" name="supervision.sup_mc_scp_list_action" icon="fa-gavel" type="action" context="{'search_default_x_expediente_id': active_id,'default_x_causa_penal':x_causa_penal,'default_x_imputado_id':partner_id}">
+                    <button class="oe_stat_button" name="supervision.sup_mc_scp_list_action" icon="fa-gavel" type="action" context="{'search_default_x_expediente_id': active_id,'default_x_causa_penal':x_causa_penal,'default_x_imputado_id':partner_id,'default_x_abogado':x_abogado}">
                         <field string="MC / SCP" name="x_registros" widget="statinfo"/>
                     </button>
                 </xpath>

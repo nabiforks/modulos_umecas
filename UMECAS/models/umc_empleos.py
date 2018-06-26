@@ -52,7 +52,7 @@ class umc_empleos(models.Model):
     x_salario_pagos = fields.Selection(
         string=u'Pagos ',
         selection=[('1', 'Por hora'), ('2', 'Diarios'),
-                   ('3', 'Semanal'), ('4', 'Quincenal'), ('5', 'Mensual')]
+                   ('3', 'Semanal'), ('4', 'Quincenal'), ('5', 'Mensual'), ('6','Otro')]
     )
     x_dias_trabaja = fields.Selection(
         string=u'Días',
@@ -83,4 +83,7 @@ class umc_empleos(models.Model):
     )
     x_telefono_empleo = fields.Char(
         string=u'Teléfono',
+    )
+    x_variable = fields.Boolean(
+        string='Variable'
     )

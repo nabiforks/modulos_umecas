@@ -156,7 +156,7 @@ class sup_entrevista_encuadre(models.Model):
         related='x_imputado.id',
     )
     #==========Datos para reporte==========
-    x_dia_hora_firma = fields.Datetime(
+    x_dia_hora_firma = fields.Char(
         string='Día y hora de firma',
     )
     x_hora_conclusion = fields.Float(

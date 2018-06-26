@@ -38,7 +38,9 @@
                                 <span> de </span>
                                 <field name="x_dias_trabaja" class="oe_inline"/>
                                 <span> a </span>
-                                <field name="x_dias_trabaja_hasta" class="oe_inline"/>
+                                <field name="x_dias_trabaja_hasta" class="oe_inline"/>4
+                                <span>Variable </span>
+                                <field name="x_variable"/>
                             </div>
                             <label for="x_hora_inicio"/>
                             <div class="address_format">
