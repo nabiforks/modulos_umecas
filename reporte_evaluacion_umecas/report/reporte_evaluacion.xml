@@ -183,7 +183,7 @@
 
 							<br/>
 							<!-- Punto 9 -->
-							<div class="row" style="border: solid 1px #000000;padding: 0;">
+							<div class="row" name="cumplimiento" style="border: solid 1px #000000;padding: 0;">
 								<div class="col-xs-12 text-center text-uppercase" style="border-bottom: solid 1px #000000;">
 									<strong>9.-Cumplimiento de las medidas cautelares anteriores</strong>
 								</div>
@@ -194,7 +194,7 @@
 							<br/>
 							<!-- Punto 10 -->
 							<center><strong>VERIFICACIÓN DE DATOS</strong></center>
-							<div class="row">
+							<div class="row" >
 								<div class="col-xs-12">
 									<span t-field="entrevista.x_verificacion_datos"/>
 								</div>

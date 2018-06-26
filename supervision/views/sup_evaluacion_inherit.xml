@@ -1,20 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
-    <data>
-        <record id="evaluacion_inherit" model="ir.ui.view">
-            <field name="name">evaluacion_inherited</field>
-            <field name="model">umc_evaluacion</field>
-            <field name="inherit_id" ref="UMECAS.umc_eval_form_view"></field>
-            <field name="arch" type="xml">
-                <xpath expr="//button[@name='asignar_borrador']" position="before">
-                    <button name="impedimento" type="object" string="Impedimento" attrs="{'invisible': [('state','in',('impedimento'))]}"/>
-                </xpath>
-                <xpath expr="//page[@name='page_impedimento']" position="inside">
-                    <group>
-                        <field name="x_impedimento_id"/>
-                    </group>
-                </xpath>
-            </field>
-        </record>
-    </data>
+	<data>
+		<record id="evaluacion_inherit" model="ir.ui.view">
+			<field name="name">evaluacion_inherited</field>
+			<field name="model">umc_evaluacion</field>
+			<field name="inherit_id" ref="UMECAS.umc_eval_form_view"></field>
+			<field name="arch" type="xml">
+				<xpath expr="//button[@name='asignar_borrador']" position="before">
+					<button name="impedimento" type="object" string="Impedimento" attrs="{'invisible': [('state','in',('impedimento'))]}"/>
+				</xpath>
+				<xpath expr="//page[@name='page_impedimento']" position="inside">
+					<group>
+						<field name="x_impedimento_id"/>
+					</group>
+				</xpath>
+				<xpath expr="//field[@name='x_mc_anteriores']" position="after">
+					<label for="x_supervision_ids"></label>
+					<field name="x_supervision_ids" context="{'search_default_x_imputado_id': partner_id}">
+						<tree string="Caption" create="1" delete="1" edit="1" editable="bottom">
+                            <field name="x_expediente_id"/>							
+							<field name="x_imputado_id"/>
+							<field name="x_numero_oficio" string="No. Oficio" />
+							<field name="x_resolucion" />
+							<field name="x_inicia" />
+							<field name="x_finaliza" />							
+							<field name="state" />
+						</tree>
+					</field>
+                    <h4>Observaciones de Cumplimiento de MC anteriores</h4>                    
+                    <field name="x_supervision_observaciones" />                    
+				</xpath>
+			</field>
+		</record>
+	</data>
 </odoo>

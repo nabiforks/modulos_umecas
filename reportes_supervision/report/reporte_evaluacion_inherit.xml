@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+	<data>
+		<template id="reporte_evaluacion_inherit" inherit_id="reporte_evaluacion_umecas.detalles_evaluacion">
+			<xpath expr="//div[@name='cumplimiento']" position="inside">
+				<div class="row">
+					<t t-if="entrevista.x_supervision_ids">
+						<table class="table-bordered">
+							<thead>
+								<th>Expediente</th>
+								<th>CDI/CP</th>
+                                <th>Resolución</th>
+								<th>Fecha inicio</th>
+                                <th>Fecha término</th>
+                                <th>No. Oficio</th>
+								<th>Estatus</th>
+							</thead>
+							<t t-foreach="entrevista.x_supervision_ids" t-as="antecedente">
+								<tr>
+									<td>
+										<span t-field="antecedente.x_expediente_id" />
+									</td>
+                                    <td>
+										<span t-field="antecedente.x_causa_penal" />
+									</td>
+                                    <td>
+										<span t-field="antecedente.x_resolucion" />
+									</td>
+                                    <td>
+										<span t-field="antecedente.x_inicia" />
+									</td>
+                                    <td>
+										<span t-field="antecedente.x_finaliza" />
+									</td>
+                                    <td>
+										<span t-field="antecedente.x_numero_oficio" />
+									</td>
+                                    <td>
+										<span t-field="antecedente.state" />
+									</td>									
+								</tr>
+							</t>
+						</table>
+					</t>
+				</div>
+				<div class="row">
+					<div class="col-xs-12 text-justify">
+						<span t-field="entrevista.x_supervision_observaciones"/>
+					</div>
+				</div>
+			</xpath>
+		</template>
+	</data>
+</odoo>

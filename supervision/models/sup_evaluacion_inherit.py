@@ -27,3 +27,13 @@ class umc_evaluacion_inherit(models.Model):
             self.x_impedimento_id = res
             self.x_impedimento_id.impedimento()
             return res
+    
+    x_supervision_ids = fields.Many2many(
+        string=u'Ordenes de Supervisión',
+        comodel_name='sup_mc_scp'
+    )    
+    x_supervision_observaciones = fields.Text(
+        string=u'Observaciones de Cumplimiento de MC anteriores',
+    )
+    
+    
