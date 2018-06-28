@@ -764,19 +764,23 @@
             <field name="valor">-2</field>
             <field name="seccion_id" ref="umc_seccion_9"/>
         </record>
-        <record id="umc_escalavalores_respuesta_41" model="ucm.escalavalores.valor">
-            <field name="name">No fue posible realizar los actos de corraboración, en virtud de que el/la entrevistado(a) no proporcionó la información suficiente que permita realizar la validación de actos</field>
-            <field name="valor">-6</field>
-            <field name="seccion_id" ref="umc_seccion_9"/>
-        </record>
         <!--Seccion 10-->
         <record id="umc_seccion_10" model="ucm.escalavalores.secciones">
             <field name="name">IX.- Falsedad de información</field>
         </record>
-        <record id="umc_escalavalores_respuesta_42" model="ucm.escalavalores.valor">
+        <record id="umc_escalavalores_respuesta_41" model="ucm.escalavalores.valor">
             <field name="name">Hubo falsedad de información vertida por el entrevistado(a)</field>
             <field name="valor">-3</field>
             <field name="seccion_id" ref="umc_seccion_10"/>
+        </record>
+        <!--Seccion 11-->
+        <record id="umc_seccion_11" model="ucm.escalavalores.secciones">
+            <field name="name">X.- Impedimento para corroborar </field>
+        </record>
+        <record id="umc_escalavalores_respuesta_42" model="ucm.escalavalores.valor">
+            <field name="name">No fue posible realizar los actos de corraboración, en virtud de que el/la entrevistado(a) no proporcionó la información suficiente que permita realizar la validación de actos</field>
+            <field name="valor">-6</field>
+            <field name="seccion_id" ref="umc_seccion_11"/>
         </record>
     </data>
 </odoo>

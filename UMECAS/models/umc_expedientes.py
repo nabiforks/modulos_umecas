@@ -63,10 +63,10 @@ class Expedientes(models.Model):
     ]
 
     x_abogado=fields.Char(
-        string="Abogado"
+        string="Abogado(a)"
     )
     x_abogado_cargo=fields.Char(
-        string="Cargo de abogado"
+        string="Cargo de abogado(a)"
     )
     
     @api.multi

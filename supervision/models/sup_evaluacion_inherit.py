@@ -11,6 +11,9 @@ class umc_evaluacion_inherit(models.Model):
         readonly=True,
         ondelete='restrict',
     )
+    x_elaboro_imp = fields.Char(
+        string='Elaboró'
+    )
 
     @api.multi
     def impedimento(self):
@@ -35,5 +38,3 @@ class umc_evaluacion_inherit(models.Model):
     x_supervision_observaciones = fields.Text(
         string=u'Observaciones de Cumplimiento de MC anteriores',
     )
-    
-    

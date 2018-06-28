@@ -149,8 +149,8 @@
 									<field name="x_informe_id" />
 								</group>
 							</page>
-							<page string="Resolución judiacial">
-
+							<page string="Resolución judicial">
+								<field name="x_observaciones_rj"/>
 							</page>
 						</notebook>
 					</sheet>

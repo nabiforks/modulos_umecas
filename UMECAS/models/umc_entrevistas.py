@@ -299,6 +299,9 @@ class Entrevistas(models.Model):
     x_no_menciono_est = fields.Char(
         string="Observaciones"
     )
+    x_no_menciono_enf = fields.Char(
+        string="Observaciones"
+    )
 
     #//////////////////////////////////VI.-Empleo/////////////////
 
@@ -465,5 +468,12 @@ class Entrevistas(models.Model):
         domain="[('company_id','=',x_casa_justicia)]"
     )
     x_corroboracion = fields.Text(
-        string = "Observaciones"
+        string = "Corroboración"
+    )
+    x_name_corroboro = fields.Char(
+        string="Corroboró"
+    )
+    x_fecha_hora_corroboracion = fields.Datetime(
+        string="Fecha y hora de corroboración",
+        default=fields.Datetime.now
     )
