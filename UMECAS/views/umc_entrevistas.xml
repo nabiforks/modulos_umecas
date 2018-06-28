@@ -173,6 +173,7 @@
                                     </field>
                                     <field name="x_discapacidad_padece" />
                                     <field name="x_discapacidad_id" />
+                                    <field name="x_no_menciono_enf" />
                                 </group>
                             </page>
                             <page string="X.-Consumo de sustancias">
@@ -243,6 +244,14 @@
                             <page string="Corroboración">
                                 <group>
                                     <field name="x_corroboracion"/>
+                                </group>
+                                <group>
+                                    <group>
+                                        <field name="x_name_corroboro"/>
+                                    </group>
+                                    <group>
+                                        <field name="x_fecha_hora_corroboracion"/>
+                                    </group>
                                 </group>
                             </page>
                         </notebook>

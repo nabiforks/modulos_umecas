@@ -12,6 +12,7 @@
 				<xpath expr="//page[@name='page_impedimento']" position="inside">
 					<group>
 						<field name="x_impedimento_id"/>
+						<field name="x_elaboro_imp"/>
 					</group>
 				</xpath>
 				<xpath expr="//field[@name='x_mc_anteriores']" position="after">

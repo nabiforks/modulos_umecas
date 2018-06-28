@@ -26,9 +26,35 @@
                         <div class="page">
                             <div class="row">
                                 <div class="col-xs-12">
+                                    <div class="row">
+                                        <h4 class="text-center text-bold">DIRECCIÓN GENERAL DE CENTROS DE REINSERCIÓN SOCIAL DEL ESTADO DE PUEBLA</h4>
+                                        <h4 class="text-center text-bold">DIRECCIÓN DE MEDIDAS CAUTELARES</h4>
+                                    </div>
+                                    <br/>
                                     <span t-field="docs.x_corroboracion"/>
                                 </div>
                             </div>
+                            <br/>
+                            <div class="row">
+								<div class="col-xs-4"></div>
+								<div class="col-xs-4 text-center">
+									<p>
+										A t e n t a m e n t e
+									</p>
+									<p>
+										H. Puebla de Zaragoza Pue; a
+										<span t-field="docs.x_fecha_hora_corroboracion" t-options="{'format': 'd'}"/> de
+										<span t-field="docs.x_fecha_hora_corroboracion" t-options="{'format': 'MMMM'}"/> de
+										<span t-field="docs.x_fecha_hora_corroboracion" t-options="{'format': 'y'}"/>
+									</p>
+									<br/>
+									<span t-field="docs.x_name_corroboro"/>
+									<p>
+										Evaluador(a) de Riesgos Procesales de la Dirección de Medidas Cautelares y Policía Procesal, <span t-esc="user.company_id.x_region.x_name"/>, Puebla.
+									</p>
+								</div>
+								<div class="col-xs-4"></div>
+							</div>
                         </div>
                     </t>
                 </t>

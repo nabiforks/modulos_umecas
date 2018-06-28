@@ -20,7 +20,7 @@ class sup_documentos(models.Model):
         readonly=True, 
     )
     x_orden_name = fields.Char(
-        string=u'Orden de Supervisión',
+        string=u'Evaluación/Supervisión',
         readonly=True,        
     )
     x_orden_id = fields.Many2one(
@@ -371,8 +371,10 @@ class sup_documentos(models.Model):
                 Informo a los actos legales que haya lugar.
             </p>
             <br>
-            <p align-text='center'>
+            <p align='center'>
                 Atentamente:
+                <br/>
+                EVALUADOR DE RIESGOS PROCESALES DE LA DIRECCIÓN DE MEDIDAS CAUTELARES Y POLICÍA PROCESAL
             </p>
         """
         self.x_contenido = default_code
