@@ -27,6 +27,12 @@ class umc_evaluacion(models.Model):
         ondelete='set null',
         domain="[('company_id','=',x_casa_justicia)]",
     )
+    x_entrevistador_id = fields.Many2one(
+        'res.users',
+        string=u'Entrevistador',
+        ondelete='set null',
+        domain="[('company_id','=',x_casa_justicia)]",
+    )
     partner_id = fields.Many2one(
         'res.partner',
         string=u'Imputado ID',
@@ -101,7 +107,16 @@ class umc_evaluacion(models.Model):
                                   }
             res = self.env['umc_entrevistas'].create(valores_entrevista)
             self.x_entrevista_id = res
+            self.set_delitos_to_entrevista()
             return res
+
+    def set_delitos_to_entrevista(self):
+        for delito in self.x_expediente_id.x_delito:
+            valores_delito ={'x_entrevista_id': self.x_entrevista_id.id,
+                            'x_name':delito.id
+                            }
+            res = self.env['umc_delitos_proceso'].create(valores_delito)
+        return
 
     def lugar_delito(self):
         text = ""

@@ -1,6 +1,6 @@
 id,name,model_id/id,group_id/id,perm_read,perm_write,perm_create,perm_unlink
 sup_documentos_supervisor,Sup documentos_supervisor,supervision.model_sup_documentos,supervision.sup_supervisor,1,1,1,1
-sup_documentos_all,Sup documentos_all,supervision.model_sup_documentos,,1,0,0,0
+sup_documentos_all,Sup documentos_all,supervision.model_sup_documentos,,1,1,1,0
 sup_mc_supervisor,Sup mc_supervisor,supervision.model_sup_mc,supervision.sup_supervisor,1,1,1,1
 sup_mc_all,Sup mc_all,supervision.model_sup_mc,,1,0,0,0
 sup_scp_supervisor,Sup scp_supervisor,supervision.model_sup_scp,supervision.sup_supervisor,1,1,1,1
@@ -24,7 +24,7 @@ sup_planeacion_actividades_all,Sup planeacion_actividades_all,supervision.model_
 umecas_evaluacion_supervisor,UMC Evaluaciones_supervisor,UMECAS.model_umc_evaluacion,supervision.sup_supervisor,1,1,1,0
 umecas_entrevistas_supervisor,UMC entrevistas_supervisor,UMECAS.model_umc_entrevistas,supervision.sup_supervisor,1,1,1,0
 umecas_domicilio_supervisor,UMC Domicilio_supervisor,UMECAS.model_umc_domicilio,supervision.sup_supervisor,1,1,1,1
-umecas_actividades_supervisor,UMC actividades_supervisor,UMECAS.model_umc_actividades,supervision.sup_supervisor,1,1,1,0
+umecas_actividades_supervisor,UMC actividades_supervisor,UMECAS.model_umc_actividades,supervision.sup_supervisor,1,1,1,1
 umecas_empleos_supervisor,UMC empleos_supervisor,UMECAS.model_umc_empleos,supervision.sup_supervisor,1,1,1,1
 umecas_ocupacion_supervisor,UMC ocupacion_supervisor,UMECAS.model_umc_ocupacion,supervision.sup_supervisor,1,1,1,1
 umecas_nacionalidad_supervisor,UMC nacionalidad_supervisor,UMECAS.model_umc_nacionalidad,supervision.sup_supervisor,1,1,1,0

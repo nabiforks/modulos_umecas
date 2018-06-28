@@ -7,7 +7,7 @@
 			<field name="inherit_id" ref="UMECAS.umc_eval_form_view"></field>
 			<field name="arch" type="xml">
 				<xpath expr="//button[@name='asignar_borrador']" position="before">
-					<button name="impedimento" type="object" string="Impedimento" attrs="{'invisible': [('state','in',('impedimento'))]}"/>
+					<button name="impedimento" type="object" string="Impedimento" confirm="¿Confirmar impedimento?" attrs="{'invisible': [('state','in',('impedimento'))]}"/>
 				</xpath>
 				<xpath expr="//page[@name='page_impedimento']" position="inside">
 					<group>

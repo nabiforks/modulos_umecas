@@ -29,7 +29,7 @@ class sup_eventos(models.Model):
     )
     @api.multi
     def set_state_atrasado(self):
-        res = self.search([('start','<',datetime.now().strftime('%Y-%m-%d %23:%59:%59')),('x_cumplio','=',False)])
+        res = self.search([('start','<',datetime.now().strftime('%Y-%m-%d %H:%M:%S')),('x_cumplio','=',False)])
         for r in res:
             if r.recurrency:
                 aux = r.action_detach_recurring_event()

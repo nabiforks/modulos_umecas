@@ -239,7 +239,7 @@ class sup_mc_scp(models.Model):
                                   'x_apellido_mat': self.x_imputado_id.ap_materno,
                                   'x_nombre_entrevistado': self.x_imputado_id.name,
                                   'x_resolucion': self.x_resolucion,
-                                  'x_delitos_id': (4, 0, self.x_expediente_id.x_delito)}
+                                  'x_delitos_id': (6, 0, self.x_expediente_id.x_delito.ids)}
             res = self.env['sup_entrevista_encuadre'].create(
                 valores_entrevista)
             self.x_encuadre_id = res

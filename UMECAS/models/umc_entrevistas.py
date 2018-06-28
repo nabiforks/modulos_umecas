@@ -462,7 +462,8 @@ class Entrevistas(models.Model):
         'res.users',
         string="Entrevistador",
         ondelete='set null',
-        domain="[('company_id','=',x_casa_justicia)]"
+        domain="[('company_id','=',x_casa_justicia)]",        
+        related='x_evaluacion_id.x_entrevistador_id'        
     )
     x_corroboracion = fields.Text(
         string = "Observaciones"

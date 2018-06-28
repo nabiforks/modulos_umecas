@@ -23,6 +23,7 @@
                     <group>
                         <group>
                             <field name="x_evaluador_id" attrs="{'readonly': [('state','not in',('solicitud'))]}" options="{'no_create': True, 'no_open': True}"/>
+                            <field name="x_entrevistador_id" options="{'no_create': True, 'no_open': True}"/>
                             <field name="x_tipo_entrevista" widget="radio" options="{'horizontal': true}"/>
                             <field name="folio_evalucion"/>
                             <field name="x_fecha_inicio" />
