@@ -512,7 +512,7 @@
                                                         <span t-field="familiares.name"/>
                                                     </td>
                                                     <td class=" text-small">
-                                                        <span t-field="familiares.edad"/>
+                                                        <span t-field="familiares.x_edad_int"/>
                                                     </td>
                                                     <td class=" text-small">
                                                         <span t-field="familiares.x_domicilio"/>
@@ -554,7 +554,7 @@
                                                         <span t-field="familiares.name"/>
                                                     </td>
                                                     <td class=" text-small">
-                                                        <span t-field="familiares.edad"/>
+                                                        <span t-field="familiares.x_edad_int"/>
                                                     </td>
                                                     <td class=" text-small">
                                                         <span t-field="familiares.x_domicilio"/>
