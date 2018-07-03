@@ -91,7 +91,7 @@ class umc_evaluacion(models.Model):
 
     @api.multi
     def generar_entrevista(self):
-        if self.x_evaluador_id:
+        if  not self.x_entrevista_id:
             self.state = 'entrevista'
             valores_entrevista = {'x_evaluacion_id': self.id,
                                   'x_evaluador_id': self.x_evaluador_id,
@@ -109,6 +109,8 @@ class umc_evaluacion(models.Model):
             self.x_entrevista_id = res
             self.set_delitos_to_entrevista()
             return res
+        else:
+            self.state = 'entrevista'
 
     def set_delitos_to_entrevista(self):
         for delito in self.x_expediente_id.x_delito:
