@@ -224,7 +224,6 @@ class Entrevistas(models.Model):
     @api.depends('x_fecha_nacimiento','x_fecha_today')
     def calcular_edad(self):
         self.x_fecha_today = date.today()
-        print "////////////////////////////",self.x_fecha_today
         if self.x_fecha_nacimiento:
             start_date = fields.Datetime.from_string(self.x_fecha_nacimiento)
             end_date = fields.Datetime.from_string(self.x_fecha_today)

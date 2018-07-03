@@ -7,11 +7,11 @@
         <field name="arch" type="xml">
             <form>
                 <header>
-                    <button name="asignar_borrador" type="object" string="Solicitud" states="entrevista"/>
-                    <button name="generar_entrevista" type="object" string="Generar entrevista" class="oe_highlight" states="solicitud"/>
-                    <button name="terminar_entrevista" type="object" string="Escala de riesgos" class="oe_highlight" states="entrevista"/>
-                    <button name="terminar_analisis" type="object" string="Evaluación" class="oe_highlight" states="analisis"/>
-                    <button name="terminar_evaluacion" type="object" string="Terminar Evaluación" class="oe_highlight" states="evaluacion"/>
+                    <button name="asignar_borrador" type="object" string="Solicitud" states="entrevista" confirm="¿Regresar a solicitud?"/>
+                    <button name="generar_entrevista" type="object" string="Generar entrevista" class="oe_highlight" states="solicitud" confirm="¿Generar entrevista?" />
+                    <button name="terminar_entrevista" type="object" string="Escala de riesgos" class="oe_highlight" states="entrevista" confirm="Capturar Escala de riesgos"/>
+                    <button name="terminar_analisis" type="object" string="Evaluación" class="oe_highlight" states="analisis" confirm="¿Capturar Formato de evaluación?"/>
+                    <button name="terminar_evaluacion" type="object" string="Terminar Evaluación" class="oe_highlight" states="evaluacion" confirm="Terminar proceso de evaluación"/>
                     <field name="state" widget="statusbar"/>
                 </header>
                 <sheet>
