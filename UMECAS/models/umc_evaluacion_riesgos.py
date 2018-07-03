@@ -307,8 +307,9 @@ class umc_evaluacion(models.Model):
         if self.x_entrevista_id.x_actividades_ids:
             text = "Aludió realizar las siguientes actividades:" + '\n'
             for record in self.x_entrevista_id.x_actividades_ids:
-                text += str(record.x_name.x_name.encode('utf-8')) + ", " + str(
-                    record.x_descripcion.encode('utf-8')) + '\n'
+                text += str(record.x_name.x_name.encode('utf-8'))
+                if record.x_descripcion:
+                    text += ", " + str(record.x_descripcion.encode('utf-8')) + '\n'
 
             if self.x_entrevista_id.x_tiempo_libre == 'si':
                 text += '\n'
@@ -513,10 +514,10 @@ class umc_evaluacion(models.Model):
             if self.x_entrevista_id.x_sustancias_ids:
                 text += "El entrevistado manisfestó consumir las siguientes sustancias:" + '\n'
                 for record in self.x_entrevista_id.x_sustancias_ids:
-                    text += str(record.x_name.x_name.encode('utf-8')) + " " + str(
-                        record.x_cantidad.encode('utf-8')) + " " + str(
-                        dict(record._fields['x_frecuencia'].selection).get(
-                            record.x_frecuencia)) + " con última fecha de consumo en " + str(record.x_ultimo_consumo)
+                    text += str(record.x_name.x_name.encode('utf-8'))
+                    if record.x_cantidad:
+                        text += " " + str(record.x_cantidad.encode('utf-8'))
+                    text += " " + str(dict(record._fields['x_frecuencia'].selection).get(record.x_frecuencia)) + " con última fecha de consumo en " + str(record.x_ultimo_consumo)
 
         return text
 

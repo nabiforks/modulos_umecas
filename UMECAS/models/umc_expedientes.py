@@ -38,7 +38,7 @@ class Expedientes(models.Model):
         string=u'Delitos'
     )
     x_delito_descripcion = fields.Text(
-        string=u'Descripción Delito',
+        string=u'Descripción Delito (Dinámica de los hechos)',
     )
 
     x_casa_justicia = fields.Many2one(
